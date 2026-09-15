@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+
+html,
+body {
+  margin: 0;
+  scroll-behavior: smooth;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  left: -10%;
+  width: 120%;
+  height: 320px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+body::before {
+  top: 38%;
+  background: rgba(72, 190, 240, 0.11);
+  transform: rotate(-4deg);
+}
+
+body::after {
+  top: 68%;
+  background: rgba(30, 155, 220, 0.09);
+  transform: rotate(5deg);
+}
+
+body {
+  min-height: 100vh;
+  position: relative;
+
+  background:
+  radial-gradient(
+    circle at 5% 25%,
+    rgba(65, 190, 245, 0.28) 0%,
+    transparent 34%
+  ),
+  radial-gradient(
+    circle at 95% 55%,
+    rgba(48, 174, 225, 0.24) 0%,
+    transparent 38%
+  ),
+  linear-gradient(
+    180deg,
+    #f4fbff 0%,
+    #dff4ff 32%,
+    #cceeff 65%,
+    #eaf8ff 100%
+  );
+
+  background-attachment: fixed;
+}
