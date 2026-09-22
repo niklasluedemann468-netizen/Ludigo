@@ -11306,6 +11306,7 @@ if ((data.accommodations ?? []).length === 0) {
   }}
 >
   <div
+  className="main-search-grid"
   style={{
     display: "grid",
     gridTemplateColumns: "1fr 1fr auto",
@@ -11876,6 +11877,7 @@ WebkitBackdropFilter: "blur(14px)",
 
 {/* Vorteile unter der Suche */}
 <div
+className="mobile-benefits"
   style={{
     width: "min(1180px, calc(100% - 48px))",
     margin: "24px auto 34px",
@@ -12250,6 +12252,7 @@ id="so-funktionierts"
   </div>
 
   <div
+    className="steps-grid"
     style={{
       display: "grid",
       gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
@@ -13357,6 +13360,7 @@ const sortedResults = [...results].sort((a, b) => {
   </div>
 
   <div
+    className="search-benefits-grid"
     style={{
       display: "grid",
       gridTemplateColumns: "repeat(3, minmax(0, 1fr))",

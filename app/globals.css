@@ -72,3 +72,119 @@ body {
 
   background-attachment: fixed;
 }
+
+@media (max-width: 768px) {
+  .main-search-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-template-areas: none !important;
+  }
+}
+.main-search-grid > * {
+  min-width: 0 !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* ========================================
+   LÜDIGO – HANDY-ANSICHT
+   Betrifft nur Bildschirme bis 600px
+   ======================================== */
+
+@media (max-width: 600px) {
+#suche {
+  width: calc(100% - 24px) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.mobile-benefits {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 24px 12px !important;
+  width: calc(100% - 32px) !important;
+}
+.main-search-grid {
+  grid-template-columns: 1fr !important;
+  grid-template-areas:
+    "destination"
+    "dates"
+    "guests"
+    "button" !important;
+
+  width: calc(100% - 24px) !important;
+}
+}
+@media (max-width: 600px) {
+  .steps-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  @media (max-width: 600px) {
+  .search-benefits-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+}
+@media (max-width: 600px) {
+  .mobile-benefits {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 24px 16px !important;
+    margin-top: 40px !important;
+  }
+}
+}
+/* =========================
+   MOBILE HEADER / SCHNELLLEISTE
+   Nur Handy – Desktop bleibt unverändert
+   ========================= */
+
+@media (max-width: 600px) {
+  .site-nav {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-wrap: nowrap !important;
+  gap: 7px !important;
+
+  position: absolute !important;
+  top: -24px !important;
+  left: 12px !important;
+  right: 12px !important;
+
+  width: calc(100% - 24px) !important;
+  max-width: none !important;
+  margin: 0 !important;
+  transform: none !important;
+
+  padding: 7px 6px !important;
+  box-sizing: border-box !important;
+
+  font-size: 9px !important;
+  z-index: 20 !important;
+}
+
+  .site-nav a {
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  font-size: 10px !important;
+  white-space: nowrap !important;
+}
+
+  .site-nav span {
+    font-size: 9px !important;
+    white-space: nowrap !important;
+  } 
+  
+
+.site-nav a {
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  font-size: 10px !important;
+  white-space: nowrap !important;
+}
+
+.site-nav span {
+  font-size: 9px !important;
+  white-space: nowrap !important;
+}
+}
