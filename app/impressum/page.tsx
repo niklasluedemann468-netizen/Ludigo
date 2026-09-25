@@ -58,7 +58,7 @@ export default function ImpressumPage() {
           <p>
             <strong>LÜDIGO</strong>
             <br />
-            Inhaber: Niklas Lüdemann
+            Inhaber: Mandy Lüdemann
             <br />
             Zum Grunewald 7B
             <br />
@@ -74,10 +74,10 @@ export default function ImpressumPage() {
           <p>
             E-Mail:{" "}
             <a
-              href="mailto:Niklasluedemann468@googlemail.com"
+              href="mailto:info@ludigo-travel.com"
               style={{ color: "#1686a5" }}
             >
-              Niklasluedemann468@googlemail.com
+              info@ludigo-travel.com
             </a>
           </p>
         </section>
