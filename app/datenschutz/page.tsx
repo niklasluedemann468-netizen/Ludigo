@@ -57,7 +57,7 @@ export default function DatenschutzPage() {
           <h2>1. Verantwortlicher</h2>
 
           <p>
-            Niklas Lüdemann
+            Mandy Lüdemann
             <br />
             LÜDIGO
             <br />
@@ -71,10 +71,10 @@ export default function DatenschutzPage() {
           <p>
             E-Mail:{" "}
             <a
-              href="mailto:Niklasluedemann468@googlemail.com"
+              href="mailto:info@ludigo-travel.com"
               style={{ color: "#1686a5" }}
             >
-              Niklasluedemann468@googlemail.com
+              info@ludigo-travel.com
             </a>
           </p>
         </section>
