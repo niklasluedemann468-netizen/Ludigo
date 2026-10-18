@@ -1,0 +1,22 @@
+﻿node : file:///C:/Users/nikla/unterkunft-match/scripts/enrich-camping-osm.mjs:2
+In Zeile:1 Zeichen:1
++ node scripts/enrich-camping-osm.mjs 2>&1 | Out-File -FilePath fehler. ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (file:///C:/User...mping-osm.mjs:2:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+import { loadEnvConfig } from "@next/env";
+         ^^^^^^^^^^^^^
+SyntaxError: Named export 'loadEnvConfig' not found. The requested module '@next/env' is a CommonJS module, which 
+may not support all module.exports as named exports.
+CommonJS modules can always be imported via the default export, for example using:
+
+import pkg from '@next/env';
+const { loadEnvConfig } = pkg;
+
+    at #asyncInstantiate (node:internal/modules/esm/module_job:327:21)
+    at async ModuleJob.run (node:internal/modules/esm/module_job:431:5)
+    at async node:internal/modules/esm/loader:643:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.19.0

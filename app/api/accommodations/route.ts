@@ -1,4 +1,5 @@
 import { createClient } from "@/utils/supabase/server";
+import { getCampingSupabase } from "@/app/lib/camping-supabase";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -621,7 +622,331 @@ score +=
   })
   .map(({ item }) => item);
 
-return Response.json({
-  accommodations: rankedAccommodations,
-});
+
+
+  
+  // ============================================================
+  // CAMPING.INFO – CAMPINGPLÄTZE ERGÄNZEN
+  // ============================================================
+
+  let campingResults: Array<Record<string, unknown>> = [];
+
+  if (!type || type === "campsite") {
+    try {
+      const campingSupabase = getCampingSupabase();
+
+      // --------------------------------------------------------
+      // 1. Campingplätze laden (2 Seiten)
+      // --------------------------------------------------------
+
+      const loadPage = async (from: number, to: number) => {
+        let query = campingSupabase
+          .from("camping_info_campsites")
+          .select(`
+            id,
+            name,
+            description,
+            image_url,
+            affiliate_url,
+            city,
+            region,
+            country,
+            currency,
+            rating,
+            review_count
+          `)
+          .order("id", { ascending: true });
+
+        if (country) {
+          query = query.ilike("country", country);
+        }
+
+        if (region) {
+          query = query.ilike("region", region);
+        }
+
+        return query.range(from, to);
+      };
+
+      const [firstPage, secondPage] = await Promise.all([
+        loadPage(0, 999),
+        loadPage(1000, 1999),
+      ]);
+
+      if (firstPage.error) {
+        console.error(
+          "camping.info Seite 1:",
+          firstPage.error.message
+        );
+      }
+
+      if (secondPage.error) {
+        console.error(
+          "camping.info Seite 2:",
+          secondPage.error.message
+        );
+      }
+
+      const campingData = [
+        ...(firstPage.data ?? []),
+        ...(secondPage.data ?? []),
+      ];
+
+      // --------------------------------------------------------
+      // 2. Vorhandene Ausstattungsdaten aus Supabase laden
+      // --------------------------------------------------------
+
+      type CampingEquipment = {
+        has_wifi: boolean | null;
+        has_pool: boolean | null;
+        has_parking: boolean | null;
+        has_restaurant: boolean | null;
+        dogs_allowed: boolean | null;
+        family_friendly: boolean | null;
+        accessible: boolean | null;
+      };
+
+      const equipmentById = new Map<number, CampingEquipment>();
+
+      if (campingData.length > 0) {
+        // Kleine Blöcke verhindern zu lange ID-Abfragen.
+        const batchSize = 100;
+
+        for (let i = 0; i < campingData.length; i += batchSize) {
+          const ids = campingData
+            .slice(i, i + batchSize)
+            .map((camp) => camp.id);
+
+          const { data: equipmentData, error: equipmentError } =
+            await campingSupabase
+              .from("camping_info_campsites")
+              .select(`
+                id,
+                has_wifi,
+                has_pool,
+                has_parking,
+                has_restaurant,
+                dogs_allowed,
+                family_friendly,
+                accessible
+              `)
+              .in("id", ids);
+
+          if (equipmentError) {
+            console.error(
+              "camping.info Ausstattung:",
+              equipmentError.message
+            );
+          } else {
+            for (const equipment of equipmentData ?? []) {
+              equipmentById.set(Number(equipment.id), equipment);
+            }
+          }
+        }
+      }
+
+      // --------------------------------------------------------
+      // 3. Ausstattung automatisch aus Beschreibung erkennen
+      // --------------------------------------------------------
+
+      // NULL = keine verlässliche Angabe gefunden.
+      // Bei einer Verneinung wird das Merkmal nicht angezeigt.
+      const detectAmenity = (
+        description: string | null,
+        positive: RegExp,
+        negative: RegExp
+      ): boolean | null => {
+        if (!description) return null;
+
+        const text = description.toLowerCase();
+
+        if (negative.test(text)) return null;
+
+        return positive.test(text) ? true : null;
+      };
+
+      // --------------------------------------------------------
+      // 4. Campingplätze für LÜDIGO aufbereiten
+      // --------------------------------------------------------
+
+      campingResults = campingData.map((camp) => {
+        const equipment = equipmentById.get(Number(camp.id));
+        const description = camp.description ?? "";
+
+        const detectedWifi = detectAmenity(
+          description,
+          /\b(wlan|wi-fi|wifi|wireless internet)\b/i,
+          /\b(kein(?:e|en)? wlan|ohne wlan|kein wi-fi|ohne wifi)\b/i
+        );
+
+        const detectedPool = detectAmenity(
+          description,
+          /\b(pool|swimmingpool|schwimmbad)\b/i,
+          /\b(kein(?:en)? pool|ohne pool|kein schwimmbad|ohne schwimmbad)\b/i
+        );
+
+        const detectedParking = detectAmenity(
+          description,
+          /\b(parkplatz|parkplätze|parkmöglichkeiten)\b/i,
+          /\b(kein(?:e|en)? parkplätze?|ohne parkplatz)\b/i
+        );
+
+        const detectedRestaurant = detectAmenity(
+          description,
+          /\b(restaurant|gaststätte|pizzeria)\b/i,
+          /\b(kein restaurant|ohne restaurant)\b/i
+        );
+
+        const detectedDogs = detectAmenity(
+          description,
+          /\b(hunde erlaubt|hunde willkommen|hundefreundlich|hunde gestattet|haustiere erlaubt)\b/i,
+          /\b(hunde nicht erlaubt|keine hunde|hunde verboten|haustiere nicht erlaubt)\b/i
+        );
+
+        const detectedFamily = detectAmenity(
+          description,
+          /\b(familienfreundlich|kinderfreundlich|familiencamping)\b/i,
+          /\b(nicht familienfreundlich|nur für erwachsene|adults only)\b/i
+        );
+
+        const detectedAccessible = detectAmenity(
+          description,
+          /\b(barrierefrei|rollstuhlgerecht|rollstuhlgeeignet)\b/i,
+          /\b(nicht barrierefrei|nicht rollstuhlgerecht)\b/i
+        );
+
+        return {
+          id: -Number(camp.id),
+          name: camp.name,
+          description: camp.description,
+          accommodation_type: "campsite",
+
+          city: camp.city,
+          region: camp.region,
+          country: camp.country,
+
+          image_url: camp.image_url,
+          affiliate_url: camp.affiliate_url,
+          provider_name: "camping.info",
+
+          // Unbestätigte Feed-Preise nicht anzeigen.
+          price_min: null,
+          price_max: null,
+          currency: camp.currency,
+
+          review_score: camp.rating,
+          review_count: camp.review_count,
+
+          // Supabase-Werte haben Vorrang.
+          // Beschreibung ergänzt unbekannte Merkmale.
+          has_wifi: equipment?.has_wifi ?? detectedWifi,
+          has_pool: equipment?.has_pool ?? detectedPool,
+          has_parking: equipment?.has_parking ?? detectedParking,
+          has_restaurant:
+            equipment?.has_restaurant ?? detectedRestaurant,
+          dogs_allowed: equipment?.dogs_allowed ?? detectedDogs,
+          family_friendly:
+            equipment?.family_friendly ?? detectedFamily,
+          accessible: equipment?.accessible ?? detectedAccessible,
+        };
+      });
+
+      // --------------------------------------------------------
+      // 5. Hunde-Filter
+      // --------------------------------------------------------
+
+      if (dogsAllowed === "true") {
+        campingResults = campingResults.filter(
+          (camp) => camp.dogs_allowed === true
+        );
+      }
+
+      console.log(
+        "CAMPING.INFO GELADEN:",
+        campingResults.length
+      );
+    } catch (error) {
+      console.error("CAMPING.INFO FEHLER:", error);
+    }
+  }
+
+  // ============================================================
+  // EXPEDIA – IMPORTIERTE HOTELS ERGÄNZEN
+  // ============================================================
+  let expediaResults: Array<Record<string, unknown>> = [];
+
+  if (!type || type === "hotel") {
+    // Fehlende Angaben dürfen keine Pflichtfilter scheinbar erfüllen.
+    const unsupportedFilters =
+      hardFeatures.length > 0 ||
+      nearSea === "true" || nearLake === "true" ||
+      nearMountains === "true" || dogsAllowed === "true" ||
+      hasPool === "true" || Boolean(month) ||
+      Boolean(maxGuests) || Boolean(minPrice) || Boolean(maxPrice) ||
+      Boolean(bedrooms) || Boolean(minBedrooms) || Boolean(maxBedrooms);
+
+    if (!unsupportedFilters) {
+      try {
+        // Server-only Client: SUPABASE_SECRET_KEY niemals im Browser nutzen.
+        const expediaSupabase = getCampingSupabase();
+        let expediaQuery = expediaSupabase
+          .from("expedia_accommodations")
+          .select(`
+  id, excel_id, name, accommodation_type, city, region,
+  country, affiliate_url, image_url, review_score, hotel_stars
+`)
+          .eq("is_active", true)
+          .eq("accommodation_type", "hotel")
+          .not("affiliate_url", "is", null);
+
+        if (country) expediaQuery = expediaQuery.ilike("country", country);
+        if (region) expediaQuery = expediaQuery.ilike("region", region);
+        if (city) expediaQuery = expediaQuery.ilike("city", city);
+        if (reviewScore) expediaQuery = expediaQuery.eq("review_score", Number(reviewScore));
+        if (minReviewScore) expediaQuery = expediaQuery.gte("review_score", Number(minReviewScore));
+        if (maxReviewScore) expediaQuery = expediaQuery.lte("review_score", Number(maxReviewScore));
+        if (hotelStars) expediaQuery = expediaQuery.eq("hotel_stars", Number(hotelStars));
+        if (minHotelStars) expediaQuery = expediaQuery.gte("hotel_stars", Number(minHotelStars));
+        if (maxHotelStars) expediaQuery = expediaQuery.lte("hotel_stars", Number(maxHotelStars));
+
+        const { data: expediaData, error: expediaError } = await expediaQuery;
+        if (expediaError) throw expediaError;
+
+        expediaResults = (expediaData ?? [])
+          .filter((hotel) => typeof hotel.affiliate_url === "string" && hotel.affiliate_url.trim() !== "")
+          .map((hotel) => ({
+            id: -1000000000 - Number(hotel.id),
+            name: hotel.name,
+            accommodation_type: "hotel",
+            city: hotel.city,
+            region: hotel.region,
+            country: hotel.country,
+            affiliate_url: hotel.affiliate_url,
+            booking_url: hotel.affiliate_url,
+            provider_name: "Expedia",
+            image_url: hotel.image_url ?? null,
+            price_min: null,
+            price_max: null,
+            review_score: hotel.review_score,
+            hotel_stars: hotel.hotel_stars,
+            is_featured: false,
+          }));
+      } catch (error) {
+        console.error("EXPEDIA FEHLER:", error);
+      }
+    }
+  }
+
+  // ============================================================
+  // ERGEBNISSE ZURÜCKGEBEN
+  // ============================================================
+
+  return Response.json({
+    accommodations: [
+      ...rankedAccommodations,
+      ...campingResults,
+      ...expediaResults,
+    ],
+  });
 }
+
