@@ -36,6 +36,7 @@ type SearchResult = {
 
   price_min?: number | null;
   price_max?: number | null;
+  partner_price?: number | null;
   currency?: string | null;
 
 pool?: boolean;
@@ -13204,6 +13205,27 @@ const sortedResults = [...results].sort((a, b) => {
           </div>
         )}
     </>
+  ) : item.provider_name === "camping.info" &&
+    item.partner_price !== null &&
+    item.partner_price !== undefined &&
+    Number.isFinite(Number(item.partner_price)) ? (
+    <div>
+      <div style={{ fontSize: "12px", color: "#71808c", marginBottom: "4px" }}>
+        Partnerpreis von camping.info
+      </div>
+      <div style={{ fontSize: "26px", fontWeight: 800, color: "#082f4f" }}>
+        {Number(item.partner_price).toLocaleString("de-DE", {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        })} {currencySymbol}
+      </div>
+      <div style={{ fontSize: "12px", color: "#71808c", marginTop: "4px" }}>
+        Preisbasis nicht bestätigt
+      </div>
+      <div style={{ fontSize: "14px", color: "#71808c", marginTop: "5px" }}>
+        Preis beim Anbieter prüfen
+      </div>
+    </div>
   ) : (
     <div
       style={{

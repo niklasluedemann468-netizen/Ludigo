@@ -1,4 +1,6 @@
+
 import SearchBox from "./SearchBox";
+import TravelWorlds from "./TravelWorlds";
 
 export default function Home() {
   return (
@@ -12,6 +14,7 @@ export default function Home() {
       }}
     >
       <SearchBox />
+      <TravelWorlds />
     </main>
   );
 }

@@ -652,6 +652,7 @@ score +=
             region,
             country,
             currency,
+            price,
             rating,
             review_count
           `)
@@ -829,9 +830,10 @@ score +=
           affiliate_url: camp.affiliate_url,
           provider_name: "camping.info",
 
-          // Unbestätigte Feed-Preise nicht anzeigen.
+          // Unbestätigte Feed-Preise nicht als Nachtpreis verwenden.
           price_min: null,
           price_max: null,
+          partner_price: camp.price,
           currency: camp.currency,
 
           review_score: camp.rating,
