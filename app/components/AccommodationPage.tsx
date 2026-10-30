@@ -19,10 +19,27 @@ function StayCard({item,saved,onSave}:{item:SearchResult;saved:boolean;onSave:()
  const image=safeOfferUrl(item.image_url),price=displayPrice(item),rating=usableNumber(item.review_score);
  const kind=item.accommodation_type?.toLowerCase()||'';
  const category=/camp|tent|caravan/.test(kind)?'Camping':/hotel|resort|hostel/.test(kind)?'Hotel':/apartment|holiday|flat/.test(kind)?'Ferienwohnung':'Unterkunft';
- const features=[item.has_wifi&&'WLAN',item.has_pool&&'Pool',item.has_parking&&'Parkplatz',item.dogs_allowed&&'Hunde erlaubt',item.apartment_has_kitchen&&'Küche',item.has_breakfast&&'Frühstück'].filter(Boolean).slice(0,4);
+ // Only confirmed listing data becomes a badge; a search wish is not an amenity.
+ const features=[
+  {enabled:item.near_sea,icon:'sea',label:'Meernähe'},
+  {enabled:item.near_lake,icon:'lake',label:'Seenähe'},
+  {enabled:item.near_mountains,icon:'mountains',label:'Bergnähe'},
+  {enabled:item.dogs_allowed,icon:'paw',label:'Hunde erlaubt'},
+  {enabled:item.family_friendly,icon:'family',label:'Familienfreundlich'},
+  {enabled:item.accessible,icon:'accessible',label:'Barrierefrei'},
+  {enabled:item.quiet_place,icon:'leaf',label:'Ruhige Lage'},
+  {enabled:item.has_pool??item.pool,icon:'pool',label:'Pool'},
+  {enabled:item.has_wifi??item.wifi,icon:'wifi',label:'WLAN'},
+  {enabled:item.has_parking??item.parking,icon:'parking',label:'Parkplatz'},
+  {enabled:item.apartment_has_kitchen??item.kitchen,icon:'kitchen',label:'Küche'},
+  {enabled:item.apartment_has_washing_machine??item.washing_machine,icon:'laundry',label:'Waschmaschine'},
+  {enabled:item.has_breakfast??item.breakfast,icon:'coffee',label:'Frühstück'},
+  {enabled:item.has_restaurant??item.restaurant,icon:'restaurant',label:'Restaurant'},
+  {enabled:item.has_air_conditioning??item.air_conditioning,icon:'snowflake',label:'Klimaanlage'},
+ ].filter(feature=>feature.enabled===true);
  return <article className="stay-card"><div className="card-photo">{image&&!failed?<img src={image} alt={item.name} width="600" height="400" loading="lazy" decoding="async" onError={()=>setFailed(true)}/>:<div className="live-image-fallback"><Icon name={category==='Camping'?'tent':'home'}/><span>Für deine nächste Auszeit</span></div>}<span className="card-category">{category.toUpperCase()}</span><button type="button" className="save-button" aria-pressed={saved} aria-label={`${item.name} ${saved?'aus der Merkliste entfernen':'merken'}`} onClick={onSave}><Icon name="heart"/></button></div>
- <div className="card-content"><p className="card-place"><Icon name="pin"/>{[item.city,item.region,item.country].filter(Boolean).join(' · ')||'Ortsangabe beim Anbieter prüfen'}</p><h3>{item.name}</h3><div className="card-meta">{rating!==null?<><span className="rating" aria-label={`Bewertung ${rating.toLocaleString('de-DE')}`}><Icon name="star"/>{rating.toLocaleString('de-DE',{minimumFractionDigits:1,maximumFractionDigits:1})}</span><span className="rating-source">{item.provider_name?`Bewertung bei ${item.provider_name}`:'Gästebewertung'}</span></>:<span className="rating-source">Noch keine Bewertung hinterlegt</span>}</div>
- {features.length>0&&<ul className="live-features">{features.map(feature=><li key={String(feature)}>{feature}</li>)}</ul>}<div className="live-price"><span>{price.label}</span>{price.value&&<strong>{price.value}</strong>}<p>{price.note}</p></div><div className="card-action"><p>{item.provider_name?`Angebot von ${item.provider_name}`:'Angebot beim Anbieter'}</p>{offer?<a href={offer} target="_blank" rel="sponsored noopener noreferrer" aria-label={`Angebot für ${item.name} öffnen`}>Zum Angebot <Icon name="arrow"/></a>:<span className="rating-source">Noch kein Angebotslink</span>}</div></div></article>;
+ <div className="card-content"><p className="card-place"><Icon name={item.city?'city':'pin'}/>{[item.city,item.region,item.country].filter(Boolean).join(' · ')||'Ortsangabe beim Anbieter prüfen'}</p><h3>{item.name}</h3><div className="card-meta">{rating!==null?<><span className="rating" aria-label={`Bewertung ${rating.toLocaleString('de-DE')}`}><Icon name="star"/>{rating.toLocaleString('de-DE',{minimumFractionDigits:1,maximumFractionDigits:1})}</span><span className="rating-source">{item.provider_name?`Bewertung bei ${item.provider_name}`:'Gästebewertung'}</span></>:<span className="rating-source">Noch keine Bewertung hinterlegt</span>}</div>
+ {features.length>0&&<ul className="live-features" aria-label="Lage und Ausstattung">{features.map(feature=><li key={feature.icon}><Icon name={feature.icon}/><span>{feature.label}</span></li>)}</ul>}<div className="live-price"><span>{price.label}</span>{price.value&&<strong>{price.value}</strong>}<p>{price.note}</p></div><div className="card-action"><p>{item.provider_name?`Angebot von ${item.provider_name}`:'Angebot beim Anbieter'}</p>{offer?<a href={offer} target="_blank" rel="sponsored noopener noreferrer" aria-label={`Angebot für ${item.name} öffnen`}>Zum Angebot <Icon name="arrow"/></a>:<span className="rating-source">Noch kein Angebotslink</span>}</div></div></article>;
 }
 export default function AccommodationPage(p:Props){
  const [favorites,setFavorites]=useState<SearchResult[]>([]),[savedOnly,setSavedOnly]=useState(false),[sort,setSort]=useState<SortOption>('best'),[expanded,setExpanded]=useState(false),[hasSearched,setHasSearched]=useState(false),[notice,setNotice]=useState('');
