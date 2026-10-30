@@ -33,7 +33,7 @@ const emptyContact: ContactData = {
 const inputStyle: React.CSSProperties = {
   width: "100%",
   padding: "13px",
-  border: "1px solid #d5dfeb",
+  border: "1px solid #cad6ce",
   borderRadius: 10,
   fontSize: 16,
   boxSizing: "border-box",
@@ -44,7 +44,7 @@ const buttonStyle: React.CSSProperties = {
   padding: "15px",
   border: "none",
   borderRadius: 10,
-  background: "#173b67",
+  background: "#144c45",
   color: "#ffffff",
   fontSize: 16,
   fontWeight: 700,
@@ -280,7 +280,7 @@ export default function SurpriseSearchBox() {
     <div
       style={{
         width: "100%",
-        color: "#173b67",
+        color: "#144c45",
       }}
     >
       <form
@@ -459,11 +459,11 @@ export default function SurpriseSearchBox() {
                     borderRadius: 25,
                     border: active
                       ? "2px solid #d9a000"
-                      : "1px solid #d5dfeb",
+                      : "1px solid #cad6ce",
                     background: active
                       ? "#fff3c4"
                       : "#f8fafc",
-                    color: "#173b67",
+                    color: "#144c45",
                     cursor: "pointer",
                     fontSize: 15,
                   }}
@@ -599,7 +599,7 @@ export default function SurpriseSearchBox() {
                       : "#ffffff",
                     border: selected
                       ? "3px solid #dfa800"
-                      : "2px solid #d5dfeb",
+                      : "2px solid #cad6ce",
                     borderRadius: 16,
                     padding: 20,
                     cursor: "pointer",
@@ -877,7 +877,7 @@ export default function SurpriseSearchBox() {
     target="_blank"
     rel="noopener noreferrer"
     style={{
-      color: "#173b67",
+      color: "#144c45",
       fontWeight: 700,
       textDecoration: "underline",
     }}
@@ -1016,7 +1016,7 @@ export default function SurpriseSearchBox() {
       <p
         style={{
           marginTop: 18,
-          color: "#64748b",
+          color: "#667570",
           fontSize: 13,
         }}
       >
