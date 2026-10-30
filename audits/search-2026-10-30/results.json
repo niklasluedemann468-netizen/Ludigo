@@ -1,0 +1,2878 @@
+{
+  "summary": {
+    "sourceCommit": "61de11f2de4c77b91a18e7a25bf58e2c87dcece8",
+    "date": "2026-10-30",
+    "total": 60,
+    "passed": 24,
+    "failed": 36
+  },
+  "method": "Unveränderte produktive Parser und GET-Route werden geladen; KI und Supabase werden ausschließlich an den externen Grenzen kontrolliert simuliert. Keine echten API-Aufrufe oder Datenbankänderungen.",
+  "coverageNotes": {
+    "datesGenerateIdenticalDatabaseQueries": true,
+    "note": "Die Tagesverfügbarkeit ist ohne Kalender-/Partneranbindung nicht prüfbar. Identische DB-Abfragen belegen die aktuelle Funktionalitätsgrenze; kein Live-Buchungstest."
+  },
+  "checks": [
+    {
+      "id": "P01",
+      "area": "parser",
+      "label": "Berlin und Deutschland werden erkannt",
+      "pass": true,
+      "evidence": {
+        "query": "Hotel in Berlin",
+        "params": {
+          "city": [
+            "Berlin"
+          ],
+          "country": [
+            "Deutschland"
+          ],
+          "type": [
+            "hotel"
+          ],
+          "check_in": [
+            "2027-07-01"
+          ],
+          "check_out": [
+            "2027-07-08"
+          ],
+          "nights": [
+            "7"
+          ],
+          "max_guests": [
+            "2"
+          ]
+        },
+        "aiCalls": 1,
+        "normalized": "hotel in berlin",
+        "dropped": [],
+        "messages": [
+          "Suche läuft...",
+          "Keine passende Unterkunft gefunden.",
+          "Keine passende Unterkunft gefunden."
+        ]
+      }
+    },
+    {
+      "id": "P02",
+      "area": "parser",
+      "label": "Vier Personen werden erkannt",
+      "pass": true,
+      "evidence": {
+        "query": "Hotel für 4 Personen",
+        "params": {
+          "type": [
+            "hotel"
+          ],
+          "max_guests": [
+            "4"
+          ],
+          "check_in": [
+            "2027-07-01"
+          ],
+          "check_out": [
+            "2027-07-08"
+          ],
+          "nights": [
+            "7"
+          ]
+        },
+        "aiCalls": 1,
+        "normalized": "hotel für 4 personen",
+        "dropped": [],
+        "messages": [
+          "Suche läuft...",
+          "Keine passende Unterkunft gefunden.",
+          "Keine passende Unterkunft gefunden."
+        ]
+      }
+    },
+    {
+      "id": "P03",
+      "area": "parser",
+      "label": "Erwachsene und Kinder werden addiert",
+      "pass": true,
+      "evidence": {
+        "query": "Hotel mit 2 Erwachsenen und 2 Kindern",
+        "params": {
+          "type": [
+            "hotel"
+          ],
+          "max_guests": [
+            "4"
+          ],
+          "check_in": [
+            "2027-07-01"
+          ],
+          "check_out": [
+            "2027-07-08"
+          ],
+          "nights": [
+            "7"
+          ]
+        },
+        "aiCalls": 1,
+        "normalized": "hotel mit 2 erwachsenen und 2 kinder",
+        "dropped": [
+          "guest_type"
+        ],
+        "messages": [
+          "Suche läuft...",
+          "Keine passende Unterkunft gefunden.",
+          "Keine passende Unterkunft gefunden."
+        ]
+      }
+    },
+    {
+      "id": "P04",
+      "area": "parser",
+      "label": "Babys werden mitgezählt",
+      "pass": false,
+      "error": "Babys werden mitgezählt",
+      "evidence": {
+        "query": "Hotel mit 2 Erwachsenen und 1 Baby",
+        "params": {
+          "type": [
+            "hotel"
+          ],
+          "max_guests": [
+            "2"
+          ],
+          "check_in": [
+            "2027-07-01"
+          ],
+          "check_out": [
+            "2027-07-08"
+          ],
+          "nights": [
+            "7"
+          ]
+        },
+        "aiCalls": 1,
+        "normalized": "hotel mit 2 erwachsenen und 1 baby",
+        "dropped": [
+          "guest_type"
+        ],
+        "messages": [
+          "Suche läuft...",
+          "Keine passende Unterkunft gefunden.",
+          "Keine passende Unterkunft gefunden."
+        ]
+      }
+    },
+    {
+      "id": "P05",
+      "area": "parser",
+      "label": "Formularpersonenzahl wird übernommen",
+      "pass": true,
+      "evidence": {
+        "query": "Hotel in Berlin",
+        "params": {
+          "city": [
+            "Berlin"
+          ],
+          "country": [
+            "Deutschland"
+          ],
+          "type": [
+            "hotel"
+          ],
+          "check_in": [
+            "2027-07-01"
+          ],
+          "check_out": [
+            "2027-07-08"
+          ],
+          "nights": [
+            "7"
+          ],
+          "max_guests": [
+            "5"
+          ]
+        },
+        "aiCalls": 1,
+        "normalized": "hotel in berlin",
+        "dropped": [],
+        "messages": [
+          "Suche läuft...",
+          "Keine passende Unterkunft gefunden.",
+          "Keine passende Unterkunft gefunden."
+        ]
+      }
+    },
+    {
+      "id": "P06",
+      "area": "parser",
+      "label": "Pool wird als Merkmal erkannt",
+      "pass": true,
+      "evidence": {
+        "query": "Hotel mit Pool",
+        "params": {
+          "type": [
+            "hotel"
+          ],
+          "feature": [
+            "pool"
+          ],
+          "check_in": [
+            "2027-07-01"
+          ],
+          "check_out": [
+            "2027-07-08"
+          ],
+          "nights": [
+            "7"
+          ],
+          "max_guests": [
+            "2"
+          ]
+        },
+        "aiCalls": 1,
+        "normalized": "hotel mit pool",
+        "dropped": [],
+        "messages": [
+          "Suche läuft...",
+          "Keine passende Unterkunft gefunden.",
+          "Keine passende Unterkunft gefunden."
+        ]
+      }
+    },
+    {
+      "id": "P07",
+      "area": "parser",
+      "label": "WLAN wird als Merkmal erkannt",
+      "pass": true,
+      "evidence": {
+        "query": "Hotel mit WLAN",
+        "params": {
+          "type": [
+            "hotel"
+          ],
+          "feature": [
+            "wifi"
+          ],
+          "check_in": [
+            "2027-07-01"
+          ],
+          "check_out": [
+            "2027-07-08"
+          ],
+          "nights": [
+            "7"
+          ],
+          "max_guests": [
+            "2"
+          ]
+        },
+        "aiCalls": 1,
+        "normalized": "hotel mit wlan",
+        "dropped": [],
+        "messages": [
+          "Suche läuft...",
+          "Keine passende Unterkunft gefunden.",
+          "Keine passende Unterkunft gefunden."
+        ]
+      }
+    },
+    {
+      "id": "P08",
+      "area": "parser",
+      "label": "Hund wird als Merkmal erkannt",
+      "pass": true,
+      "evidence": {
+        "query": "Camping mit Hund",
+        "params": {
+          "type": [
+            "campsite"
+          ],
+          "feature": [
+            "dogs_allowed"
+          ],
+          "check_in": [
+            "2027-07-01"
+          ],
+          "check_out": [
+            "2027-07-08"
+          ],
+          "nights": [
+            "7"
+          ],
+          "max_guests": [
+            "2"
+          ]
+        },
+        "aiCalls": 1,
+        "normalized": "camping mit hund",
+        "dropped": [
+          "guest_type"
+        ],
+        "messages": [
+          "Suche läuft...",
+          "Keine passende Unterkunft gefunden.",
+          "Keine passende Unterkunft gefunden."
+        ]
+      }
+    },
+    {
+      "id": "P09",
+      "area": "parser",
+      "label": "Ohne Hund erzeugt kein positives Hunde-Kriterium",
+      "pass": false,
+      "error": "Ohne Hund erzeugt kein positives Hunde-Kriterium",
+      "evidence": {
+        "query": "Camping ohne Hund",
+        "params": {
+          "type": [
+            "campsite"
+          ],
+          "feature": [
+            "dogs_allowed"
+          ],
+          "check_in": [
+            "2027-07-01"
+          ],
+          "check_out": [
+            "2027-07-08"
+          ],
+          "nights": [
+            "7"
+          ],
+          "max_guests": [
+            "2"
+          ]
+        },
+        "aiCalls": 1,
+        "normalized": "camping ohne hund",
+        "dropped": [],
+        "messages": [
+          "Suche läuft...",
+          "Keine passende Unterkunft gefunden.",
+          "Keine passende Unterkunft gefunden."
+        ]
+      }
+    },
+    {
+      "id": "P10",
+      "area": "parser",
+      "label": "Ausdrücklicher Pool-Ausschluss erreicht die API",
+      "pass": false,
+      "error": "Ausdrücklicher Pool-Ausschluss erreicht die API",
+      "evidence": {
+        "query": "Hotel ohne Pool",
+        "params": {
+          "type": [
+            "hotel"
+          ],
+          "check_in": [
+            "2027-07-01"
+          ],
+          "check_out": [
+            "2027-07-08"
+          ],
+          "nights": [
+            "7"
+          ],
+          "max_guests": [
+            "2"
+          ]
+        },
+        "aiCalls": 1,
+        "normalized": "hotel ohne pool",
+        "dropped": [
+          "exclude_feature"
+        ],
+        "messages": [
+          "Suche läuft...",
+          "Keine passende Unterkunft gefunden.",
+          "Keine passende Unterkunft gefunden."
+        ]
+      }
+    },
+    {
+      "id": "P11",
+      "area": "parser",
+      "label": "Ausdrücklicher WLAN-Ausschluss erreicht die API",
+      "pass": false,
+      "error": "Ausdrücklicher WLAN-Ausschluss erreicht die API",
+      "evidence": {
+        "query": "Hotel ohne WLAN",
+        "params": {
+          "type": [
+            "hotel"
+          ],
+          "check_in": [
+            "2027-07-01"
+          ],
+          "check_out": [
+            "2027-07-08"
+          ],
+          "nights": [
+            "7"
+          ],
+          "max_guests": [
+            "2"
+          ]
+        },
+        "aiCalls": 1,
+        "normalized": "hotel ohne wlan",
+        "dropped": [
+          "exclude_feature"
+        ],
+        "messages": [
+          "Suche läuft...",
+          "Keine passende Unterkunft gefunden.",
+          "Keine passende Unterkunft gefunden."
+        ]
+      }
+    },
+    {
+      "id": "P12",
+      "area": "parser",
+      "label": "Optionaler Pool bleibt Wunsch",
+      "pass": true,
+      "evidence": {
+        "query": "Hotel mit Pool wäre schön",
+        "params": {
+          "type": [
+            "hotel"
+          ],
+          "feature": [
+            "pool"
+          ],
+          "preferred_feature": [
+            "pool"
+          ],
+          "check_in": [
+            "2027-07-01"
+          ],
+          "check_out": [
+            "2027-07-08"
+          ],
+          "nights": [
+            "7"
+          ],
+          "max_guests": [
+            "2"
+          ]
+        },
+        "aiCalls": 1,
+        "normalized": "hotel mit pool wäre schön",
+        "dropped": [],
+        "messages": [
+          "Suche läuft...",
+          "Keine passende Unterkunft gefunden.",
+          "Keine passende Unterkunft gefunden."
+        ]
+      }
+    },
+    {
+      "id": "P13",
+      "area": "parser",
+      "label": "WLAN-Pflicht macht optionalen Pool nicht verpflichtend",
+      "pass": false,
+      "error": "WLAN-Pflicht macht optionalen Pool nicht verpflichtend",
+      "evidence": {
+        "query": "Hotel WLAN muss sein, Pool wäre schön",
+        "params": {
+          "type": [
+            "hotel"
+          ],
+          "check_in": [
+            "2027-07-01"
+          ],
+          "check_out": [
+            "2027-07-08"
+          ],
+          "nights": [
+            "7"
+          ],
+          "max_guests": [
+            "2"
+          ],
+          "feature": [
+            "pool",
+            "wifi"
+          ],
+          "must_feature": [
+            "wifi",
+            "pool"
+          ]
+        },
+        "aiCalls": 1,
+        "normalized": "hotel wlan muss sein pool wäre schön",
+        "dropped": [],
+        "messages": [
+          "Suche läuft...",
+          "Keine passende Unterkunft gefunden.",
+          "Keine passende Unterkunft gefunden."
+        ]
+      }
+    },
+    {
+      "id": "P14",
+      "area": "parser",
+      "label": "Heidelberg erzeugt keine zusätzliche Berg-Pflicht",
+      "pass": false,
+      "error": "Heidelberg erzeugt keine zusätzliche Berg-Pflicht",
+      "evidence": {
+        "query": "Hotel in Heidelberg",
+        "params": {
+          "city": [
+            "Heidelberg"
+          ],
+          "country": [
+            "Deutschland"
+          ],
+          "type": [
+            "hotel"
+          ],
+          "feature": [
+            "near_mountains"
+          ],
+          "check_in": [
+            "2027-07-01"
+          ],
+          "check_out": [
+            "2027-07-08"
+          ],
+          "nights": [
+            "7"
+          ],
+          "max_guests": [
+            "2"
+          ]
+        },
+        "aiCalls": 1,
+        "normalized": "hotel in heidelberg",
+        "dropped": [],
+        "messages": [
+          "Suche läuft...",
+          "Keine passende Unterkunft gefunden.",
+          "Keine passende Unterkunft gefunden."
+        ]
+      }
+    },
+    {
+      "id": "P15",
+      "area": "parser",
+      "label": "Nordsee wird nicht als Binnensee interpretiert",
+      "pass": false,
+      "error": "Nordsee wird nicht als Binnensee interpretiert",
+      "evidence": {
+        "query": "Hotel an der Nordsee",
+        "params": {
+          "region": [
+            "Nordsee"
+          ],
+          "country": [
+            "Deutschland"
+          ],
+          "type": [
+            "hotel"
+          ],
+          "feature": [
+            "near_lake"
+          ],
+          "check_in": [
+            "2027-07-01"
+          ],
+          "check_out": [
+            "2027-07-08"
+          ],
+          "nights": [
+            "7"
+          ],
+          "max_guests": [
+            "2"
+          ]
+        },
+        "aiCalls": 1,
+        "normalized": "hotel an der nordsee",
+        "dropped": [],
+        "messages": [
+          "Suche läuft...",
+          "Keine passende Unterkunft gefunden.",
+          "Keine passende Unterkunft gefunden."
+        ]
+      }
+    },
+    {
+      "id": "P16",
+      "area": "parser",
+      "label": "Gewählter Hotel-Tab wird nicht still überschrieben",
+      "pass": false,
+      "error": "Gewählter Hotel-Tab wird nicht still überschrieben",
+      "evidence": {
+        "query": "Ferienwohnung in Berlin",
+        "params": {
+          "type": [
+            "holiday_apartment"
+          ],
+          "city": [
+            "Berlin"
+          ],
+          "country": [
+            "Deutschland"
+          ],
+          "check_in": [
+            "2027-07-01"
+          ],
+          "check_out": [
+            "2027-07-08"
+          ],
+          "nights": [
+            "7"
+          ],
+          "max_guests": [
+            "2"
+          ]
+        },
+        "aiCalls": 1,
+        "normalized": "ferienwohnung in berlin",
+        "dropped": [],
+        "messages": [
+          "Suche läuft...",
+          "Keine passende Unterkunft gefunden.",
+          "Keine passende Unterkunft gefunden."
+        ]
+      }
+    },
+    {
+      "id": "P17",
+      "area": "parser",
+      "label": "Vier Hotelsterne werden erkannt",
+      "pass": true,
+      "evidence": {
+        "query": "Hotel mit 4 Sternen",
+        "params": {
+          "type": [
+            "hotel"
+          ],
+          "hotel_stars": [
+            "4"
+          ],
+          "check_in": [
+            "2027-07-01"
+          ],
+          "check_out": [
+            "2027-07-08"
+          ],
+          "nights": [
+            "7"
+          ],
+          "max_guests": [
+            "2"
+          ]
+        },
+        "aiCalls": 1,
+        "normalized": "hotel mit 4 sternen",
+        "dropped": [],
+        "messages": [
+          "Suche läuft...",
+          "Keine passende Unterkunft gefunden.",
+          "Keine passende Unterkunft gefunden."
+        ]
+      }
+    },
+    {
+      "id": "P18",
+      "area": "parser",
+      "label": "Mindestens vier Hotelsterne werden erkannt",
+      "pass": true,
+      "evidence": {
+        "query": "Hotel mindestens 4 Sterne",
+        "params": {
+          "type": [
+            "hotel"
+          ],
+          "min_hotel_stars": [
+            "4"
+          ],
+          "check_in": [
+            "2027-07-01"
+          ],
+          "check_out": [
+            "2027-07-08"
+          ],
+          "nights": [
+            "7"
+          ],
+          "max_guests": [
+            "2"
+          ]
+        },
+        "aiCalls": 1,
+        "normalized": "hotel mindestens 4 sterne",
+        "dropped": [
+          "min_stars"
+        ],
+        "messages": [
+          "Suche läuft...",
+          "Keine passende Unterkunft gefunden.",
+          "Keine passende Unterkunft gefunden."
+        ]
+      }
+    },
+    {
+      "id": "P19",
+      "area": "parser",
+      "label": "Höchstens drei Hotelsterne werden erkannt",
+      "pass": true,
+      "evidence": {
+        "query": "Hotel maximal 3 Sterne",
+        "params": {
+          "type": [
+            "hotel"
+          ],
+          "max_hotel_stars": [
+            "3"
+          ],
+          "check_in": [
+            "2027-07-01"
+          ],
+          "check_out": [
+            "2027-07-08"
+          ],
+          "nights": [
+            "7"
+          ],
+          "max_guests": [
+            "2"
+          ]
+        },
+        "aiCalls": 1,
+        "normalized": "hotel maximal 3 sterne",
+        "dropped": [
+          "stars"
+        ],
+        "messages": [
+          "Suche läuft...",
+          "Keine passende Unterkunft gefunden.",
+          "Keine passende Unterkunft gefunden."
+        ]
+      }
+    },
+    {
+      "id": "P20",
+      "area": "parser",
+      "label": "Dezimale Mindestbewertung bleibt erhalten",
+      "pass": true,
+      "evidence": {
+        "query": "Hotel Bewertung mindestens 8,5",
+        "params": {
+          "type": [
+            "hotel"
+          ],
+          "min_review_score": [
+            "8.5"
+          ],
+          "check_in": [
+            "2027-07-01"
+          ],
+          "check_out": [
+            "2027-07-08"
+          ],
+          "nights": [
+            "7"
+          ],
+          "max_guests": [
+            "2"
+          ]
+        },
+        "aiCalls": 1,
+        "normalized": "hotel bewertung mindestens 8 5",
+        "dropped": [],
+        "messages": [
+          "Suche läuft...",
+          "Keine passende Unterkunft gefunden.",
+          "Keine passende Unterkunft gefunden."
+        ]
+      }
+    },
+    {
+      "id": "P21",
+      "area": "parser",
+      "label": "99,50 Euro bleibt als Preis erhalten",
+      "pass": false,
+      "error": "99,50 Euro bleibt als Preis erhalten",
+      "evidence": {
+        "query": "Hotel bis 99,50 Euro pro Nacht",
+        "params": {
+          "type": [
+            "hotel"
+          ],
+          "max_total_price": [
+            "50"
+          ],
+          "max_price_per_night": [
+            "50"
+          ],
+          "check_in": [
+            "2027-07-01"
+          ],
+          "check_out": [
+            "2027-07-08"
+          ],
+          "nights": [
+            "7"
+          ],
+          "max_guests": [
+            "2"
+          ]
+        },
+        "aiCalls": 1,
+        "normalized": "hotel bis 99 50 euro pro nacht",
+        "dropped": [],
+        "messages": [
+          "Suche läuft...",
+          "Keine passende Unterkunft gefunden.",
+          "Keine passende Unterkunft gefunden."
+        ]
+      }
+    },
+    {
+      "id": "P22",
+      "area": "parser",
+      "label": "1.200 Euro bleibt als Preis erhalten",
+      "pass": false,
+      "error": "1.200 Euro bleibt als Preis erhalten",
+      "evidence": {
+        "query": "Hotel bis 1.200 Euro pro Nacht",
+        "params": {
+          "type": [
+            "hotel"
+          ],
+          "max_total_price": [
+            "200"
+          ],
+          "max_price_per_night": [
+            "200"
+          ],
+          "check_in": [
+            "2027-07-01"
+          ],
+          "check_out": [
+            "2027-07-08"
+          ],
+          "nights": [
+            "7"
+          ],
+          "max_guests": [
+            "2"
+          ]
+        },
+        "aiCalls": 1,
+        "normalized": "hotel bis 1 200 euro pro nacht",
+        "dropped": [],
+        "messages": [
+          "Suche läuft...",
+          "Keine passende Unterkunft gefunden.",
+          "Keine passende Unterkunft gefunden."
+        ]
+      }
+    },
+    {
+      "id": "P23",
+      "area": "parser",
+      "label": "Gesamtbudget mit Textdauer wird auf Nachtpreis umgerechnet",
+      "pass": true,
+      "evidence": {
+        "query": "Hotel 700 Euro für 7 Nächte",
+        "params": {
+          "type": [
+            "hotel"
+          ],
+          "nights": [
+            "7"
+          ],
+          "max_total_price": [
+            "700"
+          ],
+          "max_price_per_night": [
+            "100"
+          ],
+          "check_in": [
+            "2027-07-01"
+          ],
+          "check_out": [
+            "2027-07-08"
+          ],
+          "max_guests": [
+            "2"
+          ]
+        },
+        "aiCalls": 1,
+        "normalized": "hotel 700 euro für 7 nächte",
+        "dropped": [],
+        "messages": [
+          "Suche läuft...",
+          "Keine passende Unterkunft gefunden.",
+          "Keine passende Unterkunft gefunden."
+        ]
+      }
+    },
+    {
+      "id": "P24",
+      "area": "parser",
+      "label": "Gesamtbudget mit Formulardauer wird ebenfalls umgerechnet",
+      "pass": false,
+      "error": "Gesamtbudget mit Formulardauer wird ebenfalls umgerechnet",
+      "evidence": {
+        "query": "Hotel Budget 700 Euro",
+        "params": {
+          "type": [
+            "hotel"
+          ],
+          "max_total_price": [
+            "700"
+          ],
+          "check_in": [
+            "2027-07-01"
+          ],
+          "check_out": [
+            "2027-07-08"
+          ],
+          "nights": [
+            "7"
+          ],
+          "max_guests": [
+            "2"
+          ]
+        },
+        "aiCalls": 1,
+        "normalized": "hotel budget 700 euro",
+        "dropped": [],
+        "messages": [
+          "Suche läuft...",
+          "Keine passende Unterkunft gefunden.",
+          "Keine passende Unterkunft gefunden."
+        ]
+      }
+    },
+    {
+      "id": "P25",
+      "area": "parser",
+      "label": "Budgetuntergrenze wird mit der Dauer umgerechnet",
+      "pass": false,
+      "error": "Budgetuntergrenze wird mit der Dauer umgerechnet",
+      "evidence": {
+        "query": "Hotel zwischen 500 und 700 Euro für 7 Nächte",
+        "params": {
+          "type": [
+            "hotel"
+          ],
+          "nights": [
+            "7"
+          ],
+          "min_total_price": [
+            "500"
+          ],
+          "max_total_price": [
+            "700"
+          ],
+          "max_price_per_night": [
+            "100"
+          ],
+          "check_in": [
+            "2027-07-01"
+          ],
+          "check_out": [
+            "2027-07-08"
+          ],
+          "max_guests": [
+            "2"
+          ]
+        },
+        "aiCalls": 1,
+        "normalized": "hotel zwischen 500 und 700 euro für 7 nächte",
+        "dropped": [],
+        "messages": [
+          "Suche läuft...",
+          "Keine passende Unterkunft gefunden.",
+          "Keine passende Unterkunft gefunden."
+        ]
+      }
+    },
+    {
+      "id": "P26",
+      "area": "parser",
+      "label": "Dativ Schlafzimmern wird erkannt",
+      "pass": false,
+      "error": "Dativ Schlafzimmern wird erkannt",
+      "evidence": {
+        "query": "Ferienwohnung mit 3 Schlafzimmern",
+        "params": {
+          "type": [
+            "holiday_apartment"
+          ],
+          "check_in": [
+            "2027-07-01"
+          ],
+          "check_out": [
+            "2027-07-08"
+          ],
+          "nights": [
+            "7"
+          ],
+          "max_guests": [
+            "2"
+          ]
+        },
+        "aiCalls": 1,
+        "normalized": "ferienwohnung mit 3 schlafzimmern",
+        "dropped": [],
+        "messages": [
+          "Suche läuft...",
+          "Keine passende Unterkunft gefunden.",
+          "Keine passende Unterkunft gefunden."
+        ]
+      }
+    },
+    {
+      "id": "P27",
+      "area": "parser",
+      "label": "Mindestens zwei Schlafzimmer werden erkannt",
+      "pass": true,
+      "evidence": {
+        "query": "Ferienwohnung mindestens 2 Schlafzimmer",
+        "params": {
+          "type": [
+            "holiday_apartment"
+          ],
+          "min_bedrooms": [
+            "2"
+          ],
+          "check_in": [
+            "2027-07-01"
+          ],
+          "check_out": [
+            "2027-07-08"
+          ],
+          "nights": [
+            "7"
+          ],
+          "max_guests": [
+            "2"
+          ]
+        },
+        "aiCalls": 1,
+        "normalized": "ferienwohnung mindestens 2 schlafzimmer",
+        "dropped": [],
+        "messages": [
+          "Suche läuft...",
+          "Keine passende Unterkunft gefunden.",
+          "Keine passende Unterkunft gefunden."
+        ]
+      }
+    },
+    {
+      "id": "P28",
+      "area": "parser",
+      "label": "Numerische Daten mit Jahr werden berücksichtigt",
+      "pass": false,
+      "error": "Numerische Daten mit Jahr werden berücksichtigt",
+      "evidence": {
+        "query": "Hotel vom 01.06.2027 bis 08.06.2027",
+        "params": {
+          "type": [
+            "hotel"
+          ],
+          "check_in": [
+            "2027-07-01"
+          ],
+          "check_out": [
+            "2027-07-08"
+          ],
+          "nights": [
+            "7"
+          ],
+          "max_guests": [
+            "2"
+          ]
+        },
+        "aiCalls": 2,
+        "normalized": "hotel vom 01 06 2027 bis 08 06 2027",
+        "dropped": [],
+        "messages": [
+          "Suche läuft...",
+          "Keine passende Unterkunft gefunden.",
+          "Keine passende Unterkunft gefunden."
+        ]
+      }
+    },
+    {
+      "id": "P29",
+      "area": "parser",
+      "label": "Unmöglicher 31. Februar wird nicht an die Suche übergeben",
+      "pass": false,
+      "error": "Unmöglicher 31. Februar wird nicht an die Suche übergeben",
+      "evidence": {
+        "query": "Hotel vom 31. Februar bis 5. März",
+        "params": {
+          "type": [
+            "hotel"
+          ],
+          "check_in": [
+            "2027-02-31"
+          ],
+          "check_out": [
+            "2027-03-05"
+          ],
+          "nights": [
+            "2"
+          ],
+          "month": [
+            "2"
+          ],
+          "max_guests": [
+            "2"
+          ]
+        },
+        "aiCalls": 1,
+        "normalized": "hotel vom 31 februar bis 5 märz",
+        "dropped": [],
+        "messages": [
+          "Suche läuft...",
+          "Keine passende Unterkunft gefunden.",
+          "Keine passende Unterkunft gefunden."
+        ]
+      }
+    },
+    {
+      "id": "P30",
+      "area": "parser",
+      "label": "Jahresangabe erreicht die Suchschnittstelle",
+      "pass": false,
+      "error": "Jahresangabe erreicht die Suchschnittstelle",
+      "evidence": {
+        "query": "Hotel im Juli 2028",
+        "params": {
+          "type": [
+            "hotel"
+          ],
+          "month": [
+            "7"
+          ],
+          "check_in": [
+            "2027-07-01"
+          ],
+          "check_out": [
+            "2027-07-08"
+          ],
+          "nights": [
+            "7"
+          ],
+          "max_guests": [
+            "2"
+          ]
+        },
+        "aiCalls": 1,
+        "normalized": "hotel im juli 2028",
+        "dropped": [
+          "year"
+        ],
+        "messages": [
+          "Suche läuft...",
+          "Keine passende Unterkunft gefunden.",
+          "Keine passende Unterkunft gefunden."
+        ]
+      }
+    },
+    {
+      "id": "P31",
+      "area": "parser",
+      "label": "Gesendete Daten und Nächte sind intern konsistent",
+      "pass": false,
+      "error": "Gesendete Daten und Nächte sind intern konsistent",
+      "evidence": {
+        "query": "Hotel für 3 Nächte",
+        "params": {
+          "type": [
+            "hotel"
+          ],
+          "nights": [
+            "3"
+          ],
+          "check_in": [
+            "2027-07-01"
+          ],
+          "check_out": [
+            "2027-07-08"
+          ],
+          "max_guests": [
+            "2"
+          ]
+        },
+        "aiCalls": 1,
+        "normalized": "hotel für 3 nächte",
+        "dropped": [],
+        "messages": [
+          "Suche läuft...",
+          "Keine passende Unterkunft gefunden.",
+          "Keine passende Unterkunft gefunden."
+        ]
+      }
+    },
+    {
+      "id": "P32",
+      "area": "parser",
+      "label": "Einfache lokal verstandene Suche ruft keinen KI-Fallback auf",
+      "pass": false,
+      "error": "Einfache lokal verstandene Suche ruft keinen KI-Fallback auf",
+      "evidence": {
+        "query": "Hotel in Berlin",
+        "params": {
+          "city": [
+            "Berlin"
+          ],
+          "country": [
+            "Deutschland"
+          ],
+          "type": [
+            "hotel"
+          ],
+          "check_in": [
+            "2027-07-01"
+          ],
+          "check_out": [
+            "2027-07-08"
+          ],
+          "nights": [
+            "7"
+          ],
+          "max_guests": [
+            "2"
+          ]
+        },
+        "aiCalls": 1,
+        "normalized": "hotel in berlin",
+        "dropped": [],
+        "messages": [
+          "Suche läuft...",
+          "Keine passende Unterkunft gefunden.",
+          "Keine passende Unterkunft gefunden."
+        ]
+      }
+    },
+    {
+      "id": "P33",
+      "area": "parser",
+      "label": "KI-Keys werden schon beim ersten KI-Aufruf geprüft",
+      "pass": false,
+      "error": "KI-Keys werden schon beim ersten KI-Aufruf geprüft",
+      "evidence": {
+        "query": "Hotel in Berlin",
+        "params": {
+          "feature": [
+            "not_a_real_feature"
+          ],
+          "city": [
+            "Berlin"
+          ],
+          "country": [
+            "Deutschland"
+          ],
+          "type": [
+            "hotel"
+          ],
+          "check_in": [
+            "2027-07-01"
+          ],
+          "check_out": [
+            "2027-07-08"
+          ],
+          "nights": [
+            "7"
+          ],
+          "max_guests": [
+            "2"
+          ]
+        },
+        "aiCalls": 1,
+        "normalized": "hotel in berlin",
+        "dropped": [],
+        "messages": [
+          "Suche läuft...",
+          "Keine passende Unterkunft gefunden.",
+          "Keine passende Unterkunft gefunden."
+        ]
+      }
+    },
+    {
+      "id": "P34",
+      "area": "parser",
+      "label": "Lokal erkanntes Berlin korrigiert widersprüchliches KI-Land",
+      "pass": false,
+      "error": "Lokal erkanntes Berlin korrigiert widersprüchliches KI-Land",
+      "evidence": {
+        "query": "Hotel in Berlin",
+        "params": {
+          "country": [
+            "Italien"
+          ],
+          "city": [
+            "Berlin"
+          ],
+          "type": [
+            "hotel"
+          ],
+          "check_in": [
+            "2027-07-01"
+          ],
+          "check_out": [
+            "2027-07-08"
+          ],
+          "nights": [
+            "7"
+          ],
+          "max_guests": [
+            "2"
+          ]
+        },
+        "aiCalls": 1,
+        "normalized": "hotel in berlin",
+        "dropped": [],
+        "messages": [
+          "Suche läuft...",
+          "Keine passende Unterkunft gefunden.",
+          "Keine passende Unterkunft gefunden."
+        ]
+      }
+    },
+    {
+      "id": "P35",
+      "area": "parser",
+      "label": "Flughafennähe wird unterstützt oder ausdrücklich als unerfüllt gemeldet",
+      "pass": false,
+      "error": "Flughafennähe wird unterstützt oder ausdrücklich als unerfüllt gemeldet",
+      "evidence": {
+        "query": "Hotel nahe Flughafen",
+        "params": {
+          "type": [
+            "hotel"
+          ],
+          "check_in": [
+            "2027-07-01"
+          ],
+          "check_out": [
+            "2027-07-08"
+          ],
+          "nights": [
+            "7"
+          ],
+          "max_guests": [
+            "2"
+          ]
+        },
+        "aiCalls": 1,
+        "normalized": "hotel nahe flughafen",
+        "dropped": [
+          "transport_location",
+          "location_feature"
+        ],
+        "messages": [
+          "Suche läuft...",
+          "Keine passende Unterkunft gefunden.",
+          "Keine passende Unterkunft gefunden."
+        ]
+      }
+    },
+    {
+      "id": "P36",
+      "area": "parser",
+      "label": "Kostenloser Parkplatz verliert nicht seine kostenlose Eigenschaft",
+      "pass": false,
+      "error": "Kostenloser Parkplatz verliert nicht seine kostenlose Eigenschaft",
+      "evidence": {
+        "query": "Hotel mit kostenlosem Parkplatz",
+        "params": {
+          "type": [
+            "hotel"
+          ],
+          "feature": [
+            "parking"
+          ],
+          "check_in": [
+            "2027-07-01"
+          ],
+          "check_out": [
+            "2027-07-08"
+          ],
+          "nights": [
+            "7"
+          ],
+          "max_guests": [
+            "2"
+          ]
+        },
+        "aiCalls": 1,
+        "normalized": "hotel mit kostenlosem parkplatz",
+        "dropped": [],
+        "messages": [
+          "Suche läuft...",
+          "Keine passende Unterkunft gefunden.",
+          "Keine passende Unterkunft gefunden."
+        ]
+      }
+    },
+    {
+      "id": "P37",
+      "area": "parser",
+      "label": "Optionaler Pool wird nicht als hartes Muss an die API geschickt",
+      "pass": true,
+      "evidence": {
+        "query": "Hotel mit Pool wäre schön",
+        "params": {
+          "type": [
+            "hotel"
+          ],
+          "feature": [
+            "pool"
+          ],
+          "preferred_feature": [
+            "pool"
+          ],
+          "check_in": [
+            "2027-07-01"
+          ],
+          "check_out": [
+            "2027-07-08"
+          ],
+          "nights": [
+            "7"
+          ],
+          "max_guests": [
+            "2"
+          ]
+        },
+        "aiCalls": 1,
+        "normalized": "hotel mit pool wäre schön",
+        "dropped": [],
+        "messages": [
+          "Suche läuft...",
+          "Keine passende Unterkunft gefunden.",
+          "Keine passende Unterkunft gefunden."
+        ]
+      }
+    },
+    {
+      "id": "P38",
+      "area": "parser",
+      "label": "KI-Ausfall verhindert lokale Parameter nicht",
+      "pass": true,
+      "evidence": {
+        "query": "Hotel in Berlin",
+        "params": {
+          "city": [
+            "Berlin"
+          ],
+          "country": [
+            "Deutschland"
+          ],
+          "type": [
+            "hotel"
+          ],
+          "check_in": [
+            "2027-07-01"
+          ],
+          "check_out": [
+            "2027-07-08"
+          ],
+          "nights": [
+            "7"
+          ],
+          "max_guests": [
+            "2"
+          ]
+        },
+        "aiCalls": 1,
+        "normalized": "hotel in berlin",
+        "dropped": [],
+        "messages": [
+          "Suche läuft...",
+          "Keine passende Unterkunft gefunden.",
+          "Keine passende Unterkunft gefunden."
+        ]
+      }
+    },
+    {
+      "id": "A01",
+      "area": "api",
+      "label": "Hauptdatenquelle filtert Stadt korrekt",
+      "pass": true,
+      "evidence": {
+        "params": "type=hotel&city=Berlin",
+        "status": 200,
+        "names": [
+          "Eigenes Hotel Berlin",
+          "Expedia Hotel Berlin"
+        ],
+        "queries": [
+          {
+            "table": "accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ],
+              [
+                "eq",
+                "accommodation_type",
+                "hotel"
+              ],
+              [
+                "ilike",
+                "city",
+                "Berlin"
+              ]
+            ],
+            "range": null
+          },
+          {
+            "table": "expedia_accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ],
+              [
+                "eq",
+                "accommodation_type",
+                "hotel"
+              ],
+              [
+                "not",
+                "affiliate_url",
+                "is",
+                null
+              ],
+              [
+                "ilike",
+                "city",
+                "Berlin"
+              ]
+            ],
+            "range": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "A02",
+      "area": "api",
+      "label": "Expedia-Hotel ist grundsätzlich ansprechbar",
+      "pass": true,
+      "evidence": {
+        "params": "type=hotel&city=Berlin",
+        "status": 200,
+        "names": [
+          "Eigenes Hotel Berlin",
+          "Expedia Hotel Berlin"
+        ],
+        "queries": [
+          {
+            "table": "accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ],
+              [
+                "eq",
+                "accommodation_type",
+                "hotel"
+              ],
+              [
+                "ilike",
+                "city",
+                "Berlin"
+              ]
+            ],
+            "range": null
+          },
+          {
+            "table": "expedia_accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ],
+              [
+                "eq",
+                "accommodation_type",
+                "hotel"
+              ],
+              [
+                "not",
+                "affiliate_url",
+                "is",
+                null
+              ],
+              [
+                "ilike",
+                "city",
+                "Berlin"
+              ]
+            ],
+            "range": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "A03",
+      "area": "api",
+      "label": "Standard-Personenzahl blockiert den Hotelimport nicht pauschal",
+      "pass": false,
+      "error": "Standard-Personenzahl blockiert den Hotelimport nicht pauschal",
+      "evidence": {
+        "params": "type=hotel&city=Berlin&max_guests=2",
+        "status": 200,
+        "names": [
+          "Eigenes Hotel Berlin"
+        ],
+        "queries": [
+          {
+            "table": "accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ],
+              [
+                "eq",
+                "accommodation_type",
+                "hotel"
+              ],
+              [
+                "gte",
+                "max_guests",
+                2
+              ],
+              [
+                "ilike",
+                "city",
+                "Berlin"
+              ]
+            ],
+            "range": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "A04",
+      "area": "api",
+      "label": "Campingimport beachtet den Stadtfilter",
+      "pass": false,
+      "error": "Campingimport beachtet den Stadtfilter",
+      "evidence": {
+        "params": "type=campsite&city=Berlin",
+        "status": 200,
+        "names": [
+          "Feed Berlin ohne Ausstattung",
+          "Feed München mit Ausstattung"
+        ],
+        "queries": [
+          {
+            "table": "accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ],
+              [
+                "eq",
+                "accommodation_type",
+                "campsite"
+              ],
+              [
+                "ilike",
+                "city",
+                "Berlin"
+              ]
+            ],
+            "range": null
+          },
+          {
+            "table": "camping_info_campsites",
+            "filters": [],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "camping_info_campsites",
+            "filters": [],
+            "range": [
+              1000,
+              1999
+            ]
+          },
+          {
+            "table": "camping_info_campsites",
+            "filters": [
+              [
+                "in",
+                "id",
+                [
+                  10,
+                  11
+                ]
+              ]
+            ],
+            "range": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "A05",
+      "area": "api",
+      "label": "Campingimport erfüllt Pool-Pflicht aus feature=pool",
+      "pass": false,
+      "error": "Campingimport erfüllt Pool-Pflicht aus feature=pool",
+      "evidence": {
+        "params": "type=campsite&feature=pool",
+        "status": 200,
+        "names": [
+          "Eigener Campingplatz München",
+          "Feed Berlin ohne Ausstattung",
+          "Feed München mit Ausstattung"
+        ],
+        "queries": [
+          {
+            "table": "features",
+            "filters": [
+              [
+                "in",
+                "key",
+                [
+                  "pool"
+                ]
+              ]
+            ],
+            "range": null
+          },
+          {
+            "table": "accommodation_features",
+            "filters": [
+              [
+                "in",
+                "feature_id",
+                [
+                  1
+                ]
+              ]
+            ],
+            "range": null
+          },
+          {
+            "table": "accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ],
+              [
+                "in",
+                "id",
+                [
+                  1,
+                  2,
+                  3
+                ]
+              ],
+              [
+                "eq",
+                "accommodation_type",
+                "campsite"
+              ]
+            ],
+            "range": null
+          },
+          {
+            "table": "camping_info_campsites",
+            "filters": [],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "camping_info_campsites",
+            "filters": [],
+            "range": [
+              1000,
+              1999
+            ]
+          },
+          {
+            "table": "camping_info_campsites",
+            "filters": [
+              [
+                "in",
+                "id",
+                [
+                  10,
+                  11
+                ]
+              ]
+            ],
+            "range": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "A06",
+      "area": "api",
+      "label": "Campingimport erfüllt Pool-Pflicht aus has_pool=true",
+      "pass": false,
+      "error": "Campingimport erfüllt Pool-Pflicht aus has_pool=true",
+      "evidence": {
+        "params": "type=campsite&has_pool=true",
+        "status": 200,
+        "names": [
+          "Eigener Campingplatz München",
+          "Feed Berlin ohne Ausstattung",
+          "Feed München mit Ausstattung"
+        ],
+        "queries": [
+          {
+            "table": "accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ],
+              [
+                "eq",
+                "accommodation_type",
+                "campsite"
+              ],
+              [
+                "eq",
+                "has_pool",
+                true
+              ]
+            ],
+            "range": null
+          },
+          {
+            "table": "camping_info_campsites",
+            "filters": [],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "camping_info_campsites",
+            "filters": [],
+            "range": [
+              1000,
+              1999
+            ]
+          },
+          {
+            "table": "camping_info_campsites",
+            "filters": [
+              [
+                "in",
+                "id",
+                [
+                  10,
+                  11
+                ]
+              ]
+            ],
+            "range": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "A07",
+      "area": "api",
+      "label": "Campingimport erfüllt Hunde-Pflicht aus feature=dogs_allowed",
+      "pass": false,
+      "error": "Campingimport erfüllt Hunde-Pflicht aus feature=dogs_allowed",
+      "evidence": {
+        "params": "type=campsite&feature=dogs_allowed",
+        "status": 200,
+        "names": [
+          "Eigener Campingplatz München",
+          "Feed Berlin ohne Ausstattung",
+          "Feed München mit Ausstattung"
+        ],
+        "queries": [
+          {
+            "table": "features",
+            "filters": [
+              [
+                "in",
+                "key",
+                [
+                  "dogs_allowed"
+                ]
+              ]
+            ],
+            "range": null
+          },
+          {
+            "table": "accommodation_features",
+            "filters": [
+              [
+                "in",
+                "feature_id",
+                [
+                  3
+                ]
+              ]
+            ],
+            "range": null
+          },
+          {
+            "table": "accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ],
+              [
+                "in",
+                "id",
+                [
+                  1,
+                  2,
+                  3
+                ]
+              ],
+              [
+                "eq",
+                "accommodation_type",
+                "campsite"
+              ]
+            ],
+            "range": null
+          },
+          {
+            "table": "camping_info_campsites",
+            "filters": [],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "camping_info_campsites",
+            "filters": [],
+            "range": [
+              1000,
+              1999
+            ]
+          },
+          {
+            "table": "camping_info_campsites",
+            "filters": [
+              [
+                "in",
+                "id",
+                [
+                  10,
+                  11
+                ]
+              ]
+            ],
+            "range": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "A08",
+      "area": "api",
+      "label": "Alter direkter Hunde-Parameter funktioniert",
+      "pass": true,
+      "evidence": {
+        "params": "type=campsite&dogs_allowed=true",
+        "status": 200,
+        "names": [
+          "Eigener Campingplatz München",
+          "Feed München mit Ausstattung"
+        ],
+        "queries": [
+          {
+            "table": "accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ],
+              [
+                "eq",
+                "accommodation_type",
+                "campsite"
+              ],
+              [
+                "eq",
+                "dogs_allowed",
+                true
+              ]
+            ],
+            "range": null
+          },
+          {
+            "table": "camping_info_campsites",
+            "filters": [],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "camping_info_campsites",
+            "filters": [],
+            "range": [
+              1000,
+              1999
+            ]
+          },
+          {
+            "table": "camping_info_campsites",
+            "filters": [
+              [
+                "in",
+                "id",
+                [
+                  10,
+                  11
+                ]
+              ]
+            ],
+            "range": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "A09",
+      "area": "api",
+      "label": "Campingimport erfüllt WLAN-Pflicht",
+      "pass": false,
+      "error": "Campingimport erfüllt WLAN-Pflicht",
+      "evidence": {
+        "params": "type=campsite&feature=wifi",
+        "status": 200,
+        "names": [
+          "Eigener Campingplatz München",
+          "Feed Berlin ohne Ausstattung",
+          "Feed München mit Ausstattung"
+        ],
+        "queries": [
+          {
+            "table": "features",
+            "filters": [
+              [
+                "in",
+                "key",
+                [
+                  "wifi"
+                ]
+              ]
+            ],
+            "range": null
+          },
+          {
+            "table": "accommodation_features",
+            "filters": [
+              [
+                "in",
+                "feature_id",
+                [
+                  2
+                ]
+              ]
+            ],
+            "range": null
+          },
+          {
+            "table": "accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ],
+              [
+                "in",
+                "id",
+                [
+                  1,
+                  2,
+                  3
+                ]
+              ],
+              [
+                "eq",
+                "accommodation_type",
+                "campsite"
+              ]
+            ],
+            "range": null
+          },
+          {
+            "table": "camping_info_campsites",
+            "filters": [],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "camping_info_campsites",
+            "filters": [],
+            "range": [
+              1000,
+              1999
+            ]
+          },
+          {
+            "table": "camping_info_campsites",
+            "filters": [
+              [
+                "in",
+                "id",
+                [
+                  10,
+                  11
+                ]
+              ]
+            ],
+            "range": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "A10",
+      "area": "api",
+      "label": "Campingimport erfüllt Mindestbewertung",
+      "pass": false,
+      "error": "Campingimport erfüllt Mindestbewertung",
+      "evidence": {
+        "params": "type=campsite&min_review_score=4",
+        "status": 200,
+        "names": [
+          "Eigener Campingplatz München",
+          "Feed Berlin ohne Ausstattung",
+          "Feed München mit Ausstattung"
+        ],
+        "queries": [
+          {
+            "table": "accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ],
+              [
+                "eq",
+                "accommodation_type",
+                "campsite"
+              ],
+              [
+                "gte",
+                "review_score",
+                4
+              ]
+            ],
+            "range": null
+          },
+          {
+            "table": "camping_info_campsites",
+            "filters": [],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "camping_info_campsites",
+            "filters": [],
+            "range": [
+              1000,
+              1999
+            ]
+          },
+          {
+            "table": "camping_info_campsites",
+            "filters": [
+              [
+                "in",
+                "id",
+                [
+                  10,
+                  11
+                ]
+              ]
+            ],
+            "range": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "A11",
+      "area": "api",
+      "label": "Unbekannte Campingkapazität erfüllt keine Pflicht für zehn Gäste",
+      "pass": false,
+      "error": "Unbekannte Campingkapazität erfüllt keine Pflicht für zehn Gäste",
+      "evidence": {
+        "params": "type=campsite&max_guests=10",
+        "status": 200,
+        "names": [
+          "Feed Berlin ohne Ausstattung",
+          "Feed München mit Ausstattung"
+        ],
+        "queries": [
+          {
+            "table": "accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ],
+              [
+                "eq",
+                "accommodation_type",
+                "campsite"
+              ],
+              [
+                "gte",
+                "max_guests",
+                10
+              ]
+            ],
+            "range": null
+          },
+          {
+            "table": "camping_info_campsites",
+            "filters": [],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "camping_info_campsites",
+            "filters": [],
+            "range": [
+              1000,
+              1999
+            ]
+          },
+          {
+            "table": "camping_info_campsites",
+            "filters": [
+              [
+                "in",
+                "id",
+                [
+                  10,
+                  11
+                ]
+              ]
+            ],
+            "range": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "A12",
+      "area": "api",
+      "label": "Unbestätigter Campingpreis erfüllt keine harte Preisgrenze",
+      "pass": false,
+      "error": "Unbestätigter Campingpreis erfüllt keine harte Preisgrenze",
+      "evidence": {
+        "params": "type=campsite&max_price_per_night=30",
+        "status": 200,
+        "names": [
+          "Feed Berlin ohne Ausstattung",
+          "Feed München mit Ausstattung"
+        ],
+        "queries": [
+          {
+            "table": "accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ],
+              [
+                "eq",
+                "accommodation_type",
+                "campsite"
+              ],
+              [
+                "lte",
+                "price_min",
+                30
+              ]
+            ],
+            "range": null
+          },
+          {
+            "table": "camping_info_campsites",
+            "filters": [],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "camping_info_campsites",
+            "filters": [],
+            "range": [
+              1000,
+              1999
+            ]
+          },
+          {
+            "table": "camping_info_campsites",
+            "filters": [
+              [
+                "in",
+                "id",
+                [
+                  10,
+                  11
+                ]
+              ]
+            ],
+            "range": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "A13",
+      "area": "api",
+      "label": "Unbestätigte Meernähe erfüllt keinen Pflichtfilter",
+      "pass": false,
+      "error": "Unbestätigte Meernähe erfüllt keinen Pflichtfilter",
+      "evidence": {
+        "params": "type=campsite&near_sea=true",
+        "status": 200,
+        "names": [
+          "Feed Berlin ohne Ausstattung",
+          "Feed München mit Ausstattung"
+        ],
+        "queries": [
+          {
+            "table": "accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ],
+              [
+                "eq",
+                "accommodation_type",
+                "campsite"
+              ],
+              [
+                "eq",
+                "near_sea",
+                true
+              ]
+            ],
+            "range": null
+          },
+          {
+            "table": "camping_info_campsites",
+            "filters": [],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "camping_info_campsites",
+            "filters": [],
+            "range": [
+              1000,
+              1999
+            ]
+          },
+          {
+            "table": "camping_info_campsites",
+            "filters": [
+              [
+                "in",
+                "id",
+                [
+                  10,
+                  11
+                ]
+              ]
+            ],
+            "range": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "A14",
+      "area": "api",
+      "label": "Unbekanntes Pflichtfeature wird nicht als erfüllt behauptet",
+      "pass": true,
+      "evidence": {
+        "params": "type=campsite&feature=unknown_feature",
+        "status": 200,
+        "names": [],
+        "missing_features": [
+          "unknown_feature"
+        ],
+        "queries": [
+          {
+            "table": "features",
+            "filters": [
+              [
+                "in",
+                "key",
+                [
+                  "unknown_feature"
+                ]
+              ]
+            ],
+            "range": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "A15",
+      "area": "api",
+      "label": "Hauptdatenquelle erfüllt Preisgrenze",
+      "pass": true,
+      "evidence": {
+        "params": "type=hotel&max_price_per_night=30",
+        "status": 200,
+        "names": [],
+        "queries": [
+          {
+            "table": "accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ],
+              [
+                "eq",
+                "accommodation_type",
+                "hotel"
+              ],
+              [
+                "lte",
+                "price_min",
+                30
+              ]
+            ],
+            "range": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "A16",
+      "area": "api",
+      "label": "Hauptdatenquelle erfüllt Kapazität",
+      "pass": true,
+      "evidence": {
+        "params": "type=hotel&max_guests=10",
+        "status": 200,
+        "names": [],
+        "queries": [
+          {
+            "table": "accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ],
+              [
+                "eq",
+                "accommodation_type",
+                "hotel"
+              ],
+              [
+                "gte",
+                "max_guests",
+                10
+              ]
+            ],
+            "range": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "A17",
+      "area": "api",
+      "label": "Erfolgloser Featurejoin der Hauptquelle blockiert passende Campingquelle nicht",
+      "pass": false,
+      "error": "Erfolgloser Featurejoin der Hauptquelle blockiert passende Campingquelle nicht",
+      "evidence": {
+        "params": "type=campsite&feature=dogs_allowed",
+        "status": 200,
+        "names": [],
+        "queries": [
+          {
+            "table": "features",
+            "filters": [
+              [
+                "in",
+                "key",
+                [
+                  "dogs_allowed"
+                ]
+              ]
+            ],
+            "range": null
+          },
+          {
+            "table": "accommodation_features",
+            "filters": [
+              [
+                "in",
+                "feature_id",
+                [
+                  3
+                ]
+              ]
+            ],
+            "range": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "A18",
+      "area": "api",
+      "label": "Optionaler Wunsch schließt Haupttreffer ohne Verknüpfung nicht aus",
+      "pass": true,
+      "evidence": {
+        "params": "type=hotel&feature=pool&preferred_feature=pool",
+        "status": 200,
+        "names": [
+          "Eigenes Hotel Berlin",
+          "Expedia Hotel Berlin"
+        ],
+        "queries": [
+          {
+            "table": "accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ],
+              [
+                "eq",
+                "accommodation_type",
+                "hotel"
+              ]
+            ],
+            "range": null
+          },
+          {
+            "table": "features",
+            "filters": [
+              [
+                "in",
+                "key",
+                [
+                  "pool"
+                ]
+              ]
+            ],
+            "range": null
+          },
+          {
+            "table": "accommodation_features",
+            "filters": [
+              [
+                "in",
+                "accommodation_id",
+                [
+                  1
+                ]
+              ],
+              [
+                "in",
+                "feature_id",
+                [
+                  1
+                ]
+              ]
+            ],
+            "range": null
+          },
+          {
+            "table": "expedia_accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ],
+              [
+                "eq",
+                "accommodation_type",
+                "hotel"
+              ],
+              [
+                "not",
+                "affiliate_url",
+                "is",
+                null
+              ]
+            ],
+            "range": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "A19",
+      "area": "api",
+      "label": "Pflichtfeature wird tatsächlich angewendet",
+      "pass": true,
+      "evidence": {
+        "params": "type=hotel&feature=pool&must_feature=pool",
+        "status": 200,
+        "names": [],
+        "queries": [
+          {
+            "table": "features",
+            "filters": [
+              [
+                "in",
+                "key",
+                [
+                  "pool"
+                ]
+              ]
+            ],
+            "range": null
+          },
+          {
+            "table": "accommodation_features",
+            "filters": [
+              [
+                "in",
+                "feature_id",
+                [
+                  1
+                ]
+              ]
+            ],
+            "range": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "A20",
+      "area": "api",
+      "label": "Campingimport beachtet Reisemonat",
+      "pass": false,
+      "error": "Campingimport beachtet Reisemonat",
+      "evidence": {
+        "params": "type=campsite&month=1",
+        "status": 200,
+        "names": [
+          "Feed Berlin ohne Ausstattung",
+          "Feed München mit Ausstattung"
+        ],
+        "queries": [
+          {
+            "table": "accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ],
+              [
+                "eq",
+                "accommodation_type",
+                "campsite"
+              ],
+              [
+                "contains",
+                "available_months",
+                [
+                  1
+                ]
+              ]
+            ],
+            "range": null
+          },
+          {
+            "table": "camping_info_campsites",
+            "filters": [],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "camping_info_campsites",
+            "filters": [],
+            "range": [
+              1000,
+              1999
+            ]
+          },
+          {
+            "table": "camping_info_campsites",
+            "filters": [
+              [
+                "in",
+                "id",
+                [
+                  10,
+                  11
+                ]
+              ]
+            ],
+            "range": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "A21",
+      "area": "api",
+      "label": "Ausfall der Campingquelle wird als Teilausfall kenntlich gemacht",
+      "pass": false,
+      "error": "Ausfall der Campingquelle wird als Teilausfall kenntlich gemacht",
+      "evidence": {
+        "params": "type=campsite",
+        "status": 200,
+        "names": [
+          "Eigener Campingplatz München"
+        ],
+        "queries": [
+          {
+            "table": "accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ],
+              [
+                "eq",
+                "accommodation_type",
+                "campsite"
+              ]
+            ],
+            "range": null
+          },
+          {
+            "table": "camping_info_campsites",
+            "filters": [],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "camping_info_campsites",
+            "filters": [],
+            "range": [
+              1000,
+              1999
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "A22",
+      "area": "api",
+      "label": "Negatives Poolkriterium wird serverseitig angewendet",
+      "pass": false,
+      "error": "Negatives Poolkriterium wird serverseitig angewendet",
+      "evidence": {
+        "params": "type=hotel&exclude_feature=pool",
+        "status": 200,
+        "names": [
+          "Eigenes Hotel Berlin",
+          "Expedia Hotel Berlin"
+        ],
+        "queries": [
+          {
+            "table": "accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ],
+              [
+                "eq",
+                "accommodation_type",
+                "hotel"
+              ]
+            ],
+            "range": null
+          },
+          {
+            "table": "expedia_accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ],
+              [
+                "eq",
+                "accommodation_type",
+                "hotel"
+              ],
+              [
+                "not",
+                "affiliate_url",
+                "is",
+                null
+              ]
+            ],
+            "range": null
+          }
+        ]
+      }
+    }
+  ]
+}
