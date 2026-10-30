@@ -34,3 +34,19 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## LÜDIGO-Oberfläche und Reisewelten
+
+Die Startseite verwendet die bestehende Suchlogik und `/api/accommodations` mit der überarbeiteten Oberfläche aus `app/components/AccommodationPage.tsx`. Die ursprünglichen Logodateien unter `public/images/` bleiben unverändert. Die Merkliste speichert ausgewählte Unterkünfte ausschließlich im Browser. Partnerpreise ohne bestätigte Preisbasis werden entsprechend gekennzeichnet und nicht als Nachtpreise oder zur Katalogpreis-Sortierung verwendet.
+
+Die Seiten `/surprise`, `/bike` und `/bustouren-senioren` sind über die gemeinsame Navigation erreichbar. Surprise verwendet das bestehende Ideen- und Anfrageformular; es gibt weiterhin keine echte Reisevermittlung, Buchung oder Zahlung. Bike und Bustouren bieten lokale Wunschprofile zum Speichern und Kopieren, keine verfügbaren Routen oder Touren.
+
+Prüfungen:
+
+```sh
+npx tsc --noEmit
+node --experimental-strip-types --test tests/accommodation-view.test.mjs
+npm run build
+```
+
+Der direkte TypeScript-Testaufruf benötigt Node.js 22.6 oder neuer. Der Build benötigt die bestehende serverseitige Umgebung, insbesondere `OPENAI_API_KEY`; Schlüssel gehören nicht ins Repository.
