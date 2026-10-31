@@ -1,4 +1,5 @@
 import { canonicalFeature, featureDescendants, featureAncestors } from './features';
+import { applyScopedCriteria } from './scoped-criteria';
 export const accommodationTypes = new Set(['hotel', 'campsite', 'holiday_apartment', 'holiday_home', 'villa', 'hostel', 'guesthouse', 'bed_and_breakfast', 'resort', 'chalet', 'cabin', 'bungalow']);
 export const apiKeys = new Set([
     'type', 'country', 'region', 'city', 'month', 'year', 'nights', 'check_in', 'check_out', 'guests', 'max_guests', 'currency',
@@ -176,6 +177,7 @@ export function finishLocalCriteria(input: URLSearchParams, query: string, form:
     warnings: string[];
 } {
     const params = new URLSearchParams(input), warnings: string[] = [];
+    applyScopedCriteria(params, query);
     const text = query.toLowerCase();
     if (query.trim().length > 3000)
         throw new Error('Bitte beschränke deinen Suchtext auf 3.000 Zeichen.');

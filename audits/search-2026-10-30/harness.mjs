@@ -97,7 +97,7 @@ export async function queryAccommodations(params,tables,options={}) {
   return {status:response.status,body:await response.json(),calls:db.calls};
 }
 
-export function loadSearchModule(relativePath){return loader({})(path.join(root,relativePath));}
+export function loadSearchModule(relativePath,globals={}){return loader({},globals)(path.join(root,relativePath));}
 export function createSearchController(query,respond){
  let index=0;const values=[],calls=[];
  const initial={0:null,1:2,2:0,3:0,4:query,9:'2027-07-01',10:'2027-07-08'};
