@@ -1,5 +1,7 @@
 # LÜDIGO – Prüfung der Unterkunftssuche
 
+> Historischer Ausgangsbefund. Die anschließenden Korrekturen und der aktuelle Prüfstand stehen in [FIXES.md](./FIXES.md). Die unveränderten ursprünglichen Prüfergebnisse wurden in `baseline-results.json` erhalten; `results.json` enthält den jeweils neuesten Lauf.
+
 Stand: 30. Oktober 2026. Geprüfter Produktivstand: `61de11f2de4c77b91a18e7a25bf58e2c87dcece8`.
 
 Die Suche hat bestätigte Logikfehler. Fehlende Hotels, Links oder Ausstattungsdaten in Supabase erklären nur einen Teil der Probleme. Weitere Daten allein beheben die hier beschriebenen Fehler nicht.

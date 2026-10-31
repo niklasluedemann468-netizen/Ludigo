@@ -1,3 +1,4 @@
+import {canonicalFeature} from '../search/features';
 type SearchParams = URLSearchParams;
 
 function getAllValues(params: SearchParams, key: string): string[] {
@@ -1744,7 +1745,7 @@ const canonicalRules: CanonicalRule[] = [
   // =========================================================
 
   {
-    canonicalKey: "service",
+    canonicalKey: "feature",
     canonicalValue: "self_check_in",
     sources: [
       { key: "hotel_service", values: ["self_check_in"] },
@@ -1754,7 +1755,7 @@ const canonicalRules: CanonicalRule[] = [
   },
 
   {
-    canonicalKey: "service",
+    canonicalKey: "feature",
     canonicalValue: "contactless_check_in",
     sources: [
       { key: "hotel_service", values: ["contactless_check_in"] },
@@ -1764,7 +1765,7 @@ const canonicalRules: CanonicalRule[] = [
   },
 
   {
-    canonicalKey: "service",
+    canonicalKey: "feature",
     canonicalValue: "late_check_out",
     sources: [
       { key: "hotel_service", values: ["late_check_out"] },
@@ -1893,6 +1894,10 @@ function applyCanonicalRules(params: SearchParams) {
 
     if (!matched) {
       continue;
+    }
+    // Canonicalising must not drop a stricter fact such as “private” or “direct”.
+    if(rule.canonicalKey==='feature')for(const source of rule.sources)for(const value of params.getAll(source.key)){
+      if(source.values.includes(value)&&canonicalFeature(value)!==canonicalFeature(rule.canonicalValue)&&!params.getAll('feature').includes(canonicalFeature(value)))params.append('feature',canonicalFeature(value));
     }
 
     if (

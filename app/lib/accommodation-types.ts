@@ -20,8 +20,8 @@ export type SearchResult = {
 
 pool?: boolean;
 wifi?: boolean;
-apartment_has_kitchen?: boolean;
-apartment_has_washing_machine?: boolean;
+apartment_has_kitchen?: boolean | null;
+apartment_has_washing_machine?: boolean | null;
 parking?: boolean;
 breakfast?: boolean;
 restaurant?: boolean;
@@ -30,6 +30,11 @@ kitchen?: boolean;
 washing_machine?: boolean;
 
   review_score?: number | null;
+  review_scale?: number | null;
+  review_normalized?: number | null;
+  feature_states?: Record<string,boolean|null>;
+  features?: string[];
+  available_months?: number[] | null;
   review_count?: number | null;
 
   hotel_stars?: number | null;

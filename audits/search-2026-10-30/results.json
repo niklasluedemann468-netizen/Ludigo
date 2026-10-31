@@ -1,10 +1,12 @@
 {
   "summary": {
-    "sourceCommit": "61de11f2de4c77b91a18e7a25bf58e2c87dcece8",
+    "sourceCommit": "15da2c668fd13eeaeb32a8cf634e7496d4ea63d2",
+    "workingTreeModified": true,
+    "appSourceSha256": "f159f4609b441a47921897c35818bcf99c1c2a1b1fe311e9bacfc1892743c940",
     "date": "2026-10-30",
     "total": 60,
-    "passed": 24,
-    "failed": 36
+    "passed": 60,
+    "failed": 0
   },
   "method": "Unveränderte produktive Parser und GET-Route werden geladen; KI und Supabase werden ausschließlich an den externen Grenzen kontrolliert simuliert. Keine echten API-Aufrufe oder Datenbankänderungen.",
   "coverageNotes": {
@@ -29,6 +31,9 @@
           "type": [
             "hotel"
           ],
+          "guests": [
+            "2"
+          ],
           "check_in": [
             "2027-07-01"
           ],
@@ -38,16 +43,21 @@
           "nights": [
             "7"
           ],
-          "max_guests": [
-            "2"
+          "sort": [
+            "best"
+          ],
+          "page": [
+            "1"
+          ],
+          "page_size": [
+            "60"
           ]
         },
-        "aiCalls": 1,
+        "aiCalls": 0,
         "normalized": "hotel in berlin",
         "dropped": [],
         "messages": [
           "Suche läuft...",
-          "Keine passende Unterkunft gefunden.",
           "Keine passende Unterkunft gefunden."
         ]
       }
@@ -66,6 +76,9 @@
           "max_guests": [
             "4"
           ],
+          "guests": [
+            "2"
+          ],
           "check_in": [
             "2027-07-01"
           ],
@@ -74,14 +87,22 @@
           ],
           "nights": [
             "7"
+          ],
+          "sort": [
+            "best"
+          ],
+          "page": [
+            "1"
+          ],
+          "page_size": [
+            "60"
           ]
         },
-        "aiCalls": 1,
+        "aiCalls": 0,
         "normalized": "hotel für 4 personen",
         "dropped": [],
         "messages": [
           "Suche läuft...",
-          "Keine passende Unterkunft gefunden.",
           "Keine passende Unterkunft gefunden."
         ]
       }
@@ -100,41 +121,7 @@
           "max_guests": [
             "4"
           ],
-          "check_in": [
-            "2027-07-01"
-          ],
-          "check_out": [
-            "2027-07-08"
-          ],
-          "nights": [
-            "7"
-          ]
-        },
-        "aiCalls": 1,
-        "normalized": "hotel mit 2 erwachsenen und 2 kinder",
-        "dropped": [
-          "guest_type"
-        ],
-        "messages": [
-          "Suche läuft...",
-          "Keine passende Unterkunft gefunden.",
-          "Keine passende Unterkunft gefunden."
-        ]
-      }
-    },
-    {
-      "id": "P04",
-      "area": "parser",
-      "label": "Babys werden mitgezählt",
-      "pass": false,
-      "error": "Babys werden mitgezählt",
-      "evidence": {
-        "query": "Hotel mit 2 Erwachsenen und 1 Baby",
-        "params": {
-          "type": [
-            "hotel"
-          ],
-          "max_guests": [
+          "guests": [
             "2"
           ],
           "check_in": [
@@ -145,16 +132,67 @@
           ],
           "nights": [
             "7"
+          ],
+          "sort": [
+            "best"
+          ],
+          "page": [
+            "1"
+          ],
+          "page_size": [
+            "60"
           ]
         },
-        "aiCalls": 1,
-        "normalized": "hotel mit 2 erwachsenen und 1 baby",
-        "dropped": [
-          "guest_type"
-        ],
+        "aiCalls": 0,
+        "normalized": "hotel mit 2 erwachsenen und 2 kinder",
+        "dropped": [],
         "messages": [
           "Suche läuft...",
-          "Keine passende Unterkunft gefunden.",
+          "Keine passende Unterkunft gefunden."
+        ]
+      }
+    },
+    {
+      "id": "P04",
+      "area": "parser",
+      "label": "Babys werden mitgezählt",
+      "pass": true,
+      "evidence": {
+        "query": "Hotel mit 2 Erwachsenen und 1 Baby",
+        "params": {
+          "type": [
+            "hotel"
+          ],
+          "max_guests": [
+            "3"
+          ],
+          "guests": [
+            "2"
+          ],
+          "check_in": [
+            "2027-07-01"
+          ],
+          "check_out": [
+            "2027-07-08"
+          ],
+          "nights": [
+            "7"
+          ],
+          "sort": [
+            "best"
+          ],
+          "page": [
+            "1"
+          ],
+          "page_size": [
+            "60"
+          ]
+        },
+        "aiCalls": 0,
+        "normalized": "hotel mit 2 erwachsenen und 1 baby",
+        "dropped": [],
+        "messages": [
+          "Suche läuft...",
           "Keine passende Unterkunft gefunden."
         ]
       }
@@ -176,6 +214,12 @@
           "type": [
             "hotel"
           ],
+          "guests": [
+            "5"
+          ],
+          "max_guests": [
+            "5"
+          ],
           "check_in": [
             "2027-07-01"
           ],
@@ -185,16 +229,21 @@
           "nights": [
             "7"
           ],
-          "max_guests": [
-            "5"
+          "sort": [
+            "best"
+          ],
+          "page": [
+            "1"
+          ],
+          "page_size": [
+            "60"
           ]
         },
-        "aiCalls": 1,
+        "aiCalls": 0,
         "normalized": "hotel in berlin",
         "dropped": [],
         "messages": [
           "Suche läuft...",
-          "Keine passende Unterkunft gefunden.",
           "Keine passende Unterkunft gefunden."
         ]
       }
@@ -210,8 +259,8 @@
           "type": [
             "hotel"
           ],
-          "feature": [
-            "pool"
+          "guests": [
+            "2"
           ],
           "check_in": [
             "2027-07-01"
@@ -222,16 +271,24 @@
           "nights": [
             "7"
           ],
-          "max_guests": [
-            "2"
+          "feature": [
+            "pool"
+          ],
+          "sort": [
+            "best"
+          ],
+          "page": [
+            "1"
+          ],
+          "page_size": [
+            "60"
           ]
         },
-        "aiCalls": 1,
+        "aiCalls": 0,
         "normalized": "hotel mit pool",
         "dropped": [],
         "messages": [
           "Suche läuft...",
-          "Keine passende Unterkunft gefunden.",
           "Keine passende Unterkunft gefunden."
         ]
       }
@@ -247,8 +304,8 @@
           "type": [
             "hotel"
           ],
-          "feature": [
-            "wifi"
+          "guests": [
+            "2"
           ],
           "check_in": [
             "2027-07-01"
@@ -259,16 +316,24 @@
           "nights": [
             "7"
           ],
-          "max_guests": [
-            "2"
+          "feature": [
+            "wifi"
+          ],
+          "sort": [
+            "best"
+          ],
+          "page": [
+            "1"
+          ],
+          "page_size": [
+            "60"
           ]
         },
-        "aiCalls": 1,
+        "aiCalls": 0,
         "normalized": "hotel mit wlan",
         "dropped": [],
         "messages": [
           "Suche läuft...",
-          "Keine passende Unterkunft gefunden.",
           "Keine passende Unterkunft gefunden."
         ]
       }
@@ -284,8 +349,8 @@
           "type": [
             "campsite"
           ],
-          "feature": [
-            "dogs_allowed"
+          "guests": [
+            "2"
           ],
           "check_in": [
             "2027-07-01"
@@ -296,18 +361,24 @@
           "nights": [
             "7"
           ],
-          "max_guests": [
-            "2"
+          "feature": [
+            "dogs_allowed"
+          ],
+          "sort": [
+            "best"
+          ],
+          "page": [
+            "1"
+          ],
+          "page_size": [
+            "60"
           ]
         },
-        "aiCalls": 1,
+        "aiCalls": 0,
         "normalized": "camping mit hund",
-        "dropped": [
-          "guest_type"
-        ],
+        "dropped": [],
         "messages": [
           "Suche läuft...",
-          "Keine passende Unterkunft gefunden.",
           "Keine passende Unterkunft gefunden."
         ]
       }
@@ -316,16 +387,15 @@
       "id": "P09",
       "area": "parser",
       "label": "Ohne Hund erzeugt kein positives Hunde-Kriterium",
-      "pass": false,
-      "error": "Ohne Hund erzeugt kein positives Hunde-Kriterium",
+      "pass": true,
       "evidence": {
         "query": "Camping ohne Hund",
         "params": {
           "type": [
             "campsite"
           ],
-          "feature": [
-            "dogs_allowed"
+          "guests": [
+            "2"
           ],
           "check_in": [
             "2027-07-01"
@@ -336,16 +406,24 @@
           "nights": [
             "7"
           ],
-          "max_guests": [
-            "2"
+          "exclude_feature": [
+            "dogs_allowed"
+          ],
+          "sort": [
+            "best"
+          ],
+          "page": [
+            "1"
+          ],
+          "page_size": [
+            "60"
           ]
         },
-        "aiCalls": 1,
+        "aiCalls": 0,
         "normalized": "camping ohne hund",
         "dropped": [],
         "messages": [
           "Suche läuft...",
-          "Keine passende Unterkunft gefunden.",
           "Keine passende Unterkunft gefunden."
         ]
       }
@@ -354,13 +432,15 @@
       "id": "P10",
       "area": "parser",
       "label": "Ausdrücklicher Pool-Ausschluss erreicht die API",
-      "pass": false,
-      "error": "Ausdrücklicher Pool-Ausschluss erreicht die API",
+      "pass": true,
       "evidence": {
         "query": "Hotel ohne Pool",
         "params": {
           "type": [
             "hotel"
+          ],
+          "guests": [
+            "2"
           ],
           "check_in": [
             "2027-07-01"
@@ -371,18 +451,24 @@
           "nights": [
             "7"
           ],
-          "max_guests": [
-            "2"
+          "exclude_feature": [
+            "pool"
+          ],
+          "sort": [
+            "best"
+          ],
+          "page": [
+            "1"
+          ],
+          "page_size": [
+            "60"
           ]
         },
-        "aiCalls": 1,
+        "aiCalls": 0,
         "normalized": "hotel ohne pool",
-        "dropped": [
-          "exclude_feature"
-        ],
+        "dropped": [],
         "messages": [
           "Suche läuft...",
-          "Keine passende Unterkunft gefunden.",
           "Keine passende Unterkunft gefunden."
         ]
       }
@@ -391,13 +477,15 @@
       "id": "P11",
       "area": "parser",
       "label": "Ausdrücklicher WLAN-Ausschluss erreicht die API",
-      "pass": false,
-      "error": "Ausdrücklicher WLAN-Ausschluss erreicht die API",
+      "pass": true,
       "evidence": {
         "query": "Hotel ohne WLAN",
         "params": {
           "type": [
             "hotel"
+          ],
+          "guests": [
+            "2"
           ],
           "check_in": [
             "2027-07-01"
@@ -408,18 +496,24 @@
           "nights": [
             "7"
           ],
-          "max_guests": [
-            "2"
+          "exclude_feature": [
+            "wifi"
+          ],
+          "sort": [
+            "best"
+          ],
+          "page": [
+            "1"
+          ],
+          "page_size": [
+            "60"
           ]
         },
-        "aiCalls": 1,
+        "aiCalls": 0,
         "normalized": "hotel ohne wlan",
-        "dropped": [
-          "exclude_feature"
-        ],
+        "dropped": [],
         "messages": [
           "Suche läuft...",
-          "Keine passende Unterkunft gefunden.",
           "Keine passende Unterkunft gefunden."
         ]
       }
@@ -435,11 +529,8 @@
           "type": [
             "hotel"
           ],
-          "feature": [
-            "pool"
-          ],
-          "preferred_feature": [
-            "pool"
+          "guests": [
+            "2"
           ],
           "check_in": [
             "2027-07-01"
@@ -450,16 +541,27 @@
           "nights": [
             "7"
           ],
-          "max_guests": [
-            "2"
+          "feature": [
+            "pool"
+          ],
+          "preferred_feature": [
+            "pool"
+          ],
+          "sort": [
+            "best"
+          ],
+          "page": [
+            "1"
+          ],
+          "page_size": [
+            "60"
           ]
         },
-        "aiCalls": 1,
+        "aiCalls": 0,
         "normalized": "hotel mit pool wäre schön",
         "dropped": [],
         "messages": [
           "Suche läuft...",
-          "Keine passende Unterkunft gefunden.",
           "Keine passende Unterkunft gefunden."
         ]
       }
@@ -468,13 +570,15 @@
       "id": "P13",
       "area": "parser",
       "label": "WLAN-Pflicht macht optionalen Pool nicht verpflichtend",
-      "pass": false,
-      "error": "WLAN-Pflicht macht optionalen Pool nicht verpflichtend",
+      "pass": true,
       "evidence": {
         "query": "Hotel WLAN muss sein, Pool wäre schön",
         "params": {
           "type": [
             "hotel"
+          ],
+          "guests": [
+            "2"
           ],
           "check_in": [
             "2027-07-01"
@@ -485,24 +589,31 @@
           "nights": [
             "7"
           ],
-          "max_guests": [
-            "2"
-          ],
           "feature": [
             "pool",
             "wifi"
           ],
           "must_feature": [
-            "wifi",
+            "wifi"
+          ],
+          "preferred_feature": [
             "pool"
+          ],
+          "sort": [
+            "best"
+          ],
+          "page": [
+            "1"
+          ],
+          "page_size": [
+            "60"
           ]
         },
-        "aiCalls": 1,
+        "aiCalls": 0,
         "normalized": "hotel wlan muss sein pool wäre schön",
         "dropped": [],
         "messages": [
           "Suche läuft...",
-          "Keine passende Unterkunft gefunden.",
           "Keine passende Unterkunft gefunden."
         ]
       }
@@ -511,8 +622,7 @@
       "id": "P14",
       "area": "parser",
       "label": "Heidelberg erzeugt keine zusätzliche Berg-Pflicht",
-      "pass": false,
-      "error": "Heidelberg erzeugt keine zusätzliche Berg-Pflicht",
+      "pass": true,
       "evidence": {
         "query": "Hotel in Heidelberg",
         "params": {
@@ -525,8 +635,8 @@
           "type": [
             "hotel"
           ],
-          "feature": [
-            "near_mountains"
+          "guests": [
+            "2"
           ],
           "check_in": [
             "2027-07-01"
@@ -537,16 +647,21 @@
           "nights": [
             "7"
           ],
-          "max_guests": [
-            "2"
+          "sort": [
+            "best"
+          ],
+          "page": [
+            "1"
+          ],
+          "page_size": [
+            "60"
           ]
         },
-        "aiCalls": 1,
+        "aiCalls": 0,
         "normalized": "hotel in heidelberg",
         "dropped": [],
         "messages": [
           "Suche läuft...",
-          "Keine passende Unterkunft gefunden.",
           "Keine passende Unterkunft gefunden."
         ]
       }
@@ -555,8 +670,7 @@
       "id": "P15",
       "area": "parser",
       "label": "Nordsee wird nicht als Binnensee interpretiert",
-      "pass": false,
-      "error": "Nordsee wird nicht als Binnensee interpretiert",
+      "pass": true,
       "evidence": {
         "query": "Hotel an der Nordsee",
         "params": {
@@ -569,8 +683,8 @@
           "type": [
             "hotel"
           ],
-          "feature": [
-            "near_lake"
+          "guests": [
+            "2"
           ],
           "check_in": [
             "2027-07-01"
@@ -581,16 +695,24 @@
           "nights": [
             "7"
           ],
-          "max_guests": [
-            "2"
+          "feature": [
+            "near_sea"
+          ],
+          "sort": [
+            "best"
+          ],
+          "page": [
+            "1"
+          ],
+          "page_size": [
+            "60"
           ]
         },
-        "aiCalls": 1,
+        "aiCalls": 0,
         "normalized": "hotel an der nordsee",
         "dropped": [],
         "messages": [
           "Suche läuft...",
-          "Keine passende Unterkunft gefunden.",
           "Keine passende Unterkunft gefunden."
         ]
       }
@@ -599,19 +721,21 @@
       "id": "P16",
       "area": "parser",
       "label": "Gewählter Hotel-Tab wird nicht still überschrieben",
-      "pass": false,
-      "error": "Gewählter Hotel-Tab wird nicht still überschrieben",
+      "pass": true,
       "evidence": {
         "query": "Ferienwohnung in Berlin",
         "params": {
           "type": [
-            "holiday_apartment"
+            "hotel"
           ],
           "city": [
             "Berlin"
           ],
           "country": [
             "Deutschland"
+          ],
+          "guests": [
+            "2"
           ],
           "check_in": [
             "2027-07-01"
@@ -622,17 +746,22 @@
           "nights": [
             "7"
           ],
-          "max_guests": [
-            "2"
+          "sort": [
+            "best"
+          ],
+          "page": [
+            "1"
+          ],
+          "page_size": [
+            "60"
           ]
         },
-        "aiCalls": 1,
+        "aiCalls": 0,
         "normalized": "ferienwohnung in berlin",
         "dropped": [],
         "messages": [
           "Suche läuft...",
-          "Keine passende Unterkunft gefunden.",
-          "Keine passende Unterkunft gefunden."
+          "Keine passende Unterkunft gefunden. Die im Tab gewählte Unterkunftsart wird verwendet."
         ]
       }
     },
@@ -650,6 +779,9 @@
           "hotel_stars": [
             "4"
           ],
+          "guests": [
+            "2"
+          ],
           "check_in": [
             "2027-07-01"
           ],
@@ -659,16 +791,21 @@
           "nights": [
             "7"
           ],
-          "max_guests": [
-            "2"
+          "sort": [
+            "best"
+          ],
+          "page": [
+            "1"
+          ],
+          "page_size": [
+            "60"
           ]
         },
-        "aiCalls": 1,
+        "aiCalls": 0,
         "normalized": "hotel mit 4 sternen",
         "dropped": [],
         "messages": [
           "Suche läuft...",
-          "Keine passende Unterkunft gefunden.",
           "Keine passende Unterkunft gefunden."
         ]
       }
@@ -687,6 +824,9 @@
           "min_hotel_stars": [
             "4"
           ],
+          "guests": [
+            "2"
+          ],
           "check_in": [
             "2027-07-01"
           ],
@@ -696,18 +836,21 @@
           "nights": [
             "7"
           ],
-          "max_guests": [
-            "2"
+          "sort": [
+            "best"
+          ],
+          "page": [
+            "1"
+          ],
+          "page_size": [
+            "60"
           ]
         },
-        "aiCalls": 1,
+        "aiCalls": 0,
         "normalized": "hotel mindestens 4 sterne",
-        "dropped": [
-          "min_stars"
-        ],
+        "dropped": [],
         "messages": [
           "Suche läuft...",
-          "Keine passende Unterkunft gefunden.",
           "Keine passende Unterkunft gefunden."
         ]
       }
@@ -726,6 +869,9 @@
           "max_hotel_stars": [
             "3"
           ],
+          "guests": [
+            "2"
+          ],
           "check_in": [
             "2027-07-01"
           ],
@@ -735,18 +881,21 @@
           "nights": [
             "7"
           ],
-          "max_guests": [
-            "2"
+          "sort": [
+            "best"
+          ],
+          "page": [
+            "1"
+          ],
+          "page_size": [
+            "60"
           ]
         },
-        "aiCalls": 1,
+        "aiCalls": 0,
         "normalized": "hotel maximal 3 sterne",
-        "dropped": [
-          "stars"
-        ],
+        "dropped": [],
         "messages": [
           "Suche läuft...",
-          "Keine passende Unterkunft gefunden.",
           "Keine passende Unterkunft gefunden."
         ]
       }
@@ -765,6 +914,9 @@
           "min_review_score": [
             "8.5"
           ],
+          "guests": [
+            "2"
+          ],
           "check_in": [
             "2027-07-01"
           ],
@@ -774,16 +926,21 @@
           "nights": [
             "7"
           ],
-          "max_guests": [
-            "2"
+          "sort": [
+            "best"
+          ],
+          "page": [
+            "1"
+          ],
+          "page_size": [
+            "60"
           ]
         },
-        "aiCalls": 1,
-        "normalized": "hotel bewertung mindestens 8 5",
+        "aiCalls": 0,
+        "normalized": "hotel bewertung mindestens 8,5",
         "dropped": [],
         "messages": [
           "Suche läuft...",
-          "Keine passende Unterkunft gefunden.",
           "Keine passende Unterkunft gefunden."
         ]
       }
@@ -792,19 +949,18 @@
       "id": "P21",
       "area": "parser",
       "label": "99,50 Euro bleibt als Preis erhalten",
-      "pass": false,
-      "error": "99,50 Euro bleibt als Preis erhalten",
+      "pass": true,
       "evidence": {
         "query": "Hotel bis 99,50 Euro pro Nacht",
         "params": {
           "type": [
             "hotel"
           ],
-          "max_total_price": [
-            "50"
-          ],
           "max_price_per_night": [
-            "50"
+            "99.5"
+          ],
+          "guests": [
+            "2"
           ],
           "check_in": [
             "2027-07-01"
@@ -815,16 +971,24 @@
           "nights": [
             "7"
           ],
-          "max_guests": [
-            "2"
+          "currency": [
+            "EUR"
+          ],
+          "sort": [
+            "best"
+          ],
+          "page": [
+            "1"
+          ],
+          "page_size": [
+            "60"
           ]
         },
-        "aiCalls": 1,
-        "normalized": "hotel bis 99 50 euro pro nacht",
+        "aiCalls": 0,
+        "normalized": "hotel bis 99,50 euro pro nacht",
         "dropped": [],
         "messages": [
           "Suche läuft...",
-          "Keine passende Unterkunft gefunden.",
           "Keine passende Unterkunft gefunden."
         ]
       }
@@ -833,19 +997,18 @@
       "id": "P22",
       "area": "parser",
       "label": "1.200 Euro bleibt als Preis erhalten",
-      "pass": false,
-      "error": "1.200 Euro bleibt als Preis erhalten",
+      "pass": true,
       "evidence": {
         "query": "Hotel bis 1.200 Euro pro Nacht",
         "params": {
           "type": [
             "hotel"
           ],
-          "max_total_price": [
-            "200"
-          ],
           "max_price_per_night": [
-            "200"
+            "1200"
+          ],
+          "guests": [
+            "2"
           ],
           "check_in": [
             "2027-07-01"
@@ -856,16 +1019,24 @@
           "nights": [
             "7"
           ],
-          "max_guests": [
-            "2"
+          "currency": [
+            "EUR"
+          ],
+          "sort": [
+            "best"
+          ],
+          "page": [
+            "1"
+          ],
+          "page_size": [
+            "60"
           ]
         },
-        "aiCalls": 1,
-        "normalized": "hotel bis 1 200 euro pro nacht",
+        "aiCalls": 0,
+        "normalized": "hotel bis 1.200 euro pro nacht",
         "dropped": [],
         "messages": [
           "Suche läuft...",
-          "Keine passende Unterkunft gefunden.",
           "Keine passende Unterkunft gefunden."
         ]
       }
@@ -887,8 +1058,8 @@
           "max_total_price": [
             "700"
           ],
-          "max_price_per_night": [
-            "100"
+          "guests": [
+            "2"
           ],
           "check_in": [
             "2027-07-01"
@@ -896,16 +1067,27 @@
           "check_out": [
             "2027-07-08"
           ],
-          "max_guests": [
-            "2"
+          "max_price_per_night": [
+            "100"
+          ],
+          "currency": [
+            "EUR"
+          ],
+          "sort": [
+            "best"
+          ],
+          "page": [
+            "1"
+          ],
+          "page_size": [
+            "60"
           ]
         },
-        "aiCalls": 1,
+        "aiCalls": 0,
         "normalized": "hotel 700 euro für 7 nächte",
         "dropped": [],
         "messages": [
           "Suche läuft...",
-          "Keine passende Unterkunft gefunden.",
           "Keine passende Unterkunft gefunden."
         ]
       }
@@ -914,8 +1096,7 @@
       "id": "P24",
       "area": "parser",
       "label": "Gesamtbudget mit Formulardauer wird ebenfalls umgerechnet",
-      "pass": false,
-      "error": "Gesamtbudget mit Formulardauer wird ebenfalls umgerechnet",
+      "pass": true,
       "evidence": {
         "query": "Hotel Budget 700 Euro",
         "params": {
@@ -924,6 +1105,9 @@
           ],
           "max_total_price": [
             "700"
+          ],
+          "guests": [
+            "2"
           ],
           "check_in": [
             "2027-07-01"
@@ -934,16 +1118,27 @@
           "nights": [
             "7"
           ],
-          "max_guests": [
-            "2"
+          "max_price_per_night": [
+            "100"
+          ],
+          "currency": [
+            "EUR"
+          ],
+          "sort": [
+            "best"
+          ],
+          "page": [
+            "1"
+          ],
+          "page_size": [
+            "60"
           ]
         },
-        "aiCalls": 1,
+        "aiCalls": 0,
         "normalized": "hotel budget 700 euro",
         "dropped": [],
         "messages": [
           "Suche läuft...",
-          "Keine passende Unterkunft gefunden.",
           "Keine passende Unterkunft gefunden."
         ]
       }
@@ -952,8 +1147,7 @@
       "id": "P25",
       "area": "parser",
       "label": "Budgetuntergrenze wird mit der Dauer umgerechnet",
-      "pass": false,
-      "error": "Budgetuntergrenze wird mit der Dauer umgerechnet",
+      "pass": true,
       "evidence": {
         "query": "Hotel zwischen 500 und 700 Euro für 7 Nächte",
         "params": {
@@ -969,8 +1163,8 @@
           "max_total_price": [
             "700"
           ],
-          "max_price_per_night": [
-            "100"
+          "guests": [
+            "2"
           ],
           "check_in": [
             "2027-07-01"
@@ -978,16 +1172,30 @@
           "check_out": [
             "2027-07-08"
           ],
-          "max_guests": [
-            "2"
+          "max_price_per_night": [
+            "100"
+          ],
+          "min_price_per_night": [
+            "71.43"
+          ],
+          "currency": [
+            "EUR"
+          ],
+          "sort": [
+            "best"
+          ],
+          "page": [
+            "1"
+          ],
+          "page_size": [
+            "60"
           ]
         },
-        "aiCalls": 1,
+        "aiCalls": 0,
         "normalized": "hotel zwischen 500 und 700 euro für 7 nächte",
         "dropped": [],
         "messages": [
           "Suche läuft...",
-          "Keine passende Unterkunft gefunden.",
           "Keine passende Unterkunft gefunden."
         ]
       }
@@ -996,13 +1204,18 @@
       "id": "P26",
       "area": "parser",
       "label": "Dativ Schlafzimmern wird erkannt",
-      "pass": false,
-      "error": "Dativ Schlafzimmern wird erkannt",
+      "pass": true,
       "evidence": {
         "query": "Ferienwohnung mit 3 Schlafzimmern",
         "params": {
           "type": [
             "holiday_apartment"
+          ],
+          "min_bedrooms": [
+            "3"
+          ],
+          "guests": [
+            "2"
           ],
           "check_in": [
             "2027-07-01"
@@ -1013,16 +1226,21 @@
           "nights": [
             "7"
           ],
-          "max_guests": [
-            "2"
+          "sort": [
+            "best"
+          ],
+          "page": [
+            "1"
+          ],
+          "page_size": [
+            "60"
           ]
         },
-        "aiCalls": 1,
+        "aiCalls": 0,
         "normalized": "ferienwohnung mit 3 schlafzimmern",
         "dropped": [],
         "messages": [
           "Suche läuft...",
-          "Keine passende Unterkunft gefunden.",
           "Keine passende Unterkunft gefunden."
         ]
       }
@@ -1041,6 +1259,9 @@
           "min_bedrooms": [
             "2"
           ],
+          "guests": [
+            "2"
+          ],
           "check_in": [
             "2027-07-01"
           ],
@@ -1050,16 +1271,21 @@
           "nights": [
             "7"
           ],
-          "max_guests": [
-            "2"
+          "sort": [
+            "best"
+          ],
+          "page": [
+            "1"
+          ],
+          "page_size": [
+            "60"
           ]
         },
-        "aiCalls": 1,
+        "aiCalls": 0,
         "normalized": "ferienwohnung mindestens 2 schlafzimmer",
         "dropped": [],
         "messages": [
           "Suche läuft...",
-          "Keine passende Unterkunft gefunden.",
           "Keine passende Unterkunft gefunden."
         ]
       }
@@ -1068,33 +1294,46 @@
       "id": "P28",
       "area": "parser",
       "label": "Numerische Daten mit Jahr werden berücksichtigt",
-      "pass": false,
-      "error": "Numerische Daten mit Jahr werden berücksichtigt",
+      "pass": true,
       "evidence": {
         "query": "Hotel vom 01.06.2027 bis 08.06.2027",
         "params": {
           "type": [
             "hotel"
           ],
+          "guests": [
+            "2"
+          ],
           "check_in": [
-            "2027-07-01"
+            "2027-06-01"
           ],
           "check_out": [
-            "2027-07-08"
+            "2027-06-08"
           ],
           "nights": [
             "7"
           ],
-          "max_guests": [
-            "2"
+          "year": [
+            "2027"
+          ],
+          "month": [
+            "6"
+          ],
+          "sort": [
+            "best"
+          ],
+          "page": [
+            "1"
+          ],
+          "page_size": [
+            "60"
           ]
         },
-        "aiCalls": 2,
-        "normalized": "hotel vom 01 06 2027 bis 08 06 2027",
+        "aiCalls": 0,
+        "normalized": "hotel vom 01.06.2027 bis 08.06.2027",
         "dropped": [],
         "messages": [
           "Suche läuft...",
-          "Keine passende Unterkunft gefunden.",
           "Keine passende Unterkunft gefunden."
         ]
       }
@@ -1103,37 +1342,16 @@
       "id": "P29",
       "area": "parser",
       "label": "Unmöglicher 31. Februar wird nicht an die Suche übergeben",
-      "pass": false,
-      "error": "Unmöglicher 31. Februar wird nicht an die Suche übergeben",
+      "pass": true,
       "evidence": {
         "query": "Hotel vom 31. Februar bis 5. März",
-        "params": {
-          "type": [
-            "hotel"
-          ],
-          "check_in": [
-            "2027-02-31"
-          ],
-          "check_out": [
-            "2027-03-05"
-          ],
-          "nights": [
-            "2"
-          ],
-          "month": [
-            "2"
-          ],
-          "max_guests": [
-            "2"
-          ]
-        },
-        "aiCalls": 1,
+        "params": {},
+        "aiCalls": 0,
         "normalized": "hotel vom 31 februar bis 5 märz",
         "dropped": [],
         "messages": [
           "Suche läuft...",
-          "Keine passende Unterkunft gefunden.",
-          "Keine passende Unterkunft gefunden."
+          "Bitte gib ein gültiges Kalenderdatum ein."
         ]
       }
     },
@@ -1141,8 +1359,7 @@
       "id": "P30",
       "area": "parser",
       "label": "Jahresangabe erreicht die Suchschnittstelle",
-      "pass": false,
-      "error": "Jahresangabe erreicht die Suchschnittstelle",
+      "pass": true,
       "evidence": {
         "query": "Hotel im Juli 2028",
         "params": {
@@ -1152,27 +1369,36 @@
           "month": [
             "7"
           ],
+          "year": [
+            "2028"
+          ],
+          "guests": [
+            "2"
+          ],
           "check_in": [
-            "2027-07-01"
+            "2028-07-01"
           ],
           "check_out": [
-            "2027-07-08"
+            "2028-07-08"
           ],
           "nights": [
             "7"
           ],
-          "max_guests": [
-            "2"
+          "sort": [
+            "best"
+          ],
+          "page": [
+            "1"
+          ],
+          "page_size": [
+            "60"
           ]
         },
-        "aiCalls": 1,
+        "aiCalls": 0,
         "normalized": "hotel im juli 2028",
-        "dropped": [
-          "year"
-        ],
+        "dropped": [],
         "messages": [
           "Suche läuft...",
-          "Keine passende Unterkunft gefunden.",
           "Keine passende Unterkunft gefunden."
         ]
       }
@@ -1181,8 +1407,7 @@
       "id": "P31",
       "area": "parser",
       "label": "Gesendete Daten und Nächte sind intern konsistent",
-      "pass": false,
-      "error": "Gesendete Daten und Nächte sind intern konsistent",
+      "pass": true,
       "evidence": {
         "query": "Hotel für 3 Nächte",
         "params": {
@@ -1192,22 +1417,30 @@
           "nights": [
             "3"
           ],
+          "guests": [
+            "2"
+          ],
           "check_in": [
             "2027-07-01"
           ],
           "check_out": [
-            "2027-07-08"
+            "2027-07-04"
           ],
-          "max_guests": [
-            "2"
+          "sort": [
+            "best"
+          ],
+          "page": [
+            "1"
+          ],
+          "page_size": [
+            "60"
           ]
         },
-        "aiCalls": 1,
+        "aiCalls": 0,
         "normalized": "hotel für 3 nächte",
         "dropped": [],
         "messages": [
           "Suche läuft...",
-          "Keine passende Unterkunft gefunden.",
           "Keine passende Unterkunft gefunden."
         ]
       }
@@ -1216,8 +1449,7 @@
       "id": "P32",
       "area": "parser",
       "label": "Einfache lokal verstandene Suche ruft keinen KI-Fallback auf",
-      "pass": false,
-      "error": "Einfache lokal verstandene Suche ruft keinen KI-Fallback auf",
+      "pass": true,
       "evidence": {
         "query": "Hotel in Berlin",
         "params": {
@@ -1230,6 +1462,9 @@
           "type": [
             "hotel"
           ],
+          "guests": [
+            "2"
+          ],
           "check_in": [
             "2027-07-01"
           ],
@@ -1239,16 +1474,21 @@
           "nights": [
             "7"
           ],
-          "max_guests": [
-            "2"
+          "sort": [
+            "best"
+          ],
+          "page": [
+            "1"
+          ],
+          "page_size": [
+            "60"
           ]
         },
-        "aiCalls": 1,
+        "aiCalls": 0,
         "normalized": "hotel in berlin",
         "dropped": [],
         "messages": [
           "Suche läuft...",
-          "Keine passende Unterkunft gefunden.",
           "Keine passende Unterkunft gefunden."
         ]
       }
@@ -1257,14 +1497,10 @@
       "id": "P33",
       "area": "parser",
       "label": "KI-Keys werden schon beim ersten KI-Aufruf geprüft",
-      "pass": false,
-      "error": "KI-Keys werden schon beim ersten KI-Aufruf geprüft",
+      "pass": true,
       "evidence": {
         "query": "Hotel in Berlin",
         "params": {
-          "feature": [
-            "not_a_real_feature"
-          ],
           "city": [
             "Berlin"
           ],
@@ -1274,6 +1510,9 @@
           "type": [
             "hotel"
           ],
+          "guests": [
+            "2"
+          ],
           "check_in": [
             "2027-07-01"
           ],
@@ -1283,16 +1522,21 @@
           "nights": [
             "7"
           ],
-          "max_guests": [
-            "2"
+          "sort": [
+            "best"
+          ],
+          "page": [
+            "1"
+          ],
+          "page_size": [
+            "60"
           ]
         },
-        "aiCalls": 1,
+        "aiCalls": 0,
         "normalized": "hotel in berlin",
         "dropped": [],
         "messages": [
           "Suche läuft...",
-          "Keine passende Unterkunft gefunden.",
           "Keine passende Unterkunft gefunden."
         ]
       }
@@ -1301,19 +1545,21 @@
       "id": "P34",
       "area": "parser",
       "label": "Lokal erkanntes Berlin korrigiert widersprüchliches KI-Land",
-      "pass": false,
-      "error": "Lokal erkanntes Berlin korrigiert widersprüchliches KI-Land",
+      "pass": true,
       "evidence": {
         "query": "Hotel in Berlin",
         "params": {
-          "country": [
-            "Italien"
-          ],
           "city": [
             "Berlin"
           ],
+          "country": [
+            "Deutschland"
+          ],
           "type": [
             "hotel"
+          ],
+          "guests": [
+            "2"
           ],
           "check_in": [
             "2027-07-01"
@@ -1324,16 +1570,21 @@
           "nights": [
             "7"
           ],
-          "max_guests": [
-            "2"
+          "sort": [
+            "best"
+          ],
+          "page": [
+            "1"
+          ],
+          "page_size": [
+            "60"
           ]
         },
-        "aiCalls": 1,
+        "aiCalls": 0,
         "normalized": "hotel in berlin",
         "dropped": [],
         "messages": [
           "Suche läuft...",
-          "Keine passende Unterkunft gefunden.",
           "Keine passende Unterkunft gefunden."
         ]
       }
@@ -1342,13 +1593,15 @@
       "id": "P35",
       "area": "parser",
       "label": "Flughafennähe wird unterstützt oder ausdrücklich als unerfüllt gemeldet",
-      "pass": false,
-      "error": "Flughafennähe wird unterstützt oder ausdrücklich als unerfüllt gemeldet",
+      "pass": true,
       "evidence": {
         "query": "Hotel nahe Flughafen",
         "params": {
           "type": [
             "hotel"
+          ],
+          "guests": [
+            "2"
           ],
           "check_in": [
             "2027-07-01"
@@ -1359,19 +1612,24 @@
           "nights": [
             "7"
           ],
-          "max_guests": [
-            "2"
+          "feature": [
+            "near_airport"
+          ],
+          "sort": [
+            "best"
+          ],
+          "page": [
+            "1"
+          ],
+          "page_size": [
+            "60"
           ]
         },
-        "aiCalls": 1,
+        "aiCalls": 0,
         "normalized": "hotel nahe flughafen",
-        "dropped": [
-          "transport_location",
-          "location_feature"
-        ],
+        "dropped": [],
         "messages": [
           "Suche läuft...",
-          "Keine passende Unterkunft gefunden.",
           "Keine passende Unterkunft gefunden."
         ]
       }
@@ -1380,16 +1638,15 @@
       "id": "P36",
       "area": "parser",
       "label": "Kostenloser Parkplatz verliert nicht seine kostenlose Eigenschaft",
-      "pass": false,
-      "error": "Kostenloser Parkplatz verliert nicht seine kostenlose Eigenschaft",
+      "pass": true,
       "evidence": {
         "query": "Hotel mit kostenlosem Parkplatz",
         "params": {
           "type": [
             "hotel"
           ],
-          "feature": [
-            "parking"
+          "guests": [
+            "2"
           ],
           "check_in": [
             "2027-07-01"
@@ -1400,16 +1657,25 @@
           "nights": [
             "7"
           ],
-          "max_guests": [
-            "2"
+          "feature": [
+            "parking",
+            "free_parking"
+          ],
+          "sort": [
+            "best"
+          ],
+          "page": [
+            "1"
+          ],
+          "page_size": [
+            "60"
           ]
         },
-        "aiCalls": 1,
+        "aiCalls": 0,
         "normalized": "hotel mit kostenlosem parkplatz",
         "dropped": [],
         "messages": [
           "Suche läuft...",
-          "Keine passende Unterkunft gefunden.",
           "Keine passende Unterkunft gefunden."
         ]
       }
@@ -1425,11 +1691,8 @@
           "type": [
             "hotel"
           ],
-          "feature": [
-            "pool"
-          ],
-          "preferred_feature": [
-            "pool"
+          "guests": [
+            "2"
           ],
           "check_in": [
             "2027-07-01"
@@ -1440,16 +1703,27 @@
           "nights": [
             "7"
           ],
-          "max_guests": [
-            "2"
+          "feature": [
+            "pool"
+          ],
+          "preferred_feature": [
+            "pool"
+          ],
+          "sort": [
+            "best"
+          ],
+          "page": [
+            "1"
+          ],
+          "page_size": [
+            "60"
           ]
         },
-        "aiCalls": 1,
+        "aiCalls": 0,
         "normalized": "hotel mit pool wäre schön",
         "dropped": [],
         "messages": [
           "Suche läuft...",
-          "Keine passende Unterkunft gefunden.",
           "Keine passende Unterkunft gefunden."
         ]
       }
@@ -1471,6 +1745,9 @@
           "type": [
             "hotel"
           ],
+          "guests": [
+            "2"
+          ],
           "check_in": [
             "2027-07-01"
           ],
@@ -1480,16 +1757,21 @@
           "nights": [
             "7"
           ],
-          "max_guests": [
-            "2"
+          "sort": [
+            "best"
+          ],
+          "page": [
+            "1"
+          ],
+          "page_size": [
+            "60"
           ]
         },
-        "aiCalls": 1,
+        "aiCalls": 0,
         "normalized": "hotel in berlin",
         "dropped": [],
         "messages": [
           "Suche läuft...",
-          "Keine passende Unterkunft gefunden.",
           "Keine passende Unterkunft gefunden."
         ]
       }
@@ -1506,6 +1788,8 @@
           "Eigenes Hotel Berlin",
           "Expedia Hotel Berlin"
         ],
+        "missing_features": [],
+        "warnings": [],
         "queries": [
           {
             "table": "accommodations",
@@ -1514,19 +1798,166 @@
                 "eq",
                 "is_active",
                 true
-              ],
-              [
-                "eq",
-                "accommodation_type",
-                "hotel"
-              ],
-              [
-                "ilike",
-                "city",
-                "Berlin"
               ]
             ],
-            "range": null
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ]
+            ],
+            "range": [
+              3,
+              1002
+            ]
+          },
+          {
+            "table": "features",
+            "filters": [
+              [
+                "in",
+                "key",
+                [
+                  "pool",
+                  "wifi",
+                  "wlan",
+                  "parking",
+                  "restaurant",
+                  "breakfast",
+                  "air_conditioning",
+                  "kitchen",
+                  "washing_machine",
+                  "near_sea",
+                  "near_lake",
+                  "near_mountains",
+                  "mountain_location",
+                  "dogs_allowed",
+                  "dogs",
+                  "dog_friendly",
+                  "pets_allowed",
+                  "pets",
+                  "pet_friendly",
+                  "family_friendly",
+                  "accessible",
+                  "wheelchair_accessible",
+                  "quiet_place",
+                  "free_parking",
+                  "city_center",
+                  "near_airport"
+                ]
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "features",
+            "filters": [
+              [
+                "in",
+                "key",
+                [
+                  "pool",
+                  "wifi",
+                  "wlan",
+                  "parking",
+                  "restaurant",
+                  "breakfast",
+                  "air_conditioning",
+                  "kitchen",
+                  "washing_machine",
+                  "near_sea",
+                  "near_lake",
+                  "near_mountains",
+                  "mountain_location",
+                  "dogs_allowed",
+                  "dogs",
+                  "dog_friendly",
+                  "pets_allowed",
+                  "pets",
+                  "pet_friendly",
+                  "family_friendly",
+                  "accessible",
+                  "wheelchair_accessible",
+                  "quiet_place",
+                  "free_parking",
+                  "city_center",
+                  "near_airport"
+                ]
+              ]
+            ],
+            "range": [
+              7,
+              1006
+            ]
+          },
+          {
+            "table": "accommodation_features",
+            "filters": [
+              [
+                "in",
+                "accommodation_id",
+                [
+                  1
+                ]
+              ],
+              [
+                "in",
+                "feature_id",
+                [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7
+                ]
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "accommodation_features",
+            "filters": [
+              [
+                "in",
+                "accommodation_id",
+                [
+                  1
+                ]
+              ],
+              [
+                "in",
+                "feature_id",
+                [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7
+                ]
+              ]
+            ],
+            "range": [
+              4,
+              1003
+            ]
           },
           {
             "table": "expedia_accommodations",
@@ -1540,20 +1971,31 @@
                 "eq",
                 "accommodation_type",
                 "hotel"
-              ],
-              [
-                "not",
-                "affiliate_url",
-                "is",
-                null
-              ],
-              [
-                "ilike",
-                "city",
-                "Berlin"
               ]
             ],
-            "range": null
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "expedia_accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ],
+              [
+                "eq",
+                "accommodation_type",
+                "hotel"
+              ]
+            ],
+            "range": [
+              1,
+              1000
+            ]
           }
         ]
       }
@@ -1570,6 +2012,8 @@
           "Eigenes Hotel Berlin",
           "Expedia Hotel Berlin"
         ],
+        "missing_features": [],
+        "warnings": [],
         "queries": [
           {
             "table": "accommodations",
@@ -1578,19 +2022,166 @@
                 "eq",
                 "is_active",
                 true
-              ],
-              [
-                "eq",
-                "accommodation_type",
-                "hotel"
-              ],
-              [
-                "ilike",
-                "city",
-                "Berlin"
               ]
             ],
-            "range": null
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ]
+            ],
+            "range": [
+              3,
+              1002
+            ]
+          },
+          {
+            "table": "features",
+            "filters": [
+              [
+                "in",
+                "key",
+                [
+                  "pool",
+                  "wifi",
+                  "wlan",
+                  "parking",
+                  "restaurant",
+                  "breakfast",
+                  "air_conditioning",
+                  "kitchen",
+                  "washing_machine",
+                  "near_sea",
+                  "near_lake",
+                  "near_mountains",
+                  "mountain_location",
+                  "dogs_allowed",
+                  "dogs",
+                  "dog_friendly",
+                  "pets_allowed",
+                  "pets",
+                  "pet_friendly",
+                  "family_friendly",
+                  "accessible",
+                  "wheelchair_accessible",
+                  "quiet_place",
+                  "free_parking",
+                  "city_center",
+                  "near_airport"
+                ]
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "features",
+            "filters": [
+              [
+                "in",
+                "key",
+                [
+                  "pool",
+                  "wifi",
+                  "wlan",
+                  "parking",
+                  "restaurant",
+                  "breakfast",
+                  "air_conditioning",
+                  "kitchen",
+                  "washing_machine",
+                  "near_sea",
+                  "near_lake",
+                  "near_mountains",
+                  "mountain_location",
+                  "dogs_allowed",
+                  "dogs",
+                  "dog_friendly",
+                  "pets_allowed",
+                  "pets",
+                  "pet_friendly",
+                  "family_friendly",
+                  "accessible",
+                  "wheelchair_accessible",
+                  "quiet_place",
+                  "free_parking",
+                  "city_center",
+                  "near_airport"
+                ]
+              ]
+            ],
+            "range": [
+              7,
+              1006
+            ]
+          },
+          {
+            "table": "accommodation_features",
+            "filters": [
+              [
+                "in",
+                "accommodation_id",
+                [
+                  1
+                ]
+              ],
+              [
+                "in",
+                "feature_id",
+                [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7
+                ]
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "accommodation_features",
+            "filters": [
+              [
+                "in",
+                "accommodation_id",
+                [
+                  1
+                ]
+              ],
+              [
+                "in",
+                "feature_id",
+                [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7
+                ]
+              ]
+            ],
+            "range": [
+              4,
+              1003
+            ]
           },
           {
             "table": "expedia_accommodations",
@@ -1604,39 +2195,15 @@
                 "eq",
                 "accommodation_type",
                 "hotel"
-              ],
-              [
-                "not",
-                "affiliate_url",
-                "is",
-                null
-              ],
-              [
-                "ilike",
-                "city",
-                "Berlin"
               ]
             ],
-            "range": null
-          }
-        ]
-      }
-    },
-    {
-      "id": "A03",
-      "area": "api",
-      "label": "Standard-Personenzahl blockiert den Hotelimport nicht pauschal",
-      "pass": false,
-      "error": "Standard-Personenzahl blockiert den Hotelimport nicht pauschal",
-      "evidence": {
-        "params": "type=hotel&city=Berlin&max_guests=2",
-        "status": 200,
-        "names": [
-          "Eigenes Hotel Berlin"
-        ],
-        "queries": [
+            "range": [
+              0,
+              999
+            ]
+          },
           {
-            "table": "accommodations",
+            "table": "expedia_accommodations",
             "filters": [
               [
                 "eq",
@@ -1647,19 +2214,236 @@
                 "eq",
                 "accommodation_type",
                 "hotel"
-              ],
-              [
-                "gte",
-                "max_guests",
-                2
-              ],
-              [
-                "ilike",
-                "city",
-                "Berlin"
               ]
             ],
-            "range": null
+            "range": [
+              1,
+              1000
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "A03",
+      "area": "api",
+      "label": "Standard-Personenzahl blockiert den Hotelimport nicht pauschal",
+      "pass": true,
+      "evidence": {
+        "params": "type=hotel&city=Berlin&max_guests=2",
+        "status": 200,
+        "names": [
+          "Eigenes Hotel Berlin",
+          "Expedia Hotel Berlin"
+        ],
+        "missing_features": [],
+        "warnings": [],
+        "queries": [
+          {
+            "table": "accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ]
+            ],
+            "range": [
+              3,
+              1002
+            ]
+          },
+          {
+            "table": "features",
+            "filters": [
+              [
+                "in",
+                "key",
+                [
+                  "pool",
+                  "wifi",
+                  "wlan",
+                  "parking",
+                  "restaurant",
+                  "breakfast",
+                  "air_conditioning",
+                  "kitchen",
+                  "washing_machine",
+                  "near_sea",
+                  "near_lake",
+                  "near_mountains",
+                  "mountain_location",
+                  "dogs_allowed",
+                  "dogs",
+                  "dog_friendly",
+                  "pets_allowed",
+                  "pets",
+                  "pet_friendly",
+                  "family_friendly",
+                  "accessible",
+                  "wheelchair_accessible",
+                  "quiet_place",
+                  "free_parking",
+                  "city_center",
+                  "near_airport"
+                ]
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "features",
+            "filters": [
+              [
+                "in",
+                "key",
+                [
+                  "pool",
+                  "wifi",
+                  "wlan",
+                  "parking",
+                  "restaurant",
+                  "breakfast",
+                  "air_conditioning",
+                  "kitchen",
+                  "washing_machine",
+                  "near_sea",
+                  "near_lake",
+                  "near_mountains",
+                  "mountain_location",
+                  "dogs_allowed",
+                  "dogs",
+                  "dog_friendly",
+                  "pets_allowed",
+                  "pets",
+                  "pet_friendly",
+                  "family_friendly",
+                  "accessible",
+                  "wheelchair_accessible",
+                  "quiet_place",
+                  "free_parking",
+                  "city_center",
+                  "near_airport"
+                ]
+              ]
+            ],
+            "range": [
+              7,
+              1006
+            ]
+          },
+          {
+            "table": "accommodation_features",
+            "filters": [
+              [
+                "in",
+                "accommodation_id",
+                [
+                  1
+                ]
+              ],
+              [
+                "in",
+                "feature_id",
+                [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7
+                ]
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "accommodation_features",
+            "filters": [
+              [
+                "in",
+                "accommodation_id",
+                [
+                  1
+                ]
+              ],
+              [
+                "in",
+                "feature_id",
+                [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7
+                ]
+              ]
+            ],
+            "range": [
+              4,
+              1003
+            ]
+          },
+          {
+            "table": "expedia_accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ],
+              [
+                "eq",
+                "accommodation_type",
+                "hotel"
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "expedia_accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ],
+              [
+                "eq",
+                "accommodation_type",
+                "hotel"
+              ]
+            ],
+            "range": [
+              1,
+              1000
+            ]
           }
         ]
       }
@@ -1668,15 +2452,15 @@
       "id": "A04",
       "area": "api",
       "label": "Campingimport beachtet den Stadtfilter",
-      "pass": false,
-      "error": "Campingimport beachtet den Stadtfilter",
+      "pass": true,
       "evidence": {
         "params": "type=campsite&city=Berlin",
         "status": 200,
         "names": [
-          "Feed Berlin ohne Ausstattung",
-          "Feed München mit Ausstattung"
+          "Feed Berlin ohne Ausstattung"
         ],
+        "missing_features": [],
+        "warnings": [],
         "queries": [
           {
             "table": "accommodations",
@@ -1685,19 +2469,108 @@
                 "eq",
                 "is_active",
                 true
-              ],
-              [
-                "eq",
-                "accommodation_type",
-                "campsite"
-              ],
-              [
-                "ilike",
-                "city",
-                "Berlin"
               ]
             ],
-            "range": null
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ]
+            ],
+            "range": [
+              3,
+              1002
+            ]
+          },
+          {
+            "table": "features",
+            "filters": [
+              [
+                "in",
+                "key",
+                [
+                  "pool",
+                  "wifi",
+                  "wlan",
+                  "parking",
+                  "restaurant",
+                  "breakfast",
+                  "air_conditioning",
+                  "kitchen",
+                  "washing_machine",
+                  "near_sea",
+                  "near_lake",
+                  "near_mountains",
+                  "mountain_location",
+                  "dogs_allowed",
+                  "dogs",
+                  "dog_friendly",
+                  "pets_allowed",
+                  "pets",
+                  "pet_friendly",
+                  "family_friendly",
+                  "accessible",
+                  "wheelchair_accessible",
+                  "quiet_place",
+                  "free_parking",
+                  "city_center",
+                  "near_airport"
+                ]
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "features",
+            "filters": [
+              [
+                "in",
+                "key",
+                [
+                  "pool",
+                  "wifi",
+                  "wlan",
+                  "parking",
+                  "restaurant",
+                  "breakfast",
+                  "air_conditioning",
+                  "kitchen",
+                  "washing_machine",
+                  "near_sea",
+                  "near_lake",
+                  "near_mountains",
+                  "mountain_location",
+                  "dogs_allowed",
+                  "dogs",
+                  "dog_friendly",
+                  "pets_allowed",
+                  "pets",
+                  "pet_friendly",
+                  "family_friendly",
+                  "accessible",
+                  "wheelchair_accessible",
+                  "quiet_place",
+                  "free_parking",
+                  "city_center",
+                  "near_airport"
+                ]
+              ]
+            ],
+            "range": [
+              7,
+              1006
+            ]
           },
           {
             "table": "camping_info_campsites",
@@ -1711,23 +2584,9 @@
             "table": "camping_info_campsites",
             "filters": [],
             "range": [
-              1000,
-              1999
+              2,
+              1001
             ]
-          },
-          {
-            "table": "camping_info_campsites",
-            "filters": [
-              [
-                "in",
-                "id",
-                [
-                  10,
-                  11
-                ]
-              ]
-            ],
-            "range": null
           }
         ]
       }
@@ -1736,42 +2595,30 @@
       "id": "A05",
       "area": "api",
       "label": "Campingimport erfüllt Pool-Pflicht aus feature=pool",
-      "pass": false,
-      "error": "Campingimport erfüllt Pool-Pflicht aus feature=pool",
+      "pass": true,
       "evidence": {
         "params": "type=campsite&feature=pool",
         "status": 200,
         "names": [
-          "Eigener Campingplatz München",
-          "Feed Berlin ohne Ausstattung",
-          "Feed München mit Ausstattung"
+          "Feed München mit Ausstattung",
+          "Eigener Campingplatz München"
         ],
+        "missing_features": [],
+        "warnings": [],
         "queries": [
           {
-            "table": "features",
+            "table": "accommodations",
             "filters": [
               [
-                "in",
-                "key",
-                [
-                  "pool"
-                ]
+                "eq",
+                "is_active",
+                true
               ]
             ],
-            "range": null
-          },
-          {
-            "table": "accommodation_features",
-            "filters": [
-              [
-                "in",
-                "feature_id",
-                [
-                  1
-                ]
-              ]
-            ],
-            "range": null
+            "range": [
+              0,
+              999
+            ]
           },
           {
             "table": "accommodations",
@@ -1780,23 +2627,152 @@
                 "eq",
                 "is_active",
                 true
-              ],
+              ]
+            ],
+            "range": [
+              3,
+              1002
+            ]
+          },
+          {
+            "table": "features",
+            "filters": [
               [
                 "in",
-                "id",
+                "key",
                 [
-                  1,
-                  2,
-                  3
+                  "pool",
+                  "wifi",
+                  "wlan",
+                  "parking",
+                  "restaurant",
+                  "breakfast",
+                  "air_conditioning",
+                  "kitchen",
+                  "washing_machine",
+                  "near_sea",
+                  "near_lake",
+                  "near_mountains",
+                  "mountain_location",
+                  "dogs_allowed",
+                  "dogs",
+                  "dog_friendly",
+                  "pets_allowed",
+                  "pets",
+                  "pet_friendly",
+                  "family_friendly",
+                  "accessible",
+                  "wheelchair_accessible",
+                  "quiet_place",
+                  "free_parking",
+                  "city_center",
+                  "near_airport"
+                ]
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "features",
+            "filters": [
+              [
+                "in",
+                "key",
+                [
+                  "pool",
+                  "wifi",
+                  "wlan",
+                  "parking",
+                  "restaurant",
+                  "breakfast",
+                  "air_conditioning",
+                  "kitchen",
+                  "washing_machine",
+                  "near_sea",
+                  "near_lake",
+                  "near_mountains",
+                  "mountain_location",
+                  "dogs_allowed",
+                  "dogs",
+                  "dog_friendly",
+                  "pets_allowed",
+                  "pets",
+                  "pet_friendly",
+                  "family_friendly",
+                  "accessible",
+                  "wheelchair_accessible",
+                  "quiet_place",
+                  "free_parking",
+                  "city_center",
+                  "near_airport"
+                ]
+              ]
+            ],
+            "range": [
+              7,
+              1006
+            ]
+          },
+          {
+            "table": "accommodation_features",
+            "filters": [
+              [
+                "in",
+                "accommodation_id",
+                [
+                  2
                 ]
               ],
               [
-                "eq",
-                "accommodation_type",
-                "campsite"
+                "in",
+                "feature_id",
+                [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7
+                ]
               ]
             ],
-            "range": null
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "accommodation_features",
+            "filters": [
+              [
+                "in",
+                "accommodation_id",
+                [
+                  2
+                ]
+              ],
+              [
+                "in",
+                "feature_id",
+                [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7
+                ]
+              ]
+            ],
+            "range": [
+              4,
+              1003
+            ]
           },
           {
             "table": "camping_info_campsites",
@@ -1810,23 +2786,9 @@
             "table": "camping_info_campsites",
             "filters": [],
             "range": [
-              1000,
-              1999
+              2,
+              1001
             ]
-          },
-          {
-            "table": "camping_info_campsites",
-            "filters": [
-              [
-                "in",
-                "id",
-                [
-                  10,
-                  11
-                ]
-              ]
-            ],
-            "range": null
           }
         ]
       }
@@ -1835,16 +2797,16 @@
       "id": "A06",
       "area": "api",
       "label": "Campingimport erfüllt Pool-Pflicht aus has_pool=true",
-      "pass": false,
-      "error": "Campingimport erfüllt Pool-Pflicht aus has_pool=true",
+      "pass": true,
       "evidence": {
         "params": "type=campsite&has_pool=true",
         "status": 200,
         "names": [
-          "Eigener Campingplatz München",
-          "Feed Berlin ohne Ausstattung",
-          "Feed München mit Ausstattung"
+          "Feed München mit Ausstattung",
+          "Eigener Campingplatz München"
         ],
+        "missing_features": [],
+        "warnings": [],
         "queries": [
           {
             "table": "accommodations",
@@ -1853,19 +2815,166 @@
                 "eq",
                 "is_active",
                 true
-              ],
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "accommodations",
+            "filters": [
               [
                 "eq",
-                "accommodation_type",
-                "campsite"
-              ],
-              [
-                "eq",
-                "has_pool",
+                "is_active",
                 true
               ]
             ],
-            "range": null
+            "range": [
+              3,
+              1002
+            ]
+          },
+          {
+            "table": "features",
+            "filters": [
+              [
+                "in",
+                "key",
+                [
+                  "pool",
+                  "wifi",
+                  "wlan",
+                  "parking",
+                  "restaurant",
+                  "breakfast",
+                  "air_conditioning",
+                  "kitchen",
+                  "washing_machine",
+                  "near_sea",
+                  "near_lake",
+                  "near_mountains",
+                  "mountain_location",
+                  "dogs_allowed",
+                  "dogs",
+                  "dog_friendly",
+                  "pets_allowed",
+                  "pets",
+                  "pet_friendly",
+                  "family_friendly",
+                  "accessible",
+                  "wheelchair_accessible",
+                  "quiet_place",
+                  "free_parking",
+                  "city_center",
+                  "near_airport"
+                ]
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "features",
+            "filters": [
+              [
+                "in",
+                "key",
+                [
+                  "pool",
+                  "wifi",
+                  "wlan",
+                  "parking",
+                  "restaurant",
+                  "breakfast",
+                  "air_conditioning",
+                  "kitchen",
+                  "washing_machine",
+                  "near_sea",
+                  "near_lake",
+                  "near_mountains",
+                  "mountain_location",
+                  "dogs_allowed",
+                  "dogs",
+                  "dog_friendly",
+                  "pets_allowed",
+                  "pets",
+                  "pet_friendly",
+                  "family_friendly",
+                  "accessible",
+                  "wheelchair_accessible",
+                  "quiet_place",
+                  "free_parking",
+                  "city_center",
+                  "near_airport"
+                ]
+              ]
+            ],
+            "range": [
+              7,
+              1006
+            ]
+          },
+          {
+            "table": "accommodation_features",
+            "filters": [
+              [
+                "in",
+                "accommodation_id",
+                [
+                  2
+                ]
+              ],
+              [
+                "in",
+                "feature_id",
+                [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7
+                ]
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "accommodation_features",
+            "filters": [
+              [
+                "in",
+                "accommodation_id",
+                [
+                  2
+                ]
+              ],
+              [
+                "in",
+                "feature_id",
+                [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7
+                ]
+              ]
+            ],
+            "range": [
+              4,
+              1003
+            ]
           },
           {
             "table": "camping_info_campsites",
@@ -1879,23 +2988,9 @@
             "table": "camping_info_campsites",
             "filters": [],
             "range": [
-              1000,
-              1999
+              2,
+              1001
             ]
-          },
-          {
-            "table": "camping_info_campsites",
-            "filters": [
-              [
-                "in",
-                "id",
-                [
-                  10,
-                  11
-                ]
-              ]
-            ],
-            "range": null
           }
         ]
       }
@@ -1904,42 +2999,30 @@
       "id": "A07",
       "area": "api",
       "label": "Campingimport erfüllt Hunde-Pflicht aus feature=dogs_allowed",
-      "pass": false,
-      "error": "Campingimport erfüllt Hunde-Pflicht aus feature=dogs_allowed",
+      "pass": true,
       "evidence": {
         "params": "type=campsite&feature=dogs_allowed",
         "status": 200,
         "names": [
-          "Eigener Campingplatz München",
-          "Feed Berlin ohne Ausstattung",
-          "Feed München mit Ausstattung"
+          "Feed München mit Ausstattung",
+          "Eigener Campingplatz München"
         ],
+        "missing_features": [],
+        "warnings": [],
         "queries": [
           {
-            "table": "features",
+            "table": "accommodations",
             "filters": [
               [
-                "in",
-                "key",
-                [
-                  "dogs_allowed"
-                ]
+                "eq",
+                "is_active",
+                true
               ]
             ],
-            "range": null
-          },
-          {
-            "table": "accommodation_features",
-            "filters": [
-              [
-                "in",
-                "feature_id",
-                [
-                  3
-                ]
-              ]
-            ],
-            "range": null
+            "range": [
+              0,
+              999
+            ]
           },
           {
             "table": "accommodations",
@@ -1948,23 +3031,152 @@
                 "eq",
                 "is_active",
                 true
-              ],
+              ]
+            ],
+            "range": [
+              3,
+              1002
+            ]
+          },
+          {
+            "table": "features",
+            "filters": [
               [
                 "in",
-                "id",
+                "key",
                 [
-                  1,
-                  2,
-                  3
+                  "dogs_allowed",
+                  "dogs",
+                  "dog_friendly",
+                  "pool",
+                  "wifi",
+                  "wlan",
+                  "parking",
+                  "restaurant",
+                  "breakfast",
+                  "air_conditioning",
+                  "kitchen",
+                  "washing_machine",
+                  "near_sea",
+                  "near_lake",
+                  "near_mountains",
+                  "mountain_location",
+                  "pets_allowed",
+                  "pets",
+                  "pet_friendly",
+                  "family_friendly",
+                  "accessible",
+                  "wheelchair_accessible",
+                  "quiet_place",
+                  "free_parking",
+                  "city_center",
+                  "near_airport"
+                ]
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "features",
+            "filters": [
+              [
+                "in",
+                "key",
+                [
+                  "dogs_allowed",
+                  "dogs",
+                  "dog_friendly",
+                  "pool",
+                  "wifi",
+                  "wlan",
+                  "parking",
+                  "restaurant",
+                  "breakfast",
+                  "air_conditioning",
+                  "kitchen",
+                  "washing_machine",
+                  "near_sea",
+                  "near_lake",
+                  "near_mountains",
+                  "mountain_location",
+                  "pets_allowed",
+                  "pets",
+                  "pet_friendly",
+                  "family_friendly",
+                  "accessible",
+                  "wheelchair_accessible",
+                  "quiet_place",
+                  "free_parking",
+                  "city_center",
+                  "near_airport"
+                ]
+              ]
+            ],
+            "range": [
+              7,
+              1006
+            ]
+          },
+          {
+            "table": "accommodation_features",
+            "filters": [
+              [
+                "in",
+                "accommodation_id",
+                [
+                  2
                 ]
               ],
               [
-                "eq",
-                "accommodation_type",
-                "campsite"
+                "in",
+                "feature_id",
+                [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7
+                ]
               ]
             ],
-            "range": null
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "accommodation_features",
+            "filters": [
+              [
+                "in",
+                "accommodation_id",
+                [
+                  2
+                ]
+              ],
+              [
+                "in",
+                "feature_id",
+                [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7
+                ]
+              ]
+            ],
+            "range": [
+              4,
+              1003
+            ]
           },
           {
             "table": "camping_info_campsites",
@@ -1978,23 +3190,9 @@
             "table": "camping_info_campsites",
             "filters": [],
             "range": [
-              1000,
-              1999
+              2,
+              1001
             ]
-          },
-          {
-            "table": "camping_info_campsites",
-            "filters": [
-              [
-                "in",
-                "id",
-                [
-                  10,
-                  11
-                ]
-              ]
-            ],
-            "range": null
           }
         ]
       }
@@ -2008,9 +3206,11 @@
         "params": "type=campsite&dogs_allowed=true",
         "status": 200,
         "names": [
-          "Eigener Campingplatz München",
-          "Feed München mit Ausstattung"
+          "Feed München mit Ausstattung",
+          "Eigener Campingplatz München"
         ],
+        "missing_features": [],
+        "warnings": [],
         "queries": [
           {
             "table": "accommodations",
@@ -2019,19 +3219,166 @@
                 "eq",
                 "is_active",
                 true
-              ],
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "accommodations",
+            "filters": [
               [
                 "eq",
-                "accommodation_type",
-                "campsite"
-              ],
-              [
-                "eq",
-                "dogs_allowed",
+                "is_active",
                 true
               ]
             ],
-            "range": null
+            "range": [
+              3,
+              1002
+            ]
+          },
+          {
+            "table": "features",
+            "filters": [
+              [
+                "in",
+                "key",
+                [
+                  "dogs_allowed",
+                  "dogs",
+                  "dog_friendly",
+                  "pool",
+                  "wifi",
+                  "wlan",
+                  "parking",
+                  "restaurant",
+                  "breakfast",
+                  "air_conditioning",
+                  "kitchen",
+                  "washing_machine",
+                  "near_sea",
+                  "near_lake",
+                  "near_mountains",
+                  "mountain_location",
+                  "pets_allowed",
+                  "pets",
+                  "pet_friendly",
+                  "family_friendly",
+                  "accessible",
+                  "wheelchair_accessible",
+                  "quiet_place",
+                  "free_parking",
+                  "city_center",
+                  "near_airport"
+                ]
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "features",
+            "filters": [
+              [
+                "in",
+                "key",
+                [
+                  "dogs_allowed",
+                  "dogs",
+                  "dog_friendly",
+                  "pool",
+                  "wifi",
+                  "wlan",
+                  "parking",
+                  "restaurant",
+                  "breakfast",
+                  "air_conditioning",
+                  "kitchen",
+                  "washing_machine",
+                  "near_sea",
+                  "near_lake",
+                  "near_mountains",
+                  "mountain_location",
+                  "pets_allowed",
+                  "pets",
+                  "pet_friendly",
+                  "family_friendly",
+                  "accessible",
+                  "wheelchair_accessible",
+                  "quiet_place",
+                  "free_parking",
+                  "city_center",
+                  "near_airport"
+                ]
+              ]
+            ],
+            "range": [
+              7,
+              1006
+            ]
+          },
+          {
+            "table": "accommodation_features",
+            "filters": [
+              [
+                "in",
+                "accommodation_id",
+                [
+                  2
+                ]
+              ],
+              [
+                "in",
+                "feature_id",
+                [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7
+                ]
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "accommodation_features",
+            "filters": [
+              [
+                "in",
+                "accommodation_id",
+                [
+                  2
+                ]
+              ],
+              [
+                "in",
+                "feature_id",
+                [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7
+                ]
+              ]
+            ],
+            "range": [
+              4,
+              1003
+            ]
           },
           {
             "table": "camping_info_campsites",
@@ -2045,23 +3392,9 @@
             "table": "camping_info_campsites",
             "filters": [],
             "range": [
-              1000,
-              1999
+              2,
+              1001
             ]
-          },
-          {
-            "table": "camping_info_campsites",
-            "filters": [
-              [
-                "in",
-                "id",
-                [
-                  10,
-                  11
-                ]
-              ]
-            ],
-            "range": null
           }
         ]
       }
@@ -2070,42 +3403,30 @@
       "id": "A09",
       "area": "api",
       "label": "Campingimport erfüllt WLAN-Pflicht",
-      "pass": false,
-      "error": "Campingimport erfüllt WLAN-Pflicht",
+      "pass": true,
       "evidence": {
         "params": "type=campsite&feature=wifi",
         "status": 200,
         "names": [
-          "Eigener Campingplatz München",
-          "Feed Berlin ohne Ausstattung",
-          "Feed München mit Ausstattung"
+          "Feed München mit Ausstattung",
+          "Eigener Campingplatz München"
         ],
+        "missing_features": [],
+        "warnings": [],
         "queries": [
           {
-            "table": "features",
+            "table": "accommodations",
             "filters": [
               [
-                "in",
-                "key",
-                [
-                  "wifi"
-                ]
+                "eq",
+                "is_active",
+                true
               ]
             ],
-            "range": null
-          },
-          {
-            "table": "accommodation_features",
-            "filters": [
-              [
-                "in",
-                "feature_id",
-                [
-                  2
-                ]
-              ]
-            ],
-            "range": null
+            "range": [
+              0,
+              999
+            ]
           },
           {
             "table": "accommodations",
@@ -2114,23 +3435,152 @@
                 "eq",
                 "is_active",
                 true
-              ],
+              ]
+            ],
+            "range": [
+              3,
+              1002
+            ]
+          },
+          {
+            "table": "features",
+            "filters": [
               [
                 "in",
-                "id",
+                "key",
                 [
-                  1,
-                  2,
-                  3
+                  "wifi",
+                  "wlan",
+                  "pool",
+                  "parking",
+                  "restaurant",
+                  "breakfast",
+                  "air_conditioning",
+                  "kitchen",
+                  "washing_machine",
+                  "near_sea",
+                  "near_lake",
+                  "near_mountains",
+                  "mountain_location",
+                  "dogs_allowed",
+                  "dogs",
+                  "dog_friendly",
+                  "pets_allowed",
+                  "pets",
+                  "pet_friendly",
+                  "family_friendly",
+                  "accessible",
+                  "wheelchair_accessible",
+                  "quiet_place",
+                  "free_parking",
+                  "city_center",
+                  "near_airport"
+                ]
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "features",
+            "filters": [
+              [
+                "in",
+                "key",
+                [
+                  "wifi",
+                  "wlan",
+                  "pool",
+                  "parking",
+                  "restaurant",
+                  "breakfast",
+                  "air_conditioning",
+                  "kitchen",
+                  "washing_machine",
+                  "near_sea",
+                  "near_lake",
+                  "near_mountains",
+                  "mountain_location",
+                  "dogs_allowed",
+                  "dogs",
+                  "dog_friendly",
+                  "pets_allowed",
+                  "pets",
+                  "pet_friendly",
+                  "family_friendly",
+                  "accessible",
+                  "wheelchair_accessible",
+                  "quiet_place",
+                  "free_parking",
+                  "city_center",
+                  "near_airport"
+                ]
+              ]
+            ],
+            "range": [
+              7,
+              1006
+            ]
+          },
+          {
+            "table": "accommodation_features",
+            "filters": [
+              [
+                "in",
+                "accommodation_id",
+                [
+                  2
                 ]
               ],
               [
-                "eq",
-                "accommodation_type",
-                "campsite"
+                "in",
+                "feature_id",
+                [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7
+                ]
               ]
             ],
-            "range": null
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "accommodation_features",
+            "filters": [
+              [
+                "in",
+                "accommodation_id",
+                [
+                  2
+                ]
+              ],
+              [
+                "in",
+                "feature_id",
+                [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7
+                ]
+              ]
+            ],
+            "range": [
+              4,
+              1003
+            ]
           },
           {
             "table": "camping_info_campsites",
@@ -2144,23 +3594,9 @@
             "table": "camping_info_campsites",
             "filters": [],
             "range": [
-              1000,
-              1999
+              2,
+              1001
             ]
-          },
-          {
-            "table": "camping_info_campsites",
-            "filters": [
-              [
-                "in",
-                "id",
-                [
-                  10,
-                  11
-                ]
-              ]
-            ],
-            "range": null
           }
         ]
       }
@@ -2169,16 +3605,16 @@
       "id": "A10",
       "area": "api",
       "label": "Campingimport erfüllt Mindestbewertung",
-      "pass": false,
-      "error": "Campingimport erfüllt Mindestbewertung",
+      "pass": true,
       "evidence": {
         "params": "type=campsite&min_review_score=4",
         "status": 200,
         "names": [
-          "Eigener Campingplatz München",
-          "Feed Berlin ohne Ausstattung",
-          "Feed München mit Ausstattung"
+          "Feed München mit Ausstattung",
+          "Eigener Campingplatz München"
         ],
+        "missing_features": [],
+        "warnings": [],
         "queries": [
           {
             "table": "accommodations",
@@ -2187,19 +3623,166 @@
                 "eq",
                 "is_active",
                 true
-              ],
-              [
-                "eq",
-                "accommodation_type",
-                "campsite"
-              ],
-              [
-                "gte",
-                "review_score",
-                4
               ]
             ],
-            "range": null
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ]
+            ],
+            "range": [
+              3,
+              1002
+            ]
+          },
+          {
+            "table": "features",
+            "filters": [
+              [
+                "in",
+                "key",
+                [
+                  "pool",
+                  "wifi",
+                  "wlan",
+                  "parking",
+                  "restaurant",
+                  "breakfast",
+                  "air_conditioning",
+                  "kitchen",
+                  "washing_machine",
+                  "near_sea",
+                  "near_lake",
+                  "near_mountains",
+                  "mountain_location",
+                  "dogs_allowed",
+                  "dogs",
+                  "dog_friendly",
+                  "pets_allowed",
+                  "pets",
+                  "pet_friendly",
+                  "family_friendly",
+                  "accessible",
+                  "wheelchair_accessible",
+                  "quiet_place",
+                  "free_parking",
+                  "city_center",
+                  "near_airport"
+                ]
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "features",
+            "filters": [
+              [
+                "in",
+                "key",
+                [
+                  "pool",
+                  "wifi",
+                  "wlan",
+                  "parking",
+                  "restaurant",
+                  "breakfast",
+                  "air_conditioning",
+                  "kitchen",
+                  "washing_machine",
+                  "near_sea",
+                  "near_lake",
+                  "near_mountains",
+                  "mountain_location",
+                  "dogs_allowed",
+                  "dogs",
+                  "dog_friendly",
+                  "pets_allowed",
+                  "pets",
+                  "pet_friendly",
+                  "family_friendly",
+                  "accessible",
+                  "wheelchair_accessible",
+                  "quiet_place",
+                  "free_parking",
+                  "city_center",
+                  "near_airport"
+                ]
+              ]
+            ],
+            "range": [
+              7,
+              1006
+            ]
+          },
+          {
+            "table": "accommodation_features",
+            "filters": [
+              [
+                "in",
+                "accommodation_id",
+                [
+                  2
+                ]
+              ],
+              [
+                "in",
+                "feature_id",
+                [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7
+                ]
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "accommodation_features",
+            "filters": [
+              [
+                "in",
+                "accommodation_id",
+                [
+                  2
+                ]
+              ],
+              [
+                "in",
+                "feature_id",
+                [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7
+                ]
+              ]
+            ],
+            "range": [
+              4,
+              1003
+            ]
           },
           {
             "table": "camping_info_campsites",
@@ -2213,23 +3796,9 @@
             "table": "camping_info_campsites",
             "filters": [],
             "range": [
-              1000,
-              1999
+              2,
+              1001
             ]
-          },
-          {
-            "table": "camping_info_campsites",
-            "filters": [
-              [
-                "in",
-                "id",
-                [
-                  10,
-                  11
-                ]
-              ]
-            ],
-            "range": null
           }
         ]
       }
@@ -2238,14 +3807,14 @@
       "id": "A11",
       "area": "api",
       "label": "Unbekannte Campingkapazität erfüllt keine Pflicht für zehn Gäste",
-      "pass": false,
-      "error": "Unbekannte Campingkapazität erfüllt keine Pflicht für zehn Gäste",
+      "pass": true,
       "evidence": {
         "params": "type=campsite&max_guests=10",
         "status": 200,
-        "names": [
-          "Feed Berlin ohne Ausstattung",
-          "Feed München mit Ausstattung"
+        "names": [],
+        "missing_features": [],
+        "warnings": [
+          "Nicht alle Unterkünfte enthalten bestätigte Angaben zu deinen Pflichtkriterien. Unbekannte Angaben erfüllen keine Pflichtfilter."
         ],
         "queries": [
           {
@@ -2255,19 +3824,166 @@
                 "eq",
                 "is_active",
                 true
-              ],
-              [
-                "eq",
-                "accommodation_type",
-                "campsite"
-              ],
-              [
-                "gte",
-                "max_guests",
-                10
               ]
             ],
-            "range": null
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ]
+            ],
+            "range": [
+              3,
+              1002
+            ]
+          },
+          {
+            "table": "features",
+            "filters": [
+              [
+                "in",
+                "key",
+                [
+                  "pool",
+                  "wifi",
+                  "wlan",
+                  "parking",
+                  "restaurant",
+                  "breakfast",
+                  "air_conditioning",
+                  "kitchen",
+                  "washing_machine",
+                  "near_sea",
+                  "near_lake",
+                  "near_mountains",
+                  "mountain_location",
+                  "dogs_allowed",
+                  "dogs",
+                  "dog_friendly",
+                  "pets_allowed",
+                  "pets",
+                  "pet_friendly",
+                  "family_friendly",
+                  "accessible",
+                  "wheelchair_accessible",
+                  "quiet_place",
+                  "free_parking",
+                  "city_center",
+                  "near_airport"
+                ]
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "features",
+            "filters": [
+              [
+                "in",
+                "key",
+                [
+                  "pool",
+                  "wifi",
+                  "wlan",
+                  "parking",
+                  "restaurant",
+                  "breakfast",
+                  "air_conditioning",
+                  "kitchen",
+                  "washing_machine",
+                  "near_sea",
+                  "near_lake",
+                  "near_mountains",
+                  "mountain_location",
+                  "dogs_allowed",
+                  "dogs",
+                  "dog_friendly",
+                  "pets_allowed",
+                  "pets",
+                  "pet_friendly",
+                  "family_friendly",
+                  "accessible",
+                  "wheelchair_accessible",
+                  "quiet_place",
+                  "free_parking",
+                  "city_center",
+                  "near_airport"
+                ]
+              ]
+            ],
+            "range": [
+              7,
+              1006
+            ]
+          },
+          {
+            "table": "accommodation_features",
+            "filters": [
+              [
+                "in",
+                "accommodation_id",
+                [
+                  2
+                ]
+              ],
+              [
+                "in",
+                "feature_id",
+                [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7
+                ]
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "accommodation_features",
+            "filters": [
+              [
+                "in",
+                "accommodation_id",
+                [
+                  2
+                ]
+              ],
+              [
+                "in",
+                "feature_id",
+                [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7
+                ]
+              ]
+            ],
+            "range": [
+              4,
+              1003
+            ]
           },
           {
             "table": "camping_info_campsites",
@@ -2281,23 +3997,9 @@
             "table": "camping_info_campsites",
             "filters": [],
             "range": [
-              1000,
-              1999
+              2,
+              1001
             ]
-          },
-          {
-            "table": "camping_info_campsites",
-            "filters": [
-              [
-                "in",
-                "id",
-                [
-                  10,
-                  11
-                ]
-              ]
-            ],
-            "range": null
           }
         ]
       }
@@ -2306,14 +4008,14 @@
       "id": "A12",
       "area": "api",
       "label": "Unbestätigter Campingpreis erfüllt keine harte Preisgrenze",
-      "pass": false,
-      "error": "Unbestätigter Campingpreis erfüllt keine harte Preisgrenze",
+      "pass": true,
       "evidence": {
         "params": "type=campsite&max_price_per_night=30",
         "status": 200,
-        "names": [
-          "Feed Berlin ohne Ausstattung",
-          "Feed München mit Ausstattung"
+        "names": [],
+        "missing_features": [],
+        "warnings": [
+          "Nicht alle Unterkünfte enthalten bestätigte Angaben zu deinen Pflichtkriterien. Unbekannte Angaben erfüllen keine Pflichtfilter."
         ],
         "queries": [
           {
@@ -2323,19 +4025,166 @@
                 "eq",
                 "is_active",
                 true
-              ],
-              [
-                "eq",
-                "accommodation_type",
-                "campsite"
-              ],
-              [
-                "lte",
-                "price_min",
-                30
               ]
             ],
-            "range": null
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ]
+            ],
+            "range": [
+              3,
+              1002
+            ]
+          },
+          {
+            "table": "features",
+            "filters": [
+              [
+                "in",
+                "key",
+                [
+                  "pool",
+                  "wifi",
+                  "wlan",
+                  "parking",
+                  "restaurant",
+                  "breakfast",
+                  "air_conditioning",
+                  "kitchen",
+                  "washing_machine",
+                  "near_sea",
+                  "near_lake",
+                  "near_mountains",
+                  "mountain_location",
+                  "dogs_allowed",
+                  "dogs",
+                  "dog_friendly",
+                  "pets_allowed",
+                  "pets",
+                  "pet_friendly",
+                  "family_friendly",
+                  "accessible",
+                  "wheelchair_accessible",
+                  "quiet_place",
+                  "free_parking",
+                  "city_center",
+                  "near_airport"
+                ]
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "features",
+            "filters": [
+              [
+                "in",
+                "key",
+                [
+                  "pool",
+                  "wifi",
+                  "wlan",
+                  "parking",
+                  "restaurant",
+                  "breakfast",
+                  "air_conditioning",
+                  "kitchen",
+                  "washing_machine",
+                  "near_sea",
+                  "near_lake",
+                  "near_mountains",
+                  "mountain_location",
+                  "dogs_allowed",
+                  "dogs",
+                  "dog_friendly",
+                  "pets_allowed",
+                  "pets",
+                  "pet_friendly",
+                  "family_friendly",
+                  "accessible",
+                  "wheelchair_accessible",
+                  "quiet_place",
+                  "free_parking",
+                  "city_center",
+                  "near_airport"
+                ]
+              ]
+            ],
+            "range": [
+              7,
+              1006
+            ]
+          },
+          {
+            "table": "accommodation_features",
+            "filters": [
+              [
+                "in",
+                "accommodation_id",
+                [
+                  2
+                ]
+              ],
+              [
+                "in",
+                "feature_id",
+                [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7
+                ]
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "accommodation_features",
+            "filters": [
+              [
+                "in",
+                "accommodation_id",
+                [
+                  2
+                ]
+              ],
+              [
+                "in",
+                "feature_id",
+                [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7
+                ]
+              ]
+            ],
+            "range": [
+              4,
+              1003
+            ]
           },
           {
             "table": "camping_info_campsites",
@@ -2349,23 +4198,9 @@
             "table": "camping_info_campsites",
             "filters": [],
             "range": [
-              1000,
-              1999
+              2,
+              1001
             ]
-          },
-          {
-            "table": "camping_info_campsites",
-            "filters": [
-              [
-                "in",
-                "id",
-                [
-                  10,
-                  11
-                ]
-              ]
-            ],
-            "range": null
           }
         ]
       }
@@ -2374,14 +4209,14 @@
       "id": "A13",
       "area": "api",
       "label": "Unbestätigte Meernähe erfüllt keinen Pflichtfilter",
-      "pass": false,
-      "error": "Unbestätigte Meernähe erfüllt keinen Pflichtfilter",
+      "pass": true,
       "evidence": {
         "params": "type=campsite&near_sea=true",
         "status": 200,
-        "names": [
-          "Feed Berlin ohne Ausstattung",
-          "Feed München mit Ausstattung"
+        "names": [],
+        "missing_features": [],
+        "warnings": [
+          "Nicht alle Unterkünfte enthalten bestätigte Angaben zu deinen Pflichtkriterien. Unbekannte Angaben erfüllen keine Pflichtfilter."
         ],
         "queries": [
           {
@@ -2391,19 +4226,166 @@
                 "eq",
                 "is_active",
                 true
-              ],
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "accommodations",
+            "filters": [
               [
                 "eq",
-                "accommodation_type",
-                "campsite"
-              ],
-              [
-                "eq",
-                "near_sea",
+                "is_active",
                 true
               ]
             ],
-            "range": null
+            "range": [
+              3,
+              1002
+            ]
+          },
+          {
+            "table": "features",
+            "filters": [
+              [
+                "in",
+                "key",
+                [
+                  "near_sea",
+                  "pool",
+                  "wifi",
+                  "wlan",
+                  "parking",
+                  "restaurant",
+                  "breakfast",
+                  "air_conditioning",
+                  "kitchen",
+                  "washing_machine",
+                  "near_lake",
+                  "near_mountains",
+                  "mountain_location",
+                  "dogs_allowed",
+                  "dogs",
+                  "dog_friendly",
+                  "pets_allowed",
+                  "pets",
+                  "pet_friendly",
+                  "family_friendly",
+                  "accessible",
+                  "wheelchair_accessible",
+                  "quiet_place",
+                  "free_parking",
+                  "city_center",
+                  "near_airport"
+                ]
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "features",
+            "filters": [
+              [
+                "in",
+                "key",
+                [
+                  "near_sea",
+                  "pool",
+                  "wifi",
+                  "wlan",
+                  "parking",
+                  "restaurant",
+                  "breakfast",
+                  "air_conditioning",
+                  "kitchen",
+                  "washing_machine",
+                  "near_lake",
+                  "near_mountains",
+                  "mountain_location",
+                  "dogs_allowed",
+                  "dogs",
+                  "dog_friendly",
+                  "pets_allowed",
+                  "pets",
+                  "pet_friendly",
+                  "family_friendly",
+                  "accessible",
+                  "wheelchair_accessible",
+                  "quiet_place",
+                  "free_parking",
+                  "city_center",
+                  "near_airport"
+                ]
+              ]
+            ],
+            "range": [
+              7,
+              1006
+            ]
+          },
+          {
+            "table": "accommodation_features",
+            "filters": [
+              [
+                "in",
+                "accommodation_id",
+                [
+                  2
+                ]
+              ],
+              [
+                "in",
+                "feature_id",
+                [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7
+                ]
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "accommodation_features",
+            "filters": [
+              [
+                "in",
+                "accommodation_id",
+                [
+                  2
+                ]
+              ],
+              [
+                "in",
+                "feature_id",
+                [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7
+                ]
+              ]
+            ],
+            "range": [
+              4,
+              1003
+            ]
           },
           {
             "table": "camping_info_campsites",
@@ -2417,23 +4399,9 @@
             "table": "camping_info_campsites",
             "filters": [],
             "range": [
-              1000,
-              1999
+              2,
+              1001
             ]
-          },
-          {
-            "table": "camping_info_campsites",
-            "filters": [
-              [
-                "in",
-                "id",
-                [
-                  10,
-                  11
-                ]
-              ]
-            ],
-            "range": null
           }
         ]
       }
@@ -2450,7 +4418,38 @@
         "missing_features": [
           "unknown_feature"
         ],
+        "warnings": [
+          "Nicht alle Unterkünfte enthalten bestätigte Angaben zu deinen Pflichtkriterien. Unbekannte Angaben erfüllen keine Pflichtfilter."
+        ],
         "queries": [
+          {
+            "table": "accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ]
+            ],
+            "range": [
+              3,
+              1002
+            ]
+          },
           {
             "table": "features",
             "filters": [
@@ -2458,11 +4457,156 @@
                 "in",
                 "key",
                 [
-                  "unknown_feature"
+                  "unknown_feature",
+                  "pool",
+                  "wifi",
+                  "wlan",
+                  "parking",
+                  "restaurant",
+                  "breakfast",
+                  "air_conditioning",
+                  "kitchen",
+                  "washing_machine",
+                  "near_sea",
+                  "near_lake",
+                  "near_mountains",
+                  "mountain_location",
+                  "dogs_allowed",
+                  "dogs",
+                  "dog_friendly",
+                  "pets_allowed",
+                  "pets",
+                  "pet_friendly",
+                  "family_friendly",
+                  "accessible",
+                  "wheelchair_accessible",
+                  "quiet_place",
+                  "free_parking",
+                  "city_center",
+                  "near_airport"
                 ]
               ]
             ],
-            "range": null
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "features",
+            "filters": [
+              [
+                "in",
+                "key",
+                [
+                  "unknown_feature",
+                  "pool",
+                  "wifi",
+                  "wlan",
+                  "parking",
+                  "restaurant",
+                  "breakfast",
+                  "air_conditioning",
+                  "kitchen",
+                  "washing_machine",
+                  "near_sea",
+                  "near_lake",
+                  "near_mountains",
+                  "mountain_location",
+                  "dogs_allowed",
+                  "dogs",
+                  "dog_friendly",
+                  "pets_allowed",
+                  "pets",
+                  "pet_friendly",
+                  "family_friendly",
+                  "accessible",
+                  "wheelchair_accessible",
+                  "quiet_place",
+                  "free_parking",
+                  "city_center",
+                  "near_airport"
+                ]
+              ]
+            ],
+            "range": [
+              7,
+              1006
+            ]
+          },
+          {
+            "table": "accommodation_features",
+            "filters": [
+              [
+                "in",
+                "accommodation_id",
+                [
+                  2
+                ]
+              ],
+              [
+                "in",
+                "feature_id",
+                [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7
+                ]
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "accommodation_features",
+            "filters": [
+              [
+                "in",
+                "accommodation_id",
+                [
+                  2
+                ]
+              ],
+              [
+                "in",
+                "feature_id",
+                [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7
+                ]
+              ]
+            ],
+            "range": [
+              4,
+              1003
+            ]
+          },
+          {
+            "table": "camping_info_campsites",
+            "filters": [],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "camping_info_campsites",
+            "filters": [],
+            "range": [
+              2,
+              1001
+            ]
           }
         ]
       }
@@ -2476,9 +4620,181 @@
         "params": "type=hotel&max_price_per_night=30",
         "status": 200,
         "names": [],
+        "missing_features": [],
+        "warnings": [
+          "Nicht alle Unterkünfte enthalten bestätigte Angaben zu deinen Pflichtkriterien. Unbekannte Angaben erfüllen keine Pflichtfilter."
+        ],
         "queries": [
           {
             "table": "accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ]
+            ],
+            "range": [
+              3,
+              1002
+            ]
+          },
+          {
+            "table": "features",
+            "filters": [
+              [
+                "in",
+                "key",
+                [
+                  "pool",
+                  "wifi",
+                  "wlan",
+                  "parking",
+                  "restaurant",
+                  "breakfast",
+                  "air_conditioning",
+                  "kitchen",
+                  "washing_machine",
+                  "near_sea",
+                  "near_lake",
+                  "near_mountains",
+                  "mountain_location",
+                  "dogs_allowed",
+                  "dogs",
+                  "dog_friendly",
+                  "pets_allowed",
+                  "pets",
+                  "pet_friendly",
+                  "family_friendly",
+                  "accessible",
+                  "wheelchair_accessible",
+                  "quiet_place",
+                  "free_parking",
+                  "city_center",
+                  "near_airport"
+                ]
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "features",
+            "filters": [
+              [
+                "in",
+                "key",
+                [
+                  "pool",
+                  "wifi",
+                  "wlan",
+                  "parking",
+                  "restaurant",
+                  "breakfast",
+                  "air_conditioning",
+                  "kitchen",
+                  "washing_machine",
+                  "near_sea",
+                  "near_lake",
+                  "near_mountains",
+                  "mountain_location",
+                  "dogs_allowed",
+                  "dogs",
+                  "dog_friendly",
+                  "pets_allowed",
+                  "pets",
+                  "pet_friendly",
+                  "family_friendly",
+                  "accessible",
+                  "wheelchair_accessible",
+                  "quiet_place",
+                  "free_parking",
+                  "city_center",
+                  "near_airport"
+                ]
+              ]
+            ],
+            "range": [
+              7,
+              1006
+            ]
+          },
+          {
+            "table": "accommodation_features",
+            "filters": [
+              [
+                "in",
+                "accommodation_id",
+                [
+                  1
+                ]
+              ],
+              [
+                "in",
+                "feature_id",
+                [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7
+                ]
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "accommodation_features",
+            "filters": [
+              [
+                "in",
+                "accommodation_id",
+                [
+                  1
+                ]
+              ],
+              [
+                "in",
+                "feature_id",
+                [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7
+                ]
+              ]
+            ],
+            "range": [
+              4,
+              1003
+            ]
+          },
+          {
+            "table": "expedia_accommodations",
             "filters": [
               [
                 "eq",
@@ -2489,14 +4805,31 @@
                 "eq",
                 "accommodation_type",
                 "hotel"
-              ],
-              [
-                "lte",
-                "price_min",
-                30
               ]
             ],
-            "range": null
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "expedia_accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ],
+              [
+                "eq",
+                "accommodation_type",
+                "hotel"
+              ]
+            ],
+            "range": [
+              1,
+              1000
+            ]
           }
         ]
       }
@@ -2510,9 +4843,181 @@
         "params": "type=hotel&max_guests=10",
         "status": 200,
         "names": [],
+        "missing_features": [],
+        "warnings": [
+          "Nicht alle Unterkünfte enthalten bestätigte Angaben zu deinen Pflichtkriterien. Unbekannte Angaben erfüllen keine Pflichtfilter."
+        ],
         "queries": [
           {
             "table": "accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ]
+            ],
+            "range": [
+              3,
+              1002
+            ]
+          },
+          {
+            "table": "features",
+            "filters": [
+              [
+                "in",
+                "key",
+                [
+                  "pool",
+                  "wifi",
+                  "wlan",
+                  "parking",
+                  "restaurant",
+                  "breakfast",
+                  "air_conditioning",
+                  "kitchen",
+                  "washing_machine",
+                  "near_sea",
+                  "near_lake",
+                  "near_mountains",
+                  "mountain_location",
+                  "dogs_allowed",
+                  "dogs",
+                  "dog_friendly",
+                  "pets_allowed",
+                  "pets",
+                  "pet_friendly",
+                  "family_friendly",
+                  "accessible",
+                  "wheelchair_accessible",
+                  "quiet_place",
+                  "free_parking",
+                  "city_center",
+                  "near_airport"
+                ]
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "features",
+            "filters": [
+              [
+                "in",
+                "key",
+                [
+                  "pool",
+                  "wifi",
+                  "wlan",
+                  "parking",
+                  "restaurant",
+                  "breakfast",
+                  "air_conditioning",
+                  "kitchen",
+                  "washing_machine",
+                  "near_sea",
+                  "near_lake",
+                  "near_mountains",
+                  "mountain_location",
+                  "dogs_allowed",
+                  "dogs",
+                  "dog_friendly",
+                  "pets_allowed",
+                  "pets",
+                  "pet_friendly",
+                  "family_friendly",
+                  "accessible",
+                  "wheelchair_accessible",
+                  "quiet_place",
+                  "free_parking",
+                  "city_center",
+                  "near_airport"
+                ]
+              ]
+            ],
+            "range": [
+              7,
+              1006
+            ]
+          },
+          {
+            "table": "accommodation_features",
+            "filters": [
+              [
+                "in",
+                "accommodation_id",
+                [
+                  1
+                ]
+              ],
+              [
+                "in",
+                "feature_id",
+                [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7
+                ]
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "accommodation_features",
+            "filters": [
+              [
+                "in",
+                "accommodation_id",
+                [
+                  1
+                ]
+              ],
+              [
+                "in",
+                "feature_id",
+                [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7
+                ]
+              ]
+            ],
+            "range": [
+              4,
+              1003
+            ]
+          },
+          {
+            "table": "expedia_accommodations",
             "filters": [
               [
                 "eq",
@@ -2523,14 +5028,31 @@
                 "eq",
                 "accommodation_type",
                 "hotel"
-              ],
-              [
-                "gte",
-                "max_guests",
-                10
               ]
             ],
-            "range": null
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "expedia_accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ],
+              [
+                "eq",
+                "accommodation_type",
+                "hotel"
+              ]
+            ],
+            "range": [
+              1,
+              1000
+            ]
           }
         ]
       }
@@ -2539,13 +5061,45 @@
       "id": "A17",
       "area": "api",
       "label": "Erfolgloser Featurejoin der Hauptquelle blockiert passende Campingquelle nicht",
-      "pass": false,
-      "error": "Erfolgloser Featurejoin der Hauptquelle blockiert passende Campingquelle nicht",
+      "pass": true,
       "evidence": {
         "params": "type=campsite&feature=dogs_allowed",
         "status": 200,
-        "names": [],
+        "names": [
+          "Feed München mit Ausstattung",
+          "Eigener Campingplatz München"
+        ],
+        "missing_features": [],
+        "warnings": [],
         "queries": [
+          {
+            "table": "accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ]
+            ],
+            "range": [
+              3,
+              1002
+            ]
+          },
           {
             "table": "features",
             "filters": [
@@ -2553,24 +5107,125 @@
                 "in",
                 "key",
                 [
-                  "dogs_allowed"
+                  "dogs_allowed",
+                  "dogs",
+                  "dog_friendly",
+                  "pool",
+                  "wifi",
+                  "wlan",
+                  "parking",
+                  "restaurant",
+                  "breakfast",
+                  "air_conditioning",
+                  "kitchen",
+                  "washing_machine",
+                  "near_sea",
+                  "near_lake",
+                  "near_mountains",
+                  "mountain_location",
+                  "pets_allowed",
+                  "pets",
+                  "pet_friendly",
+                  "family_friendly",
+                  "accessible",
+                  "wheelchair_accessible",
+                  "quiet_place",
+                  "free_parking",
+                  "city_center",
+                  "near_airport"
                 ]
               ]
             ],
-            "range": null
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "features",
+            "filters": [
+              [
+                "in",
+                "key",
+                [
+                  "dogs_allowed",
+                  "dogs",
+                  "dog_friendly",
+                  "pool",
+                  "wifi",
+                  "wlan",
+                  "parking",
+                  "restaurant",
+                  "breakfast",
+                  "air_conditioning",
+                  "kitchen",
+                  "washing_machine",
+                  "near_sea",
+                  "near_lake",
+                  "near_mountains",
+                  "mountain_location",
+                  "pets_allowed",
+                  "pets",
+                  "pet_friendly",
+                  "family_friendly",
+                  "accessible",
+                  "wheelchair_accessible",
+                  "quiet_place",
+                  "free_parking",
+                  "city_center",
+                  "near_airport"
+                ]
+              ]
+            ],
+            "range": [
+              7,
+              1006
+            ]
           },
           {
             "table": "accommodation_features",
             "filters": [
               [
                 "in",
+                "accommodation_id",
+                [
+                  2
+                ]
+              ],
+              [
+                "in",
                 "feature_id",
                 [
-                  3
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7
                 ]
               ]
             ],
-            "range": null
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "camping_info_campsites",
+            "filters": [],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "camping_info_campsites",
+            "filters": [],
+            "range": [
+              2,
+              1001
+            ]
           }
         ]
       }
@@ -2587,6 +5242,8 @@
           "Eigenes Hotel Berlin",
           "Expedia Hotel Berlin"
         ],
+        "missing_features": [],
+        "warnings": [],
         "queries": [
           {
             "table": "accommodations",
@@ -2595,14 +5252,26 @@
                 "eq",
                 "is_active",
                 true
-              ],
-              [
-                "eq",
-                "accommodation_type",
-                "hotel"
               ]
             ],
-            "range": null
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ]
+            ],
+            "range": [
+              3,
+              1002
+            ]
           },
           {
             "table": "features",
@@ -2611,11 +5280,80 @@
                 "in",
                 "key",
                 [
-                  "pool"
+                  "pool",
+                  "wifi",
+                  "wlan",
+                  "parking",
+                  "restaurant",
+                  "breakfast",
+                  "air_conditioning",
+                  "kitchen",
+                  "washing_machine",
+                  "near_sea",
+                  "near_lake",
+                  "near_mountains",
+                  "mountain_location",
+                  "dogs_allowed",
+                  "dogs",
+                  "dog_friendly",
+                  "pets_allowed",
+                  "pets",
+                  "pet_friendly",
+                  "family_friendly",
+                  "accessible",
+                  "wheelchair_accessible",
+                  "quiet_place",
+                  "free_parking",
+                  "city_center",
+                  "near_airport"
                 ]
               ]
             ],
-            "range": null
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "features",
+            "filters": [
+              [
+                "in",
+                "key",
+                [
+                  "pool",
+                  "wifi",
+                  "wlan",
+                  "parking",
+                  "restaurant",
+                  "breakfast",
+                  "air_conditioning",
+                  "kitchen",
+                  "washing_machine",
+                  "near_sea",
+                  "near_lake",
+                  "near_mountains",
+                  "mountain_location",
+                  "dogs_allowed",
+                  "dogs",
+                  "dog_friendly",
+                  "pets_allowed",
+                  "pets",
+                  "pet_friendly",
+                  "family_friendly",
+                  "accessible",
+                  "wheelchair_accessible",
+                  "quiet_place",
+                  "free_parking",
+                  "city_center",
+                  "near_airport"
+                ]
+              ]
+            ],
+            "range": [
+              7,
+              1006
+            ]
           },
           {
             "table": "accommodation_features",
@@ -2631,11 +5369,20 @@
                 "in",
                 "feature_id",
                 [
-                  1
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7
                 ]
               ]
             ],
-            "range": null
+            "range": [
+              0,
+              999
+            ]
           },
           {
             "table": "expedia_accommodations",
@@ -2649,15 +5396,31 @@
                 "eq",
                 "accommodation_type",
                 "hotel"
-              ],
-              [
-                "not",
-                "affiliate_url",
-                "is",
-                null
               ]
             ],
-            "range": null
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "expedia_accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ],
+              [
+                "eq",
+                "accommodation_type",
+                "hotel"
+              ]
+            ],
+            "range": [
+              1,
+              1000
+            ]
           }
         ]
       }
@@ -2670,8 +5433,40 @@
       "evidence": {
         "params": "type=hotel&feature=pool&must_feature=pool",
         "status": 200,
-        "names": [],
+        "names": [
+          "Expedia Hotel Berlin"
+        ],
+        "missing_features": [],
+        "warnings": [],
         "queries": [
+          {
+            "table": "accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ]
+            ],
+            "range": [
+              3,
+              1002
+            ]
+          },
           {
             "table": "features",
             "filters": [
@@ -2679,175 +5474,109 @@
                 "in",
                 "key",
                 [
-                  "pool"
+                  "pool",
+                  "wifi",
+                  "wlan",
+                  "parking",
+                  "restaurant",
+                  "breakfast",
+                  "air_conditioning",
+                  "kitchen",
+                  "washing_machine",
+                  "near_sea",
+                  "near_lake",
+                  "near_mountains",
+                  "mountain_location",
+                  "dogs_allowed",
+                  "dogs",
+                  "dog_friendly",
+                  "pets_allowed",
+                  "pets",
+                  "pet_friendly",
+                  "family_friendly",
+                  "accessible",
+                  "wheelchair_accessible",
+                  "quiet_place",
+                  "free_parking",
+                  "city_center",
+                  "near_airport"
                 ]
               ]
             ],
-            "range": null
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "features",
+            "filters": [
+              [
+                "in",
+                "key",
+                [
+                  "pool",
+                  "wifi",
+                  "wlan",
+                  "parking",
+                  "restaurant",
+                  "breakfast",
+                  "air_conditioning",
+                  "kitchen",
+                  "washing_machine",
+                  "near_sea",
+                  "near_lake",
+                  "near_mountains",
+                  "mountain_location",
+                  "dogs_allowed",
+                  "dogs",
+                  "dog_friendly",
+                  "pets_allowed",
+                  "pets",
+                  "pet_friendly",
+                  "family_friendly",
+                  "accessible",
+                  "wheelchair_accessible",
+                  "quiet_place",
+                  "free_parking",
+                  "city_center",
+                  "near_airport"
+                ]
+              ]
+            ],
+            "range": [
+              7,
+              1006
+            ]
           },
           {
             "table": "accommodation_features",
             "filters": [
               [
                 "in",
-                "feature_id",
+                "accommodation_id",
                 [
                   1
                 ]
-              ]
-            ],
-            "range": null
-          }
-        ]
-      }
-    },
-    {
-      "id": "A20",
-      "area": "api",
-      "label": "Campingimport beachtet Reisemonat",
-      "pass": false,
-      "error": "Campingimport beachtet Reisemonat",
-      "evidence": {
-        "params": "type=campsite&month=1",
-        "status": 200,
-        "names": [
-          "Feed Berlin ohne Ausstattung",
-          "Feed München mit Ausstattung"
-        ],
-        "queries": [
-          {
-            "table": "accommodations",
-            "filters": [
-              [
-                "eq",
-                "is_active",
-                true
               ],
-              [
-                "eq",
-                "accommodation_type",
-                "campsite"
-              ],
-              [
-                "contains",
-                "available_months",
-                [
-                  1
-                ]
-              ]
-            ],
-            "range": null
-          },
-          {
-            "table": "camping_info_campsites",
-            "filters": [],
-            "range": [
-              0,
-              999
-            ]
-          },
-          {
-            "table": "camping_info_campsites",
-            "filters": [],
-            "range": [
-              1000,
-              1999
-            ]
-          },
-          {
-            "table": "camping_info_campsites",
-            "filters": [
               [
                 "in",
-                "id",
+                "feature_id",
                 [
-                  10,
-                  11
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7
                 ]
               ]
             ],
-            "range": null
-          }
-        ]
-      }
-    },
-    {
-      "id": "A21",
-      "area": "api",
-      "label": "Ausfall der Campingquelle wird als Teilausfall kenntlich gemacht",
-      "pass": false,
-      "error": "Ausfall der Campingquelle wird als Teilausfall kenntlich gemacht",
-      "evidence": {
-        "params": "type=campsite",
-        "status": 200,
-        "names": [
-          "Eigener Campingplatz München"
-        ],
-        "queries": [
-          {
-            "table": "accommodations",
-            "filters": [
-              [
-                "eq",
-                "is_active",
-                true
-              ],
-              [
-                "eq",
-                "accommodation_type",
-                "campsite"
-              ]
-            ],
-            "range": null
-          },
-          {
-            "table": "camping_info_campsites",
-            "filters": [],
             "range": [
               0,
               999
             ]
-          },
-          {
-            "table": "camping_info_campsites",
-            "filters": [],
-            "range": [
-              1000,
-              1999
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "id": "A22",
-      "area": "api",
-      "label": "Negatives Poolkriterium wird serverseitig angewendet",
-      "pass": false,
-      "error": "Negatives Poolkriterium wird serverseitig angewendet",
-      "evidence": {
-        "params": "type=hotel&exclude_feature=pool",
-        "status": 200,
-        "names": [
-          "Eigenes Hotel Berlin",
-          "Expedia Hotel Berlin"
-        ],
-        "queries": [
-          {
-            "table": "accommodations",
-            "filters": [
-              [
-                "eq",
-                "is_active",
-                true
-              ],
-              [
-                "eq",
-                "accommodation_type",
-                "hotel"
-              ]
-            ],
-            "range": null
           },
           {
             "table": "expedia_accommodations",
@@ -2861,15 +5590,650 @@
                 "eq",
                 "accommodation_type",
                 "hotel"
-              ],
-              [
-                "not",
-                "affiliate_url",
-                "is",
-                null
               ]
             ],
-            "range": null
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "expedia_accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ],
+              [
+                "eq",
+                "accommodation_type",
+                "hotel"
+              ]
+            ],
+            "range": [
+              1,
+              1000
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "A20",
+      "area": "api",
+      "label": "Campingimport beachtet Reisemonat",
+      "pass": true,
+      "evidence": {
+        "params": "type=campsite&month=1",
+        "status": 200,
+        "names": [
+          "Feed Berlin ohne Ausstattung"
+        ],
+        "missing_features": [],
+        "warnings": [],
+        "queries": [
+          {
+            "table": "accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ]
+            ],
+            "range": [
+              3,
+              1002
+            ]
+          },
+          {
+            "table": "features",
+            "filters": [
+              [
+                "in",
+                "key",
+                [
+                  "pool",
+                  "wifi",
+                  "wlan",
+                  "parking",
+                  "restaurant",
+                  "breakfast",
+                  "air_conditioning",
+                  "kitchen",
+                  "washing_machine",
+                  "near_sea",
+                  "near_lake",
+                  "near_mountains",
+                  "mountain_location",
+                  "dogs_allowed",
+                  "dogs",
+                  "dog_friendly",
+                  "pets_allowed",
+                  "pets",
+                  "pet_friendly",
+                  "family_friendly",
+                  "accessible",
+                  "wheelchair_accessible",
+                  "quiet_place",
+                  "free_parking",
+                  "city_center",
+                  "near_airport"
+                ]
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "features",
+            "filters": [
+              [
+                "in",
+                "key",
+                [
+                  "pool",
+                  "wifi",
+                  "wlan",
+                  "parking",
+                  "restaurant",
+                  "breakfast",
+                  "air_conditioning",
+                  "kitchen",
+                  "washing_machine",
+                  "near_sea",
+                  "near_lake",
+                  "near_mountains",
+                  "mountain_location",
+                  "dogs_allowed",
+                  "dogs",
+                  "dog_friendly",
+                  "pets_allowed",
+                  "pets",
+                  "pet_friendly",
+                  "family_friendly",
+                  "accessible",
+                  "wheelchair_accessible",
+                  "quiet_place",
+                  "free_parking",
+                  "city_center",
+                  "near_airport"
+                ]
+              ]
+            ],
+            "range": [
+              7,
+              1006
+            ]
+          },
+          {
+            "table": "accommodation_features",
+            "filters": [
+              [
+                "in",
+                "accommodation_id",
+                [
+                  2
+                ]
+              ],
+              [
+                "in",
+                "feature_id",
+                [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7
+                ]
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "accommodation_features",
+            "filters": [
+              [
+                "in",
+                "accommodation_id",
+                [
+                  2
+                ]
+              ],
+              [
+                "in",
+                "feature_id",
+                [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7
+                ]
+              ]
+            ],
+            "range": [
+              4,
+              1003
+            ]
+          },
+          {
+            "table": "camping_info_campsites",
+            "filters": [],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "camping_info_campsites",
+            "filters": [],
+            "range": [
+              2,
+              1001
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "A21",
+      "area": "api",
+      "label": "Ausfall der Campingquelle wird als Teilausfall kenntlich gemacht",
+      "pass": true,
+      "evidence": {
+        "params": "type=campsite",
+        "status": 200,
+        "names": [
+          "Eigener Campingplatz München"
+        ],
+        "missing_features": [],
+        "warnings": [
+          "Die Campingdaten konnten nicht vollständig geladen werden."
+        ],
+        "queries": [
+          {
+            "table": "accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ]
+            ],
+            "range": [
+              3,
+              1002
+            ]
+          },
+          {
+            "table": "features",
+            "filters": [
+              [
+                "in",
+                "key",
+                [
+                  "pool",
+                  "wifi",
+                  "wlan",
+                  "parking",
+                  "restaurant",
+                  "breakfast",
+                  "air_conditioning",
+                  "kitchen",
+                  "washing_machine",
+                  "near_sea",
+                  "near_lake",
+                  "near_mountains",
+                  "mountain_location",
+                  "dogs_allowed",
+                  "dogs",
+                  "dog_friendly",
+                  "pets_allowed",
+                  "pets",
+                  "pet_friendly",
+                  "family_friendly",
+                  "accessible",
+                  "wheelchair_accessible",
+                  "quiet_place",
+                  "free_parking",
+                  "city_center",
+                  "near_airport"
+                ]
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "features",
+            "filters": [
+              [
+                "in",
+                "key",
+                [
+                  "pool",
+                  "wifi",
+                  "wlan",
+                  "parking",
+                  "restaurant",
+                  "breakfast",
+                  "air_conditioning",
+                  "kitchen",
+                  "washing_machine",
+                  "near_sea",
+                  "near_lake",
+                  "near_mountains",
+                  "mountain_location",
+                  "dogs_allowed",
+                  "dogs",
+                  "dog_friendly",
+                  "pets_allowed",
+                  "pets",
+                  "pet_friendly",
+                  "family_friendly",
+                  "accessible",
+                  "wheelchair_accessible",
+                  "quiet_place",
+                  "free_parking",
+                  "city_center",
+                  "near_airport"
+                ]
+              ]
+            ],
+            "range": [
+              7,
+              1006
+            ]
+          },
+          {
+            "table": "accommodation_features",
+            "filters": [
+              [
+                "in",
+                "accommodation_id",
+                [
+                  2
+                ]
+              ],
+              [
+                "in",
+                "feature_id",
+                [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7
+                ]
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "accommodation_features",
+            "filters": [
+              [
+                "in",
+                "accommodation_id",
+                [
+                  2
+                ]
+              ],
+              [
+                "in",
+                "feature_id",
+                [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7
+                ]
+              ]
+            ],
+            "range": [
+              4,
+              1003
+            ]
+          },
+          {
+            "table": "camping_info_campsites",
+            "filters": [],
+            "range": [
+              0,
+              999
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "A22",
+      "area": "api",
+      "label": "Negatives Poolkriterium wird serverseitig angewendet",
+      "pass": true,
+      "evidence": {
+        "params": "type=hotel&exclude_feature=pool",
+        "status": 200,
+        "names": [],
+        "missing_features": [],
+        "warnings": [
+          "Nicht alle Unterkünfte enthalten bestätigte Angaben zu deinen Pflichtkriterien. Unbekannte Angaben erfüllen keine Pflichtfilter."
+        ],
+        "queries": [
+          {
+            "table": "accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ]
+            ],
+            "range": [
+              3,
+              1002
+            ]
+          },
+          {
+            "table": "features",
+            "filters": [
+              [
+                "in",
+                "key",
+                [
+                  "pool",
+                  "wifi",
+                  "wlan",
+                  "parking",
+                  "restaurant",
+                  "breakfast",
+                  "air_conditioning",
+                  "kitchen",
+                  "washing_machine",
+                  "near_sea",
+                  "near_lake",
+                  "near_mountains",
+                  "mountain_location",
+                  "dogs_allowed",
+                  "dogs",
+                  "dog_friendly",
+                  "pets_allowed",
+                  "pets",
+                  "pet_friendly",
+                  "family_friendly",
+                  "accessible",
+                  "wheelchair_accessible",
+                  "quiet_place",
+                  "free_parking",
+                  "city_center",
+                  "near_airport"
+                ]
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "features",
+            "filters": [
+              [
+                "in",
+                "key",
+                [
+                  "pool",
+                  "wifi",
+                  "wlan",
+                  "parking",
+                  "restaurant",
+                  "breakfast",
+                  "air_conditioning",
+                  "kitchen",
+                  "washing_machine",
+                  "near_sea",
+                  "near_lake",
+                  "near_mountains",
+                  "mountain_location",
+                  "dogs_allowed",
+                  "dogs",
+                  "dog_friendly",
+                  "pets_allowed",
+                  "pets",
+                  "pet_friendly",
+                  "family_friendly",
+                  "accessible",
+                  "wheelchair_accessible",
+                  "quiet_place",
+                  "free_parking",
+                  "city_center",
+                  "near_airport"
+                ]
+              ]
+            ],
+            "range": [
+              7,
+              1006
+            ]
+          },
+          {
+            "table": "accommodation_features",
+            "filters": [
+              [
+                "in",
+                "accommodation_id",
+                [
+                  1
+                ]
+              ],
+              [
+                "in",
+                "feature_id",
+                [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7
+                ]
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "accommodation_features",
+            "filters": [
+              [
+                "in",
+                "accommodation_id",
+                [
+                  1
+                ]
+              ],
+              [
+                "in",
+                "feature_id",
+                [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7
+                ]
+              ]
+            ],
+            "range": [
+              4,
+              1003
+            ]
+          },
+          {
+            "table": "expedia_accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ],
+              [
+                "eq",
+                "accommodation_type",
+                "hotel"
+              ]
+            ],
+            "range": [
+              0,
+              999
+            ]
+          },
+          {
+            "table": "expedia_accommodations",
+            "filters": [
+              [
+                "eq",
+                "is_active",
+                true
+              ],
+              [
+                "eq",
+                "accommodation_type",
+                "hotel"
+              ]
+            ],
+            "range": [
+              1,
+              1000
+            ]
           }
         ]
       }

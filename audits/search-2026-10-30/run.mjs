@@ -1,5 +1,7 @@
 import fs from 'node:fs';
 import {execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
+import path from 'node:path';
 import {parseSearch,queryAccommodations,root} from './harness.mjs';
 import {tables} from './fixtures.mjs';
 
@@ -76,7 +78,9 @@ await routeCase('A15','Hauptdatenquelle erfüllt Preisgrenze','type=hotel&max_pr
 await routeCase('A16','Hauptdatenquelle erfüllt Kapazität','type=hotel&max_guests=10',r=>r.body.accommodations.length===0);
 await routeCase('A17','Erfolgloser Featurejoin der Hauptquelle blockiert passende Campingquelle nicht','type=campsite&feature=dogs_allowed',r=>names(r).includes('Feed München mit Ausstattung'),{...tables,accommodation_features:[]});
 await routeCase('A18','Optionaler Wunsch schließt Haupttreffer ohne Verknüpfung nicht aus','type=hotel&feature=pool&preferred_feature=pool',r=>names(r).includes('Eigenes Hotel Berlin'),{...tables,accommodation_features:[]});
-await routeCase('A19','Pflichtfeature wird tatsächlich angewendet','type=hotel&feature=pool&must_feature=pool',r=>!names(r).includes('Eigenes Hotel Berlin'),{...tables,accommodation_features:[]});
+// The fixed data contract accepts either an explicit true column or a feature link.
+// To test a missing required fact, both sources of confirmation must be absent.
+await routeCase('A19','Pflichtfeature wird tatsächlich angewendet','type=hotel&feature=pool&must_feature=pool',r=>!names(r).includes('Eigenes Hotel Berlin'),{...tables,accommodations:tables.accommodations.map(row=>({...row,has_pool:null})),accommodation_features:[]});
 await routeCase('A20','Campingimport beachtet Reisemonat','type=campsite&month=1',r=>!names(r).includes('Feed München mit Ausstattung'));
 await routeCase('A21','Ausfall der Campingquelle wird als Teilausfall kenntlich gemacht','type=campsite',r=>r.status>=500||Boolean(r.body.warnings?.length),tables,{errors:{camping_info_campsites:'Simulierter Verbindungsfehler'}});
 await routeCase('A22','Negatives Poolkriterium wird serverseitig angewendet','type=hotel&exclude_feature=pool',r=>!names(r).includes('Eigenes Hotel Berlin'));
@@ -84,7 +88,10 @@ await routeCase('A22','Negatives Poolkriterium wird serverseitig angewendet','ty
 const dates1=await queryAccommodations('type=hotel&check_in=2027-07-01&check_out=2027-07-08',tables);
 const dates2=await queryAccommodations('type=hotel&check_in=2030-01-01&check_out=2030-01-15',tables);
 const coverageNotes={datesGenerateIdenticalDatabaseQueries:JSON.stringify(dates1.calls)===JSON.stringify(dates2.calls),note:'Die Tagesverfügbarkeit ist ohne Kalender-/Partneranbindung nicht prüfbar. Identische DB-Abfragen belegen die aktuelle Funktionalitätsgrenze; kein Live-Buchungstest.'};
-const summary={sourceCommit:execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim(),date:'2026-10-30',total:checks.length,passed:checks.filter(x=>x.pass).length,failed:checks.filter(x=>!x.pass).length};
+const appFiles=fs.readdirSync(path.join(root,'app'),{recursive:true}).filter(file=>/\.tsx?$/.test(file)).sort();
+const fingerprint=createHash('sha256');for(const file of appFiles)fingerprint.update(file).update('\0').update(fs.readFileSync(path.join(root,'app',file))).update('\0');
+let workingTreeModified=false;try{execFileSync('git',['diff','--quiet'],{cwd:root});}catch{workingTreeModified=true;}
+const summary={sourceCommit:execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim(),workingTreeModified,appSourceSha256:fingerprint.digest('hex'),date:new Date().toISOString().slice(0,10),total:checks.length,passed:checks.filter(x=>x.pass).length,failed:checks.filter(x=>!x.pass).length};
 const compactChecks=checks.map(item=>{
  const e=item.evidence;
  if(!e)return item;

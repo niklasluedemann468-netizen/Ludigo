@@ -1,954 +1,224 @@
-import { createClient } from "@/utils/supabase/server";
-import { getCampingSupabase } from "@/app/lib/camping-supabase";
-
-export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
-
-  const type = searchParams.get("type");
-  const nearSea = searchParams.get("near_sea");
-  const nearLake = searchParams.get("near_lake");
-  const nearMountains = searchParams.get("near_mountains");
-  const dogsAllowed = searchParams.get("dogs_allowed");
-  const hasPool = searchParams.get("has_pool");
-  const month = searchParams.get("month");
-  // ============================================================
-// FEATURES: NORMAL / PFLICHT / WUNSCH
-// ============================================================
-
-const features =
-  searchParams.getAll("feature");
-
-const mustFeatures =
-  searchParams.getAll("must_feature");
-
-const preferredFeatures =
-  searchParams.getAll("preferred_feature");
-
-// Wenn z. B. "Pool wäre schön" sowohl
-// feature=pool als auch preferred_feature=pool erzeugt,
-// darf Pool NICHT zum harten Filter werden.
-//
-// Muss-Kriterien bleiben dagegen immer harte Filter.
-
-const hardFeatures = [
-  ...new Set([
-    ...features.filter(
-      (feature) =>
-        !preferredFeatures.includes(feature) ||
-        mustFeatures.includes(feature)
-    ),
-    ...mustFeatures,
-  ]),
-];
-  const country = searchParams.get("country");
-  const region = searchParams.get("region");
-  const city = searchParams.get("city");
-  // ============================================================
-// ZAHLEN- UND BEREICHSFILTER
-// ============================================================
-
-// Gäste / benötigte Kapazität
-const maxGuests =
-  searchParams.get("max_guests");
-
-// Preis pro Nacht
-const minPrice =
-  searchParams.get("min_price_per_night") ??
-  searchParams.get("min_price");
-
-const maxPrice =
-  searchParams.get("max_price_per_night") ??
-  searchParams.get("max_price");
-
-// Bewertung
-const reviewScore =
-  searchParams.get("review_score");
-
-const minReviewScore =
-  searchParams.get("min_review_score");
-
-const maxReviewScore =
-  searchParams.get("max_review_score");
-
-// Hotelsterne
-const hotelStars =
-  searchParams.get("hotel_stars");
-
-const minHotelStars =
-  searchParams.get("min_hotel_stars");
-
-const maxHotelStars =
-  searchParams.get("max_hotel_stars");
-
-// Schlafzimmer
-const bedrooms =
-  searchParams.get("bedrooms");
-
-const minBedrooms =
-  searchParams.get("min_bedrooms");
-
-const maxBedrooms =
-  searchParams.get("max_bedrooms");
-
-
-  const supabase = await createClient();
-
-// ============================================================
-// FEATURE-KEYS AUFLÖSEN
-// ============================================================
-
-// Doppelte Features aus der URL entfernen.
-// Beispiel:
-// feature=wifi&feature=wifi
-// wird intern nur einmal behandelt.
-const uniqueFeatures = [...new Set(features)];
-
-let featureIds: number[] = [];
-
-// ============================================================
-// HARTE FEATURES AUFLÖSEN
-// ============================================================
-
-if (hardFeatures.length > 0) {
-  const { data: featureRows, error: featureError } =
-    await supabase
-      .from("features")
-      .select("id, key")
-      .in("key", hardFeatures);
-
-  if (featureError) {
-    return Response.json(
-      { error: featureError.message },
-      { status: 500 }
-    );
-  }
-
-  // Prüfen, ob wirklich alle angefragten Features
-  // in unserer Feature-Tabelle existieren.
-  const foundFeatureKeys = new Set(
-    (featureRows ?? []).map(
-      (feature) => feature.key
-    )
-  );
-
-  const missingFeatures =
-    hardFeatures.filter(
-      (feature) =>
-        !foundFeatureKeys.has(feature)
-    );
-
-  // Ein unbekanntes MUSS-Kriterium darf nicht
-  // einfach ignoriert werden und falsche Treffer erzeugen.
-  if (missingFeatures.length > 0) {
-  console.warn(
-    "Unbekannte Feature-Keys:",
-    missingFeatures
-  );
-
-  return Response.json({
-    accommodations: [],
-    missing_features: missingFeatures,
-  });
-}
-
-  featureIds = (featureRows ?? []).map(
-    (feature) => feature.id
-  );
-}
-
-let matchingAccommodationIds: number[] | null = null;
-
-if (featureIds.length > 0) {
-  const { data: links, error: linksError } = await supabase
-    .from("accommodation_features")
-    .select("accommodation_id, feature_id")
-    .in("feature_id", featureIds);
-
-  if (linksError) {
-    return Response.json(
-      { error: linksError.message },
-      { status: 500 }
-    );
-  }
-
-  const counts = new Map<number, number>();
-
-  for (const link of links ?? []) {
-    counts.set(
-      link.accommodation_id,
-      (counts.get(link.accommodation_id) ?? 0) + 1
-    );
-  }
-
-  matchingAccommodationIds = [...counts.entries()]
-    .filter(([, count]) => count === featureIds.length)
-    .map(([accommodationId]) => accommodationId);
-}
-
-
-  let query = supabase
-    .from("accommodations")
-    .select(`
-  id,
-  name,
-  city,
-  country,
-  region,
-  accommodation_type,
-  image_url,
-  price_min,
-  price_max,
-  is_featured,
-  currency,
-  review_score,
-  hotel_stars,
-  apartment_has_kitchen,
-  apartment_has_washing_machine,
-  max_guests,
-  has_pool,
-has_wifi,
-has_parking,
-has_restaurant,
-has_breakfast,
-has_air_conditioning,
-dogs_allowed,
-family_friendly,
-accessible,
-quiet_place,
-near_sea,
-near_lake,
-near_mountains,
-apartment_has_kitchen,
-apartment_has_washing_machine,
-  affiliate_url,
-  booking_url,
-  website_url
-  
-`)
-    .eq("is_active", true);
-
-  if (matchingAccommodationIds !== null) {
-  if (matchingAccommodationIds.length === 0) {
-    return Response.json({
-      accommodations: [],
-    });
-  }
-
-  query = query.in("id", matchingAccommodationIds);
-}
-
-  if (type) {
-    query = query.eq("accommodation_type", type);
-  }
-
-  if (nearSea === "true") {
-    query = query.eq("near_sea", true);
-  }
-
-  if (nearLake === "true") {
-    query = query.eq("near_lake", true);
-  }
-
-  if (nearMountains === "true") {
-    query = query.eq("near_mountains", true);
-  }
-
-  if (dogsAllowed === "true") {
-    query = query.eq("dogs_allowed", true);
-  }
-
-  if (hasPool === "true") {
-    query = query.eq("has_pool", true);
-  }
-  
-  // ============================================================
-// ZAHLEN- UND BEREICHSFILTER ANWENDEN
-// ============================================================
-
-// Gäste / benötigte Kapazität
-if (maxGuests) {
-  query = query.gte(
-    "max_guests",
-    Number(maxGuests)
-  );
-}
-
-// Bewertung
-if (reviewScore) {
-  query = query.eq(
-    "review_score",
-    Number(reviewScore)
-  );
-}
-
-if (minReviewScore) {
-  query = query.gte(
-    "review_score",
-    Number(minReviewScore)
-  );
-}
-
-if (maxReviewScore) {
-  query = query.lte(
-    "review_score",
-    Number(maxReviewScore)
-  );
-}
-
-// Hotelsterne
-if (hotelStars) {
-  query = query.eq(
-    "hotel_stars",
-    Number(hotelStars)
-  );
-}
-
-if (minHotelStars) {
-  query = query.gte(
-    "hotel_stars",
-    Number(minHotelStars)
-  );
-}
-
-if (maxHotelStars) {
-  query = query.lte(
-    "hotel_stars",
-    Number(maxHotelStars)
-  );
-}
-
-// Schlafzimmer
-if (bedrooms) {
-  query = query.eq(
-    "apartment_bedrooms",
-    Number(bedrooms)
-  );
-}
-
-if (minBedrooms) {
-  query = query.gte(
-    "apartment_bedrooms",
-    Number(minBedrooms)
-  );
-}
-
-if (maxBedrooms) {
-  query = query.lte(
-    "apartment_bedrooms",
-    Number(maxBedrooms)
-  );
-}
-
-// Preis pro Nacht
-if (minPrice) {
-  query = query.gte(
-    "price_min",
-    Number(minPrice)
-  );
-}
-
-if (maxPrice) {
-  query = query.lte(
-    "price_min",
-    Number(maxPrice)
-  );
-}
-
-  if (month) {
-  query = query.contains("available_months", [Number(month)]);
-}
-
-if (country) {
-  query = query.ilike("country", country);
-}
-
-if (region) {
-  query = query.ilike("region", region);
-}
-
-if (city) {
-  query = query.ilike("city", city);
-}
-
-
-  const { data, error } = await query;
-
-if (error) {
-  return Response.json(
-    { error: error.message },
-    { status: 500 }
-  );
-}
-
-// ============================================================
-// WUNSCHFEATURES FÜR DAS RANKING
-// ============================================================
-
-const preferredFeatureMatches =
-  new Map<number, number>();
-
-if (
-  preferredFeatures.length > 0 &&
-  (data ?? []).length > 0
-) {
-  const uniquePreferredFeatures = [
-    ...new Set(preferredFeatures),
-  ];
-
-  const {
-    data: preferredFeatureRows,
-    error: preferredFeatureError,
-  } = await supabase
-    .from("features")
-    .select("id, key")
-    .in("key", uniquePreferredFeatures);
-
-  if (preferredFeatureError) {
-    return Response.json(
-      {
-        error:
-          preferredFeatureError.message,
-      },
-      { status: 500 }
-    );
-  }
-
-  const preferredFeatureIds =
-    (preferredFeatureRows ?? []).map(
-      (feature) => feature.id
-    );
-
-  if (preferredFeatureIds.length > 0) {
-    const accommodationIds =
-      (data ?? []).map(
-        (item) => item.id
-      );
-
-    const {
-      data: preferredLinks,
-      error: preferredLinksError,
-    } = await supabase
-      .from("accommodation_features")
-      .select(
-        "accommodation_id, feature_id"
-      )
-      .in(
-        "accommodation_id",
-        accommodationIds
-      )
-      .in(
-        "feature_id",
-        preferredFeatureIds
-      );
-
-    if (preferredLinksError) {
-      return Response.json(
-        {
-          error:
-            preferredLinksError.message,
-        },
-        { status: 500 }
-      );
+import { createClient } from '@/utils/supabase/server';
+import { getCampingSupabase } from '@/app/lib/camping-supabase';
+import type { SearchResult } from '../../lib/accommodation-types';
+import { readSearchCriteria, type SearchCriteria } from '../../lib/search/criteria';
+import { canonicalFeature, featureAliases, featureColumns, featureValue } from '../../lib/search/features';
+import {sortAccommodations} from '../../lib/accommodation-view';
+import type {SortOption} from '../../lib/accommodation-types';
+type Row = Record<string, unknown>;
+type PageBuilder = () => {
+    range(from: number, to: number): PromiseLike<{
+        data: unknown[] | null;
+        error: unknown;
+    }>;
+};
+const pageSize = 1000, maxPages = 500, maxRows = 50000;
+const number = (value: unknown): number | null => typeof value === 'number' || (typeof value === 'string' && value.trim() !== '') ? (Number.isFinite(Number(value)) && Number(value) >= 0 ? Number(value) : null) : null;
+const string = (value: unknown): string | null => typeof value === 'string' && value.trim() ? value.trim() : null;
+const warningsForSource: Record<string, string> = { accommodations: 'Die eigenen Unterkunftsdaten konnten nicht vollständig geladen werden.', camping_info_campsites: 'Die Campingdaten konnten nicht vollständig geladen werden.', expedia_accommodations: 'Die importierten Hoteldaten konnten nicht vollständig geladen werden.', features: 'Ein Teil der Ausstattungsdaten konnte nicht geladen werden.', accommodation_features: 'Ein Teil der Ausstattungsdaten konnte nicht geladen werden.' };
+async function scan(build: PageBuilder, table: string, warnings: Set<string>): Promise<Row[]> {
+    const rows: Row[] = [];
+    let offset = 0;
+    for (let page = 0; page < maxPages; page++) {
+        const result = await build().range(offset, offset + pageSize - 1);
+        if (result.error) {
+            warnings.add(warningsForSource[table]);
+            return rows;
+        }
+        const data = (result.data ?? []).filter((row): row is Row => Boolean(row) && typeof row === 'object' && !Array.isArray(row));
+        if (!result.data?.length)
+            return rows;
+        rows.push(...data);
+        offset += result.data.length;
+        if (rows.length >= maxRows)
+            break;
     }
-
-    // Set verhindert Doppelzählungen eines Features.
-    const matchesByAccommodation =
-      new Map<number, Set<number>>();
-
-    for (const link of preferredLinks ?? []) {
-      if (
-        !matchesByAccommodation.has(
-          link.accommodation_id
-        )
-      ) {
-        matchesByAccommodation.set(
-          link.accommodation_id,
-          new Set<number>()
-        );
-      }
-
-      matchesByAccommodation
-        .get(link.accommodation_id)!
-        .add(link.feature_id);
-    }
-
-    for (
-      const [
-        accommodationId,
-        matchedFeatures,
-      ] of matchesByAccommodation
-    ) {
-      preferredFeatureMatches.set(
-        accommodationId,
-        matchedFeatures.size
-      );
-    }
-  }
+    warnings.add('Die Datenmenge ist sehr groß. Bitte grenze das Reiseziel weiter ein; die Ergebnisliste ist möglicherweise unvollständig.');
+    return rows;
 }
-
-// ============================================================
-// MATCH-RANKING
-// ============================================================
-
-const requestedGuests = maxGuests
-  ? Number(maxGuests)
-  : null;
-
-const requestedMaxPrice = maxPrice
-  ? Number(maxPrice)
-  : null;
-
-const rankedAccommodations = [...(data ?? [])]
-  .map((item, originalIndex) => {
-    let score = 0;
-
-    // --------------------------------------------------------
-// Wunschkriterien
-//
-// Wunschfeature vorhanden = Bonus.
-// Unterkunft wird NICHT ausgeschlossen, wenn es fehlt.
-// --------------------------------------------------------
-
-const matchedPreferredFeatures =
-  preferredFeatureMatches.get(
-    item.id
-  ) ?? 0;
-
-score +=
-  matchedPreferredFeatures * 12;
-
-    // --------------------------------------------------------
-    // 1. Besonders empfohlene Unterkünfte
-    // --------------------------------------------------------
-
-    if (item.is_featured) {
-      score += 20;
-    }
-
-    // --------------------------------------------------------
-    // 2. Bewertung
-    // Bewertung ist einer der wichtigsten Qualitätsfaktoren.
-    // Beispiel:
-    // 8,5 Punkte = 25,5 Rankingpunkte
-    // --------------------------------------------------------
-
-    if (
-      item.review_score !== null &&
-      item.review_score !== undefined
-    ) {
-      score += Number(item.review_score) * 3;
-    }
-
-    // --------------------------------------------------------
-    // 3. Hotelsterne
-    // Nur kleiner Bonus, damit Sterne nicht wichtiger werden
-    // als echte Gästebewertungen.
-    // --------------------------------------------------------
-
-    if (
-      item.hotel_stars !== null &&
-      item.hotel_stars !== undefined
-    ) {
-      score += Number(item.hotel_stars) * 2;
-    }
-
-    // --------------------------------------------------------
-    // 4. Gäste-Kapazität
-    //
-    // Wenn z. B. 4 Gäste gesucht werden:
-    // Unterkunft für genau 4 Personen wird gegenüber einer
-    // Unterkunft für 10 Personen leicht bevorzugt.
-    // --------------------------------------------------------
-
-    if (
-      requestedGuests !== null &&
-      item.max_guests !== null &&
-      item.max_guests !== undefined
-    ) {
-      const capacityDifference =
-        Number(item.max_guests) - requestedGuests;
-
-      if (capacityDifference === 0) {
-        score += 10;
-      } else if (capacityDifference > 0) {
-        score += Math.max(
-          0,
-          8 - capacityDifference
-        );
-      }
-    }
-
-    // --------------------------------------------------------
-    // 5. Preis innerhalb des Maximalbudgets
-    //
-    // Günstigere Treffer bekommen einen kleinen Bonus.
-    // Der Preis soll aber nicht stärker zählen als Bewertung.
-    // --------------------------------------------------------
-
-    if (
-      requestedMaxPrice !== null &&
-      requestedMaxPrice > 0 &&
-      item.price_min !== null &&
-      item.price_min !== undefined
-    ) {
-      const price = Number(item.price_min);
-
-      if (price <= requestedMaxPrice) {
-        const priceRatio =
-          price / requestedMaxPrice;
-
-        score +=
-          Math.max(
-            0,
-            1 - priceRatio
-          ) * 10;
-      }
-    }
-
-    return {
-      item,
-      score,
-      originalIndex,
+const plain = (value: unknown) => String(value ?? '').trim().toLocaleLowerCase('de-DE').replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue').replace(/ß/g, 'ss').normalize('NFKD').replace(/[\u0300-\u036f]/g, '');
+function geoMatches(row: Row, c: SearchCriteria): boolean {
+    return ['country', 'region', 'city'].every(key => !c.params.has(key) || plain(row[key]) === plain(c.params.get(key)));
+}
+function explicitNumberMatches(value: unknown, exact: number | null, min: number | null, max: number | null): boolean {
+    if (exact === null && min === null && max === null)
+        return true;
+    const current = number(value);
+    return current !== null && (exact === null || current === exact) && (min === null || current >= min) && (max === null || current <= max);
+}
+function normalize(row: Row, source: 'own' | 'camping' | 'expedia', linked: ReadonlySet<string>, wanted: string[]): SearchResult | null {
+    const id = number(row.id), name = string(row.name);
+    if (id === null || !Number.isSafeInteger(id) || !name)
+        return null;
+    const states: Record<string, boolean | null> = {};
+    for (const key of new Set([...Object.keys(featureColumns), ...wanted, ...linked]))
+        states[canonicalFeature(key)] = featureValue(row, key, linked);
+    const rating = number(source === 'camping' ? row.rating : row.review_score);
+    const scale = number(row.review_scale) ?? (source === 'camping' ? 5 : 10);
+    const reviewScale = scale === 5 ? 5 : 10;
+    const validRating = rating !== null && rating <= reviewScale ? rating : null;
+    const fields: SearchResult = {
+        id: source === 'camping' ? -id : source === 'expedia' ? -1000000000 - id : id,
+        name, city: string(row.city), region: string(row.region), country: string(row.country),
+        accommodation_type: source === 'camping' ? 'campsite' : string(row.accommodation_type),
+        description: string(row.description), image_url: string(row.image_url),
+        affiliate_url: string(row.affiliate_url), booking_url: string(row.booking_url), website_url: string(row.website_url),
+        price_min: number(row.price_min), price_max: number(row.price_max), partner_price: source === 'camping' ? number(row.price) : null,
+        currency: string(row.currency), review_score: validRating, review_scale: reviewScale, review_normalized: validRating === null ? null : validRating / reviewScale * 10,
+        review_count: number(row.review_count), hotel_stars: number(row.hotel_stars), max_guests: number(row.max_guests), apartment_bedrooms: number(row.apartment_bedrooms),
+        is_featured: row.is_featured === true, provider_name: source === 'camping' ? 'camping.info' : source === 'expedia' ? 'Expedia' : string(row.provider_name),
+        feature_states: states, features: Object.keys(states).filter(key => states[key] === true),
+        available_months: Array.isArray(row.available_months) ? row.available_months.map(Number).filter(value => Number.isInteger(value) && value >= 1 && value <= 12) : null,
     };
-  })
-  .sort((a, b) => {
-    // Höherer Score zuerst
-    if (b.score !== a.score) {
-      return b.score - a.score;
+    // Keep badges and the search filter on the same confirmed feature data.
+    for (const [feature, columns] of Object.entries(featureColumns)) {
+        const column = columns[0];
+        if (['has_pool', 'has_wifi', 'has_parking', 'has_restaurant', 'has_breakfast', 'has_air_conditioning', 'near_sea', 'near_lake', 'near_mountains', 'dogs_allowed', 'family_friendly', 'accessible', 'quiet_place', 'apartment_has_kitchen', 'apartment_has_washing_machine'].includes(column))
+            Object.assign(fields, { [column]: states[feature] });
     }
-
-    // Bei gleichem Score ursprüngliche Reihenfolge behalten
-    return a.originalIndex - b.originalIndex;
-  })
-  .map(({ item }) => item);
-
-
-
-  
-  // ============================================================
-  // CAMPING.INFO – CAMPINGPLÄTZE ERGÄNZEN
-  // ============================================================
-
-  let campingResults: Array<Record<string, unknown>> = [];
-
-  if (!type || type === "campsite") {
-    try {
-      const campingSupabase = getCampingSupabase();
-
-      // --------------------------------------------------------
-      // 1. Campingplätze laden (2 Seiten)
-      // --------------------------------------------------------
-
-      const loadPage = async (from: number, to: number) => {
-        let query = campingSupabase
-          .from("camping_info_campsites")
-          .select(`
-            id,
-            name,
-            description,
-            image_url,
-            affiliate_url,
-            city,
-            region,
-            country,
-            currency,
-            price,
-            rating,
-            review_count
-          `)
-          .order("id", { ascending: true });
-
-        if (country) {
-          query = query.ilike("country", country);
-        }
-
-        if (region) {
-          query = query.ilike("region", region);
-        }
-
-        return query.range(from, to);
-      };
-
-      const [firstPage, secondPage] = await Promise.all([
-        loadPage(0, 999),
-        loadPage(1000, 1999),
-      ]);
-
-      if (firstPage.error) {
-        console.error(
-          "camping.info Seite 1:",
-          firstPage.error.message
-        );
-      }
-
-      if (secondPage.error) {
-        console.error(
-          "camping.info Seite 2:",
-          secondPage.error.message
-        );
-      }
-
-      const campingData = [
-        ...(firstPage.data ?? []),
-        ...(secondPage.data ?? []),
-      ];
-
-      // --------------------------------------------------------
-      // 2. Vorhandene Ausstattungsdaten aus Supabase laden
-      // --------------------------------------------------------
-
-      type CampingEquipment = {
-        has_wifi: boolean | null;
-        has_pool: boolean | null;
-        has_parking: boolean | null;
-        has_restaurant: boolean | null;
-        dogs_allowed: boolean | null;
-        family_friendly: boolean | null;
-        accessible: boolean | null;
-      };
-
-      const equipmentById = new Map<number, CampingEquipment>();
-
-      if (campingData.length > 0) {
-        // Kleine Blöcke verhindern zu lange ID-Abfragen.
-        const batchSize = 100;
-
-        for (let i = 0; i < campingData.length; i += batchSize) {
-          const ids = campingData
-            .slice(i, i + batchSize)
-            .map((camp) => camp.id);
-
-          const { data: equipmentData, error: equipmentError } =
-            await campingSupabase
-              .from("camping_info_campsites")
-              .select(`
-                id,
-                has_wifi,
-                has_pool,
-                has_parking,
-                has_restaurant,
-                dogs_allowed,
-                family_friendly,
-                accessible
-              `)
-              .in("id", ids);
-
-          if (equipmentError) {
-            console.error(
-              "camping.info Ausstattung:",
-              equipmentError.message
-            );
-          } else {
-            for (const equipment of equipmentData ?? []) {
-              equipmentById.set(Number(equipment.id), equipment);
-            }
-          }
-        }
-      }
-
-      // --------------------------------------------------------
-      // 3. Ausstattung automatisch aus Beschreibung erkennen
-      // --------------------------------------------------------
-
-      // NULL = keine verlässliche Angabe gefunden.
-      // Bei einer Verneinung wird das Merkmal nicht angezeigt.
-      const detectAmenity = (
-        description: string | null,
-        positive: RegExp,
-        negative: RegExp
-      ): boolean | null => {
-        if (!description) return null;
-
-        const text = description.toLowerCase();
-
-        if (negative.test(text)) return null;
-
-        return positive.test(text) ? true : null;
-      };
-
-      // --------------------------------------------------------
-      // 4. Campingplätze für LÜDIGO aufbereiten
-      // --------------------------------------------------------
-
-      campingResults = campingData.map((camp) => {
-        const equipment = equipmentById.get(Number(camp.id));
-        const description = camp.description ?? "";
-
-        const detectedWifi = detectAmenity(
-          description,
-          /\b(wlan|wi-fi|wifi|wireless internet)\b/i,
-          /\b(kein(?:e|en)? wlan|ohne wlan|kein wi-fi|ohne wifi)\b/i
-        );
-
-        const detectedPool = detectAmenity(
-          description,
-          /\b(pool|swimmingpool|schwimmbad)\b/i,
-          /\b(kein(?:en)? pool|ohne pool|kein schwimmbad|ohne schwimmbad)\b/i
-        );
-
-        const detectedParking = detectAmenity(
-          description,
-          /\b(parkplatz|parkplätze|parkmöglichkeiten)\b/i,
-          /\b(kein(?:e|en)? parkplätze?|ohne parkplatz)\b/i
-        );
-
-        const detectedRestaurant = detectAmenity(
-          description,
-          /\b(restaurant|gaststätte|pizzeria)\b/i,
-          /\b(kein restaurant|ohne restaurant)\b/i
-        );
-
-        const detectedDogs = detectAmenity(
-          description,
-          /\b(hunde erlaubt|hunde willkommen|hundefreundlich|hunde gestattet|haustiere erlaubt)\b/i,
-          /\b(hunde nicht erlaubt|keine hunde|hunde verboten|haustiere nicht erlaubt)\b/i
-        );
-
-        const detectedFamily = detectAmenity(
-          description,
-          /\b(familienfreundlich|kinderfreundlich|familiencamping)\b/i,
-          /\b(nicht familienfreundlich|nur für erwachsene|adults only)\b/i
-        );
-
-        const detectedAccessible = detectAmenity(
-          description,
-          /\b(barrierefrei|rollstuhlgerecht|rollstuhlgeeignet)\b/i,
-          /\b(nicht barrierefrei|nicht rollstuhlgerecht)\b/i
-        );
-
-        return {
-          id: -Number(camp.id),
-          name: camp.name,
-          description: camp.description,
-          accommodation_type: "campsite",
-
-          city: camp.city,
-          region: camp.region,
-          country: camp.country,
-
-          image_url: camp.image_url,
-          affiliate_url: camp.affiliate_url,
-          provider_name: "camping.info",
-
-          // Unbestätigte Feed-Preise nicht als Nachtpreis verwenden.
-          price_min: null,
-          price_max: null,
-          partner_price: camp.price,
-          currency: camp.currency,
-
-          review_score: camp.rating,
-          review_count: camp.review_count,
-
-          // Supabase-Werte haben Vorrang.
-          // Beschreibung ergänzt unbekannte Merkmale.
-          has_wifi: equipment?.has_wifi ?? detectedWifi,
-          has_pool: equipment?.has_pool ?? detectedPool,
-          has_parking: equipment?.has_parking ?? detectedParking,
-          has_restaurant:
-            equipment?.has_restaurant ?? detectedRestaurant,
-          dogs_allowed: equipment?.dogs_allowed ?? detectedDogs,
-          family_friendly:
-            equipment?.family_friendly ?? detectedFamily,
-          accessible: equipment?.accessible ?? detectedAccessible,
-        };
-      });
-
-      // --------------------------------------------------------
-      // 5. Hunde-Filter
-      // --------------------------------------------------------
-
-      if (dogsAllowed === "true") {
-        campingResults = campingResults.filter(
-          (camp) => camp.dogs_allowed === true
-        );
-      }
-
-      console.log(
-        "CAMPING.INFO GELADEN:",
-        campingResults.length
-      );
-    } catch (error) {
-      console.error("CAMPING.INFO FEHLER:", error);
-    }
-  }
-
-  // ============================================================
-  // EXPEDIA – IMPORTIERTE HOTELS ERGÄNZEN
-  // ============================================================
-  let expediaResults: Array<Record<string, unknown>> = [];
-
-  if (!type || type === "hotel") {
-    // Fehlende Angaben dürfen keine Pflichtfilter scheinbar erfüllen.
-    const unsupportedFilters =
-      hardFeatures.length > 0 ||
-      nearSea === "true" || nearLake === "true" ||
-      nearMountains === "true" || dogsAllowed === "true" ||
-      hasPool === "true" || Boolean(month) ||
-      Boolean(maxGuests) || Boolean(minPrice) || Boolean(maxPrice) ||
-      Boolean(bedrooms) || Boolean(minBedrooms) || Boolean(maxBedrooms);
-
-    if (!unsupportedFilters) {
-      try {
-        // Server-only Client: SUPABASE_SECRET_KEY niemals im Browser nutzen.
-        const expediaSupabase = getCampingSupabase();
-        let expediaQuery = expediaSupabase
-          .from("expedia_accommodations")
-          .select(`
-  id, excel_id, name, accommodation_type, city, region,
-  country, affiliate_url, image_url, review_score, hotel_stars
-`)
-          .eq("is_active", true)
-          .eq("accommodation_type", "hotel")
-          .not("affiliate_url", "is", null);
-
-        if (country) expediaQuery = expediaQuery.ilike("country", country);
-        if (region) expediaQuery = expediaQuery.ilike("region", region);
-        if (city) expediaQuery = expediaQuery.ilike("city", city);
-        if (reviewScore) expediaQuery = expediaQuery.eq("review_score", Number(reviewScore));
-        if (minReviewScore) expediaQuery = expediaQuery.gte("review_score", Number(minReviewScore));
-        if (maxReviewScore) expediaQuery = expediaQuery.lte("review_score", Number(maxReviewScore));
-        if (hotelStars) expediaQuery = expediaQuery.eq("hotel_stars", Number(hotelStars));
-        if (minHotelStars) expediaQuery = expediaQuery.gte("hotel_stars", Number(minHotelStars));
-        if (maxHotelStars) expediaQuery = expediaQuery.lte("hotel_stars", Number(maxHotelStars));
-
-        const { data: expediaData, error: expediaError } = await expediaQuery;
-        if (expediaError) throw expediaError;
-
-        expediaResults = (expediaData ?? [])
-          .filter((hotel) => typeof hotel.affiliate_url === "string" && hotel.affiliate_url.trim() !== "")
-          .map((hotel) => ({
-            id: -1000000000 - Number(hotel.id),
-            name: hotel.name,
-            accommodation_type: "hotel",
-            city: hotel.city,
-            region: hotel.region,
-            country: hotel.country,
-            affiliate_url: hotel.affiliate_url,
-            booking_url: hotel.affiliate_url,
-            provider_name: "Expedia",
-            image_url: hotel.image_url ?? null,
-            price_min: null,
-            price_max: null,
-            review_score: hotel.review_score,
-            hotel_stars: hotel.hotel_stars,
-            is_featured: false,
-          }));
-      } catch (error) {
-        console.error("EXPEDIA FEHLER:", error);
-      }
-    }
-  }
-
-  // ============================================================
-  // ERGEBNISSE ZURÜCKGEBEN
-  // ============================================================
-
-  return Response.json({
-    accommodations: [
-      ...rankedAccommodations,
-      ...campingResults,
-      ...expediaResults,
-    ],
-  });
+    return fields;
 }
-
+function matches(item: SearchResult, c: SearchCriteria): boolean {
+    if (!geoMatches(item as unknown as Row, c))
+        return false;
+    if (c.type && item.accommodation_type !== c.type)
+        return false;
+    if (c.excludedTypes.includes(item.accommodation_type ?? ''))
+        return false;
+    if (c.hard.some(key => item.feature_states?.[key] !== true) || c.excluded.some(key => item.feature_states?.[key] !== false))
+        return false;
+    if (c.number('max_guests') !== null && (item.max_guests === null || item.max_guests === undefined || item.max_guests < c.number('max_guests')!))
+        return false;
+    const month = c.number('month');
+    if (month !== null && !item.available_months?.includes(month))
+        return false;
+    if (!explicitNumberMatches(item.hotel_stars, c.number('hotel_stars'), c.number('min_hotel_stars'), c.number('max_hotel_stars')))
+        return false;
+    if (!explicitNumberMatches(item.apartment_bedrooms, c.number('bedrooms'), c.number('min_bedrooms'), c.number('max_bedrooms')))
+        return false;
+    const scale = c.number('review_scale') ?? (c.type === 'campsite' ? 5 : 10);
+    const convert = (key: string) => c.number(key) === null ? null : c.number(key)! / scale * 10;
+    if (!explicitNumberMatches(item.review_normalized, convert('review_score'), convert('min_review_score'), convert('max_review_score')))
+        return false;
+    const nights = c.number('nights'), maxTotal = c.number('max_total_price') ?? c.number('total_budget');
+    const minTotal = c.number('min_total_price');
+    const minPrices = [c.number('min_price_per_night'), c.number('min_price'), nights && minTotal !== null ? minTotal / nights : null].filter((x): x is number => x !== null);
+    const maxPrices = [c.number('max_price_per_night'), c.number('max_price'), nights && maxTotal !== null ? maxTotal / nights : null].filter((x): x is number => x !== null);
+    if ((minTotal !== null || maxTotal !== null) && !nights)
+        return false;
+    if (minPrices.length || maxPrices.length) {
+        if (item.currency !== (c.params.get('currency') ?? 'EUR'))
+            return false;
+        if (!explicitNumberMatches(item.price_min, null, minPrices.length ? Math.max(...minPrices) : null, maxPrices.length ? Math.min(...maxPrices) : null))
+            return false;
+    }
+    return true;
+}
+function rank(item: SearchResult, c: SearchCriteria): number {
+    const preferred = c.preferred.filter(key => item.feature_states?.[key] === true).length;
+    const capacity = c.number('max_guests'), maxPrice = c.number('max_price_per_night') ?? c.number('max_price');
+    return preferred * 12 + (item.is_featured ? 20 : 0) + (item.review_normalized ?? 0) * 3 + (item.hotel_stars ?? 0) * 0.5 +
+        (capacity !== null && item.max_guests !== null && item.max_guests !== undefined ? Math.max(0, 10 - (item.max_guests - capacity)) : 0) +
+        (maxPrice && item.price_min !== null && item.price_min !== undefined ? Math.max(0, 1 - item.price_min / maxPrice) * 10 : 0);
+}
+export async function GET(request: Request) {
+    let c: SearchCriteria;
+    try {
+        c = readSearchCriteria(new URL(request.url).searchParams);
+    }
+    catch (error) {
+        return Response.json({ error: error instanceof Error ? error.message : 'Ungültige Suchkriterien.' }, { status: 400 });
+    }
+    const warnings = new Set<string>(), all: SearchResult[] = [];
+    const requested = [...new Set([...c.hard, ...c.excluded, ...c.preferred])];
+    let known = new Set(Object.keys(featureColumns));
+    const sourceStates: Record<string, string> = {};
+    try {
+        const supabase = await createClient();
+        const ownRows = await scan(() => supabase.from('accommodations').select('*').eq('is_active', true).order('id', { ascending: true }), 'accommodations', warnings);
+        const relevant = ownRows.filter(row => geoMatches(row, c) && (!c.type || row.accommodation_type === c.type));
+        const lookup = [...new Set([...requested, ...Object.keys(featureColumns)].flatMap(featureAliases))];
+        const featureRows = await scan(() => supabase.from('features').select('id,key').in('key', lookup).order('id', { ascending: true }), 'features', warnings);
+        const keyById = new Map(featureRows.map(row => [Number(row.id), canonicalFeature(String(row.key))]));
+        known = new Set([...known, ...keyById.values()]);
+        const linked = new Map<number, Set<string>>();
+        if (featureRows.length)
+            for (let start = 0; start < relevant.length; start += 150) {
+                const ids = relevant.slice(start, start + 150).map(row => Number(row.id));
+                const links = await scan(() => supabase.from('accommodation_features').select('accommodation_id,feature_id').in('accommodation_id', ids).in('feature_id', [...keyById.keys()]).order('accommodation_id', { ascending: true }).order('feature_id', { ascending: true }), 'accommodation_features', warnings);
+                for (const link of links) {
+                    const id = Number(link.accommodation_id), key = keyById.get(Number(link.feature_id));
+                    if (key) {
+                        if (!linked.has(id))
+                            linked.set(id, new Set());
+                        linked.get(id)!.add(key);
+                    }
+                }
+            }
+        for (const row of relevant) {
+            const item = normalize(row, 'own', linked.get(Number(row.id)) ?? new Set(), requested);
+            if (item)
+                all.push(item);
+        }
+        sourceStates.own = warnings.has(warningsForSource.accommodations) ? 'partial' : 'loaded';
+    }
+    catch {
+        warnings.add(warningsForSource.accommodations);
+        sourceStates.own = 'unavailable';
+    }
+    await Promise.all([
+        (async () => {
+            if (c.type && c.type !== 'campsite' || c.excludedTypes.includes('campsite'))
+                return;
+            try {
+                const client = getCampingSupabase();
+                const rows = await scan(() => client.from('camping_info_campsites').select('*').order('id', { ascending: true }), 'camping_info_campsites', warnings);
+                for (const row of rows) {
+                    if (!geoMatches(row, c))
+                        continue;
+                    const item = normalize(row, 'camping', new Set(), requested);
+                    if (item)
+                        all.push(item);
+                }
+                sourceStates.camping = warnings.has(warningsForSource.camping_info_campsites) ? 'partial' : 'loaded';
+            }
+            catch {
+                warnings.add(warningsForSource.camping_info_campsites);
+                sourceStates.camping = 'unavailable';
+            }
+        })(),
+        (async () => {
+            if (c.type && c.type !== 'hotel' || c.excludedTypes.includes('hotel'))
+                return;
+            try {
+                const client = getCampingSupabase();
+                const rows = await scan(() => client.from('expedia_accommodations').select('*').eq('is_active', true).eq('accommodation_type', 'hotel').order('id', { ascending: true }), 'expedia_accommodations', warnings);
+                for (const row of rows) {
+                    if (!geoMatches(row, c) || !string(row.affiliate_url))
+                        continue;
+                    const item = normalize(row, 'expedia', new Set(), requested);
+                    if (item)
+                        all.push(item);
+                }
+                sourceStates.expedia = warnings.has(warningsForSource.expedia_accommodations) ? 'partial' : 'loaded';
+            }
+            catch {
+                warnings.add(warningsForSource.expedia_accommodations);
+                sourceStates.expedia = 'unavailable';
+            }
+        })(),
+    ]);
+    // Each source proves its own facts. Missing relation rows in one source never stop the others.
+    for (const item of all)
+        for (const [key, value] of Object.entries(item.feature_states ?? {}))
+            if (value !== null)
+                known.add(key);
+    const missing = c.hard.filter(key => !known.has(key));
+    const candidates = missing.length ? [] : all.filter(item => matches(item, c));
+    candidates.sort((a, b) => rank(b, c) - rank(a, c) || (a.provider_name ?? '').localeCompare(b.provider_name ?? '') || a.id - b.id);
+    if (!candidates.length && all.length && (c.hard.length || c.excluded.length || c.number('max_guests') !== null || c.number('month') !== null || c.number('max_price_per_night') !== null || c.number('max_total_price') !== null))
+        warnings.add('Nicht alle Unterkünfte enthalten bestätigte Angaben zu deinen Pflichtkriterien. Unbekannte Angaben erfüllen keine Pflichtfilter.');
+    const page=c.number('page')??1,limit=c.number('page_size')??60;
+    const sorted=sortAccommodations(candidates,(c.params.get('sort')??'best') as SortOption);
+    return Response.json({ accommodations: sorted.slice((page-1)*limit,page*limit),total:sorted.length,next_page:page*limit<sorted.length?page+1:null,missing_features: missing, warnings: [...warnings], sources: sourceStates, availability: { status: 'not_checked', check_in: c.params.get('check_in'), check_out: c.params.get('check_out'), nights: c.number('nights') } });
+}

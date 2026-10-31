@@ -28,7 +28,7 @@ function loader(mocks,globals={}) {
       }
       return nativeRequire(id);
     };
-    const sandbox={URLSearchParams,URL,Request,Response,Date:AuditDate,console:{log(){},warn(){},error(){}},setTimeout(){},...globals};
+    const sandbox={URLSearchParams,URL,Request,Response,Error,Map,Set,AbortSignal,Date:AuditDate,console:{log(){},warn(){},error(){}},setTimeout(){},...globals};
     vm.runInNewContext(`(function(require,module,exports){${compiled.get(filename)}\n})`,sandbox,{filename})(localRequire,module,module.exports);
     return module.exports;
   }
@@ -37,7 +37,7 @@ function loader(mocks,globals={}) {
 
 export async function parseSearch(query,options={}) {
   let index=0;const updates=[],calls=[],logs=[];
-  const initial={0:options.type??null,1:options.adults??2,2:options.children??0,3:options.babies??0,4:query,9:options.checkIn??'2027-07-01',10:options.checkOut??'2027-07-08'};
+  const initial={0:options.type??null,1:options.adults??2,2:options.children??0,3:options.babies??0,4:query,9:options.checkIn??'2027-07-01',10:options.checkOut??'2027-07-08',11:options.guestsChanged??(['adults','children','babies'].some(key=>Object.hasOwn(options,key)))};
   const react={...nativeRequire('react'),useState(value){const i=index++;return [Object.hasOwn(initial,i)?initial[i]:(typeof value==='function'?value():value),(v)=>updates.push({index:i,value:v})];}};
   const load=loader({'react':react,'./components/AccommodationPage':{__esModule:true,default:()=>null}},{
     console:{log(...args){logs.push(args)},warn(...args){logs.push(args)},error(...args){logs.push(args)}},
@@ -81,7 +81,7 @@ export function makeDatabase(tables,options={}) {
       }));
       if(this.sort)data.sort((a,b)=>(a[this.sort[0]]>b[this.sort[0]]?1:-1)*(this.sort[1].ascending?1:-1));
       if(this.bounds)data=data.slice(this.bounds[0],this.bounds[1]+1);
-      else if(options.defaultLimit)data=data.slice(0,options.defaultLimit);
+      if(options.defaultLimit)data=data.slice(0,options.defaultLimit);
       if(this.selectColumns!=='*'){const columns=this.selectColumns.split(',').map(x=>x.trim()).filter(Boolean);data=data.map(row=>Object.fromEntries(columns.map(k=>[k,row[k]??null])));}
       return Promise.resolve({data,error:null}).then(resolve,reject);
     }
@@ -95,6 +95,25 @@ export async function queryAccommodations(params,tables,options={}) {
   const {GET}=load(path.join(root,'app/api/accommodations/route.ts'));
   const response=await GET(new Request(`https://audit.invalid/api/accommodations?${params}`));
   return {status:response.status,body:await response.json(),calls:db.calls};
+}
+
+export function loadSearchModule(relativePath){return loader({})(path.join(root,relativePath));}
+export function createSearchController(query,respond){
+ let index=0;const values=[],calls=[];
+ const initial={0:null,1:2,2:0,3:0,4:query,9:'2027-07-01',10:'2027-07-08'};
+ const react={...nativeRequire('react'),useState(value){const i=index++;if(!(i in values))values[i]=Object.hasOwn(initial,i)?initial[i]:typeof value==='function'?value():value;return[values[i],next=>{values[i]=typeof next==='function'?next(values[i]):next;}];}};
+ const load=loader({'react':react,'./components/AccommodationPage':{__esModule:true,default:()=>null}},{fetch:async(url,init)=>{calls.push(String(url));return respond(String(url),init);}});
+ const Component=load(path.join(root,'app/SearchBox.tsx')).default;
+ return {calls,render(){index=0;return Component().props;}};
+}
+export function createAiEndpoint(options={}){
+ const calls=[];
+ class MockOpenAI {
+  constructor(config){calls.push({kind:'client',config});}
+  responses={create:async request=>{calls.push({kind:'response',request});if(options.error)throw new Error('Simulated provider error');return options.response??{status:'completed',output_text:JSON.stringify(options.criteria??{})};}};
+ }
+ const {POST}=loader({'openai':{__esModule:true,default:MockOpenAI}},{process:{env:options.noKey?{}:{OPENAI_API_KEY:'test-only-placeholder'}}})(path.join(root,'app/api/search/route.ts'));
+ return {POST,calls};
 }
 
 export async function inspectCoverage(){
