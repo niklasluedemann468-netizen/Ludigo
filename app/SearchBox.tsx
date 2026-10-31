@@ -23,6 +23,7 @@ import type { SearchResult,SortOption } from "./lib/accommodation-types";
 import AccommodationPage from "./components/AccommodationPage";
 import {finishLocalCriteria} from "./lib/search/criteria";
 import {mergeAiCriteria} from "./lib/search/ai-criteria";
+import {placeIntent,placeResolved} from "./lib/search/destinations";
 
 function containsWholeTerm(text: string, term: string): boolean {
   const normalizedText = text
@@ -10439,7 +10440,8 @@ const isComplexQuery =
 const localParserUnderstoodLittle =
   recognizedLocalCount <= 1;
 
-const unresolvedPlace = /\b(?:in|nach|bei|auf)\s+(?!(?:der|dem|den|einem|einer|einen|die|das)\b)[^\s\d]+/.test(normalizedText) && !params.has("city") && !params.has("region") && !params.has("country");
+const requestedPlace=placeIntent(query);
+const unresolvedPlace = Boolean(requestedPlace&&!placeResolved(params,requestedPlace));
 const shouldUseOpenAI = unresolvedPlace ||
   recognizedLocalCount === 0 ||
   (
@@ -10477,7 +10479,7 @@ mapSearchParamsToDbFeatures(params);
 cleanupSearchParams(params);
 
 const finished = finishLocalCriteria(params,query,{checkIn,checkOut,guests:adults+children+babies,requireCapacity:guestsChanged,selectedType:selectedAccommodationType});
-if (unresolvedPlace && !["city","region","country"].some(key=>finished.params.has(key))) throw new Error("Das Reiseziel konnte nicht sicher erkannt werden. Bitte nenne den Ort und das Land genauer.");
+if (unresolvedPlace && requestedPlace&&!placeResolved(finished.params,requestedPlace)) throw new Error("Das Reiseziel konnte nicht sicher erkannt werden. Bitte nenne den Ort und das Land genauer.");
 if (![...finished.params.keys()].some(key=>!["guests","currency","check_in","check_out","nights","year"].includes(key))) throw new Error("Dein Reisewunsch konnte nicht sicher erkannt werden. Bitte nenne ein Reiseziel oder eine Unterkunftsart.");
 searchWarnings.push(...finished.warnings);
 setCheckIn(finished.params.get("check_in")!);

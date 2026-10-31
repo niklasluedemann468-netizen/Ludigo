@@ -108,12 +108,13 @@ export function createSearchController(query,respond){
 }
 export function createAiEndpoint(options={}){
  const calls=[];
+ const database=makeDatabase(options.tables??{});
  class MockOpenAI {
   constructor(config){calls.push({kind:'client',config});}
   responses={create:async request=>{calls.push({kind:'response',request});if(options.error)throw new Error('Simulated provider error');return options.response??{status:'completed',output_text:JSON.stringify(options.criteria??{})};}};
  }
- const {POST}=loader({'openai':{__esModule:true,default:MockOpenAI}},{process:{env:options.noKey?{}:{OPENAI_API_KEY:'test-only-placeholder'}}})(path.join(root,'app/api/search/route.ts'));
- return {POST,calls};
+ const {POST}=loader({'openai':{__esModule:true,default:MockOpenAI},'@/utils/supabase/server':{createClient:async()=>database.client},'@/app/lib/camping-supabase':{getCampingSupabase:()=>database.client}},{process:{env:options.noKey?{}:{OPENAI_API_KEY:'test-only-placeholder'}}})(path.join(root,'app/api/search/route.ts'));
+ return {POST,calls,databaseCalls:database.calls};
 }
 
 export async function inspectCoverage(){

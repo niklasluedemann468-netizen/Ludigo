@@ -2,6 +2,8 @@ import OpenAI from 'openai';
 import { knownFeatures } from '../../lib/search/catalog';
 import { accommodationTypes } from '../../lib/search/criteria';
 import { mergeAiCriteria } from '../../lib/search/ai-criteria';
+import { destinationData } from '../../lib/search/destination-data';
+import { resolveDestination } from '../../lib/search/destinations';
 // An instance-local guard complements the hosting provider's traffic limits.
 const requests = new Map<string, {
     start: number;
@@ -44,8 +46,13 @@ export async function POST(request: Request) {
         return Response.json({ error: 'Bitte gib einen Suchtext mit höchstens 3.000 Zeichen ein.' }, { status: 400 });
     if (!allowed(request))
         return Response.json({ error: 'Bitte warte kurz, bevor du erneut suchst.' }, { status: 429, headers: { 'Retry-After': '60' } });
+    const resolved = resolveDestination(query, await destinationData(query));
+    if (resolved.ambiguous)
+        return Response.json({ criteria: {}, needs_clarification: true });
+    if (resolved.destination)
+        return Response.json({ criteria: { ...resolved.destination, features: [] }, source: 'accommodation_data' });
     if (!process.env.OPENAI_API_KEY)
-        return Response.json({ error: 'Die ergänzende Textauswertung ist gerade nicht verfügbar.' }, { status: 503 });
+        return Response.json({ error: 'Die ergänzende Textauswertung ist gerade nicht verfügbar.', code: 'AI_NOT_CONFIGURED' }, { status: 503 });
     try {
         const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY, timeout: 8000, maxRetries: 0 });
         const response = await openai.responses.create({

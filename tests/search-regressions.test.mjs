@@ -189,3 +189,23 @@ test('Repeated AI requests receive an explicit rate limit response',async()=>{
  for(let i=0;i<21;i++)response=await endpoint.POST(new Request('https://audit.invalid/api/search',{method:'POST',headers:{'x-forwarded-for':'192.0.2.1'},body:JSON.stringify({query:'Reiseidee'})}));
  assert.equal(response.status,429);assert.equal(response.headers.get('retry-after'),'60');
 });
+
+test('A destination present in accommodation data resolves without an AI key',async()=>{
+ const endpoint=createAiEndpoint({noKey:true,tables:{camping_info_campsites:[{id:1,city:'Lazise',region:'Gardasee',country:'Italien'}]}});
+ const r=await endpoint.POST(new Request('https://audit.invalid/api/search',{method:'POST',body:JSON.stringify({query:'Hotel in Lazise'})}));
+ assert.equal(r.status,200);const data=await r.json();assert.equal(data.criteria.city,'Lazise');assert.equal(data.criteria.country,'Italien');assert.equal(data.source,'accommodation_data');assert.equal(endpoint.calls.length,0);
+});
+test('An ambiguous database city asks for clarification instead of choosing a country',async()=>{
+ const endpoint=createAiEndpoint({tables:{camping_info_campsites:[{id:1,city:'Springfield',country:'USA'},{id:2,city:'Springfield',country:'Kanada'}]}});
+ const r=await endpoint.POST(new Request('https://audit.invalid/api/search',{method:'POST',body:JSON.stringify({query:'Hotel in Springfield'})}));
+ assert.equal((await r.json()).needs_clarification,true);assert.equal(endpoint.calls.length,0);
+});
+test('An explicit town is not replaced by an already recognised surrounding region',async()=>{
+ const known=params(await parseSearch('Camping am Gardasee in Lazise',{criteria:{city:'Lazise',region:'Gardasee',country:'Italien'}}));assert.equal(known.get('city'),'Lazise');
+ const unknown=await parseSearch('Camping am Gardasee in Unbekanntort',{aiStatus:503});assert.equal(unknown.url,undefined);assert.ok(unknown.messages.some(x=>/Reiseziel/.test(x)));
+});
+test('Destination matching honours longest city names and explicit country disambiguation',()=>{
+ const {resolveDestination}=loadSearchModule('app/lib/search/destinations.ts');
+ let r=resolveDestination('Hotel in New York',[{city:'York',region:null,country:'Großbritannien'},{city:'New York',region:null,country:'USA'}]);assert.equal(r.destination.city,'New York');
+ r=resolveDestination('Hotel in Springfield, Kanada',[{city:'Springfield',region:null,country:'USA'},{city:'Springfield',region:null,country:'Kanada'}]);assert.equal(r.destination.country,'Kanada');
+});
