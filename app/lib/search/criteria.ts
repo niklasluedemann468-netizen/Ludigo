@@ -260,6 +260,12 @@ export function finishLocalCriteria(input: URLSearchParams, query: string, form:
         params.delete('max_total_price');
         params.delete('min_total_price');
         params.delete('total_budget');
+        const money=(value:string)=>Number(value.replace(/\.(?=\d{3}(?:\D|$))/g,'').replace(',','.'));
+        const amount='(\\d+(?:[.,]\\d+)*)\\s*(?:euro|€)';
+        const lower=[...text.matchAll(new RegExp(`\\b(?:mindestens|minimum|ab)\\s+${amount}`,'g'))].map(match=>money(match[1]));
+        const upper=[...text.matchAll(new RegExp(`\\b(?:höchstens|hoechstens|maximal|maximum|bis)\\s+${amount}`,'g'))].map(match=>money(match[1]));
+        if(lower.length)params.set('min_price_per_night',String(Math.max(...lower)));
+        if(upper.length)params.set('max_price_per_night',String(Math.min(...upper)));
     }
     const zeroPrice = text.match(/\b(?:bis|maximal|höchstens|hoechstens|max)\s+0(?:[.,]0{1,2})?\s*(?:euro|€)\s*((?:pro|je|die)\s+nacht)?/);
     if (zeroPrice)

@@ -2,7 +2,7 @@ import type { SearchResult } from './accommodation-types';
 import { canonicalFeature, featureAncestors, featureValue } from './search/features';
 import { readSearchCriteria } from './search/criteria';
 
-export type FeatureBadge = { key: string; icon: string; label: string; kind?: 'required' | 'preferred' | 'excluded' };
+export type FeatureBadge = { key: string; icon: string; label: string; detail?: string; kind?: 'required' | 'preferred' | 'excluded' };
 const groups: [string, Record<string, string>][] = [
   ['beach', { near_sea: 'Meernähe', seafront: 'Direkt am Meer', near_beach: 'Strandnähe', beachfront: 'Direkt am Strand', near_water: 'Wassernähe', accessible_beach: 'Barrierefreier Strandzugang' }],
   ['lake', { near_lake: 'Seenähe', lakefront: 'Direkt am See' }],
@@ -39,13 +39,16 @@ const groups: [string, Record<string, string>][] = [
 ];
 export const featurePresentation: Record<string, { icon: string; label: string }> = Object.fromEntries(groups.flatMap(([icon, labels]) => Object.entries(labels).map(([key, label]) => [key, { icon, label }])));
 
-export function resultFeatureBadges(item: SearchResult): FeatureBadge[] {
+export function resultFeatureBadges(item: SearchResult, criteria = ''): FeatureBadge[] {
   const confirmed = Object.keys(featurePresentation).filter(key => {
     if (item.feature_states && Object.hasOwn(item.feature_states, key)) return item.feature_states[key] === true;
     return item.features?.map(canonicalFeature).includes(key) || featureValue(item as unknown as Record<string, unknown>, key) === true;
   });
   const redundant = new Set(confirmed.flatMap(featureAncestors));
-  return confirmed.filter(key => !redundant.has(key)).map(key => ({ key, ...featurePresentation[key] }));
+  let requested: string[]=[];
+  try { const c=readSearchCriteria(new URLSearchParams(criteria)); requested=[...c.hard,...c.preferred]; } catch { /* Saved cards can predate the current criteria. */ }
+  const priority=(key:string)=>Number(requested.includes(key)||featureAncestors(key).some(parent=>requested.includes(parent)));
+  return confirmed.filter(key => !redundant.has(key)).sort((a,b)=>priority(b)-priority(a)).slice(0,5).map(key => ({ key, ...featurePresentation[key], ...(key==='near_sea'&&item.coast_distance_m!==null&&item.coast_distance_m!==undefined?{label:`Küste ca. ${Math.max(50,Math.ceil(item.coast_distance_m/50)*50)} m`,detail:'Luftlinie nach Kartenkoordinaten. Strandzugang und Wegstrecke beim Anbieter prüfen.'}:{}) }));
 }
 
 export function searchCriteriaBadges(value: string): FeatureBadge[] {

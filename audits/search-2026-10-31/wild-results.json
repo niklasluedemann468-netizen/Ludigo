@@ -1,0 +1,2182 @@
+{
+  "summary": {
+    "date": "2026-10-31",
+    "sourceCommit": "de659a49a0a205c4165b578fc40b14a77bfce857",
+    "appSourceSha256": "47562f2a7eaf1a8e3d603ab6a8294c234d78f96590f82a327f29b530607c8bd8",
+    "total": 50,
+    "passed": 50,
+    "failed": 0,
+    "method": "Wirkliche Searchbox → validierte Kriterien → wirkliche GET-Route; Datenbank/KI nur an externen Grenzen simuliert. 46 Ergebnisprüfungen und 4 erwartete Validierungsablehnungen."
+  },
+  "cases": [
+    {
+      "id": "W01",
+      "query": "Camping am Meer",
+      "expectedNames": [
+        "C1",
+        "C2",
+        "C7"
+      ],
+      "expectedValidationError": false,
+      "passed": true,
+      "params": {
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C1",
+        "C2",
+        "C7"
+      ],
+      "total": 3
+    },
+    {
+      "id": "W02",
+      "query": "am Meer",
+      "expectedNames": [
+        "C1",
+        "C2",
+        "C7",
+        "H5",
+        "A6"
+      ],
+      "expectedValidationError": false,
+      "passed": true,
+      "params": {
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A6",
+        "C1",
+        "C2",
+        "C7",
+        "H5"
+      ],
+      "total": 5
+    },
+    {
+      "id": "W03",
+      "query": "Camping am Meer mit Hund",
+      "expectedNames": [
+        "C1"
+      ],
+      "expectedValidationError": false,
+      "passed": true,
+      "params": {
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "dogs_allowed",
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C1"
+      ],
+      "total": 1
+    },
+    {
+      "id": "W04",
+      "query": "Camping am Meer ohne Hund",
+      "expectedNames": [
+        "C2"
+      ],
+      "expectedValidationError": false,
+      "passed": true,
+      "params": {
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "near_sea"
+        ],
+        "exclude_feature": [
+          "dogs_allowed"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C2"
+      ],
+      "total": 1
+    },
+    {
+      "id": "W05",
+      "query": "Camping am Meer mit Pool und WLAN",
+      "expectedNames": [
+        "C1"
+      ],
+      "expectedValidationError": false,
+      "passed": true,
+      "params": {
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "pool",
+          "wifi",
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C1"
+      ],
+      "total": 1
+    },
+    {
+      "id": "W06",
+      "query": "Camping am Meer, ein Pool wäre schön",
+      "expectedNames": [
+        "C1",
+        "C2",
+        "C7"
+      ],
+      "expectedValidationError": false,
+      "passed": true,
+      "params": {
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "pool",
+          "near_sea"
+        ],
+        "preferred_feature": [
+          "pool"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C1",
+        "C2",
+        "C7"
+      ],
+      "total": 3
+    },
+    {
+      "id": "W07",
+      "query": "Hotel in Berlin: WLAN muss sein, ein Pool wäre schön",
+      "expectedNames": [
+        "H4"
+      ],
+      "expectedValidationError": false,
+      "passed": true,
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "pool",
+          "wifi"
+        ],
+        "must_feature": [
+          "wifi"
+        ],
+        "preferred_feature": [
+          "pool"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "H4"
+      ],
+      "total": 1
+    },
+    {
+      "id": "W08",
+      "query": "Hotel in Berlin, Pool und WLAN wären schön",
+      "expectedNames": [
+        "H4",
+        "H8"
+      ],
+      "expectedValidationError": false,
+      "passed": true,
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "pool",
+          "wifi"
+        ],
+        "preferred_feature": [
+          "wifi",
+          "pool"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "H4",
+        "H8"
+      ],
+      "total": 2
+    },
+    {
+      "id": "W09",
+      "query": "Hotel in Berlin barrierefrei",
+      "expectedNames": [
+        "H4"
+      ],
+      "expectedValidationError": false,
+      "passed": true,
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "accessible"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "H4"
+      ],
+      "total": 1
+    },
+    {
+      "id": "W10",
+      "query": "Hotel in Berlin mit barrierefreiem Bad",
+      "expectedNames": [
+        "H4"
+      ],
+      "expectedValidationError": false,
+      "passed": true,
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "accessible_bathroom"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "H4"
+      ],
+      "total": 1
+    },
+    {
+      "id": "W11",
+      "query": "Hotel in Berlin mit rollstuhlgerechtem Bad und Aufzug",
+      "expectedNames": [
+        "H4"
+      ],
+      "expectedValidationError": false,
+      "passed": true,
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "accessible_bathroom",
+          "elevator"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "H4"
+      ],
+      "total": 1
+    },
+    {
+      "id": "W12",
+      "query": "Camping am Meer mit stufenlosem Zugang",
+      "expectedNames": [
+        "C1"
+      ],
+      "expectedValidationError": false,
+      "passed": true,
+      "params": {
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "step_free_access",
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C1"
+      ],
+      "total": 1
+    },
+    {
+      "id": "W13",
+      "query": "Camping am Meer, barrierefrei wäre schön",
+      "expectedNames": [
+        "C1",
+        "C2",
+        "C7"
+      ],
+      "expectedValidationError": false,
+      "passed": true,
+      "params": {
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "near_sea",
+          "accessible"
+        ],
+        "preferred_feature": [
+          "accessible"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C1",
+        "C2",
+        "C7"
+      ],
+      "total": 3
+    },
+    {
+      "id": "W14",
+      "query": "Camping am Meer für 6 Personen",
+      "expectedNames": [
+        "C1"
+      ],
+      "expectedValidationError": false,
+      "passed": true,
+      "params": {
+        "max_guests": [
+          "6"
+        ],
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C1"
+      ],
+      "total": 1
+    },
+    {
+      "id": "W15",
+      "query": "Camping am Meer für 2 Erwachsene und 1 Baby",
+      "expectedNames": [
+        "C1"
+      ],
+      "expectedValidationError": false,
+      "passed": true,
+      "params": {
+        "max_guests": [
+          "3"
+        ],
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C1"
+      ],
+      "total": 1
+    },
+    {
+      "id": "W16",
+      "query": "Ferienwohnung am Meer mit 3 Schlafzimmern",
+      "expectedNames": [
+        "A6"
+      ],
+      "expectedValidationError": false,
+      "passed": true,
+      "params": {
+        "type": [
+          "holiday_apartment"
+        ],
+        "min_bedrooms": [
+          "3"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A6"
+      ],
+      "total": 1
+    },
+    {
+      "id": "W17",
+      "query": "Ferienwohnung am Meer mit Küche, Waschmaschine und Balkon",
+      "expectedNames": [
+        "A6"
+      ],
+      "expectedValidationError": false,
+      "passed": true,
+      "params": {
+        "type": [
+          "holiday_apartment"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "kitchen",
+          "washing_machine",
+          "balcony",
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A6"
+      ],
+      "total": 1
+    },
+    {
+      "id": "W18",
+      "query": "Hotel in Berlin mit mindestens 4 Sternen",
+      "expectedNames": [
+        "H4"
+      ],
+      "expectedValidationError": false,
+      "passed": true,
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "min_hotel_stars": [
+          "4"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "H4"
+      ],
+      "total": 1
+    },
+    {
+      "id": "W19",
+      "query": "Hotel in Berlin mit höchstens 3 Sternen",
+      "expectedNames": [
+        "H8"
+      ],
+      "expectedValidationError": false,
+      "passed": true,
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "max_hotel_stars": [
+          "3"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "H8"
+      ],
+      "total": 1
+    },
+    {
+      "id": "W20",
+      "query": "Camping am Meer Bewertung mindestens 4,5",
+      "expectedNames": [
+        "C1",
+        "C7"
+      ],
+      "expectedValidationError": false,
+      "passed": true,
+      "params": {
+        "min_review_score": [
+          "4.5"
+        ],
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C1",
+        "C7"
+      ],
+      "total": 2
+    },
+    {
+      "id": "W21",
+      "query": "Camping am Meer Bewertung höchstens 4,2",
+      "expectedNames": [
+        "C2"
+      ],
+      "expectedValidationError": false,
+      "passed": true,
+      "params": {
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "max_review_score": [
+          "4.2"
+        ],
+        "feature": [
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C2"
+      ],
+      "total": 1
+    },
+    {
+      "id": "W22",
+      "query": "Camping am Meer bis 99,50 Euro pro Nacht",
+      "expectedNames": [
+        "C1",
+        "C2"
+      ],
+      "expectedValidationError": false,
+      "passed": true,
+      "params": {
+        "max_price_per_night": [
+          "99.5"
+        ],
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C1",
+        "C2"
+      ],
+      "total": 2
+    },
+    {
+      "id": "W23",
+      "query": "Camping am Meer mindestens 50 Euro und höchstens 80 Euro pro Nacht",
+      "expectedNames": [
+        "C1"
+      ],
+      "expectedValidationError": false,
+      "passed": true,
+      "params": {
+        "max_price_per_night": [
+          "80"
+        ],
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "min_price_per_night": [
+          "50"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C1"
+      ],
+      "total": 1
+    },
+    {
+      "id": "W24",
+      "query": "Camping am Meer für 6 Nächte bis 600 Euro insgesamt",
+      "expectedNames": [
+        "C1",
+        "C2"
+      ],
+      "expectedValidationError": false,
+      "passed": true,
+      "params": {
+        "nights": [
+          "6"
+        ],
+        "max_total_price": [
+          "600"
+        ],
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-07"
+        ],
+        "max_price_per_night": [
+          "100"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C1",
+        "C2"
+      ],
+      "total": 2
+    },
+    {
+      "id": "W25",
+      "query": "Camping am Meer bis 0 Euro pro Nacht",
+      "expectedNames": [],
+      "expectedValidationError": false,
+      "passed": true,
+      "params": {
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "max_price_per_night": [
+          "0"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [],
+      "total": 0
+    },
+    {
+      "id": "W26",
+      "query": "Hotel mit privatem Pool",
+      "expectedNames": [
+        "H4"
+      ],
+      "expectedValidationError": false,
+      "passed": true,
+      "params": {
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "private_pool"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "H4"
+      ],
+      "total": 1
+    },
+    {
+      "id": "W27",
+      "query": "Hotel mit privater Sauna",
+      "expectedNames": [
+        "H5"
+      ],
+      "expectedValidationError": false,
+      "passed": true,
+      "params": {
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "private_sauna"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "H5"
+      ],
+      "total": 1
+    },
+    {
+      "id": "W28",
+      "query": "Hotel mit bewachtem Parkplatz",
+      "expectedNames": [
+        "H5"
+      ],
+      "expectedValidationError": false,
+      "passed": true,
+      "params": {
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "parking",
+          "guarded_parking"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "H5"
+      ],
+      "total": 1
+    },
+    {
+      "id": "W29",
+      "query": "Camping in Wassernähe",
+      "expectedNames": [
+        "C1",
+        "C2",
+        "C3",
+        "C7"
+      ],
+      "expectedValidationError": false,
+      "passed": true,
+      "params": {
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "near_water"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C1",
+        "C2",
+        "C3",
+        "C7"
+      ],
+      "total": 4
+    },
+    {
+      "id": "W30",
+      "query": "Camping am See",
+      "expectedNames": [
+        "C3"
+      ],
+      "expectedValidationError": false,
+      "passed": true,
+      "params": {
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "near_lake"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C3"
+      ],
+      "total": 1
+    },
+    {
+      "id": "W31",
+      "query": "Camping am Fluss",
+      "expectedNames": [
+        "C2"
+      ],
+      "expectedValidationError": false,
+      "passed": true,
+      "params": {
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "near_river"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C2"
+      ],
+      "total": 1
+    },
+    {
+      "id": "W32",
+      "query": "Camping direkt am Strand",
+      "expectedNames": [
+        "C1"
+      ],
+      "expectedValidationError": false,
+      "passed": true,
+      "params": {
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "beachfront"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C1"
+      ],
+      "total": 1
+    },
+    {
+      "id": "W33",
+      "query": "Camping in Strandnähe",
+      "expectedNames": [
+        "C1",
+        "C2"
+      ],
+      "expectedValidationError": false,
+      "passed": true,
+      "params": {
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "near_beach"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C1",
+        "C2"
+      ],
+      "total": 2
+    },
+    {
+      "id": "W34",
+      "query": "Camping an der Nordsee",
+      "expectedNames": [
+        "C2"
+      ],
+      "expectedValidationError": false,
+      "passed": true,
+      "params": {
+        "region": [
+          "Nordsee"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C2"
+      ],
+      "total": 1
+    },
+    {
+      "id": "W35",
+      "query": "Hotel in Berlin im Stadtzentrum",
+      "expectedNames": [
+        "H4"
+      ],
+      "expectedValidationError": false,
+      "passed": true,
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "city_center"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "H4"
+      ],
+      "total": 1
+    },
+    {
+      "id": "W36",
+      "query": "Hotel in Berlin nahe Flughafen",
+      "expectedNames": [
+        "H8"
+      ],
+      "expectedValidationError": false,
+      "passed": true,
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "near_airport"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "H8"
+      ],
+      "total": 1
+    },
+    {
+      "id": "W37",
+      "query": "Ferienwohnung am Meer mit Hund und privatem Pool",
+      "expectedNames": [
+        "A6"
+      ],
+      "expectedValidationError": false,
+      "passed": true,
+      "params": {
+        "type": [
+          "holiday_apartment"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "dogs_allowed",
+          "private_pool",
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A6"
+      ],
+      "total": 1
+    },
+    {
+      "id": "W38",
+      "query": "Hotel am Meer mit All Inclusive und Fitnessraum",
+      "expectedNames": [
+        "H5"
+      ],
+      "expectedValidationError": false,
+      "passed": true,
+      "params": {
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "all_inclusive",
+          "gym",
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "H5"
+      ],
+      "total": 1
+    },
+    {
+      "id": "W39",
+      "query": "Camping, WLAN muss sein, Pool wäre schön",
+      "expectedNames": [
+        "C1",
+        "C2"
+      ],
+      "expectedValidationError": false,
+      "passed": true,
+      "params": {
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "pool",
+          "wifi"
+        ],
+        "must_feature": [
+          "wifi"
+        ],
+        "preferred_feature": [
+          "pool"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C1",
+        "C2"
+      ],
+      "total": 2
+    },
+    {
+      "id": "W40",
+      "query": "Hotel ohne Pool",
+      "expectedNames": [
+        "H8"
+      ],
+      "expectedValidationError": false,
+      "passed": true,
+      "params": {
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "exclude_feature": [
+          "pool"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "H8"
+      ],
+      "total": 1
+    },
+    {
+      "id": "W41",
+      "query": "Camping ohne Haustiere",
+      "expectedNames": [
+        "C2",
+        "C3"
+      ],
+      "expectedValidationError": false,
+      "passed": true,
+      "params": {
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "exclude_feature": [
+          "pets_allowed"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C2",
+        "C3"
+      ],
+      "total": 2
+    },
+    {
+      "id": "W42",
+      "query": "Camping am Meer mit eigenem Bad",
+      "expectedNames": [
+        "C1"
+      ],
+      "expectedValidationError": false,
+      "passed": true,
+      "params": {
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "private_bathroom",
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C1"
+      ],
+      "total": 1
+    },
+    {
+      "id": "W43",
+      "query": "Hotel in Berlin mit Klimaanlage und Balkon",
+      "expectedNames": [
+        "H4"
+      ],
+      "expectedValidationError": false,
+      "passed": true,
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "air_conditioning",
+          "balcony"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "H4"
+      ],
+      "total": 1
+    },
+    {
+      "id": "W44",
+      "query": "Camping am Meer vom 31. Februar bis 5. März",
+      "expectedNames": null,
+      "expectedValidationError": true,
+      "passed": true,
+      "params": {},
+      "message": "Bitte gib ein gültiges Kalenderdatum ein."
+    },
+    {
+      "id": "W45",
+      "query": "Camping mindestens 150 Euro und höchstens 80 Euro pro Nacht",
+      "expectedNames": null,
+      "expectedValidationError": true,
+      "passed": true,
+      "params": {},
+      "message": "Die Untergrenze darf nicht über der Obergrenze liegen."
+    },
+    {
+      "id": "W46",
+      "query": "Camping ohne Pool, Pool muss sein",
+      "expectedNames": null,
+      "expectedValidationError": true,
+      "passed": true,
+      "params": {},
+      "message": "Ein Merkmal ist gleichzeitig Pflicht und ausgeschlossen. Bitte präzisiere deine Suche."
+    },
+    {
+      "id": "W47",
+      "query": "Hotel vom 1. Juli 2027 bis 8. Juli 2027 für 3 Nächte",
+      "expectedNames": null,
+      "expectedValidationError": true,
+      "passed": true,
+      "params": {},
+      "message": "Die genannte Dauer passt nicht zum Datum."
+    },
+    {
+      "id": "W48",
+      "query": "Camping am Meer im Juli 2027",
+      "expectedNames": [
+        "C1",
+        "C2",
+        "C7"
+      ],
+      "expectedValidationError": false,
+      "passed": true,
+      "params": {
+        "month": [
+          "7"
+        ],
+        "year": [
+          "2027"
+        ],
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C1",
+        "C2",
+        "C7"
+      ],
+      "total": 3
+    },
+    {
+      "id": "W49",
+      "query": "Hotel in Heidelberg am Meer",
+      "expectedNames": [],
+      "expectedValidationError": false,
+      "passed": true,
+      "params": {
+        "city": [
+          "Heidelberg"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [],
+      "total": 0
+    },
+    {
+      "id": "W50",
+      "query": "Camping ohne Pool, aber mit WLAN und Hund",
+      "expectedNames": [],
+      "expectedValidationError": false,
+      "passed": true,
+      "params": {
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "dogs_allowed",
+          "wifi"
+        ],
+        "exclude_feature": [
+          "pool"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [],
+      "total": 0
+    }
+  ]
+}

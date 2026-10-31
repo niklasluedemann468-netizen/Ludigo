@@ -16,6 +16,7 @@ function loader(mocks,globals={}) {
   const modules=new Map();
   function load(filename) {
     if(modules.has(filename))return modules.get(filename).exports;
+    if(filename.endsWith('.json')){const value=JSON.parse(fs.readFileSync(filename,'utf8'));modules.set(filename,{exports:value});return value;}
     const module={exports:{}};modules.set(filename,module);
     if(!compiled.has(filename))compiled.set(filename,ts.transpileModule(fs.readFileSync(filename,'utf8'),{fileName:filename,compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.CommonJS,jsx:ts.JsxEmit.ReactJSX,esModuleInterop:true}}).outputText);
     const localRequire=(id)=>{

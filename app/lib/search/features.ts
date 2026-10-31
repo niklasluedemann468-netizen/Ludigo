@@ -41,14 +41,15 @@ export function featureAncestors(value: string): string[] {
     };
     return Object.keys(children).filter(parent => parent !== target && contains(parent));
 }
-export function featureValue(row: Record<string, unknown>, value: string, linked: ReadonlySet<string> = new Set()): boolean | null {
+export function featureValue(row: Record<string, unknown>, value: string, linked: ReadonlySet<string> = new Set(), source: ReadonlyMap<string,boolean|null> = new Map()): boolean | null {
     const key = canonicalFeature(value);
     const columns = [...new Set([...(featureColumns[key] ?? [key, `has_${key}`]), ...featureAliases(key).flatMap(alias => [alias, `has_${alias}`])])];
     const facts = columns.map(column => row[column]).filter(value => typeof value === 'boolean');
+    if (source.has(key)) { const value=source.get(key); if(typeof value!=='boolean')return null; facts.push(value); }
     if (facts.includes(true) && facts.includes(false)) return null;
     const explicit = facts[0];
     const linkedTrue = featureAliases(key).some(alias => linked.has(alias));
-    const childTrue = featureDescendants(key).some(child => featureValue(row, child, linked) === true);
+    const childTrue = featureDescendants(key).some(child => featureValue(row, child, linked, source) === true);
     // Conflicting data cannot confirm either a positive or a negative requirement.
     if (explicit === false && (linkedTrue || childTrue))
         return null;

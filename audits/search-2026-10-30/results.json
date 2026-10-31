@@ -1,8 +1,8 @@
 {
   "summary": {
-    "sourceCommit": "5234a688c2ef334f43dfd00b02cab56733c590fa",
+    "sourceCommit": "de659a49a0a205c4165b578fc40b14a77bfce857",
     "workingTreeModified": true,
-    "appSourceSha256": "6debc2425e11ecd0073c40150ca9803b8690e217992acb84b8cfb85e36c1dd83",
+    "appSourceSha256": "06e0d19445d0f5fddf0573d7447e42002d175cb3b96bc5f12e7afa9efb4a73af",
     "date": "2026-10-31",
     "total": 60,
     "passed": 60,
@@ -8187,6 +8187,7 @@
           "unknown_feature"
         ],
         "warnings": [
+          "Für diese Pflichtmerkmale fehlen im passenden Datenbestand bestätigte Angaben: besonderes Ausstattungsmerkmal.",
           "Nicht alle Unterkünfte enthalten bestätigte Angaben zu deinen Pflichtkriterien. Unbekannte Angaben erfüllen keine Pflichtfilter."
         ],
         "queries": [
