@@ -60,3 +60,11 @@ Die API gibt `availability.status = "not_checked"` zurück. Reisezeitraum und N�
 Der optionale KI-Fallback nutzt die vorhandene serverseitige `OPENAI_API_KEY`-Variable. `OPENAI_SEARCH_MODEL` kann das Modell konfigurieren; Standard ist `gpt-4.1-mini`. Die instanzlokale Begrenzung ersetzt keine hostingweite Begrenzung über mehrere Serverinstanzen.
 
 Technische Grundlage des strukturierten Ausgabeformats: [OpenAI Docs – Structured Outputs](https://developers.openai.com/api/docs/guides/structured-outputs). Die Modellfunktionen wurden anhand der [offiziellen Modellseite](https://developers.openai.com/api/docs/models/gpt-4.1-mini) geprüft.
+
+## Ergänzung nach der Live-Kontrolle am 31. Oktober 2026
+
+Der veröffentlichte Mindestbewertungsfilter lieferte beim realen Gardasee-Test nur noch 4,6/5 und 4,5/5. Die Dezimalgrenze wurde tatsächlich als `99.5` versendet und ein unmöglicher 31. Februar zurückgewiesen. Ein weiterer Live-Test mit Lazise zeigte jedoch, dass die zusätzliche externe Textauswertung ein Ziel nicht zuverlässig auflöste.
+
+Deshalb werden unbekannte Ortsangaben jetzt zunächst gegen die tatsächlich verfügbaren Orts-, Regions- und Länderwerte der aktiven Unterkunftsdaten geprüft. Diese Ortserkennung benötigt keinen KI-Schlüssel. Sie schreibt keine Daten und beachtet dieselben Zugriffswege wie die Unterkunftssuche. Ein ausdrücklich genannter kleinerer Ort geht nicht mehr verloren, nur weil die umgebende Region bereits erkannt wurde. Mehrdeutige Orts-/Länderpaare werden nicht geraten. Kann ein Ziel weder aus diesen Daten noch aus der optionalen Textauswertung sicher aufgelöst werden, bleibt die sichtbare Bitte um Präzisierung erhalten.
+
+Prüfstand nach dieser Ergänzung: 44 reguläre Tests sowie 60 Auditfälle, zusammen 104 erfolgreich und 0 fehlgeschlagen. TypeScript meldet ebenfalls keine Fehler. Die zusätzlichen Fälle umfassen datenbasierte Ortserkennung ohne KI-Zugang, Mehrdeutigkeiten, Ortsnamen innerhalb bereits erkannter Regionen und längere Städtenamen.
