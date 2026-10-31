@@ -1,4 +1,5 @@
 import { featureVocabulary } from './features';
+import { featurePresentation } from '../feature-badges';
 // Shared vocabulary for validated AI suggestions; database-only keys are resolved on the server.
 export const knownFeatures = new Set<string>([
     "accessible",
@@ -99,4 +100,6 @@ export const knownFeatures = new Set<string>([
     "work_friendly"
 ]);
 for (const feature of featureVocabulary)
+    knownFeatures.add(feature);
+for (const feature of Object.keys(featurePresentation))
     knownFeatures.add(feature);

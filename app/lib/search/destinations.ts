@@ -11,7 +11,7 @@ function whole(query: string, value: string): boolean {
     return escaped.length >= 3 && new RegExp(`(^|[^a-z0-9])${escaped}(?=$|[^a-z0-9])`).test(plain(query));
 }
 export function placeIntent(query: string): string | null {
-    const match = query.match(/\b(?:in|nach|bei|auf)\s+(?!(?:der|dem|den|einem|einer|einen|die|das)\b)([^\d,;.!?]+?)(?=\s+(?:\d|mit|für|fuer|bis|ab|am|im|vom|und|bewertung|mindestens|maximal)\b|[,;.!?]|$)/i);
+    const match = query.match(/\b(?:in|nach|bei|auf)\s+(?!(?:der|dem|den|einem|einer|einen|die|das|wassernähe|wassernaehe|strandnähe|strandnaehe|meernähe|meernaehe|seenähe|seenaehe)\b)([^\d,;.!?]+?)(?=\s+(?:\d|mit|ohne|für|fuer|bis|ab|am|im|vom|und|bewertung|mindestens|maximal|in(?=\s+(?:wasser|strand|meer|see|fluss))|muss|unbedingt|strandnah\w*|wassernähe|wassernaehe|direkt|barrierefrei\w*|barrierefreiheit|rollstuhl\w*|behinderten\w*|stufenlos\w*|pool|wlan|wifi|sauna)\b|[,;.!?]|$)/i);
     const value = match?.[1].trim();
     return value && value.length <= 120 ? value : null;
 }

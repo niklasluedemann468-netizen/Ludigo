@@ -3,6 +3,7 @@ import { getCampingSupabase } from '@/app/lib/camping-supabase';
 import type { SearchResult } from '../../lib/accommodation-types';
 import { readSearchCriteria, type SearchCriteria } from '../../lib/search/criteria';
 import { canonicalFeature, featureAliases, featureColumns, featureValue } from '../../lib/search/features';
+import { knownFeatures } from '../../lib/search/catalog';
 import {sortAccommodations} from '../../lib/accommodation-view';
 import type {SortOption} from '../../lib/accommodation-types';
 type Row = Record<string, unknown>;
@@ -51,7 +52,7 @@ function normalize(row: Row, source: 'own' | 'camping' | 'expedia', linked: Read
     if (id === null || !Number.isSafeInteger(id) || !name)
         return null;
     const states: Record<string, boolean | null> = {};
-    for (const key of new Set([...Object.keys(featureColumns), ...wanted, ...linked]))
+    for (const key of new Set([...knownFeatures, ...wanted, ...linked]))
         states[canonicalFeature(key)] = featureValue(row, key, linked);
     const rating = number(source === 'camping' ? row.rating : row.review_score);
     const scale = number(row.review_scale) ?? (source === 'camping' ? 5 : 10);
@@ -137,7 +138,7 @@ export async function GET(request: Request) {
         const supabase = await createClient();
         const ownRows = await scan(() => supabase.from('accommodations').select('*').eq('is_active', true).order('id', { ascending: true }), 'accommodations', warnings);
         const relevant = ownRows.filter(row => geoMatches(row, c) && (!c.type || row.accommodation_type === c.type));
-        const lookup = [...new Set([...requested, ...Object.keys(featureColumns)].flatMap(featureAliases))];
+        const lookup = [...new Set([...requested, ...knownFeatures].flatMap(featureAliases))];
         const featureRows = await scan(() => supabase.from('features').select('id,key').in('key', lookup).order('id', { ascending: true }), 'features', warnings);
         const keyById = new Map(featureRows.map(row => [Number(row.id), canonicalFeature(String(row.key))]));
         known = new Set([...known, ...keyById.values()]);

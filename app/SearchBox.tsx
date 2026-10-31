@@ -10535,7 +10535,7 @@ setMessage([summary,...warnings].join(" "));
     checkIn={checkIn} checkOut={checkOut} onCheckInChange={setCheckIn} onCheckOutChange={setCheckOut}
     adults={adults} childrenCount={children} babies={babies}
     onAdultsChange={v=>{setAdults(v);setGuestsChanged(true);}} onChildrenChange={v=>{setChildren(v);setGuestsChanged(true);}} onBabiesChange={v=>{setBabies(v);setGuestsChanged(true);}}
-    results={results} message={message} isSearching={isSearching} isListening={isListening} onListen={startListening}
+    results={results} searchCriteria={lastParams} message={message} isSearching={isSearching} isListening={isListening} onListen={startListening}
     sortOption={sortOption} totalCount={totalCount} hasMore={nextPage!==null} onLoadMore={()=>loadResults(sortOption,true)} onSortChange={value=>{if(lastParams)return loadResults(value,false);setSortOption(value);}}
     onSubmit={async (event) => {
       try { await handleSubmit(event); }

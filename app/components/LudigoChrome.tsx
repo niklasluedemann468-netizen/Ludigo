@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { ReactNode } from "react";
 export const worldLinks = [
  { href: "/#ergebnisse", title: "Unterkünfte", icon: "home", key: "accommodations" },
@@ -6,10 +7,10 @@ export const worldLinks = [
  { href: "/bike", title: "LÜDIGO Bike", icon: "bike", key: "bike" },
  { href: "/bustouren-senioren", title: "Bustouren für Senioren", icon: "bus", key: "bus" },
 ] as const;
-export function Icon({name}:{name:string}) { return <svg className="icon" aria-hidden="true"><use href={`#${name}`} /></svg>; }
-export function SiteHeader({right}:{right?:ReactNode}) { return <header className="site-header wrap"><Link className="brand" href="/" aria-label="LÜDIGO – Startseite"><img className="brand-logo" src="/images/ludigo-logo-transparent.png" width="2170" height="725" alt="LÜDIGO – Urlaub auf deine Art" /></Link><nav aria-label="Hauptnavigation"><Link href="/#ergebnisse">Unterkünfte</Link><Link href="/#reisewelten">Reisewelten</Link><Link href="/#so-gehts">So geht’s</Link></nav>{right || <Link className="saved-nav" href="/#suche">Unterkünfte <Icon name="arrow" /></Link>}</header>; }
+export function Icon({name}:{name:string}) { return <svg className="icon" aria-hidden="true" focusable="false"><use href={`#${name}`} /></svg>; }
+export function SiteHeader({right}:{right?:ReactNode}) { return <header className="site-header wrap"><Link className="brand" href="/" aria-label="LÜDIGO – Startseite"><Image className="brand-logo" sizes="(max-width:560px) 160px, 190px" src="/images/ludigo-logo-transparent.png" width="2170" height="725" alt="LÜDIGO – Urlaub auf deine Art" /></Link><nav aria-label="Hauptnavigation"><Link href="/#ergebnisse">Unterkünfte</Link><Link href="/#reisewelten">Reisewelten</Link><Link href="/#so-gehts">So geht’s</Link></nav>{right || <Link className="saved-nav" href="/#suche">Unterkünfte <Icon name="arrow" /></Link>}</header>; }
 export function WorldNavigation({current}:{current?:string}) { return <nav className="world-navigation wrap" aria-label="Reisewelten"><span className="nav-caption">DEINE REISEWELTEN</span>{worldLinks.map(w=><Link key={w.key} href={w.href} aria-current={current===w.key ? "page" : undefined}><Icon name={w.icon} />{w.title}</Link>)}</nav>; }
-export function SiteFooter() { return <footer className="wrap"><div className="footer-top"><Link className="brand" href="/" aria-label="LÜDIGO – Startseite"><img className="brand-logo" src="/images/ludigo-logo.png" width="2048" height="683" alt="LÜDIGO – Urlaub auf deine Art" loading="lazy" /></Link><p>Für alle, die ihren eigenen Weg in den Urlaub finden.</p><div><Link href="/impressum">Impressum</Link><Link href="/datenschutz">Datenschutz</Link></div></div><div className="footer-bottom"><p>© {new Date().getFullYear()} LÜDIGO · Urlaub auf deine Art</p><p>Die Angebotslinks können Affiliate-Links sein. Bei einer Buchung kann LÜDIGO eine Provision erhalten; für dich entstehen dadurch keine zusätzlichen Kosten. Deine Merkliste und gespeicherte Wunschprofile bleiben in diesem Browser.</p></div></footer>; }
+export function SiteFooter() { return <footer className="wrap"><div className="footer-top"><Link className="brand" href="/" aria-label="LÜDIGO – Startseite"><Image className="brand-logo" sizes="(max-width:560px) 160px, 190px" src="/images/ludigo-logo.png" width="2048" height="683" alt="LÜDIGO – Urlaub auf deine Art" loading="lazy" /></Link><p>Für alle, die ihren eigenen Weg in den Urlaub finden.</p><div><Link href="/reisen">Reisen buchen</Link><Link href="/impressum">Impressum</Link><Link href="/datenschutz">Datenschutz</Link></div></div><div className="footer-bottom"><p>© {new Date().getFullYear()} LÜDIGO · Urlaub auf deine Art</p><p>Die Angebotslinks können Affiliate-Links sein. Bei einer Buchung kann LÜDIGO eine Provision erhalten; für dich entstehen dadurch keine zusätzlichen Kosten. Deine Merkliste und gespeicherte Wunschprofile bleiben in diesem Browser.</p></div></footer>; }
 export function IconSprite() { return (<svg className="svg-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
     <symbol id="heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></symbol>
     <symbol id="compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="m16 8-2.5 5.5L8 16l2.5-5.5Z"/></symbol>
@@ -23,6 +24,19 @@ export function IconSprite() { return (<svg className="svg-sprite" xmlns="http:/
     <symbol id="bike" viewBox="0 0 24 24"><circle cx="5" cy="17" r="4"/><circle cx="19" cy="17" r="4"/><path d="m5 17 5-10 6 10H5m6-7h6l2 7m-2-7-2-6h4M7 7h6"/></symbol>
     <symbol id="bus" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="16" rx="3"/><path d="M4 12h16M8 19v3m8-3v3M8 16h.01M16 16h.01M12 3v9"/></symbol>
     <symbol id="sea" viewBox="0 0 24 24"><circle cx="17" cy="6" r="3"/><path d="M2 14q2.5-3 5 0t5 0 5 0 5 0M2 20q2.5-3 5 0t5 0 5 0 5 0"/></symbol>
+    <symbol id="beach" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 18 0c-2-2-4-2-6 0-2-2-4-2-6 0-2-2-4-2-6 0ZM12 3v15a3 3 0 0 0 6 0M2 22q3-2 6 0t6 0 6 0"/></symbol>
+    <symbol id="water" viewBox="0 0 24 24"><path d="M12 2c-2 4-7 8-7 12a7 7 0 0 0 14 0c0-4-5-8-7-12ZM8 15a4 4 0 0 0 4 4"/></symbol>
+    <symbol id="eye" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="steps" viewBox="0 0 24 24"><path d="M2 20h20M3 17l16-12M3 7h5v5h5v5h5M3 3l18 18"/></symbol>
+    <symbol id="elevator" viewBox="0 0 24 24"><rect x="3" y="2" width="18" height="20" rx="2"/><path d="M8 7l4-3 4 3M8 17l4 3 4-3M12 10v4"/></symbol>
+    <symbol id="bathroom" viewBox="0 0 24 24"><path d="M4 12V5a3 3 0 0 1 6 0M2 12h20v3a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5v-3Zm4 8v2m12-2v2M7 7h6"/></symbol>
+    <symbol id="hearing" viewBox="0 0 24 24"><path d="M6 9a6 6 0 1 1 12 0c0 5-5 5-5 9a3 3 0 0 1-6 0m3-9a2 2 0 1 1 4 0c0 2-3 2-3 4M2 6v8m20-8v8"/></symbol>
+    <symbol id="spa" viewBox="0 0 24 24"><path d="M12 20C3 20 1 13 2 9c5 0 8 3 10 6 2-3 5-6 10-6 1 4-1 11-10 11ZM12 15c-4-4-4-8 0-13 4 5 4 9 0 13Z"/></symbol>
+    <symbol id="fitness" viewBox="0 0 24 24"><path d="M3 8v8m4-11v14m10-14v14m4-11v8M7 12h10M1 10v4m22-4v4"/></symbol>
+    <symbol id="balcony" viewBox="0 0 24 24"><path d="M5 12V3h14v9M12 3v9M2 12h20M3 12v9h18v-9M7 13v7m5-7v7m5-7v7"/></symbol>
+    <symbol id="shield" viewBox="0 0 24 24"><path d="m12 2 9 4v6c0 5-9 10-9 10S3 17 3 12V6l9-4Zm-5 10 3 3 7-7"/></symbol>
+    <symbol id="transport" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="15" rx="3"/><path d="M5 11h14M8 18l-3 4m11-4 3 4M9 15h.01m6 0h.01M9 3V1h6v2"/></symbol>
+    <symbol id="payment" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M2 9h20M6 15h4m4 0h4"/></symbol>
     <symbol id="lake" viewBox="0 0 24 24"><path d="M3 14c4-4 14-4 18 0M3 19q3-2 6 0t6 0 6 0M5 12V4m0 4L2 5m3 5 3-4M17 10V3m0 4 3-3"/></symbol>
     <symbol id="mountains" viewBox="0 0 24 24"><path d="m2 21 8-17 5 10 3-6 4 13H2Zm5-11 3 3 2-3"/></symbol>
     <symbol id="city" viewBox="0 0 24 24"><path d="M2 21h20M4 21V9h7m0 12V3h9v18M7 12v1m0 3v1m7-10v1m3-1v1m-3 3v1m3-1v1m-3 3v1m3-1v1"/></symbol>

@@ -1,3 +1,4 @@
+import { accessibilityTerms } from './accessibility';
 export const featureColumns: Record<string, readonly string[]> = {
     pool: ['has_pool', 'pool'], wifi: ['has_wifi', 'wifi'],
     parking: ['has_parking', 'parking'], restaurant: ['has_restaurant', 'restaurant'],
@@ -18,6 +19,10 @@ const children: Record<string, string[]> = {
     balcony: ['private_balcony', 'sunny_balcony'], terrace: ['private_terrace', 'sunny_terrace', 'covered_terrace'], garden: ['private_garden'],
     garage: ['private_garage'], near_beach: ['beachfront'], near_sea: ['seafront'], near_lake: ['lakefront'], tv: ['smart_tv'], kitchen: ['full_kitchen', 'kitchenette'],
 };
+Object.assign(aliases, { grab_bars: 'grab_rails', accessible_sink: 'low_sink', bicycle_rental: 'bike_rental' });
+Object.assign(children, { near_water: ['near_sea', 'near_lake', 'near_river', 'near_beach'], elevator: ['wheelchair_elevator'], shower: ['roll_in_shower'], parking: [...children.parking, 'accessible_parking', 'parking_near_entrance'], pool: [...children.pool, 'accessible_pool'] });
+for (const key of [...Object.keys(accessibilityTerms), 'near_water', 'near_river', 'near_beach', 'beachfront', 'seafront', 'lakefront'])
+    if (!(key in featureColumns)) featureColumns[key] = [key, `has_${key}`];
 children.parking.push('guarded_parking', 'gated_parking', 'secure_underground_parking');
 export const featureVocabulary = [...new Set([...Object.keys(featureColumns), ...Object.keys(children), ...Object.values(children).flat()])];
 export function canonicalFeature(value: string): string { return aliases[value] ?? value; }
@@ -38,8 +43,10 @@ export function featureAncestors(value: string): string[] {
 }
 export function featureValue(row: Record<string, unknown>, value: string, linked: ReadonlySet<string> = new Set()): boolean | null {
     const key = canonicalFeature(value);
-    const columns = featureColumns[key] ?? [key, `has_${key}`];
-    const explicit = columns.map(column => row[column]).find(value => typeof value === 'boolean');
+    const columns = [...new Set([...(featureColumns[key] ?? [key, `has_${key}`]), ...featureAliases(key).flatMap(alias => [alias, `has_${alias}`])])];
+    const facts = columns.map(column => row[column]).filter(value => typeof value === 'boolean');
+    if (facts.includes(true) && facts.includes(false)) return null;
+    const explicit = facts[0];
     const linkedTrue = featureAliases(key).some(alias => linked.has(alias));
     const childTrue = featureDescendants(key).some(child => featureValue(row, child, linked) === true);
     // Conflicting data cannot confirm either a positive or a negative requirement.
