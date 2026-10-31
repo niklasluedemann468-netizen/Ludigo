@@ -37,6 +37,7 @@ export function IconSprite() { return (<svg className="svg-sprite" xmlns="http:/
     <symbol id="shield" viewBox="0 0 24 24"><path d="m12 2 9 4v6c0 5-9 10-9 10S3 17 3 12V6l9-4Zm-5 10 3 3 7-7"/></symbol>
     <symbol id="transport" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="15" rx="3"/><path d="M5 11h14M8 18l-3 4m11-4 3 4M9 15h.01m6 0h.01M9 3V1h6v2"/></symbol>
     <symbol id="payment" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M2 9h20M6 15h4m4 0h4"/></symbol>
+    <symbol id="info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10h.01"/></symbol>
     <symbol id="lake" viewBox="0 0 24 24"><path d="M3 14c4-4 14-4 18 0M3 19q3-2 6 0t6 0 6 0M5 12V4m0 4L2 5m3 5 3-4M17 10V3m0 4 3-3"/></symbol>
     <symbol id="mountains" viewBox="0 0 24 24"><path d="m2 21 8-17 5 10 3-6 4 13H2Zm5-11 3 3 2-3"/></symbol>
     <symbol id="city" viewBox="0 0 24 24"><path d="M2 21h20M4 21V9h7m0 12V3h9v18M7 12v1m0 3v1m7-10v1m3-1v1m-3 3v1m3-1v1m-3 3v1m3-1v1"/></symbol>

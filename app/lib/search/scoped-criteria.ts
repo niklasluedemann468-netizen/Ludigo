@@ -11,7 +11,7 @@ const waterTerms: Record<string, readonly string[]> = {
   near_water: ['am wasser', 'wassernähe', 'wassernaehe', 'in wassernähe', 'in wassernaehe'],
   near_river: ['am fluss', 'flussnähe', 'flussnaehe', 'in flussnähe'],
 };
-const terms = { ...accessibilityTerms, ...waterTerms };
+const terms = { ...accessibilityTerms, ...waterTerms, private_bathroom: ['eigenes bad','eigenem bad','eigenen bad','eigenes badezimmer','eigenem badezimmer','privates bad','privatem bad','privates badezimmer','privatem badezimmer'] };
 const keys = new Set(Object.keys(terms));
 type Mention = { feature: string; start: number; end: number };
 
@@ -41,7 +41,7 @@ export function applyScopedCriteria(params: URLSearchParams, query: string): voi
     const selected: Mention[] = [];
     for (const mention of mentions.sort((a, b) => (b.end - b.start) - (a.end - a.start)))
       if (!selected.some(other => mention.start < other.end && mention.end > other.start)) selected.push(mention);
-    const signals = [...clause.matchAll(/\b(?:wäre schön|waere schoen|wäre gut|waere gut|gern|gerne|am liebsten|bevorzugt|wenn möglich|wenn moeglich|idealerweise|optional|muss|unbedingt|zwingend|pflicht|brauche|benötige|benoetige)\b/giu)];
+    const signals = [...clause.matchAll(/\b(?:wären? schön|waeren? schoen|wären? gut|waeren? gut|gern|gerne|am liebsten|bevorzugt|wenn möglich|wenn moeglich|idealerweise|optional|muss|unbedingt|zwingend|pflicht|brauche|benötige|benoetige)\b/giu)];
     for (const mention of selected) {
       const before = clause.slice(0, mention.start), after = clause.slice(mention.end);
       if (/^\s*(?:(?:ist|sind)\s+)?(?:nicht (?:nötig|noetig|erforderlich)|egal|kein muss)\b/.test(after)) continue;

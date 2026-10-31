@@ -4,6 +4,9 @@ import type { SearchResult } from '../../lib/accommodation-types';
 import { readSearchCriteria, type SearchCriteria } from '../../lib/search/criteria';
 import { canonicalFeature, featureAliases, featureColumns, featureValue } from '../../lib/search/features';
 import { knownFeatures } from '../../lib/search/catalog';
+import { sourceFeatureFacts } from '../../lib/search/source-features';
+import { nearbyCoastDistance } from '../../lib/search/coast-distance';
+import { featurePresentation } from '../../lib/feature-badges';
 import {sortAccommodations} from '../../lib/accommodation-view';
 import type {SortOption} from '../../lib/accommodation-types';
 type Row = Record<string, unknown>;
@@ -51,9 +54,12 @@ function normalize(row: Row, source: 'own' | 'camping' | 'expedia', linked: Read
     const id = number(row.id), name = string(row.name);
     if (id === null || !Number.isSafeInteger(id) || !name)
         return null;
+    const facts=sourceFeatureFacts(row);
+    const coastDistance=featureValue(row,'near_sea',linked,facts)===null && !facts.has('near_sea') && !linked.has('near_sea') && !facts.has('seafront') && !linked.has('seafront') ? nearbyCoastDistance(row.latitude,row.longitude) : null;
+    if(coastDistance!==null)facts.set('near_sea',true);
     const states: Record<string, boolean | null> = {};
     for (const key of new Set([...knownFeatures, ...wanted, ...linked]))
-        states[canonicalFeature(key)] = featureValue(row, key, linked);
+        states[canonicalFeature(key)] = featureValue(row, key, linked, facts);
     const rating = number(source === 'camping' ? row.rating : row.review_score);
     const scale = number(row.review_scale) ?? (source === 'camping' ? 5 : 10);
     const reviewScale = scale === 5 ? 5 : 10;
@@ -68,7 +74,7 @@ function normalize(row: Row, source: 'own' | 'camping' | 'expedia', linked: Read
         currency: string(row.currency), review_score: validRating, review_scale: reviewScale, review_normalized: validRating === null ? null : validRating / reviewScale * 10,
         review_count: number(row.review_count), hotel_stars: number(row.hotel_stars), max_guests: number(row.max_guests), apartment_bedrooms: number(row.apartment_bedrooms),
         is_featured: row.is_featured === true, provider_name: source === 'camping' ? 'camping.info' : source === 'expedia' ? 'Expedia' : string(row.provider_name),
-        feature_states: states, features: Object.keys(states).filter(key => states[key] === true),
+        feature_states: states, features: Object.keys(states).filter(key => states[key] === true), coast_distance_m:coastDistance,
         available_months: Array.isArray(row.available_months) ? row.available_months.map(Number).filter(value => Number.isInteger(value) && value >= 1 && value <= 12) : null,
     };
     // Keep badges and the search filter on the same confirmed feature data.
@@ -91,7 +97,7 @@ function matches(item: SearchResult, c: SearchCriteria): boolean {
     if (c.number('max_guests') !== null && (item.max_guests === null || item.max_guests === undefined || item.max_guests < c.number('max_guests')!))
         return false;
     const month = c.number('month');
-    if (month !== null && !item.available_months?.includes(month))
+    if (month !== null && item.available_months !== null && item.available_months !== undefined && !item.available_months.includes(month))
         return false;
     if (!explicitNumberMatches(item.hotel_stars, c.number('hotel_stars'), c.number('min_hotel_stars'), c.number('max_hotel_stars')))
         return false;
@@ -214,7 +220,8 @@ export async function GET(request: Request) {
         for (const [key, value] of Object.entries(item.feature_states ?? {}))
             if (value !== null)
                 known.add(key);
-    const missing = c.hard.filter(key => !known.has(key));
+    const missing = c.hard.filter(key => !known.has(key) || !all.some(item=>typeof item.feature_states?.[key]==='boolean'));
+    if(missing.length)warnings.add(`Für diese Pflichtmerkmale fehlen im passenden Datenbestand bestätigte Angaben: ${missing.map(key=>featurePresentation[key]?.label??'besonderes Ausstattungsmerkmal').join(', ')}.`);
     const candidates = missing.length ? [] : all.filter(item => matches(item, c));
     candidates.sort((a, b) => rank(b, c) - rank(a, c) || (a.provider_name ?? '').localeCompare(b.provider_name ?? '') || a.id - b.id);
     if (!candidates.length && all.length && (c.hard.length || c.excluded.length || c.number('max_guests') !== null || c.number('month') !== null || c.number('max_price_per_night') !== null || c.number('max_total_price') !== null))

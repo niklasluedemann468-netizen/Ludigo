@@ -43,6 +43,7 @@ washing_machine?: boolean;
   apartment_bedrooms?: number | null;
 
   near_sea?: boolean | null;
+  coast_distance_m?: number | null;
   near_lake?: boolean | null;
   near_mountains?: boolean | null;
 
