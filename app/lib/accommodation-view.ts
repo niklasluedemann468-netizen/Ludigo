@@ -9,11 +9,16 @@ export function safeOfferUrl(value: unknown): string | null {
   try { const url = new URL(value); return ['https:', 'http:'].includes(url.protocol) ? url.href : null; }
   catch { return null; }
 }
+export function normalizedRating(item:SearchResult):number|null {
+  const rating=usableNumber(item.review_score);
+  const scale=usableNumber(item.review_scale)??(item.provider_name==='camping.info'?5:10);
+  return rating!==null&&rating<=scale?rating/scale*10:null;
+}
 export function sortAccommodations(items: SearchResult[], option: SortOption): SearchResult[] {
   return [...items].sort((a,b) => {
     if (option === 'best') return 0;
-    const first=usableNumber(option==='rating'?a.review_score:a.price_min);
-    const second=usableNumber(option==='rating'?b.review_score:b.price_min);
+    const first=option==='rating'?normalizedRating(a):usableNumber(a.price_min);
+    const second=option==='rating'?normalizedRating(b):usableNumber(b.price_min);
     if(first===null)return second===null?0:1;
     if(second===null)return -1;
     return option==='price_asc'?first-second:second-first;

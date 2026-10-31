@@ -260,7 +260,7 @@ export function normalizeSearchText(
 ): string {
   const cleanedText = value
     .toLowerCase()
-    .replace(/[.,!?;:]/g, " ")
+    .replace(/[!?;:]|(?<!\d)[.,]|[.,](?!\d)/g, " ")
     .replace(/\s+/g, " ")
     .trim();
 

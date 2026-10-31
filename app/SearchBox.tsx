@@ -19,8 +19,10 @@ import { parseHotelStars } from "./lib/parsers/hotelStarsParser";
 import { parsePreferences } from "./lib/parsers/preferenceParser";
 
 
-import type { SearchResult } from "./lib/accommodation-types";
+import type { SearchResult,SortOption } from "./lib/accommodation-types";
 import AccommodationPage from "./components/AccommodationPage";
+import {finishLocalCriteria} from "./lib/search/criteria";
+import {mergeAiCriteria} from "./lib/search/ai-criteria";
 
 function containsWholeTerm(text: string, term: string): boolean {
   const normalizedText = text
@@ -76,6 +78,11 @@ twoWeeksLater.setDate(today.getDate() + 14);
 
 const [checkIn, setCheckIn] = useState(() => formatDateForInput(today));
 const [checkOut, setCheckOut] = useState(() => formatDateForInput(twoWeeksLater));
+const [guestsChanged, setGuestsChanged] = useState(false);
+const [sortOption,setSortOption]=useState<SortOption>('best');
+const [nextPage,setNextPage]=useState<number|null>(null);
+const [totalCount,setTotalCount]=useState(0);
+const [lastParams,setLastParams]=useState('');
 
   function startListening() {
   const SpeechRecognition =
@@ -236,75 +243,13 @@ const accommodationTypeSynonyms = {
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setIsSearching(true);
+    if (query.trim().length>3000) throw new Error("Bitte beschränke deinen Suchtext auf 3.000 Zeichen.");
     const params = new URLSearchParams();
 
     if (selectedAccommodationType) {
   params.set("type", selectedAccommodationType);
 }
     
-    try {
-  const aiResponse = await fetch("/api/search", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ query }),
-  });
-
-  if (aiResponse.ok) {
-  const aiData = await aiResponse.json();
-  const criteria = aiData.criteria;
-
-  if (criteria?.country) {
-  params.set("country", criteria.country);
-}
-
-if (criteria?.region) {
-  params.set("region", criteria.region);
-}
-
-if (criteria?.city) {
-  params.set("city", criteria.city);
-}
-
-  if (criteria?.guests) {
-    params.set("max_guests", String(criteria.guests));
-  }
-
-  if (criteria?.month) {
-    params.set("month", String(criteria.month));
-  }
-
-  if (criteria?.accommodation_type && !selectedAccommodationType) {
-  params.set("type", criteria.accommodation_type);
-}
-
-  if (criteria?.max_price_per_night) {
-    params.set("max_price", String(criteria.max_price_per_night));
-  }
-
-  if (
-    criteria?.total_budget &&
-    criteria?.nights &&
-    Number(criteria.nights) > 0
-  ) {
-    const maxPricePerNight = Math.floor(
-      Number(criteria.total_budget) / Number(criteria.nights)
-    );
-
-    params.set("max_price", String(maxPricePerNight));
-  }
-
-  if (Array.isArray(criteria?.features)) {
-    for (const feature of criteria.features) {
-      params.append("feature", feature);
-    }
-  }
-}
-} catch (error) {
-  console.log("KI momentan nicht verfügbar:", error);
-}
-
     const text = query.trim().toLowerCase();
 
     if (!text) {
@@ -401,7 +346,7 @@ if (matchedLocation) {
 
 const isCampingSearch = Object.values(campingSynonyms)
   .flat()
-  .some((term) => normalizedText.includes(term.toLowerCase()));
+  .some((term) => containsWholeTerm(normalizedText, term));
 
 if (isCampingSearch && !selectedAccommodationType) {
   params.set("type", "campsite");
@@ -409,7 +354,7 @@ if (isCampingSearch && !selectedAccommodationType) {
 
 for (const [featureKey, synonyms] of Object.entries(campingSynonyms)) {
   const matched = synonyms.some((term) =>
-    normalizedText.includes(term.toLowerCase())
+    containsWholeTerm(normalizedText, term)
   );
 
   if (matched) {
@@ -419,7 +364,7 @@ for (const [featureKey, synonyms] of Object.entries(campingSynonyms)) {
 
 for (const [typeKey, synonyms] of Object.entries(accommodationTypeSynonyms)) {
   const matched = synonyms.some((term) =>
-    normalizedText.includes(term.toLowerCase())
+    containsWholeTerm(normalizedText, term)
   );
 
   if (matched && !isCampingSearch) {
@@ -504,7 +449,7 @@ const childrenMatch = text.match(
 
 const babiesMatch = text.match(
   new RegExp(
-    `${numberPattern}\\s*(babys|baby|säuglinge|saeuglinge|säugling|saeugling|infants|infant)`,
+    `(${numberPattern})\\s*(?:babys|baby|säuglinge|saeuglinge|säugling|saeugling|infants|infant)`,
     "i"
   )
 );
@@ -707,7 +652,7 @@ const maxBedroomsMatch = normalizedText.match(
 );
 
 const exactBedroomsMatch = normalizedText.match(
-  /(?:^|\s)(\d+)\s*(?:schlafzimmer|schlafräume|schlafraeume)(?=\s|$)/
+  /(?:^|\s)(\d+)\s*(?:schlafzimmern?|schlafräumen?|schlafraeumen?)(?=\s|$)/
 );
 
 if (minBedroomsMatch) {
@@ -724,6 +669,7 @@ if (
   !maxBedroomsMatch
 ) {
   params.set("min_bedrooms", exactBedroomsMatch[1]);
+  if (/\bgenau\b/.test(text)) params.set("max_bedrooms",exactBedroomsMatch[1]);
 }
 
 
@@ -1926,9 +1872,6 @@ if (
 // ---------------------------------------------------------
 
 if (
-  normalizedText.includes("barrierefrei") ||
-  normalizedText.includes("barrierefreie") ||
-  normalizedText.includes("barrierefreies") ||
   normalizedText.includes("rollstuhlgerecht") ||
   normalizedText.includes("rollstuhlgeeignet") ||
   normalizedText.includes("für rollstuhl geeignet") ||
@@ -9869,42 +9812,8 @@ if (
 // => max_price_per_night=100
 // =========================================================
 
-if (
-  params.has("max_total_price") &&
-  params.has("nights") &&
-  !params.has("max_price_per_night")
-) {
-  const totalBudget =
-    Number(
-      params.get("max_total_price")
-    );
-
-  const nights =
-    Number(
-      params.get("nights")
-    );
-
-  if (
-    totalBudget > 0 &&
-    nights > 0
-  ) {
-    const calculatedNightlyBudget =
-      Math.floor(
-        totalBudget / nights
-      );
-
-    if (calculatedNightlyBudget > 0) {
-      params.set(
-        "max_price_per_night",
-        calculatedNightlyBudget.toString()
-      );
-    }
-  }
-}
-
-
 for (const [monthName, monthNumber] of Object.entries(monthMap)) {
-  if (text.includes(monthName)) {
+  if (containsWholeTerm(text,monthName)) {
     params.set("month", monthNumber.toString());
     break;
   }
@@ -9931,35 +9840,35 @@ for (const [monthName, monthNumber] of Object.entries(monthMap)) {
     }
 
     if (
-  text.includes("meer") ||
-  text.includes("strand") ||
-  text.includes("küste") ||
-  text.includes("kueste")
+  containsWholeTerm(text,"meer") || containsWholeTerm(text,"nordsee") || containsWholeTerm(text,"ostsee") ||
+  containsWholeTerm(text,"küste") ||
+  containsWholeTerm(text,"kueste")
 ) {
   params.append("feature", "near_sea");
 }
 
     if (
-  text.includes("see") ||
-  text.includes("seeufer")
+  containsWholeTerm(text,"see") ||
+  containsWholeTerm(text,"seeufer")
 ) {
   params.append("feature", "near_lake");
 }
 
     if (
-  text.includes("berg") ||
-  text.includes("berge") ||
-  text.includes("gebirge") ||
-  text.includes("alpen")
+  containsWholeTerm(text,"berg") ||
+  containsWholeTerm(text,"berge") ||
+  /\b(?:in|bei|nahe)\s+den\s+bergen\b/.test(text) ||
+  containsWholeTerm(text,"gebirge") ||
+  containsWholeTerm(text,"alpen")
 ) {
   params.append("feature", "near_mountains");
 }
 
     if (
-  text.includes("hund") ||
-  text.includes("hunde") ||
-  text.includes("haustier") ||
-  text.includes("haustiere")
+  containsWholeTerm(text,"hund") ||
+  containsWholeTerm(text,"hunde") ||
+  containsWholeTerm(text,"haustier") ||
+  containsWholeTerm(text,"haustiere")
 ) {
   params.append("feature", "dogs_allowed");
 }
@@ -9995,7 +9904,7 @@ if (
   params.append("feature", "parking");
 }
 
-if (text.includes("kostenloser parkplatz")) {
+if (/\bkostenlose(?:r|m|n)?\s+parkplatz\b/.test(text)) {
   params.append("feature", "free_parking");
 }
 
@@ -10188,8 +10097,8 @@ if (text.includes("hochstuhl")) {
 
 // Haustiere
 if (
-  text.includes("haustier") ||
-  text.includes("haustiere")
+  containsWholeTerm(text,"haustier") ||
+  containsWholeTerm(text,"haustiere")
 ) {
   params.append("feature", "pets_allowed");
 }
@@ -10530,7 +10439,8 @@ const isComplexQuery =
 const localParserUnderstoodLittle =
   recognizedLocalCount <= 1;
 
-const shouldUseOpenAI =
+const unresolvedPlace = /\b(?:in|nach|bei|auf)\s+(?!(?:der|dem|den|einem|einer|einen|die|das)\b)[^\s\d]+/.test(normalizedText) && !params.has("city") && !params.has("region") && !params.has("country");
+const shouldUseOpenAI = unresolvedPlace ||
   recognizedLocalCount === 0 ||
   (
     isComplexQuery &&
@@ -10547,239 +10457,14 @@ console.log(
   }
 );
 
+const searchWarnings: string[] = [];
 if (shouldUseOpenAI) {
   try {
-    console.log("OPENAI-FALLBACK WIRD VERWENDET");
-
-    const aiResponse = await fetch("/api/search", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        query,
-      }),
-    });
-
-    if (aiResponse.ok) {
-      const aiData = await aiResponse.json();
-      const criteria = aiData?.criteria;
-
-      if (criteria) {
-        const setIfMissing = (
-  key: string,
-  value: unknown
-) => {
-  // Leere KI-Werte ignorieren
-  if (
-    value === null ||
-    value === undefined ||
-    value === ""
-  ) {
-    return;
-  }
-
-  // Lokaler Parser hat Vorrang
-  if (params.has(key)) {
-    console.log(
-      `KI-WERT IGNORIERT (${key}):`,
-      value,
-      "Lokaler Wert:",
-      params.getAll(key)
-    );
-
-    return;
-  }
-
-  params.set(
-    key,
-    String(value)
-  );
-
-  console.log(
-    `KI-WERT ERGÄNZT (${key}):`,
-    value
-  );
-};
-
-        setIfMissing(
-          "country",
-          criteria.country
-        );
-
-        setIfMissing(
-          "region",
-          criteria.region
-        );
-
-        setIfMissing(
-          "city",
-          criteria.city
-        );
-
-        setIfMissing(
-          "month",
-          criteria.month
-        );
-
-        setIfMissing(
-          "nights",
-          criteria.nights
-        );
-
-        setIfMissing(
-          "max_guests",
-          criteria.guests
-        );
-
-        setIfMissing(
-          "max_price_per_night",
-          criteria.max_price_per_night
-        );
-
-        setIfMissing(
-          "total_budget",
-          criteria.total_budget
-        );
-
-        setIfMissing(
-          "type",
-          criteria.accommodation_type
-        );
-
-        // ============================================================
-// OPENAI-FEATURES ABSICHERN
-// Nur bekannte Feature-Keys übernehmen.
-// ============================================================
-
-const allowedAiFeatures = new Set([
-  "near_sea",
-  "near_beach",
-  "beachfront",
-  "near_lake",
-  "near_mountains",
-  "city_center",
-  "quiet_place",
-  "dogs_allowed",
-  "pets_allowed",
-  "family_friendly",
-  "accessible",
-  "wheelchair_accessible",
-
-  "wifi",
-  "parking",
-  "free_parking",
-  "garage",
-  "air_conditioning",
-
-  "balcony",
-  "terrace",
-  "garden",
-  "kitchen",
-  "washing_machine",
-
-  "pool",
-  "indoor_pool",
-  "outdoor_pool",
-  "private_pool",
-  "hot_tub",
-  "sauna",
-  "spa",
-  "gym",
-
-  "breakfast",
-  "breakfast_included",
-  "half_board",
-  "full_board",
-  "all_inclusive",
-  "ultra_all_inclusive",
-  "self_catering",
-
-  "restaurant",
-  "bar",
-
-  "hiking",
-  "cycling",
-  "skiing",
-  "golf",
-  "tennis",
-  "diving",
-  "snorkeling",
-  "windsurfing",
-
-  "non_smoking",
-  "private_bathroom",
-  "bathtub",
-  "shower",
-  "baby_cot",
-  "self_check_in",
-]);
-
-if (Array.isArray(criteria.features)) {
-  const existingFeatures =
-    new Set(params.getAll("feature"));
-
-  for (const rawFeature of criteria.features) {
-    if (typeof rawFeature !== "string") {
-      continue;
-    }
-
-    const feature =
-      rawFeature.trim().toLowerCase();
-
-    if (!allowedAiFeatures.has(feature)) {
-      console.warn(
-        "UNBEKANNTES KI-FEATURE IGNORIERT:",
-        feature
-      );
-
-      continue;
-    }
-
-    if (existingFeatures.has(feature)) {
-      continue;
-    }
-
-    params.append(
-      "feature",
-      feature
-    );
-
-    existingFeatures.add(feature);
-
-    console.log(
-      "KI-FEATURE ERGÄNZT:",
-      feature
-    );
-  }
+    const aiResponse = await fetch("/api/search", {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({query})});
+    if (aiResponse.ok) mergeAiCriteria(params,(await aiResponse.json())?.criteria,selectedAccommodationType);
+    else searchWarnings.push("Die ergänzende Textauswertung ist gerade nicht verfügbar. Deine lokal erkannten Kriterien wurden verwendet.");
+  } catch {searchWarnings.push("Die ergänzende Textauswertung ist gerade nicht verfügbar. Deine lokal erkannten Kriterien wurden verwendet.");}
 }
-
-        console.log(
-          "OPENAI-FALLBACK ERGEBNIS:",
-          params.toString()
-        );
-      }
-    } else {
-      console.warn(
-        "OpenAI-Fallback fehlgeschlagen:",
-        aiResponse.status
-      );
-    }
-  } catch (error) {
-    console.error(
-      "OpenAI-Fallback Fehler:",
-      error
-    );
-  }
-}
-
-if (!params.has("check_in") && checkIn) params.set("check_in", checkIn);
-if (!params.has("check_out") && checkOut) params.set("check_out", checkOut);
-if (!params.has("nights") && checkIn && checkOut) {
-  const nights = Math.round((Date.parse(checkOut) - Date.parse(checkIn)) / 86400000);
-  if (nights > 0) params.set("nights", String(nights));
-}
-if (!params.has("max_guests")) params.set("max_guests", String(adults + children + babies));
 
 console.log("VOR CLEANUP:", params.toString());
 
@@ -10791,75 +10476,20 @@ mapSearchParamsToDbFeatures(params);
 // Sicherheitshalber nach dem Mapping noch einmal bereinigen
 cleanupSearchParams(params);
 
-// ============================================================
-// MVP: NUR API-RELEVANTE SUCHPARAMETER WEITERGEBEN
-// ============================================================
-
-const allowedApiParams = new Set([
-  // Ort
-  "country",
-  "region",
-  "city",
-
-  // Unterkunft
-  "type",
-
-  // Reisezeit
-  "month",
-  "nights",
-  "check_in",
-  "check_out",
-
-  // Gäste
-  "max_guests",
-
-  // Preis
-  "min_price",
-  "max_price",
-  "min_price_per_night",
-  "max_price_per_night",
-  "min_total_price",
-  "max_total_price",
-  "total_budget",
-
-  // Qualität
-  "min_review_score",
-  "hotel_stars",
-  "min_hotel_stars",
-  "max_hotel_stars",
-
-  // Unterkunftsdaten
-  "min_bedrooms",
-  "max_bedrooms",
-
-  // Features
-  "feature",
-  "must_feature",
-  "preferred_feature",
-
-  // Bereits direkt DB-gestützte Eigenschaften
-  "near_sea",
-  "near_lake",
-  "near_mountains",
-  "dogs_allowed",
-  "has_pool",
-]);
-
-for (const key of [...params.keys()]) {
-  if (!allowedApiParams.has(key)) {
-    console.log(
-      "SEMANTISCHER PARAMETER NICHT AN API GESENDET:",
-      key
-    );
-
-    params.delete(key);
-  }
-}
-
-console.log("SUCHPARAMETER:", params.toString());
+const finished = finishLocalCriteria(params,query,{checkIn,checkOut,guests:adults+children+babies,requireCapacity:guestsChanged,selectedType:selectedAccommodationType});
+if (unresolvedPlace && !["city","region","country"].some(key=>finished.params.has(key))) throw new Error("Das Reiseziel konnte nicht sicher erkannt werden. Bitte nenne den Ort und das Land genauer.");
+if (![...finished.params.keys()].some(key=>!["guests","currency","check_in","check_out","nights","year"].includes(key))) throw new Error("Dein Reisewunsch konnte nicht sicher erkannt werden. Bitte nenne ein Reiseziel oder eine Unterkunftsart.");
+searchWarnings.push(...finished.warnings);
+setCheckIn(finished.params.get("check_in")!);
+setCheckOut(finished.params.get("check_out")!);
+console.log("SUCHPARAMETER:",finished.params.toString());
+finished.params.set('sort',sortOption);
+finished.params.set('page','1');
+finished.params.set('page_size','60');
+setLastParams(finished.params.toString());
 
 const response = await fetch(
-  `/api/accommodations?${params.toString()}`
+  `/api/accommodations?${finished.params.toString()}`
 );
 
 const data = await response.json();
@@ -10869,47 +10499,45 @@ if (!response.ok) {
     data.error ?? "Bei der Suche ist ein Fehler aufgetreten."
   );
   setResults([]);
+  setNextPage(null);setTotalCount(0);setLastParams('');
   setIsSearching(false);
   return;
 }
 
-setIsSearching(false);
 setResults(data.accommodations ?? []);
+setNextPage(data.next_page??null);setTotalCount(data.total??data.accommodations?.length??0);
+const warnings = [...new Set([...searchWarnings,...(Array.isArray(data.warnings)?data.warnings:[])])];
+if (Array.isArray(data.missing_features) && data.missing_features.length) warnings.push("Für einige Pflichtmerkmale fehlen bestätigte Unterkunftsdaten. Bitte passe deine Kriterien an.");
+const summary = data.accommodations?.length ? `${data.total??data.accommodations.length} passende Unterkunft(en) gefunden.` : "Keine passende Unterkunft gefunden.";
+setMessage([summary,...warnings].join(" "));
 
-setResults(data.accommodations ?? []);
-
-setTimeout(() => {
-  document
-    .getElementById("ergebnisse")
-    ?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-}, 200);
-
-if ((data.accommodations ?? []).length === 0) {
-  setMessage("Keine passende Unterkunft gefunden.");
-} else {
-  setMessage(`${data.accommodations.length} passende Unterkunft(en) gefunden.`);
-}
-
-    if ((data.accommodations ?? []).length === 0) {
-      setMessage("Keine passende Unterkunft gefunden.");
-    } else {
-      setMessage(`${data.accommodations.length} passende Unterkunft(en) gefunden.`);
-    }
   }
 
+  async function loadResults(sort:SortOption,append:boolean){
+    if(isSearching||!lastParams||(append&&!nextPage))return;
+    setIsSearching(true);
+    try{
+      const requestParams=new URLSearchParams(lastParams);requestParams.set('sort',sort);requestParams.set('page',String(append?nextPage:1));
+      const response=await fetch(`/api/accommodations?${requestParams.toString()}`),data=await response.json();
+      if(!response.ok)throw new Error(data.error||'Die Ergebnisse konnten nicht geladen werden.');
+      const received:SearchResult[]=data.accommodations??[];
+      setResults(previous=>append?[...new Map([...previous,...received].map(item=>[item.id,item])).values()]:received);
+      setSortOption(sort);setNextPage(data.next_page??null);setTotalCount(data.total??received.length);setLastParams(requestParams.toString());
+      setMessage([`${data.total??received.length} passende Unterkunft(en) gefunden.`,...(data.warnings??[])].join(' '));
+    }catch(error){setMessage(error instanceof Error?error.message:'Die Ergebnisse konnten nicht geladen werden. Bitte versuche es erneut.');}
+    finally{setIsSearching(false);}
+  }
   return <AccommodationPage
     query={query} onQueryChange={setQuery}
     selectedType={selectedAccommodationType} onTypeChange={setSelectedAccommodationType}
     checkIn={checkIn} checkOut={checkOut} onCheckInChange={setCheckIn} onCheckOutChange={setCheckOut}
     adults={adults} childrenCount={children} babies={babies}
-    onAdultsChange={setAdults} onChildrenChange={setChildren} onBabiesChange={setBabies}
+    onAdultsChange={v=>{setAdults(v);setGuestsChanged(true);}} onChildrenChange={v=>{setChildren(v);setGuestsChanged(true);}} onBabiesChange={v=>{setBabies(v);setGuestsChanged(true);}}
     results={results} message={message} isSearching={isSearching} isListening={isListening} onListen={startListening}
+    sortOption={sortOption} totalCount={totalCount} hasMore={nextPage!==null} onLoadMore={()=>loadResults(sortOption,true)} onSortChange={value=>{if(lastParams)return loadResults(value,false);setSortOption(value);}}
     onSubmit={async (event) => {
       try { await handleSubmit(event); }
-      catch { setMessage("Die Suche konnte gerade nicht geladen werden. Bitte versuche es erneut."); setResults([]); }
+      catch (error) { setMessage(error instanceof Error ? error.message : "Die Suche konnte gerade nicht geladen werden. Bitte versuche es erneut."); setResults([]);setNextPage(null);setTotalCount(0);setLastParams(''); }
       finally { setIsSearching(false); }
     }}
   />;

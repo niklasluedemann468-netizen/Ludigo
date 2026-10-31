@@ -1,3 +1,4 @@
+import {canonicalFeature} from '../search/features';
 type SearchParams = URLSearchParams;
 
 
@@ -333,6 +334,17 @@ const featureMappings: FeatureMapping[] = [
   {
     sourceKey: "location_feature",
     sourceValues: {
+      beachfront: "beachfront",
+      near_beach: "near_beach",
+      city_center: "city_center",
+      old_town: "old_town",
+      near_airport: "near_airport",
+      near_train_station: "near_train_station",
+      near_attractions: "near_attractions",
+      rural: "rural",
+      nature: "nature",
+      mountain_location: "near_mountains",
+      ski_in_ski_out: "ski_in_ski_out",
       near_sea: "near_sea",
       near_lake: "near_lake",
 
@@ -463,6 +475,7 @@ function mapSemanticFeatures(
         params,
         mappedFeature
       );
+      if(canonicalFeature(sourceValue)!==canonicalFeature(mappedFeature))appendUniqueFeature(params,canonicalFeature(sourceValue));
     }
   }
 }
