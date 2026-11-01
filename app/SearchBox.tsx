@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { cities } from "./data/cities";
 import { locations } from "./data/locations";
 import { boardTypes } from "./data/boardTypes";
@@ -21,7 +21,7 @@ import { parsePreferences } from "./lib/parsers/preferenceParser";
 
 import type { SearchResult,SortOption } from "./lib/accommodation-types";
 import AccommodationPage from "./components/AccommodationPage";
-import {finishLocalCriteria} from "./lib/search/criteria";
+import {finishLocalCriteria,explicitDateRange} from "./lib/search/criteria";
 import {applyTextBudget} from "./lib/search/text-budget";
 import {applyScopedCriteria} from "./lib/search/scoped-criteria";
 import {mergeAiCriteria} from "./lib/search/ai-criteria";
@@ -86,6 +86,11 @@ const [sortOption,setSortOption]=useState<SortOption>('best');
 const [nextPage,setNextPage]=useState<number|null>(null);
 const [totalCount,setTotalCount]=useState(0);
 const [lastParams,setLastParams]=useState('');
+const requestSequence=useRef(0);
+function invalidateSearch(){
+  requestSequence.current++;
+  setResults([]);setTotalCount(0);setNextPage(null);setLastParams('');setMessage('');setIsSearching(false);
+}
 
   function startListening() {
   const SpeechRecognition =
@@ -108,6 +113,7 @@ const [lastParams,setLastParams]=useState('');
   recognition.onresult = (event: any) => {
   const spokenText = event.results[0][0].transcript;
 
+  invalidateSearch();
   setQuery(spokenText);
   setMessage("Sprache erkannt.");
 }; 
@@ -243,9 +249,13 @@ const accommodationTypeSynonyms = {
   ],
 };
 
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>,requestId:number) {
     event.preventDefault();
     setIsSearching(true);
+    setResults([]);
+    setTotalCount(0);
+    setNextPage(null);
+    setLastParams('');
     if (query.trim().length>3000) throw new Error("Bitte beschränke deinen Suchtext auf 3.000 Zeichen.");
     const params = new URLSearchParams();
 
@@ -10397,6 +10407,10 @@ if (
 
 applyScopedCriteria(params,query);
 applyTextBudget(params,query,Number(params.get('max_guests')??adults+children+babies));
+const typeTerms = [...Object.values(accommodationTypeSynonyms).flat(), 'camping', 'campingplatz', 'campingurlaub', 'zeltplatz'];
+const typedAccommodation = typeTerms.some(term=>containsWholeTerm(normalizedText,term));
+const typeOnlyText = normalizedText.replace(/\b(?:ich|suche|such|finde|bitte|mir|ein|eine|einen|einem|einer|nach)\b/gu,' ').replace(/\s+/g,' ').trim();
+const onlyAccommodationType = typeTerms.some(term=>normalizeSearchText(term)===typeOnlyText);
 const meaningfulLocalParams = [
   "country",
   "region",
@@ -10422,7 +10436,7 @@ const meaningfulLocalParams = [
 
 const recognizedLocalKeys =
   meaningfulLocalParams.filter((key) =>
-    params.has(key)
+    params.has(key) && (key!=='type'||typedAccommodation)
   );
 
 const recognizedLocalCount =
@@ -10446,7 +10460,9 @@ const localParserUnderstoodLittle =
 
 const requestedPlace=placeIntent(query);
 const unresolvedPlace = Boolean(requestedPlace&&!placeResolved(params,requestedPlace));
-const shouldUseOpenAI = unresolvedPlace ||
+const needsAiUnderstanding = recognizedLocalCount===0 ||
+  (recognizedLocalCount===1&&recognizedLocalKeys[0]==='type'&&!onlyAccommodationType);
+const shouldUseOpenAI = unresolvedPlace || needsAiUnderstanding ||
   recognizedLocalCount === 0 ||
   (
     isComplexQuery &&
@@ -10464,12 +10480,21 @@ console.log(
 );
 
 const searchWarnings: string[] = [];
+let aiUnderstoodQuery = false;
+let aiNeedsClarification = false;
 if (shouldUseOpenAI) {
   try {
-    const aiResponse = await fetch("/api/search", {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({query})});
-    if (aiResponse.ok) mergeAiCriteria(params,(await aiResponse.json())?.criteria,selectedAccommodationType);
-    else searchWarnings.push("Die ergänzende Textauswertung ist gerade nicht verfügbar. Deine lokal erkannten Kriterien wurden verwendet.");
-  } catch {searchWarnings.push("Die ergänzende Textauswertung ist gerade nicht verfügbar. Deine lokal erkannten Kriterien wurden verwendet.");}
+    const aiResponse = await fetch("/api/search", {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({query}),signal:AbortSignal.timeout(20000)});
+    const aiData = await aiResponse.json();
+    if(requestSequence.current!==requestId)return;
+    if (aiResponse.ok) {
+      const aiParams=new URLSearchParams();
+      mergeAiCriteria(aiParams,aiData?.criteria,null);
+      aiUnderstoodQuery=[...aiParams.keys()].some(key=>key!=='type'||!typedAccommodation);
+      aiNeedsClarification=aiData?.needs_clarification===true;
+      mergeAiCriteria(params,aiData?.criteria,selectedAccommodationType);
+    } else searchWarnings.push(typeof aiData?.error==='string'?aiData.error:'Die ergänzende Textauswertung ist gerade nicht verfügbar.');
+  } catch {searchWarnings.push("Die ergänzende Textauswertung ist gerade nicht verfügbar.");}
 }
 
 console.log("VOR CLEANUP:", params.toString());
@@ -10483,7 +10508,11 @@ mapSearchParamsToDbFeatures(params);
 cleanupSearchParams(params);
 
 const finished = finishLocalCriteria(params,query,{checkIn,checkOut,guests:adults+children+babies,requireCapacity:guestsChanged,selectedType:selectedAccommodationType});
+if(requestSequence.current!==requestId)return;
+const understoodLocally = [...finished.params.keys()].some(key=>!['type','guests','currency','check_in','check_out','nights','year'].includes(key)&&(key!=='max_guests'||params.has('max_guests'))) || params.has('nights') || explicitDateRange(query.toLowerCase())!==null;
+if(aiNeedsClarification)throw new Error('Dein Reisewunsch ist mehrdeutig. Bitte nenne das Reiseziel und die Kriterien genauer.');
 if (unresolvedPlace && requestedPlace&&!placeResolved(finished.params,requestedPlace)) throw new Error("Das Reiseziel konnte nicht sicher erkannt werden. Bitte nenne den Ort und das Land genauer.");
+if(needsAiUnderstanding&&!aiUnderstoodQuery&&!understoodLocally)throw new Error([...finished.warnings,...searchWarnings,'Dein Reisewunsch konnte nicht sicher erkannt werden. Es werden 0 Treffer angezeigt. Bitte nenne das Reiseziel oder die Kriterien genauer.'].join(' '));
 if (![...finished.params.keys()].some(key=>!["guests","currency","check_in","check_out","nights","year"].includes(key))) throw new Error("Dein Reisewunsch konnte nicht sicher erkannt werden. Bitte nenne ein Reiseziel oder eine Unterkunftsart.");
 searchWarnings.push(...finished.warnings);
 setCheckIn(finished.params.get("check_in")!);
@@ -10499,6 +10528,7 @@ const response = await fetch(
 );
 
 const data = await response.json();
+if(requestSequence.current!==requestId)return;
 
 if (!response.ok) {
   setMessage(
@@ -10521,30 +10551,33 @@ setMessage([summary,...warnings].join(" "));
 
   async function loadResults(sort:SortOption,append:boolean){
     if(isSearching||!lastParams||(append&&!nextPage))return;
+    const requestId=++requestSequence.current;
     setIsSearching(true);
     try{
       const requestParams=new URLSearchParams(lastParams);requestParams.set('sort',sort);requestParams.set('page',String(append?nextPage:1));
       const response=await fetch(`/api/accommodations?${requestParams.toString()}`),data=await response.json();
+      if(requestSequence.current!==requestId)return;
       if(!response.ok)throw new Error(data.error||'Die Ergebnisse konnten nicht geladen werden.');
       const received:SearchResult[]=data.accommodations??[];
       setResults(previous=>append?[...new Map([...previous,...received].map(item=>[item.id,item])).values()]:received);
       setSortOption(sort);setNextPage(data.next_page??null);setTotalCount(data.total??received.length);setLastParams(requestParams.toString());
       setMessage([`${data.total??received.length} passende Unterkunft(en) gefunden.`,...(data.warnings??[])].join(' '));
-    }catch(error){setMessage(error instanceof Error?error.message:'Die Ergebnisse konnten nicht geladen werden. Bitte versuche es erneut.');}
-    finally{setIsSearching(false);}
+    }catch(error){if(requestSequence.current===requestId)setMessage(error instanceof Error?error.message:'Die Ergebnisse konnten nicht geladen werden. Bitte versuche es erneut.');}
+    finally{if(requestSequence.current===requestId)setIsSearching(false);}
   }
   return <AccommodationPage
-    query={query} onQueryChange={setQuery}
-    selectedType={selectedAccommodationType} onTypeChange={setSelectedAccommodationType}
-    checkIn={checkIn} checkOut={checkOut} onCheckInChange={setCheckIn} onCheckOutChange={setCheckOut}
+    query={query} onQueryChange={value=>{invalidateSearch();setQuery(value);}}
+    selectedType={selectedAccommodationType} onTypeChange={value=>{invalidateSearch();setSelectedAccommodationType(value);}}
+    checkIn={checkIn} checkOut={checkOut} onCheckInChange={value=>{invalidateSearch();setCheckIn(value);}} onCheckOutChange={value=>{invalidateSearch();setCheckOut(value);}}
     adults={adults} childrenCount={children} babies={babies}
-    onAdultsChange={v=>{setAdults(v);setGuestsChanged(true);}} onChildrenChange={v=>{setChildren(v);setGuestsChanged(true);}} onBabiesChange={v=>{setBabies(v);setGuestsChanged(true);}}
+    onAdultsChange={v=>{invalidateSearch();setAdults(v);setGuestsChanged(true);}} onChildrenChange={v=>{invalidateSearch();setChildren(v);setGuestsChanged(true);}} onBabiesChange={v=>{invalidateSearch();setBabies(v);setGuestsChanged(true);}}
     results={results} searchCriteria={lastParams} message={message} isSearching={isSearching} isListening={isListening} onListen={startListening}
     sortOption={sortOption} totalCount={totalCount} hasMore={nextPage!==null} onLoadMore={()=>loadResults(sortOption,true)} onSortChange={value=>{if(lastParams)return loadResults(value,false);setSortOption(value);}}
     onSubmit={async (event) => {
-      try { await handleSubmit(event); }
-      catch (error) { setMessage(error instanceof Error ? error.message : "Die Suche konnte gerade nicht geladen werden. Bitte versuche es erneut."); setResults([]);setNextPage(null);setTotalCount(0);setLastParams(''); }
-      finally { setIsSearching(false); }
+      const requestId=++requestSequence.current;
+      try { await handleSubmit(event,requestId); }
+      catch (error) { if(requestSequence.current===requestId){setMessage(error instanceof Error ? error.message : "Die Suche konnte gerade nicht geladen werden. Bitte versuche es erneut."); setResults([]);setNextPage(null);setTotalCount(0);setLastParams('');} }
+      finally { if(requestSequence.current===requestId)setIsSearching(false); }
     }}
   />;
 }

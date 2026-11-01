@@ -145,7 +145,7 @@ export type FormContext = {
     requireCapacity: boolean;
     selectedType: string | null;
 };
-function explicitDateRange(text: string): [
+export function explicitDateRange(text: string): [
     string,
     string
 ] | null {

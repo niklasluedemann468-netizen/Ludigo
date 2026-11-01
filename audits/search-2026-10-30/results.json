@@ -1,8 +1,8 @@
 {
   "summary": {
-    "sourceCommit": "109d8a1e576e3dc65e0b5a3e5889d3cf7c3fc148",
+    "sourceCommit": "5c4cc2979c946423dc418fa6a1fd5d345d42200b",
     "workingTreeModified": true,
-    "appSourceSha256": "29a7feca67a867a2d1424286026c9ff434ddd6e2438d1d177804b97aa082783c",
+    "appSourceSha256": "6d25a1579e3149b3603475c2bf95351e2794b5ffb9c796cd51eb376eddb764be",
     "date": "2026-11-01",
     "total": 60,
     "passed": 60,
@@ -1134,12 +1134,12 @@
             "60"
           ]
         },
-        "aiCalls": 0,
+        "aiCalls": 1,
         "normalized": "hotel budget 700 euro",
         "dropped": [],
         "messages": [
           "Suche läuft...",
-          "Keine passende Unterkunft gefunden."
+          "Keine passende Unterkunft gefunden. Die ergänzende Textauswertung ist gerade nicht verfügbar."
         ]
       }
     },
@@ -1236,12 +1236,12 @@
             "60"
           ]
         },
-        "aiCalls": 0,
+        "aiCalls": 1,
         "normalized": "ferienwohnung mit 3 schlafzimmern",
         "dropped": [],
         "messages": [
           "Suche läuft...",
-          "Keine passende Unterkunft gefunden."
+          "Keine passende Unterkunft gefunden. Die ergänzende Textauswertung ist gerade nicht verfügbar."
         ]
       }
     },
@@ -1281,12 +1281,12 @@
             "60"
           ]
         },
-        "aiCalls": 0,
+        "aiCalls": 1,
         "normalized": "ferienwohnung mindestens 2 schlafzimmer",
         "dropped": [],
         "messages": [
           "Suche läuft...",
-          "Keine passende Unterkunft gefunden."
+          "Keine passende Unterkunft gefunden. Die ergänzende Textauswertung ist gerade nicht verfügbar."
         ]
       }
     },
@@ -1329,12 +1329,12 @@
             "60"
           ]
         },
-        "aiCalls": 0,
+        "aiCalls": 1,
         "normalized": "hotel vom 01.06.2027 bis 08.06.2027",
         "dropped": [],
         "messages": [
           "Suche läuft...",
-          "Keine passende Unterkunft gefunden."
+          "Keine passende Unterkunft gefunden. Die ergänzende Textauswertung ist gerade nicht verfügbar."
         ]
       }
     },
@@ -1625,12 +1625,12 @@
             "60"
           ]
         },
-        "aiCalls": 0,
+        "aiCalls": 1,
         "normalized": "hotel nahe flughafen",
         "dropped": [],
         "messages": [
           "Suche läuft...",
-          "Keine passende Unterkunft gefunden."
+          "Keine passende Unterkunft gefunden. Die ergänzende Textauswertung ist gerade nicht verfügbar."
         ]
       }
     },
