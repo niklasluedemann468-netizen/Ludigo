@@ -22,6 +22,8 @@ import { parsePreferences } from "./lib/parsers/preferenceParser";
 import type { SearchResult,SortOption } from "./lib/accommodation-types";
 import AccommodationPage from "./components/AccommodationPage";
 import {finishLocalCriteria} from "./lib/search/criteria";
+import {applyTextBudget} from "./lib/search/text-budget";
+import {applyScopedCriteria} from "./lib/search/scoped-criteria";
 import {mergeAiCriteria} from "./lib/search/ai-criteria";
 import {placeIntent,placeResolved} from "./lib/search/destinations";
 
@@ -10393,6 +10395,8 @@ if (
 // Bereits vorhandene lokale Werte werden NICHT überschrieben.
 // ============================================================
 
+applyScopedCriteria(params,query);
+applyTextBudget(params,query,Number(params.get('max_guests')??adults+children+babies));
 const meaningfulLocalParams = [
   "country",
   "region",

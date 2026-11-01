@@ -1,0 +1,5023 @@
+{
+  "summary": {
+    "date": "2026-11-01",
+    "sourceCommit": "109d8a1e576e3dc65e0b5a3e5889d3cf7c3fc148",
+    "appSourceSha256": "3a16a7482a556bb1c2edba4593006b4142d924b5eea638fa0e3d57864802c6e4",
+    "total": 100,
+    "passed": 100,
+    "failed": 0,
+    "method": "100 unterschiedliche Mehrfachanfragen: wirkliche Searchbox und GET-Route; nur Datenbank/KI an den externen Grenzen simuliert; unabhängige erwartete Ergebnismengen."
+  },
+  "cases": [
+    {
+      "id": "K001",
+      "query": "Camping am Meer mit Hund",
+      "expectedNames": [
+        "C1",
+        "C9"
+      ],
+      "passed": true,
+      "params": {
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "dogs_allowed",
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C1",
+        "C9"
+      ]
+    },
+    {
+      "id": "K002",
+      "query": "Camping am Meer mit Hund und Pool",
+      "expectedNames": [
+        "C1"
+      ],
+      "passed": true,
+      "params": {
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "dogs_allowed",
+          "pool",
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C1"
+      ]
+    },
+    {
+      "id": "K003",
+      "query": "Camping am Meer max Preis 40€ pro Nacht",
+      "expectedNames": [
+        "C1",
+        "C2",
+        "C9"
+      ],
+      "passed": true,
+      "params": {
+        "max_price_per_night": [
+          "40"
+        ],
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C1",
+        "C2",
+        "C9"
+      ]
+    },
+    {
+      "id": "K004",
+      "query": "Camping am Meer Preis maximal 40 € pro Nacht, mit Hund und WLAN",
+      "expectedNames": [
+        "C1"
+      ],
+      "passed": true,
+      "params": {
+        "max_price_per_night": [
+          "40"
+        ],
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "dogs_allowed",
+          "wifi",
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C1"
+      ]
+    },
+    {
+      "id": "K005",
+      "query": "Camping am Meer maximal 40€ und pro Nacht, Pool wäre schön",
+      "expectedNames": [
+        "C1",
+        "C2",
+        "C9"
+      ],
+      "passed": true,
+      "params": {
+        "type": [
+          "campsite"
+        ],
+        "max_price_per_night": [
+          "40"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "pool",
+          "near_sea"
+        ],
+        "preferred_feature": [
+          "pool"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C1",
+        "C2",
+        "C9"
+      ]
+    },
+    {
+      "id": "K006",
+      "query": "Camping am Meer ohne Hund, bis 40€ pro Nacht",
+      "expectedNames": [
+        "C2"
+      ],
+      "passed": true,
+      "params": {
+        "max_price_per_night": [
+          "40"
+        ],
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "near_sea"
+        ],
+        "exclude_feature": [
+          "dogs_allowed"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C2"
+      ]
+    },
+    {
+      "id": "K007",
+      "query": "Camping am Meer WLAN muss sein, ein Pool wäre schön",
+      "expectedNames": [
+        "C1",
+        "C2"
+      ],
+      "passed": true,
+      "params": {
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "pool",
+          "wifi",
+          "near_sea"
+        ],
+        "must_feature": [
+          "wifi"
+        ],
+        "preferred_feature": [
+          "pool"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C1",
+        "C2"
+      ]
+    },
+    {
+      "id": "K008",
+      "query": "Camping am Meer Hunde und Pool wären schön",
+      "expectedNames": [
+        "C1",
+        "C2",
+        "C7",
+        "C9"
+      ],
+      "passed": true,
+      "params": {
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "dogs_allowed",
+          "pool",
+          "near_sea"
+        ],
+        "preferred_feature": [
+          "dogs_allowed",
+          "pool"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C1",
+        "C2",
+        "C7",
+        "C9"
+      ]
+    },
+    {
+      "id": "K009",
+      "query": "Camping am Meer für 7 Nächte, insgesamt maximal 280 €",
+      "expectedNames": [
+        "C1",
+        "C2",
+        "C9"
+      ],
+      "passed": true,
+      "params": {
+        "nights": [
+          "7"
+        ],
+        "type": [
+          "campsite"
+        ],
+        "max_total_price": [
+          "280"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "max_price_per_night": [
+          "40"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C1",
+        "C2",
+        "C9"
+      ]
+    },
+    {
+      "id": "K010",
+      "query": "Camping am Meer für 2 Erwachsene und 1 Baby, bis 40€ pro Nacht",
+      "expectedNames": [
+        "C1",
+        "C9"
+      ],
+      "passed": true,
+      "params": {
+        "max_guests": [
+          "3"
+        ],
+        "max_price_per_night": [
+          "40"
+        ],
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C1",
+        "C9"
+      ]
+    },
+    {
+      "id": "K011",
+      "query": "Camping am Merr mit Hund",
+      "expectedNames": [
+        "C1",
+        "C9"
+      ],
+      "passed": true,
+      "params": {
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "dogs_allowed",
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C1",
+        "C9"
+      ]
+    },
+    {
+      "id": "K012",
+      "query": "Camping am Merr mit Hund und Pool",
+      "expectedNames": [
+        "C1"
+      ],
+      "passed": true,
+      "params": {
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "dogs_allowed",
+          "pool",
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C1"
+      ]
+    },
+    {
+      "id": "K013",
+      "query": "Camping am Merr max Preis 40€ pro Nacht",
+      "expectedNames": [
+        "C1",
+        "C2",
+        "C9"
+      ],
+      "passed": true,
+      "params": {
+        "max_price_per_night": [
+          "40"
+        ],
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C1",
+        "C2",
+        "C9"
+      ]
+    },
+    {
+      "id": "K014",
+      "query": "Camping am Merr Preis maximal 40 € pro Nacht, mit Hund und WLAN",
+      "expectedNames": [
+        "C1"
+      ],
+      "passed": true,
+      "params": {
+        "max_price_per_night": [
+          "40"
+        ],
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "dogs_allowed",
+          "wifi",
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C1"
+      ]
+    },
+    {
+      "id": "K015",
+      "query": "Camping am Merr maximal 40€ und pro Nacht, Pool wäre schön",
+      "expectedNames": [
+        "C1",
+        "C2",
+        "C9"
+      ],
+      "passed": true,
+      "params": {
+        "type": [
+          "campsite"
+        ],
+        "max_price_per_night": [
+          "40"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "pool",
+          "near_sea"
+        ],
+        "preferred_feature": [
+          "pool"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C1",
+        "C2",
+        "C9"
+      ]
+    },
+    {
+      "id": "K016",
+      "query": "Camping am Merr ohne Hund, bis 40€ pro Nacht",
+      "expectedNames": [
+        "C2"
+      ],
+      "passed": true,
+      "params": {
+        "max_price_per_night": [
+          "40"
+        ],
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "near_sea"
+        ],
+        "exclude_feature": [
+          "dogs_allowed"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C2"
+      ]
+    },
+    {
+      "id": "K017",
+      "query": "Camping am Merr WLAN muss sein, ein Pool wäre schön",
+      "expectedNames": [
+        "C1",
+        "C2"
+      ],
+      "passed": true,
+      "params": {
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "pool",
+          "wifi",
+          "near_sea"
+        ],
+        "must_feature": [
+          "wifi"
+        ],
+        "preferred_feature": [
+          "pool"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C1",
+        "C2"
+      ]
+    },
+    {
+      "id": "K018",
+      "query": "Camping am Merr Hunde und Pool wären schön",
+      "expectedNames": [
+        "C1",
+        "C2",
+        "C7",
+        "C9"
+      ],
+      "passed": true,
+      "params": {
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "dogs_allowed",
+          "pool",
+          "near_sea"
+        ],
+        "preferred_feature": [
+          "dogs_allowed",
+          "pool"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C1",
+        "C2",
+        "C7",
+        "C9"
+      ]
+    },
+    {
+      "id": "K019",
+      "query": "Camping am Merr für 7 Nächte, insgesamt maximal 280 €",
+      "expectedNames": [
+        "C1",
+        "C2",
+        "C9"
+      ],
+      "passed": true,
+      "params": {
+        "nights": [
+          "7"
+        ],
+        "type": [
+          "campsite"
+        ],
+        "max_total_price": [
+          "280"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "max_price_per_night": [
+          "40"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C1",
+        "C2",
+        "C9"
+      ]
+    },
+    {
+      "id": "K020",
+      "query": "Camping am Merr für 2 Erwachsene und 1 Baby, bis 40€ pro Nacht",
+      "expectedNames": [
+        "C1",
+        "C9"
+      ],
+      "passed": true,
+      "params": {
+        "max_guests": [
+          "3"
+        ],
+        "max_price_per_night": [
+          "40"
+        ],
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C1",
+        "C9"
+      ]
+    },
+    {
+      "id": "K021",
+      "query": "Unterkunft am Meer mit Hund",
+      "expectedNames": [
+        "A11",
+        "A6",
+        "C1",
+        "C9",
+        "H9"
+      ],
+      "passed": true,
+      "params": {
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "dogs_allowed",
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A11",
+        "A6",
+        "C1",
+        "C9",
+        "H9"
+      ]
+    },
+    {
+      "id": "K022",
+      "query": "Unterkunft am Meer mit Hund und Pool",
+      "expectedNames": [
+        "A6",
+        "C1"
+      ],
+      "passed": true,
+      "params": {
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "dogs_allowed",
+          "pool",
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A6",
+        "C1"
+      ]
+    },
+    {
+      "id": "K023",
+      "query": "max Preis 40€ und am Merr pro Nacht",
+      "expectedNames": [
+        "A11",
+        "A6",
+        "C1",
+        "C2",
+        "C9",
+        "H10",
+        "H9"
+      ],
+      "passed": true,
+      "params": {
+        "max_price_per_night": [
+          "40"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A11",
+        "A6",
+        "C1",
+        "C2",
+        "C9",
+        "H10",
+        "H9"
+      ]
+    },
+    {
+      "id": "K024",
+      "query": "Unterkunft am Meer Preis maximal 40 € pro Nacht, mit Hund und WLAN",
+      "expectedNames": [
+        "A6",
+        "C1",
+        "H9"
+      ],
+      "passed": true,
+      "params": {
+        "max_price_per_night": [
+          "40"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "dogs_allowed",
+          "wifi",
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A6",
+        "C1",
+        "H9"
+      ]
+    },
+    {
+      "id": "K025",
+      "query": "Unterkunft am Meer maximal 40€ und pro Nacht, Pool wäre schön",
+      "expectedNames": [
+        "A11",
+        "A6",
+        "C1",
+        "C2",
+        "C9",
+        "H10",
+        "H9"
+      ],
+      "passed": true,
+      "params": {
+        "max_price_per_night": [
+          "40"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "pool",
+          "near_sea"
+        ],
+        "preferred_feature": [
+          "pool"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A11",
+        "A6",
+        "C1",
+        "C2",
+        "C9",
+        "H10",
+        "H9"
+      ]
+    },
+    {
+      "id": "K026",
+      "query": "Unterkunft am Meer ohne Hund, bis 40€ pro Nacht",
+      "expectedNames": [
+        "C2",
+        "H10"
+      ],
+      "passed": true,
+      "params": {
+        "max_price_per_night": [
+          "40"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "near_sea"
+        ],
+        "exclude_feature": [
+          "dogs_allowed"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C2",
+        "H10"
+      ]
+    },
+    {
+      "id": "K027",
+      "query": "Unterkunft am Meer WLAN muss sein, ein Pool wäre schön",
+      "expectedNames": [
+        "A6",
+        "C1",
+        "C2",
+        "H10",
+        "H5",
+        "H9"
+      ],
+      "passed": true,
+      "params": {
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "pool",
+          "wifi",
+          "near_sea"
+        ],
+        "must_feature": [
+          "wifi"
+        ],
+        "preferred_feature": [
+          "pool"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A6",
+        "C1",
+        "C2",
+        "H10",
+        "H5",
+        "H9"
+      ]
+    },
+    {
+      "id": "K028",
+      "query": "Unterkunft am Meer Hunde und Pool wären schön",
+      "expectedNames": [
+        "A11",
+        "A6",
+        "C1",
+        "C2",
+        "C7",
+        "C9",
+        "H10",
+        "H5",
+        "H9"
+      ],
+      "passed": true,
+      "params": {
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "dogs_allowed",
+          "pool",
+          "near_sea"
+        ],
+        "preferred_feature": [
+          "dogs_allowed",
+          "pool"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A11",
+        "A6",
+        "C1",
+        "C2",
+        "C7",
+        "C9",
+        "H10",
+        "H5",
+        "H9"
+      ]
+    },
+    {
+      "id": "K029",
+      "query": "Unterkunft am Meer für 7 Nächte, insgesamt maximal 280 €",
+      "expectedNames": [
+        "A11",
+        "A6",
+        "C1",
+        "C2",
+        "C9",
+        "H10",
+        "H9"
+      ],
+      "passed": true,
+      "params": {
+        "nights": [
+          "7"
+        ],
+        "max_total_price": [
+          "280"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "max_price_per_night": [
+          "40"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A11",
+        "A6",
+        "C1",
+        "C2",
+        "C9",
+        "H10",
+        "H9"
+      ]
+    },
+    {
+      "id": "K030",
+      "query": "Unterkunft am Meer für 2 Erwachsene und 1 Baby, bis 40€ pro Nacht",
+      "expectedNames": [
+        "A11",
+        "A6",
+        "C1",
+        "C9",
+        "H10"
+      ],
+      "passed": true,
+      "params": {
+        "max_guests": [
+          "3"
+        ],
+        "max_price_per_night": [
+          "40"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A11",
+        "A6",
+        "C1",
+        "C9",
+        "H10"
+      ]
+    },
+    {
+      "id": "K031",
+      "query": "Hotel am Meer mit Hund",
+      "expectedNames": [
+        "H9"
+      ],
+      "passed": true,
+      "params": {
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "dogs_allowed",
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "H9"
+      ]
+    },
+    {
+      "id": "K032",
+      "query": "Hotel am Meer mit Hund und Pool",
+      "expectedNames": [],
+      "passed": true,
+      "params": {
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "dogs_allowed",
+          "pool",
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": []
+    },
+    {
+      "id": "K033",
+      "query": "Hotel am Meer max Preis 40€ pro Nacht",
+      "expectedNames": [
+        "H10",
+        "H9"
+      ],
+      "passed": true,
+      "params": {
+        "type": [
+          "hotel"
+        ],
+        "max_price_per_night": [
+          "40"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "H10",
+        "H9"
+      ]
+    },
+    {
+      "id": "K034",
+      "query": "Hotel am Meer Preis maximal 40 € pro Nacht, mit Hund und WLAN",
+      "expectedNames": [
+        "H9"
+      ],
+      "passed": true,
+      "params": {
+        "type": [
+          "hotel"
+        ],
+        "max_price_per_night": [
+          "40"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "dogs_allowed",
+          "wifi",
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "H9"
+      ]
+    },
+    {
+      "id": "K035",
+      "query": "Hotel am Meer maximal 40€ und pro Nacht, Pool wäre schön",
+      "expectedNames": [
+        "H10",
+        "H9"
+      ],
+      "passed": true,
+      "params": {
+        "type": [
+          "hotel"
+        ],
+        "max_price_per_night": [
+          "40"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "pool",
+          "near_sea"
+        ],
+        "preferred_feature": [
+          "pool"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "H10",
+        "H9"
+      ]
+    },
+    {
+      "id": "K036",
+      "query": "Hotel am Meer ohne Hund, bis 40€ pro Nacht",
+      "expectedNames": [
+        "H10"
+      ],
+      "passed": true,
+      "params": {
+        "type": [
+          "hotel"
+        ],
+        "max_price_per_night": [
+          "40"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "near_sea"
+        ],
+        "exclude_feature": [
+          "dogs_allowed"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "H10"
+      ]
+    },
+    {
+      "id": "K037",
+      "query": "Hotel am Meer WLAN muss sein, ein Pool wäre schön",
+      "expectedNames": [
+        "H10",
+        "H5",
+        "H9"
+      ],
+      "passed": true,
+      "params": {
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "pool",
+          "wifi",
+          "near_sea"
+        ],
+        "must_feature": [
+          "wifi"
+        ],
+        "preferred_feature": [
+          "pool"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "H10",
+        "H5",
+        "H9"
+      ]
+    },
+    {
+      "id": "K038",
+      "query": "Hotel am Meer Hunde und Pool wären schön",
+      "expectedNames": [
+        "H10",
+        "H5",
+        "H9"
+      ],
+      "passed": true,
+      "params": {
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "dogs_allowed",
+          "pool",
+          "near_sea"
+        ],
+        "preferred_feature": [
+          "dogs_allowed",
+          "pool"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "H10",
+        "H5",
+        "H9"
+      ]
+    },
+    {
+      "id": "K039",
+      "query": "Hotel am Meer für 7 Nächte, insgesamt maximal 280 €",
+      "expectedNames": [
+        "H10",
+        "H9"
+      ],
+      "passed": true,
+      "params": {
+        "type": [
+          "hotel"
+        ],
+        "nights": [
+          "7"
+        ],
+        "max_total_price": [
+          "280"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "max_price_per_night": [
+          "40"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "H10",
+        "H9"
+      ]
+    },
+    {
+      "id": "K040",
+      "query": "Hotel am Meer für 2 Erwachsene und 1 Baby, bis 40€ pro Nacht",
+      "expectedNames": [
+        "H10"
+      ],
+      "passed": true,
+      "params": {
+        "type": [
+          "hotel"
+        ],
+        "max_guests": [
+          "3"
+        ],
+        "max_price_per_night": [
+          "40"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "H10"
+      ]
+    },
+    {
+      "id": "K041",
+      "query": "Ferienwohnung am Meer mit Hund",
+      "expectedNames": [
+        "A11",
+        "A6"
+      ],
+      "passed": true,
+      "params": {
+        "type": [
+          "holiday_apartment"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "dogs_allowed",
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A11",
+        "A6"
+      ]
+    },
+    {
+      "id": "K042",
+      "query": "Ferienwohnung am Meer mit Hund und Pool",
+      "expectedNames": [
+        "A6"
+      ],
+      "passed": true,
+      "params": {
+        "type": [
+          "holiday_apartment"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "dogs_allowed",
+          "pool",
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A6"
+      ]
+    },
+    {
+      "id": "K043",
+      "query": "Ferienwohnung am Meer max Preis 40€ pro Nacht",
+      "expectedNames": [
+        "A11",
+        "A6"
+      ],
+      "passed": true,
+      "params": {
+        "type": [
+          "holiday_apartment"
+        ],
+        "max_price_per_night": [
+          "40"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A11",
+        "A6"
+      ]
+    },
+    {
+      "id": "K044",
+      "query": "Ferienwohnung am Meer Preis maximal 40 € pro Nacht, mit Hund und WLAN",
+      "expectedNames": [
+        "A6"
+      ],
+      "passed": true,
+      "params": {
+        "type": [
+          "holiday_apartment"
+        ],
+        "max_price_per_night": [
+          "40"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "dogs_allowed",
+          "wifi",
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A6"
+      ]
+    },
+    {
+      "id": "K045",
+      "query": "Ferienwohnung am Meer maximal 40€ und pro Nacht, Pool wäre schön",
+      "expectedNames": [
+        "A11",
+        "A6"
+      ],
+      "passed": true,
+      "params": {
+        "type": [
+          "holiday_apartment"
+        ],
+        "max_price_per_night": [
+          "40"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "pool",
+          "near_sea"
+        ],
+        "preferred_feature": [
+          "pool"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A11",
+        "A6"
+      ]
+    },
+    {
+      "id": "K046",
+      "query": "Ferienwohnung am Meer ohne Hund, bis 40€ pro Nacht",
+      "expectedNames": [],
+      "passed": true,
+      "params": {
+        "type": [
+          "holiday_apartment"
+        ],
+        "max_price_per_night": [
+          "40"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "near_sea"
+        ],
+        "exclude_feature": [
+          "dogs_allowed"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": []
+    },
+    {
+      "id": "K047",
+      "query": "Ferienwohnung am Meer WLAN muss sein, ein Pool wäre schön",
+      "expectedNames": [
+        "A6"
+      ],
+      "passed": true,
+      "params": {
+        "type": [
+          "holiday_apartment"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "pool",
+          "wifi",
+          "near_sea"
+        ],
+        "must_feature": [
+          "wifi"
+        ],
+        "preferred_feature": [
+          "pool"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A6"
+      ]
+    },
+    {
+      "id": "K048",
+      "query": "Ferienwohnung am Meer Hunde und Pool wären schön",
+      "expectedNames": [
+        "A11",
+        "A6"
+      ],
+      "passed": true,
+      "params": {
+        "type": [
+          "holiday_apartment"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "dogs_allowed",
+          "pool",
+          "near_sea"
+        ],
+        "preferred_feature": [
+          "dogs_allowed",
+          "pool"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A11",
+        "A6"
+      ]
+    },
+    {
+      "id": "K049",
+      "query": "Ferienwohnung am Meer für 7 Nächte, insgesamt maximal 280 €",
+      "expectedNames": [
+        "A11",
+        "A6"
+      ],
+      "passed": true,
+      "params": {
+        "type": [
+          "holiday_apartment"
+        ],
+        "nights": [
+          "7"
+        ],
+        "max_total_price": [
+          "280"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "max_price_per_night": [
+          "40"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A11",
+        "A6"
+      ]
+    },
+    {
+      "id": "K050",
+      "query": "Ferienwohnung am Meer für 2 Erwachsene und 1 Baby, bis 40€ pro Nacht",
+      "expectedNames": [
+        "A11",
+        "A6"
+      ],
+      "passed": true,
+      "params": {
+        "type": [
+          "holiday_apartment"
+        ],
+        "max_guests": [
+          "3"
+        ],
+        "max_price_per_night": [
+          "40"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A11",
+        "A6"
+      ]
+    },
+    {
+      "id": "K051",
+      "query": "Camping an der Nordsee mit Hund",
+      "expectedNames": [
+        "C9"
+      ],
+      "passed": true,
+      "params": {
+        "region": [
+          "Nordsee"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "dogs_allowed",
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C9"
+      ]
+    },
+    {
+      "id": "K052",
+      "query": "Camping an der Nordsee mit Hund und Pool",
+      "expectedNames": [],
+      "passed": true,
+      "params": {
+        "region": [
+          "Nordsee"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "dogs_allowed",
+          "pool",
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": []
+    },
+    {
+      "id": "K053",
+      "query": "Camping an der Nordsee max Preis 40€ pro Nacht",
+      "expectedNames": [
+        "C2",
+        "C9"
+      ],
+      "passed": true,
+      "params": {
+        "region": [
+          "Nordsee"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "max_price_per_night": [
+          "40"
+        ],
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C2",
+        "C9"
+      ]
+    },
+    {
+      "id": "K054",
+      "query": "Camping an der Nordsee Preis maximal 40 € pro Nacht, mit Hund und WLAN",
+      "expectedNames": [],
+      "passed": true,
+      "params": {
+        "region": [
+          "Nordsee"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "max_price_per_night": [
+          "40"
+        ],
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "dogs_allowed",
+          "wifi",
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": []
+    },
+    {
+      "id": "K055",
+      "query": "Camping an der Nordsee maximal 40€ und pro Nacht, Pool wäre schön",
+      "expectedNames": [
+        "C2",
+        "C9"
+      ],
+      "passed": true,
+      "params": {
+        "region": [
+          "Nordsee"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "campsite"
+        ],
+        "max_price_per_night": [
+          "40"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "pool",
+          "near_sea"
+        ],
+        "preferred_feature": [
+          "pool"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C2",
+        "C9"
+      ]
+    },
+    {
+      "id": "K056",
+      "query": "Camping an der Nordsee ohne Hund, bis 40€ pro Nacht",
+      "expectedNames": [
+        "C2"
+      ],
+      "passed": true,
+      "params": {
+        "region": [
+          "Nordsee"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "max_price_per_night": [
+          "40"
+        ],
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "near_sea"
+        ],
+        "exclude_feature": [
+          "dogs_allowed"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C2"
+      ]
+    },
+    {
+      "id": "K057",
+      "query": "Camping an der Nordsee WLAN muss sein, ein Pool wäre schön",
+      "expectedNames": [
+        "C2"
+      ],
+      "passed": true,
+      "params": {
+        "region": [
+          "Nordsee"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "pool",
+          "wifi",
+          "near_sea"
+        ],
+        "must_feature": [
+          "wifi"
+        ],
+        "preferred_feature": [
+          "pool"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C2"
+      ]
+    },
+    {
+      "id": "K058",
+      "query": "Camping an der Nordsee Hunde und Pool wären schön",
+      "expectedNames": [
+        "C2",
+        "C9"
+      ],
+      "passed": true,
+      "params": {
+        "region": [
+          "Nordsee"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "dogs_allowed",
+          "pool",
+          "near_sea"
+        ],
+        "preferred_feature": [
+          "dogs_allowed",
+          "pool"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C2",
+        "C9"
+      ]
+    },
+    {
+      "id": "K059",
+      "query": "Camping an der Nordsee für 7 Nächte, insgesamt maximal 280 €",
+      "expectedNames": [
+        "C2",
+        "C9"
+      ],
+      "passed": true,
+      "params": {
+        "region": [
+          "Nordsee"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "nights": [
+          "7"
+        ],
+        "type": [
+          "campsite"
+        ],
+        "max_total_price": [
+          "280"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "max_price_per_night": [
+          "40"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C2",
+        "C9"
+      ]
+    },
+    {
+      "id": "K060",
+      "query": "Camping an der Nordsee für 2 Erwachsene und 1 Baby, bis 40€ pro Nacht",
+      "expectedNames": [
+        "C9"
+      ],
+      "passed": true,
+      "params": {
+        "region": [
+          "Nordsee"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "max_guests": [
+          "3"
+        ],
+        "max_price_per_night": [
+          "40"
+        ],
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "near_sea"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C9"
+      ]
+    },
+    {
+      "id": "K061",
+      "query": "Hotel in Berlin mit Hund",
+      "expectedNames": [
+        "H4"
+      ],
+      "passed": true,
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "dogs_allowed"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "H4"
+      ]
+    },
+    {
+      "id": "K062",
+      "query": "Hotel in Berlin mit Hund und Pool",
+      "expectedNames": [
+        "H4"
+      ],
+      "passed": true,
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "dogs_allowed",
+          "pool"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "H4"
+      ]
+    },
+    {
+      "id": "K063",
+      "query": "Hotel in Berlin max Preis 40€ pro Nacht",
+      "expectedNames": [
+        "H4",
+        "H8"
+      ],
+      "passed": true,
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "max_price_per_night": [
+          "40"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "H4",
+        "H8"
+      ]
+    },
+    {
+      "id": "K064",
+      "query": "Hotel in Berlin Preis maximal 40 € pro Nacht, mit Hund und WLAN",
+      "expectedNames": [
+        "H4"
+      ],
+      "passed": true,
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "max_price_per_night": [
+          "40"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "dogs_allowed",
+          "wifi"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "H4"
+      ]
+    },
+    {
+      "id": "K065",
+      "query": "Hotel in Berlin maximal 40€ und pro Nacht, Pool wäre schön",
+      "expectedNames": [
+        "H4",
+        "H8"
+      ],
+      "passed": true,
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "max_price_per_night": [
+          "40"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "pool"
+        ],
+        "preferred_feature": [
+          "pool"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "H4",
+        "H8"
+      ]
+    },
+    {
+      "id": "K066",
+      "query": "Hotel in Berlin ohne Hund, bis 40€ pro Nacht",
+      "expectedNames": [],
+      "passed": true,
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "max_price_per_night": [
+          "40"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "exclude_feature": [
+          "dogs_allowed"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": []
+    },
+    {
+      "id": "K067",
+      "query": "Hotel in Berlin WLAN muss sein, ein Pool wäre schön",
+      "expectedNames": [
+        "H4"
+      ],
+      "passed": true,
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "pool",
+          "wifi"
+        ],
+        "must_feature": [
+          "wifi"
+        ],
+        "preferred_feature": [
+          "pool"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "H4"
+      ]
+    },
+    {
+      "id": "K068",
+      "query": "Hotel in Berlin Hunde und Pool wären schön",
+      "expectedNames": [
+        "H4",
+        "H8"
+      ],
+      "passed": true,
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "dogs_allowed",
+          "pool"
+        ],
+        "preferred_feature": [
+          "dogs_allowed",
+          "pool"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "H4",
+        "H8"
+      ]
+    },
+    {
+      "id": "K069",
+      "query": "Hotel in Berlin für 7 Nächte, insgesamt maximal 280 €",
+      "expectedNames": [
+        "H4",
+        "H8"
+      ],
+      "passed": true,
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "nights": [
+          "7"
+        ],
+        "max_total_price": [
+          "280"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "max_price_per_night": [
+          "40"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "H4",
+        "H8"
+      ]
+    },
+    {
+      "id": "K070",
+      "query": "Hotel in Berlin für 2 Erwachsene und 1 Baby, bis 40€ pro Nacht",
+      "expectedNames": [
+        "H4"
+      ],
+      "passed": true,
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "max_guests": [
+          "3"
+        ],
+        "max_price_per_night": [
+          "40"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "H4"
+      ]
+    },
+    {
+      "id": "K071",
+      "query": "Ferienwohnung in Alicante mit Hund",
+      "expectedNames": [
+        "A11",
+        "A6"
+      ],
+      "passed": true,
+      "params": {
+        "city": [
+          "Alicante"
+        ],
+        "country": [
+          "Spanien"
+        ],
+        "type": [
+          "holiday_apartment"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "dogs_allowed"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A11",
+        "A6"
+      ]
+    },
+    {
+      "id": "K072",
+      "query": "Ferienwohnung in Alicante mit Hund und Pool",
+      "expectedNames": [
+        "A6"
+      ],
+      "passed": true,
+      "params": {
+        "city": [
+          "Alicante"
+        ],
+        "country": [
+          "Spanien"
+        ],
+        "type": [
+          "holiday_apartment"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "dogs_allowed",
+          "pool"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A6"
+      ]
+    },
+    {
+      "id": "K073",
+      "query": "Ferienwohnung in Alicante max Preis 40€ pro Nacht",
+      "expectedNames": [
+        "A11",
+        "A6"
+      ],
+      "passed": true,
+      "params": {
+        "city": [
+          "Alicante"
+        ],
+        "country": [
+          "Spanien"
+        ],
+        "type": [
+          "holiday_apartment"
+        ],
+        "max_price_per_night": [
+          "40"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A11",
+        "A6"
+      ]
+    },
+    {
+      "id": "K074",
+      "query": "Ferienwohnung in Alicante Preis maximal 40 € pro Nacht, mit Hund und WLAN",
+      "expectedNames": [
+        "A6"
+      ],
+      "passed": true,
+      "params": {
+        "city": [
+          "Alicante"
+        ],
+        "country": [
+          "Spanien"
+        ],
+        "type": [
+          "holiday_apartment"
+        ],
+        "max_price_per_night": [
+          "40"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "dogs_allowed",
+          "wifi"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A6"
+      ]
+    },
+    {
+      "id": "K075",
+      "query": "Ferienwohnung in Alicante maximal 40€ und pro Nacht, Pool wäre schön",
+      "expectedNames": [
+        "A11",
+        "A6"
+      ],
+      "passed": true,
+      "params": {
+        "city": [
+          "Alicante"
+        ],
+        "country": [
+          "Spanien"
+        ],
+        "type": [
+          "holiday_apartment"
+        ],
+        "max_price_per_night": [
+          "40"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "pool"
+        ],
+        "preferred_feature": [
+          "pool"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A11",
+        "A6"
+      ]
+    },
+    {
+      "id": "K076",
+      "query": "Ferienwohnung in Alicante ohne Hund, bis 40€ pro Nacht",
+      "expectedNames": [],
+      "passed": true,
+      "params": {
+        "city": [
+          "Alicante"
+        ],
+        "country": [
+          "Spanien"
+        ],
+        "type": [
+          "holiday_apartment"
+        ],
+        "max_price_per_night": [
+          "40"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "exclude_feature": [
+          "dogs_allowed"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": []
+    },
+    {
+      "id": "K077",
+      "query": "Ferienwohnung in Alicante WLAN muss sein, ein Pool wäre schön",
+      "expectedNames": [
+        "A6"
+      ],
+      "passed": true,
+      "params": {
+        "city": [
+          "Alicante"
+        ],
+        "country": [
+          "Spanien"
+        ],
+        "type": [
+          "holiday_apartment"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "pool",
+          "wifi"
+        ],
+        "must_feature": [
+          "wifi"
+        ],
+        "preferred_feature": [
+          "pool"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A6"
+      ]
+    },
+    {
+      "id": "K078",
+      "query": "Ferienwohnung in Alicante Hunde und Pool wären schön",
+      "expectedNames": [
+        "A11",
+        "A6"
+      ],
+      "passed": true,
+      "params": {
+        "city": [
+          "Alicante"
+        ],
+        "country": [
+          "Spanien"
+        ],
+        "type": [
+          "holiday_apartment"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "dogs_allowed",
+          "pool"
+        ],
+        "preferred_feature": [
+          "dogs_allowed",
+          "pool"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A11",
+        "A6"
+      ]
+    },
+    {
+      "id": "K079",
+      "query": "Ferienwohnung in Alicante für 7 Nächte, insgesamt maximal 280 €",
+      "expectedNames": [
+        "A11",
+        "A6"
+      ],
+      "passed": true,
+      "params": {
+        "city": [
+          "Alicante"
+        ],
+        "country": [
+          "Spanien"
+        ],
+        "type": [
+          "holiday_apartment"
+        ],
+        "nights": [
+          "7"
+        ],
+        "max_total_price": [
+          "280"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "max_price_per_night": [
+          "40"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A11",
+        "A6"
+      ]
+    },
+    {
+      "id": "K080",
+      "query": "Ferienwohnung in Alicante für 2 Erwachsene und 1 Baby, bis 40€ pro Nacht",
+      "expectedNames": [
+        "A11",
+        "A6"
+      ],
+      "passed": true,
+      "params": {
+        "city": [
+          "Alicante"
+        ],
+        "country": [
+          "Spanien"
+        ],
+        "type": [
+          "holiday_apartment"
+        ],
+        "max_guests": [
+          "3"
+        ],
+        "max_price_per_night": [
+          "40"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A11",
+        "A6"
+      ]
+    },
+    {
+      "id": "K081",
+      "query": "Camping am See mit Hund",
+      "expectedNames": [],
+      "passed": true,
+      "params": {
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "dogs_allowed",
+          "near_lake"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": []
+    },
+    {
+      "id": "K082",
+      "query": "Camping am See mit Hund und Pool",
+      "expectedNames": [],
+      "passed": true,
+      "params": {
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "dogs_allowed",
+          "pool",
+          "near_lake"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": []
+    },
+    {
+      "id": "K083",
+      "query": "Camping am See max Preis 40€ pro Nacht",
+      "expectedNames": [
+        "C3"
+      ],
+      "passed": true,
+      "params": {
+        "max_price_per_night": [
+          "40"
+        ],
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "near_lake"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C3"
+      ]
+    },
+    {
+      "id": "K084",
+      "query": "Camping am See Preis maximal 40 € pro Nacht, mit Hund und WLAN",
+      "expectedNames": [],
+      "passed": true,
+      "params": {
+        "max_price_per_night": [
+          "40"
+        ],
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "dogs_allowed",
+          "wifi",
+          "near_lake"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": []
+    },
+    {
+      "id": "K085",
+      "query": "Camping am See maximal 40€ und pro Nacht, Pool wäre schön",
+      "expectedNames": [
+        "C3"
+      ],
+      "passed": true,
+      "params": {
+        "type": [
+          "campsite"
+        ],
+        "max_price_per_night": [
+          "40"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "pool",
+          "near_lake"
+        ],
+        "preferred_feature": [
+          "pool"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C3"
+      ]
+    },
+    {
+      "id": "K086",
+      "query": "Camping am See ohne Hund, bis 40€ pro Nacht",
+      "expectedNames": [
+        "C3"
+      ],
+      "passed": true,
+      "params": {
+        "max_price_per_night": [
+          "40"
+        ],
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "near_lake"
+        ],
+        "exclude_feature": [
+          "dogs_allowed"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C3"
+      ]
+    },
+    {
+      "id": "K087",
+      "query": "Camping am See WLAN muss sein, ein Pool wäre schön",
+      "expectedNames": [],
+      "passed": true,
+      "params": {
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "pool",
+          "wifi",
+          "near_lake"
+        ],
+        "must_feature": [
+          "wifi"
+        ],
+        "preferred_feature": [
+          "pool"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": []
+    },
+    {
+      "id": "K088",
+      "query": "Camping am See Hunde und Pool wären schön",
+      "expectedNames": [
+        "C3"
+      ],
+      "passed": true,
+      "params": {
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "dogs_allowed",
+          "pool",
+          "near_lake"
+        ],
+        "preferred_feature": [
+          "dogs_allowed",
+          "pool"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C3"
+      ]
+    },
+    {
+      "id": "K089",
+      "query": "Camping am See für 7 Nächte, insgesamt maximal 280 €",
+      "expectedNames": [
+        "C3"
+      ],
+      "passed": true,
+      "params": {
+        "nights": [
+          "7"
+        ],
+        "type": [
+          "campsite"
+        ],
+        "max_total_price": [
+          "280"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "max_price_per_night": [
+          "40"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "near_lake"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C3"
+      ]
+    },
+    {
+      "id": "K090",
+      "query": "Camping am See für 2 Erwachsene und 1 Baby, bis 40€ pro Nacht",
+      "expectedNames": [
+        "C3"
+      ],
+      "passed": true,
+      "params": {
+        "max_guests": [
+          "3"
+        ],
+        "max_price_per_night": [
+          "40"
+        ],
+        "type": [
+          "campsite"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "near_lake"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C3"
+      ]
+    },
+    {
+      "id": "K091",
+      "query": "Unterkunft in Wassernähe mit Hund",
+      "expectedNames": [
+        "A11",
+        "A6",
+        "C1",
+        "C9",
+        "H9"
+      ],
+      "passed": true,
+      "params": {
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "dogs_allowed",
+          "near_water"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A11",
+        "A6",
+        "C1",
+        "C9",
+        "H9"
+      ]
+    },
+    {
+      "id": "K092",
+      "query": "Unterkunft in Wassernähe mit Hund und Pool",
+      "expectedNames": [
+        "A6",
+        "C1"
+      ],
+      "passed": true,
+      "params": {
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "dogs_allowed",
+          "pool",
+          "near_water"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A6",
+        "C1"
+      ]
+    },
+    {
+      "id": "K093",
+      "query": "Unterkunft in Wassernähe max Preis 40€ pro Nacht",
+      "expectedNames": [
+        "A11",
+        "A6",
+        "C1",
+        "C2",
+        "C3",
+        "C9",
+        "H10",
+        "H9"
+      ],
+      "passed": true,
+      "params": {
+        "max_price_per_night": [
+          "40"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "near_water"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A11",
+        "A6",
+        "C1",
+        "C2",
+        "C3",
+        "C9",
+        "H10",
+        "H9"
+      ]
+    },
+    {
+      "id": "K094",
+      "query": "Unterkunft in Wassernähe Preis maximal 40 € pro Nacht, mit Hund und WLAN",
+      "expectedNames": [
+        "A6",
+        "C1",
+        "H9"
+      ],
+      "passed": true,
+      "params": {
+        "max_price_per_night": [
+          "40"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "dogs_allowed",
+          "wifi",
+          "near_water"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A6",
+        "C1",
+        "H9"
+      ]
+    },
+    {
+      "id": "K095",
+      "query": "Unterkunft in Wassernähe maximal 40€ und pro Nacht, Pool wäre schön",
+      "expectedNames": [
+        "A11",
+        "A6",
+        "C1",
+        "C2",
+        "C3",
+        "C9",
+        "H10",
+        "H9"
+      ],
+      "passed": true,
+      "params": {
+        "max_price_per_night": [
+          "40"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "pool",
+          "near_water"
+        ],
+        "preferred_feature": [
+          "pool"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A11",
+        "A6",
+        "C1",
+        "C2",
+        "C3",
+        "C9",
+        "H10",
+        "H9"
+      ]
+    },
+    {
+      "id": "K096",
+      "query": "Unterkunft in Wassernähe ohne Hund, bis 40€ pro Nacht",
+      "expectedNames": [
+        "C2",
+        "C3",
+        "H10"
+      ],
+      "passed": true,
+      "params": {
+        "max_price_per_night": [
+          "40"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "near_water"
+        ],
+        "exclude_feature": [
+          "dogs_allowed"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C2",
+        "C3",
+        "H10"
+      ]
+    },
+    {
+      "id": "K097",
+      "query": "Unterkunft in Wassernähe WLAN muss sein, ein Pool wäre schön",
+      "expectedNames": [
+        "A6",
+        "C1",
+        "C2",
+        "H10",
+        "H5",
+        "H9"
+      ],
+      "passed": true,
+      "params": {
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "pool",
+          "wifi",
+          "near_water"
+        ],
+        "must_feature": [
+          "wifi"
+        ],
+        "preferred_feature": [
+          "pool"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A6",
+        "C1",
+        "C2",
+        "H10",
+        "H5",
+        "H9"
+      ]
+    },
+    {
+      "id": "K098",
+      "query": "Unterkunft in Wassernähe Hunde und Pool wären schön",
+      "expectedNames": [
+        "A11",
+        "A6",
+        "C1",
+        "C2",
+        "C3",
+        "C7",
+        "C9",
+        "H10",
+        "H5",
+        "H9"
+      ],
+      "passed": true,
+      "params": {
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "dogs_allowed",
+          "pool",
+          "near_water"
+        ],
+        "preferred_feature": [
+          "dogs_allowed",
+          "pool"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A11",
+        "A6",
+        "C1",
+        "C2",
+        "C3",
+        "C7",
+        "C9",
+        "H10",
+        "H5",
+        "H9"
+      ]
+    },
+    {
+      "id": "K099",
+      "query": "Unterkunft in Wassernähe für 7 Nächte, insgesamt maximal 280 €",
+      "expectedNames": [
+        "A11",
+        "A6",
+        "C1",
+        "C2",
+        "C3",
+        "C9",
+        "H10",
+        "H9"
+      ],
+      "passed": true,
+      "params": {
+        "nights": [
+          "7"
+        ],
+        "max_total_price": [
+          "280"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "max_price_per_night": [
+          "40"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "near_water"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A11",
+        "A6",
+        "C1",
+        "C2",
+        "C3",
+        "C9",
+        "H10",
+        "H9"
+      ]
+    },
+    {
+      "id": "K100",
+      "query": "Unterkunft in Wassernähe für 2 Erwachsene und 1 Baby, bis 40€ pro Nacht",
+      "expectedNames": [
+        "A11",
+        "A6",
+        "C1",
+        "C3",
+        "C9",
+        "H10"
+      ],
+      "passed": true,
+      "params": {
+        "max_guests": [
+          "3"
+        ],
+        "max_price_per_night": [
+          "40"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "currency": [
+          "EUR"
+        ],
+        "feature": [
+          "near_water"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A11",
+        "A6",
+        "C1",
+        "C3",
+        "C9",
+        "H10"
+      ]
+    }
+  ]
+}

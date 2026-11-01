@@ -1,8 +1,8 @@
 {
   "summary": {
     "date": "2026-10-31",
-    "sourceCommit": "de659a49a0a205c4165b578fc40b14a77bfce857",
-    "appSourceSha256": "47562f2a7eaf1a8e3d603ab6a8294c234d78f96590f82a327f29b530607c8bd8",
+    "sourceCommit": "109d8a1e576e3dc65e0b5a3e5889d3cf7c3fc148",
+    "appSourceSha256": "3a16a7482a556bb1c2edba4593006b4142d924b5eea638fa0e3d57864802c6e4",
     "total": 50,
     "passed": 50,
     "failed": 0,
@@ -375,8 +375,8 @@
           "wifi"
         ],
         "preferred_feature": [
-          "wifi",
-          "pool"
+          "pool",
+          "wifi"
         ],
         "sort": [
           "best"
@@ -564,8 +564,8 @@
           "7"
         ],
         "feature": [
-          "step_free_access",
-          "near_sea"
+          "near_sea",
+          "step_free_access"
         ],
         "sort": [
           "best"
@@ -1065,6 +1065,9 @@
         "type": [
           "campsite"
         ],
+        "min_price_per_night": [
+          "50"
+        ],
         "guests": [
           "2"
         ],
@@ -1076,9 +1079,6 @@
         ],
         "nights": [
           "7"
-        ],
-        "min_price_per_night": [
-          "50"
         ],
         "currency": [
           "EUR"
@@ -1164,6 +1164,9 @@
         "type": [
           "campsite"
         ],
+        "max_price_per_night": [
+          "0"
+        ],
         "guests": [
           "2"
         ],
@@ -1175,9 +1178,6 @@
         ],
         "nights": [
           "7"
-        ],
-        "max_price_per_night": [
-          "0"
         ],
         "currency": [
           "EUR"
@@ -1937,8 +1937,8 @@
           "7"
         ],
         "feature": [
-          "private_bathroom",
-          "near_sea"
+          "near_sea",
+          "private_bathroom"
         ],
         "sort": [
           "best"
