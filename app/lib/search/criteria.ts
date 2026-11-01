@@ -1,5 +1,6 @@
 import { canonicalFeature, featureDescendants, featureAncestors } from './features';
 import { applyScopedCriteria } from './scoped-criteria';
+import { applyTextBudget } from './text-budget';
 export const accommodationTypes = new Set(['hotel', 'campsite', 'holiday_apartment', 'holiday_home', 'villa', 'hostel', 'guesthouse', 'bed_and_breakfast', 'resort', 'chalet', 'cabin', 'bungalow']);
 export const apiKeys = new Set([
     'type', 'country', 'region', 'city', 'month', 'year', 'nights', 'check_in', 'check_out', 'guests', 'max_guests', 'currency',
@@ -270,6 +271,7 @@ export function finishLocalCriteria(input: URLSearchParams, query: string, form:
     const zeroPrice = text.match(/\b(?:bis|maximal|höchstens|hoechstens|max)\s+0(?:[.,]0{1,2})?\s*(?:euro|€)\s*((?:pro|je|die)\s+nacht)?/);
     if (zeroPrice)
         params.set(zeroPrice[1] ? 'max_price_per_night' : 'max_total_price', '0');
+    applyTextBudget(params,query,Number(params.get('max_guests')??form.guests));
     const totalRaw = params.get('max_total_price') ?? params.get('total_budget');
     const total = Number(totalRaw);
     if (totalRaw !== null && nights > 0 && Number.isFinite(total) && total >= 0)

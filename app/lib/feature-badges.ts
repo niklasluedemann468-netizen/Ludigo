@@ -62,6 +62,10 @@ export function searchCriteriaBadges(value: string): FeatureBadge[] {
         if (info) badges.push({ key: `${kind}-${key}`, icon: info.icon, kind, label: kind === 'preferred' ? `${info.label} · Wunsch` : kind === 'excluded' ? `Ohne: ${info.label}` : info.label });
       }
     }
+    const money=(number:number)=>{try{return new Intl.NumberFormat('de-DE',{style:'currency',currency:c.params.get('currency')??'EUR',minimumFractionDigits:0,maximumFractionDigits:2}).format(number);}catch{return `${number} ${c.params.get('currency')??'EUR'}`;}};
+    for(const [key,prefix,suffix] of [['min_price_per_night','Ab',' / Nacht'],['max_price_per_night','Bis',' / Nacht'],['min_total_price','Gesamt ab',''],['max_total_price','Gesamt bis','']] as const){
+      const amount=c.number(key);if(amount!==null)badges.push({key,icon:'payment',kind:'required',label:`${prefix} ${money(amount)}${suffix}`});
+    }
     return badges;
   } catch { return []; }
 }

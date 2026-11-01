@@ -223,6 +223,11 @@ export async function GET(request: Request) {
     const missing = c.hard.filter(key => !known.has(key) || !all.some(item=>typeof item.feature_states?.[key]==='boolean'));
     if(missing.length)warnings.add(`Für diese Pflichtmerkmale fehlen im passenden Datenbestand bestätigte Angaben: ${missing.map(key=>featurePresentation[key]?.label??'besonderes Ausstattungsmerkmal').join(', ')}.`);
     const candidates = missing.length ? [] : all.filter(item => matches(item, c));
+    const priceRequired=['min_price','max_price','min_price_per_night','max_price_per_night','min_total_price','max_total_price','total_budget'].some(key=>c.number(key)!==null);
+    if(!candidates.length&&all.length&&priceRequired&&all.every(item=>item.price_min===null||item.price_min===undefined))
+        warnings.add('Für den Preisfilter fehlen bestätigte Preise pro Nacht. Die vorhandenen Partnerpreisangaben haben keine bestätigte Preisbasis.');
+    if(!candidates.length&&all.length&&c.number('max_guests')!==null&&all.every(item=>item.max_guests===null||item.max_guests===undefined))
+        warnings.add('Für die angegebene Personenzahl fehlen bestätigte Angaben zur maximalen Belegung.');
     candidates.sort((a, b) => rank(b, c) - rank(a, c) || (a.provider_name ?? '').localeCompare(b.provider_name ?? '') || a.id - b.id);
     if (!candidates.length && all.length && (c.hard.length || c.excluded.length || c.number('max_guests') !== null || c.number('month') !== null || c.number('max_price_per_night') !== null || c.number('max_total_price') !== null))
         warnings.add('Nicht alle Unterkünfte enthalten bestätigte Angaben zu deinen Pflichtkriterien. Unbekannte Angaben erfüllen keine Pflichtfilter.');

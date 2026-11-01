@@ -1,8 +1,10 @@
-import { accessibilityTerms, termPattern } from './accessibility';
+import { accessibilityTerms } from './accessibility';
+import { normalizeSemanticText } from '../searchTextNormalizer';
+import { commonPreferenceTerms, qualifyFeatures } from './preference-signals';
 import { canonicalFeature } from './features';
 
 const waterTerms: Record<string, readonly string[]> = {
-  near_sea: ['am meer', 'meernähe', 'meernaehe', 'in meernähe', 'an der küste', 'an der kueste', 'nordsee', 'ostsee'],
+  near_sea: ['am meer', 'meernähe', 'meernaehe', 'in meernähe', 'an der küste', 'an der kueste', 'nordsee', 'ostsee', 'meernah', 'meernahe', 'küstennähe', 'kuestennaehe', 'in küstennähe', 'in kuestennaehe'],
   seafront: ['direkt am meer', 'direkte meerlage'],
   near_lake: ['am see', 'seenähe', 'seenaehe', 'in seenähe'],
   lakefront: ['direkt am see'],
@@ -13,11 +15,15 @@ const waterTerms: Record<string, readonly string[]> = {
 };
 const terms = { ...accessibilityTerms, ...waterTerms, private_bathroom: ['eigenes bad','eigenem bad','eigenen bad','eigenes badezimmer','eigenem badezimmer','privates bad','privatem bad','privates badezimmer','privatem badezimmer'] };
 const keys = new Set(Object.keys(terms));
-type Mention = { feature: string; start: number; end: number };
 
 // Replace broad substring matches with scoped, longest-phrase matches.
 export function applyScopedCriteria(params: URLSearchParams, query: string): void {
-  const text = query.toLowerCase();
+  const text = normalizeSemanticText(query);
+  const allTerms={...commonPreferenceTerms,...terms};
+  const mentions=qualifyFeatures(text,allTerms);
+  for(const key of ['preferred_feature','must_feature']){
+    const values=params.getAll(key).filter(value=>!(canonicalFeature(value) in allTerms));params.delete(key);for(const value of values)params.append(key,value);
+  }
   if (!/\d\s*(?:m\b|meter)/.test(text)) params.delete('max_distance_beach_m');
   for (const key of ['feature', 'must_feature', 'preferred_feature', 'exclude_feature']) {
     const values = params.getAll(key).filter(value => !keys.has(canonicalFeature(value)));
@@ -27,33 +33,12 @@ export function applyScopedCriteria(params: URLSearchParams, query: string): voi
   params.delete('accessibility_feature');
   params.delete('near_sea'); params.delete('near_lake');
   params.delete('water_location');
-  for (const clause of text.split(/[,;.!?\n]|\b(?:aber|während|waehrend)\b/)) {
-    const mentions: Mention[] = [];
-    for (const [feature, aliases] of Object.entries(terms)) {
-      for (const alias of aliases) {
-        const pattern = termPattern(alias);
-        const regex = new RegExp(pattern.source, 'giu');
-        for (const match of clause.matchAll(regex)) mentions.push({ feature, start: match.index!, end: match.index! + match[0].length });
-      }
-    }
-    // Adjectives can describe the whole property without a following noun.
-    for (const match of clause.matchAll(/\bbarrierefrei(?:e[rmns]?)?\b/giu)) mentions.push({ feature: 'accessible', start: match.index!, end: match.index! + match[0].length });
-    const selected: Mention[] = [];
-    for (const mention of mentions.sort((a, b) => (b.end - b.start) - (a.end - a.start)))
-      if (!selected.some(other => mention.start < other.end && mention.end > other.start)) selected.push(mention);
-    const signals = [...clause.matchAll(/\b(?:wären? schön|waeren? schoen|wären? gut|waeren? gut|gern|gerne|am liebsten|bevorzugt|wenn möglich|wenn moeglich|idealerweise|optional|muss|unbedingt|zwingend|pflicht|brauche|benötige|benoetige)\b/giu)];
-    for (const mention of selected) {
-      const before = clause.slice(0, mention.start), after = clause.slice(mention.end);
-      if (/^\s*(?:(?:ist|sind)\s+)?(?:nicht (?:nötig|noetig|erforderlich)|egal|kein muss)\b/.test(after)) continue;
-      const excluded = /\b(?:ohne|kein(?:e[rmns]?)?|nicht(?: mit)?)\s*$/.test(before);
-      const distance = (signal: RegExpMatchArray) => Math.max(0, signal.index! - mention.end, mention.start - signal.index! - signal[0].length);
-      const signal = [...signals].sort((a, b) => distance(a) - distance(b))[0]?.[0];
-      const preferred = signal && !/^(?:muss|unbedingt|zwingend|pflicht|brauche|benötige|benoetige)$/.test(signal);
-      params.append(excluded ? 'exclude_feature' : 'feature', mention.feature);
-      if (!excluded && preferred) params.append('preferred_feature', mention.feature);
-    }
-    // A shower is implied by its precise form; it must not become a second hard filter.
-    if (selected.some(m => m.feature === 'roll_in_shower')) remove(params, 'shower');
+  for(const mention of mentions){if(mention.ignored||mention.excluded)continue;if(mention.preferred)params.append('preferred_feature',mention.feature);if(mention.must)params.append('must_feature',mention.feature);}
+  for(const mention of mentions){
+    if(mention.ignored){remove(params,mention.feature);continue;}
+    if(!keys.has(mention.feature))continue;
+    params.append(mention.excluded?'exclude_feature':'feature',mention.feature);
+    if(mention.feature==='roll_in_shower')remove(params,'shower');
   }
   // Renting a bicycle does not prove or require a cycling activity on the property.
   if (/\b(?:fahrradverleih|radverleih|fahrradverleihs)\b/.test(text) && !/\b(?:radfahren|radtour|radurlaub|radwege|cycling)\b/.test(text)) remove(params, 'cycling');

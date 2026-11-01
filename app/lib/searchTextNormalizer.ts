@@ -6,6 +6,10 @@
 // ZENTRALE SUCHTEXT-NORMALISIERUNG
 // =========================================================
 
+export function normalizeSemanticText(value: string): string {
+  return value.toLowerCase().replace(/\b(am|ans|zum)\s+merr\b/giu, '$1 meer');
+}
+
 function normalizeForComparison(value: string): string {
   return value
     .toLowerCase()
@@ -258,8 +262,7 @@ const searchVocabulary = [
 export function normalizeSearchText(
   value: string
 ): string {
-  const cleanedText = value
-    .toLowerCase()
+  const cleanedText = normalizeSemanticText(value)
     .replace(/[!?;:]|(?<!\d)[.,]|[.,](?!\d)/g, " ")
     .replace(/\s+/g, " ")
     .trim();
