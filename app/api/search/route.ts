@@ -68,7 +68,9 @@ export async function POST(request: Request) {
         const criteria = { country: params.get('country'), region: params.get('region'), city: params.get('city'), month: params.has('month') ? Number(params.get('month')) : null, nights: params.has('nights') ? Number(params.get('nights')) : null, guests: params.has('max_guests') ? Number(params.get('max_guests')) : null, total_budget: params.has('max_total_price') ? Number(params.get('max_total_price')) : null, max_price_per_night: params.has('max_price_per_night') ? Number(params.get('max_price_per_night')) : null, accommodation_type: params.get('type'), features: params.getAll('feature') };
         return Response.json({ criteria });
     }
-    catch {
-        return Response.json({ error: 'Die ergänzende Textauswertung ist gerade nicht verfügbar.' }, { status: 503 });
+    catch (error) {
+        const detail=error&&typeof error==='object'?error as {code?:unknown;status?:unknown;name?:unknown}:{};
+        const code=detail.code==='insufficient_quota'?'AI_QUOTA_EXCEEDED':detail.status===401||detail.status===403?'AI_AUTHENTICATION_FAILED':detail.status===404?'AI_MODEL_UNAVAILABLE':typeof detail.name==='string'&&/timeout/i.test(detail.name)?'AI_TIMEOUT':'AI_UPSTREAM_UNAVAILABLE';
+        return Response.json({ error: 'Die ergänzende Textauswertung ist gerade nicht verfügbar.',code }, { status: 503 });
     }
 }
