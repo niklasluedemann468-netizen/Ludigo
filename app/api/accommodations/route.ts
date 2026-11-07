@@ -54,7 +54,7 @@ function normalize(row: Row, source: 'own' | 'camping' | 'expedia', linked: Read
     const id = number(row.id), name = string(row.name);
     if (id === null || !Number.isSafeInteger(id) || !name)
         return null;
-    const facts=sourceFeatureFacts(row);
+    const facts=sourceFeatureFacts(row,wanted);
     const coastDistance=featureValue(row,'near_sea',linked,facts)===null && !facts.has('near_sea') && !linked.has('near_sea') && !facts.has('seafront') && !linked.has('seafront') ? nearbyCoastDistance(row.latitude,row.longitude) : null;
     if(coastDistance!==null)facts.set('near_sea',true);
     const states: Record<string, boolean | null> = {};

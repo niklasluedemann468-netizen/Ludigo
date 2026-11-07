@@ -13,10 +13,13 @@ function bool(value: unknown): boolean | null {
   return ['true','yes','ja','1','available','included'].includes(text) ? true : ['false','no','nein','0','unavailable'].includes(text) ? false : null;
 }
 // Parse structured amenity lists/flags only. Marketing descriptions are never read.
-export function sourceFeatureFacts(row: Record<string,unknown>): Map<string,boolean|null> {
+export function sourceFeatureFacts(row: Record<string,unknown>, requested: readonly string[] = []): Map<string,boolean|null> {
   const facts = new Map<string,boolean|null>();
+  const extra=[...new Set(requested.map(canonicalFeature))].filter(key=>!knownFeatures.has(key));
+  const allowedLabels=extra.length?new Map(labels):labels;
+  for(const key of extra)for(const alias of featureAliases(key))allowedLabels.set(plain(alias),key);
   const add = (label: string, value: boolean) => {
-    const key = labels.get(plain(label)); if (!key) return;
+    const key = allowedLabels.get(plain(label)); if (!key) return;
     facts.set(key, facts.has(key) && facts.get(key) !== value ? null : value);
   };
   const entry = (value: unknown): void => {
@@ -40,7 +43,7 @@ export function sourceFeatureFacts(row: Record<string,unknown>): Map<string,bool
       for (const item of input.split(/[,;|]/).slice(0,200)) entry(item.trim());
     } else if (Array.isArray(input)) input.slice(0,200).forEach(entry); else entry(input);
   };
-  for (const key of knownFeatures) for (const column of new Set([...(featureColumns[key] ?? []), ...featureAliases(key).flatMap(alias=>[alias,`has_${alias}`])])) {
+  for (const key of [...knownFeatures,...extra]) for (const column of new Set([...(featureColumns[key] ?? []), ...featureAliases(key).flatMap(alias=>[alias,`has_${alias}`])])) {
     const state = bool(row[column]); if (state !== null) add(key,state);
   }
   for (const field of ['amenities','facilities','features','equipment']) list(row[field]);

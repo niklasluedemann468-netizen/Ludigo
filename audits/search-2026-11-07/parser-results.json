@@ -1,0 +1,6451 @@
+{
+  "summary": {
+    "date": "2026-11-07T07:51:50.972Z",
+    "sourceCommit": "60ef1672dcf60565a3fe8f2c23866d9194cd166d",
+    "appSourceSha256": "0a278c81a3f091339ec1cb8b7cde7d930e36e6be1d48b1c29a82526acdf4ae0a",
+    "cases": 30,
+    "passed": 30,
+    "failed": 0,
+    "files": 12,
+    "executedFiles": 12
+  },
+  "coverage": {
+    "cityParser.ts": {
+      "executedCases": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06",
+        "P07",
+        "P08",
+        "P09",
+        "P10",
+        "P11",
+        "P12",
+        "P13",
+        "P14",
+        "P15",
+        "P16",
+        "P17",
+        "P18",
+        "P19",
+        "P20",
+        "P21",
+        "P22",
+        "P23",
+        "P24",
+        "P25",
+        "P26",
+        "P27",
+        "P28",
+        "P29",
+        "P30"
+      ],
+      "functions": [
+        "parseCitySearch"
+      ]
+    },
+    "dbFeatureMapper.ts": {
+      "executedCases": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06",
+        "P07",
+        "P08",
+        "P09",
+        "P10",
+        "P11",
+        "P12",
+        "P13",
+        "P14",
+        "P15",
+        "P16",
+        "P17",
+        "P18",
+        "P19",
+        "P20",
+        "P21",
+        "P22",
+        "P23",
+        "P24",
+        "P25",
+        "P26",
+        "P27",
+        "P28",
+        "P29",
+        "P30"
+      ],
+      "functions": [
+        "mapSearchParamsToDbFeatures"
+      ]
+    },
+    "extendedSearchParser.ts": {
+      "executedCases": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06",
+        "P07",
+        "P08",
+        "P09",
+        "P10",
+        "P11",
+        "P12",
+        "P13",
+        "P14",
+        "P15",
+        "P16",
+        "P17",
+        "P18",
+        "P19",
+        "P20",
+        "P21",
+        "P22",
+        "P23",
+        "P24",
+        "P25",
+        "P26",
+        "P27",
+        "P28",
+        "P29",
+        "P30"
+      ],
+      "functions": [
+        "parseExtendedSearch"
+      ]
+    },
+    "hotelStarsParser.ts": {
+      "executedCases": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06",
+        "P07",
+        "P08",
+        "P09",
+        "P10",
+        "P11",
+        "P12",
+        "P13",
+        "P14",
+        "P15",
+        "P16",
+        "P17",
+        "P18",
+        "P19",
+        "P20",
+        "P21",
+        "P22",
+        "P23",
+        "P24",
+        "P25",
+        "P26",
+        "P27",
+        "P28",
+        "P29",
+        "P30"
+      ],
+      "functions": [
+        "parseHotelStars"
+      ]
+    },
+    "luxuryParser.ts": {
+      "executedCases": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06",
+        "P07",
+        "P08",
+        "P09",
+        "P10",
+        "P11",
+        "P12",
+        "P13",
+        "P14",
+        "P15",
+        "P16",
+        "P17",
+        "P18",
+        "P19",
+        "P20",
+        "P21",
+        "P22",
+        "P23",
+        "P24",
+        "P25",
+        "P26",
+        "P27",
+        "P28",
+        "P29",
+        "P30"
+      ],
+      "functions": [
+        "parseLuxurySearch"
+      ]
+    },
+    "natureParser.ts": {
+      "executedCases": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06",
+        "P07",
+        "P08",
+        "P09",
+        "P10",
+        "P11",
+        "P12",
+        "P13",
+        "P14",
+        "P15",
+        "P16",
+        "P17",
+        "P18",
+        "P19",
+        "P20",
+        "P21",
+        "P22",
+        "P23",
+        "P24",
+        "P25",
+        "P26",
+        "P27",
+        "P28",
+        "P29",
+        "P30"
+      ],
+      "functions": [
+        "parseNatureSearch"
+      ]
+    },
+    "parserUtils.ts": {
+      "executedCases": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06",
+        "P07",
+        "P08",
+        "P09",
+        "P10",
+        "P11",
+        "P12",
+        "P13",
+        "P14",
+        "P15",
+        "P16",
+        "P17",
+        "P18",
+        "P19",
+        "P20",
+        "P21",
+        "P22",
+        "P23",
+        "P24",
+        "P25",
+        "P26",
+        "P27",
+        "P28",
+        "P29",
+        "P30"
+      ],
+      "functions": [
+        "containsAnyWholeTerm"
+      ]
+    },
+    "preferenceParser.ts": {
+      "executedCases": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06",
+        "P07",
+        "P08",
+        "P09",
+        "P10",
+        "P11",
+        "P12",
+        "P13",
+        "P14",
+        "P15",
+        "P16",
+        "P17",
+        "P18",
+        "P19",
+        "P20",
+        "P21",
+        "P22",
+        "P23",
+        "P24",
+        "P25",
+        "P26",
+        "P27",
+        "P28",
+        "P29",
+        "P30"
+      ],
+      "functions": [
+        "parsePreferences"
+      ]
+    },
+    "romanceParser.ts": {
+      "executedCases": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06",
+        "P07",
+        "P08",
+        "P09",
+        "P10",
+        "P11",
+        "P12",
+        "P13",
+        "P14",
+        "P15",
+        "P16",
+        "P17",
+        "P18",
+        "P19",
+        "P20",
+        "P21",
+        "P22",
+        "P23",
+        "P24",
+        "P25",
+        "P26",
+        "P27",
+        "P28",
+        "P29",
+        "P30"
+      ],
+      "functions": [
+        "parseRomanceSearch"
+      ]
+    },
+    "searchParamCleanup.ts": {
+      "executedCases": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06",
+        "P07",
+        "P08",
+        "P09",
+        "P10",
+        "P11",
+        "P12",
+        "P13",
+        "P14",
+        "P15",
+        "P16",
+        "P17",
+        "P18",
+        "P19",
+        "P20",
+        "P21",
+        "P22",
+        "P23",
+        "P24",
+        "P25",
+        "P26",
+        "P27",
+        "P28",
+        "P29",
+        "P30"
+      ],
+      "functions": [
+        "cleanupSearchParams"
+      ]
+    },
+    "securityParser.ts": {
+      "executedCases": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06",
+        "P07",
+        "P08",
+        "P09",
+        "P10",
+        "P11",
+        "P12",
+        "P13",
+        "P14",
+        "P15",
+        "P16",
+        "P17",
+        "P18",
+        "P19",
+        "P20",
+        "P21",
+        "P22",
+        "P23",
+        "P24",
+        "P25",
+        "P26",
+        "P27",
+        "P28",
+        "P29",
+        "P30"
+      ],
+      "functions": [
+        "parseSecuritySearch"
+      ]
+    },
+    "sustainabilityParser.ts": {
+      "executedCases": [
+        "P01",
+        "P02",
+        "P03",
+        "P04",
+        "P05",
+        "P06",
+        "P07",
+        "P08",
+        "P09",
+        "P10",
+        "P11",
+        "P12",
+        "P13",
+        "P14",
+        "P15",
+        "P16",
+        "P17",
+        "P18",
+        "P19",
+        "P20",
+        "P21",
+        "P22",
+        "P23",
+        "P24",
+        "P25",
+        "P26",
+        "P27",
+        "P28",
+        "P29",
+        "P30"
+      ],
+      "functions": [
+        "parseSustainabilitySearch"
+      ]
+    }
+  },
+  "cases": [
+    {
+      "id": "P01",
+      "query": "Hotel in Berlin im Stadtzentrum",
+      "primaryFile": "cityParser.ts",
+      "expectedNames": [
+        "A",
+        "B"
+      ],
+      "passed": true,
+      "trace": {
+        "natureParser.ts": {
+          "functions": {
+            "parseNatureSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseNatureSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "cityParser.ts": {
+          "functions": {
+            "parseCitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseCitySearch",
+              "added": [
+                "city_location=city_center"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "romanceParser.ts": {
+          "functions": {
+            "parseRomanceSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseRomanceSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "luxuryParser.ts": {
+          "functions": {
+            "parseLuxurySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseLuxurySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "parserUtils.ts": {
+          "functions": {
+            "containsAnyWholeTerm": 2
+          },
+          "changes": []
+        },
+        "sustainabilityParser.ts": {
+          "functions": {
+            "parseSustainabilitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSustainabilitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "securityParser.ts": {
+          "functions": {
+            "parseSecuritySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSecuritySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "extendedSearchParser.ts": {
+          "functions": {
+            "parseExtendedSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseExtendedSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "searchParamCleanup.ts": {
+          "functions": {
+            "cleanupSearchParams": 2
+          },
+          "changes": [
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": []
+            },
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "dbFeatureMapper.ts": {
+          "functions": {
+            "mapSearchParamsToDbFeatures": 1
+          },
+          "changes": [
+            {
+              "function": "mapSearchParamsToDbFeatures",
+              "added": [
+                "feature=city_center"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "hotelStarsParser.ts": {
+          "functions": {
+            "parseHotelStars": 1
+          },
+          "changes": [
+            {
+              "function": "parseHotelStars",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "preferenceParser.ts": {
+          "functions": {
+            "parsePreferences": 1
+          },
+          "changes": [
+            {
+              "function": "parsePreferences",
+              "added": [],
+              "removed": []
+            }
+          ]
+        }
+      },
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "city_center"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "id": "P02",
+      "query": "Hotel in Berlin in der Altstadt",
+      "primaryFile": "cityParser.ts",
+      "expectedNames": [
+        "A"
+      ],
+      "passed": true,
+      "trace": {
+        "natureParser.ts": {
+          "functions": {
+            "parseNatureSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseNatureSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "cityParser.ts": {
+          "functions": {
+            "parseCitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseCitySearch",
+              "added": [
+                "city_location=old_town"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "romanceParser.ts": {
+          "functions": {
+            "parseRomanceSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseRomanceSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "luxuryParser.ts": {
+          "functions": {
+            "parseLuxurySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseLuxurySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "parserUtils.ts": {
+          "functions": {
+            "containsAnyWholeTerm": 2
+          },
+          "changes": []
+        },
+        "sustainabilityParser.ts": {
+          "functions": {
+            "parseSustainabilitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSustainabilitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "securityParser.ts": {
+          "functions": {
+            "parseSecuritySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSecuritySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "extendedSearchParser.ts": {
+          "functions": {
+            "parseExtendedSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseExtendedSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "searchParamCleanup.ts": {
+          "functions": {
+            "cleanupSearchParams": 2
+          },
+          "changes": [
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": []
+            },
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "dbFeatureMapper.ts": {
+          "functions": {
+            "mapSearchParamsToDbFeatures": 1
+          },
+          "changes": [
+            {
+              "function": "mapSearchParamsToDbFeatures",
+              "added": [
+                "feature=old_town"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "hotelStarsParser.ts": {
+          "functions": {
+            "parseHotelStars": 1
+          },
+          "changes": [
+            {
+              "function": "parseHotelStars",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "preferenceParser.ts": {
+          "functions": {
+            "parsePreferences": 1
+          },
+          "changes": [
+            {
+              "function": "parsePreferences",
+              "added": [],
+              "removed": []
+            }
+          ]
+        }
+      },
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "old_town"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A"
+      ]
+    },
+    {
+      "id": "P03",
+      "query": "Hotel in Berlin nahe am Wald",
+      "primaryFile": "natureParser.ts",
+      "expectedNames": [
+        "A"
+      ],
+      "passed": true,
+      "trace": {
+        "natureParser.ts": {
+          "functions": {
+            "parseNatureSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseNatureSearch",
+              "added": [
+                "nature_location=near_forest"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "cityParser.ts": {
+          "functions": {
+            "parseCitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseCitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "romanceParser.ts": {
+          "functions": {
+            "parseRomanceSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseRomanceSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "luxuryParser.ts": {
+          "functions": {
+            "parseLuxurySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseLuxurySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "parserUtils.ts": {
+          "functions": {
+            "containsAnyWholeTerm": 2
+          },
+          "changes": []
+        },
+        "sustainabilityParser.ts": {
+          "functions": {
+            "parseSustainabilitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSustainabilitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "securityParser.ts": {
+          "functions": {
+            "parseSecuritySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSecuritySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "extendedSearchParser.ts": {
+          "functions": {
+            "parseExtendedSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseExtendedSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "searchParamCleanup.ts": {
+          "functions": {
+            "cleanupSearchParams": 2
+          },
+          "changes": [
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": []
+            },
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "dbFeatureMapper.ts": {
+          "functions": {
+            "mapSearchParamsToDbFeatures": 1
+          },
+          "changes": [
+            {
+              "function": "mapSearchParamsToDbFeatures",
+              "added": [
+                "feature=near_forest"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "hotelStarsParser.ts": {
+          "functions": {
+            "parseHotelStars": 1
+          },
+          "changes": [
+            {
+              "function": "parseHotelStars",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "preferenceParser.ts": {
+          "functions": {
+            "parsePreferences": 1
+          },
+          "changes": [
+            {
+              "function": "parsePreferences",
+              "added": [],
+              "removed": []
+            }
+          ]
+        }
+      },
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "near_forest"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A"
+      ]
+    },
+    {
+      "id": "P04",
+      "query": "Hotel in Berlin mit Bergblick",
+      "primaryFile": "natureParser.ts",
+      "expectedNames": [
+        "A"
+      ],
+      "passed": true,
+      "trace": {
+        "natureParser.ts": {
+          "functions": {
+            "parseNatureSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseNatureSearch",
+              "added": [
+                "nature_view=mountain_view"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "cityParser.ts": {
+          "functions": {
+            "parseCitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseCitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "romanceParser.ts": {
+          "functions": {
+            "parseRomanceSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseRomanceSearch",
+              "added": [
+                "romance_view=mountain_view"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "luxuryParser.ts": {
+          "functions": {
+            "parseLuxurySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseLuxurySearch",
+              "added": [
+                "luxury_view=mountain_view"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "parserUtils.ts": {
+          "functions": {
+            "containsAnyWholeTerm": 2
+          },
+          "changes": []
+        },
+        "sustainabilityParser.ts": {
+          "functions": {
+            "parseSustainabilitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSustainabilitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "securityParser.ts": {
+          "functions": {
+            "parseSecuritySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSecuritySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "extendedSearchParser.ts": {
+          "functions": {
+            "parseExtendedSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseExtendedSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "searchParamCleanup.ts": {
+          "functions": {
+            "cleanupSearchParams": 2
+          },
+          "changes": [
+            {
+              "function": "cleanupSearchParams",
+              "added": [
+                "feature=mountain_view"
+              ],
+              "removed": [
+                "luxury_view=mountain_view",
+                "location_feature=mountain_view"
+              ]
+            },
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "dbFeatureMapper.ts": {
+          "functions": {
+            "mapSearchParamsToDbFeatures": 1
+          },
+          "changes": [
+            {
+              "function": "mapSearchParamsToDbFeatures",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "hotelStarsParser.ts": {
+          "functions": {
+            "parseHotelStars": 1
+          },
+          "changes": [
+            {
+              "function": "parseHotelStars",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "preferenceParser.ts": {
+          "functions": {
+            "parsePreferences": 1
+          },
+          "changes": [
+            {
+              "function": "parsePreferences",
+              "added": [],
+              "removed": []
+            }
+          ]
+        }
+      },
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "mountain_view"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A"
+      ]
+    },
+    {
+      "id": "P05",
+      "query": "Hotel in Berlin mit privater Terrasse",
+      "primaryFile": "romanceParser.ts",
+      "expectedNames": [
+        "A"
+      ],
+      "passed": true,
+      "trace": {
+        "natureParser.ts": {
+          "functions": {
+            "parseNatureSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseNatureSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "cityParser.ts": {
+          "functions": {
+            "parseCitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseCitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "romanceParser.ts": {
+          "functions": {
+            "parseRomanceSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseRomanceSearch",
+              "added": [
+                "romance_feature=private_terrace"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "luxuryParser.ts": {
+          "functions": {
+            "parseLuxurySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseLuxurySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "parserUtils.ts": {
+          "functions": {
+            "containsAnyWholeTerm": 2
+          },
+          "changes": []
+        },
+        "sustainabilityParser.ts": {
+          "functions": {
+            "parseSustainabilitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSustainabilitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "securityParser.ts": {
+          "functions": {
+            "parseSecuritySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSecuritySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "extendedSearchParser.ts": {
+          "functions": {
+            "parseExtendedSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseExtendedSearch",
+              "added": [
+                "amenity=terrace"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "searchParamCleanup.ts": {
+          "functions": {
+            "cleanupSearchParams": 2
+          },
+          "changes": [
+            {
+              "function": "cleanupSearchParams",
+              "added": [
+                "feature=private_terrace"
+              ],
+              "removed": [
+                "romance_feature=private_terrace",
+                "amenity=terrace"
+              ]
+            },
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "dbFeatureMapper.ts": {
+          "functions": {
+            "mapSearchParamsToDbFeatures": 1
+          },
+          "changes": [
+            {
+              "function": "mapSearchParamsToDbFeatures",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "hotelStarsParser.ts": {
+          "functions": {
+            "parseHotelStars": 1
+          },
+          "changes": [
+            {
+              "function": "parseHotelStars",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "preferenceParser.ts": {
+          "functions": {
+            "parsePreferences": 1
+          },
+          "changes": [
+            {
+              "function": "parsePreferences",
+              "added": [],
+              "removed": []
+            }
+          ]
+        }
+      },
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "private_terrace",
+          "terrace"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A"
+      ]
+    },
+    {
+      "id": "P06",
+      "query": "Hotel in Berlin mit privatem Garten",
+      "primaryFile": "romanceParser.ts",
+      "expectedNames": [
+        "A",
+        "B"
+      ],
+      "passed": true,
+      "trace": {
+        "natureParser.ts": {
+          "functions": {
+            "parseNatureSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseNatureSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "cityParser.ts": {
+          "functions": {
+            "parseCitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseCitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "romanceParser.ts": {
+          "functions": {
+            "parseRomanceSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseRomanceSearch",
+              "added": [
+                "romance_feature=private_garden"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "luxuryParser.ts": {
+          "functions": {
+            "parseLuxurySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseLuxurySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "parserUtils.ts": {
+          "functions": {
+            "containsAnyWholeTerm": 2
+          },
+          "changes": []
+        },
+        "sustainabilityParser.ts": {
+          "functions": {
+            "parseSustainabilitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSustainabilitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "securityParser.ts": {
+          "functions": {
+            "parseSecuritySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSecuritySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "extendedSearchParser.ts": {
+          "functions": {
+            "parseExtendedSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseExtendedSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "searchParamCleanup.ts": {
+          "functions": {
+            "cleanupSearchParams": 2
+          },
+          "changes": [
+            {
+              "function": "cleanupSearchParams",
+              "added": [
+                "feature=private_garden"
+              ],
+              "removed": [
+                "romance_feature=private_garden"
+              ]
+            },
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "dbFeatureMapper.ts": {
+          "functions": {
+            "mapSearchParamsToDbFeatures": 1
+          },
+          "changes": [
+            {
+              "function": "mapSearchParamsToDbFeatures",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "hotelStarsParser.ts": {
+          "functions": {
+            "parseHotelStars": 1
+          },
+          "changes": [
+            {
+              "function": "parseHotelStars",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "preferenceParser.ts": {
+          "functions": {
+            "parsePreferences": 1
+          },
+          "changes": [
+            {
+              "function": "parsePreferences",
+              "added": [],
+              "removed": []
+            }
+          ]
+        }
+      },
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "garden",
+          "private_garden"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "id": "P07",
+      "query": "Hotel in Berlin mit Infinity Pool",
+      "primaryFile": "luxuryParser.ts",
+      "expectedNames": [
+        "A"
+      ],
+      "passed": true,
+      "trace": {
+        "natureParser.ts": {
+          "functions": {
+            "parseNatureSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseNatureSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "cityParser.ts": {
+          "functions": {
+            "parseCitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseCitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "romanceParser.ts": {
+          "functions": {
+            "parseRomanceSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseRomanceSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "luxuryParser.ts": {
+          "functions": {
+            "parseLuxurySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseLuxurySearch",
+              "added": [
+                "luxury_feature=infinity_pool"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "parserUtils.ts": {
+          "functions": {
+            "containsAnyWholeTerm": 2
+          },
+          "changes": []
+        },
+        "sustainabilityParser.ts": {
+          "functions": {
+            "parseSustainabilitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSustainabilitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "securityParser.ts": {
+          "functions": {
+            "parseSecuritySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSecuritySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "extendedSearchParser.ts": {
+          "functions": {
+            "parseExtendedSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseExtendedSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "searchParamCleanup.ts": {
+          "functions": {
+            "cleanupSearchParams": 2
+          },
+          "changes": [
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": [
+                "leisure_feature=pool"
+              ]
+            },
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "dbFeatureMapper.ts": {
+          "functions": {
+            "mapSearchParamsToDbFeatures": 1
+          },
+          "changes": [
+            {
+              "function": "mapSearchParamsToDbFeatures",
+              "added": [
+                "feature=infinity_pool"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "hotelStarsParser.ts": {
+          "functions": {
+            "parseHotelStars": 1
+          },
+          "changes": [
+            {
+              "function": "parseHotelStars",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "preferenceParser.ts": {
+          "functions": {
+            "parsePreferences": 1
+          },
+          "changes": [
+            {
+              "function": "parsePreferences",
+              "added": [],
+              "removed": []
+            }
+          ]
+        }
+      },
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "pool",
+          "infinity_pool"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A"
+      ]
+    },
+    {
+      "id": "P08",
+      "query": "Hotel in Berlin mit privatem Kino",
+      "primaryFile": "luxuryParser.ts",
+      "expectedNames": [
+        "A",
+        "C"
+      ],
+      "passed": true,
+      "trace": {
+        "natureParser.ts": {
+          "functions": {
+            "parseNatureSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseNatureSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "cityParser.ts": {
+          "functions": {
+            "parseCitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseCitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "romanceParser.ts": {
+          "functions": {
+            "parseRomanceSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseRomanceSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "luxuryParser.ts": {
+          "functions": {
+            "parseLuxurySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseLuxurySearch",
+              "added": [
+                "luxury_feature=private_cinema"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "parserUtils.ts": {
+          "functions": {
+            "containsAnyWholeTerm": 2
+          },
+          "changes": []
+        },
+        "sustainabilityParser.ts": {
+          "functions": {
+            "parseSustainabilitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSustainabilitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "securityParser.ts": {
+          "functions": {
+            "parseSecuritySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSecuritySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "extendedSearchParser.ts": {
+          "functions": {
+            "parseExtendedSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseExtendedSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "searchParamCleanup.ts": {
+          "functions": {
+            "cleanupSearchParams": 2
+          },
+          "changes": [
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": []
+            },
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "dbFeatureMapper.ts": {
+          "functions": {
+            "mapSearchParamsToDbFeatures": 1
+          },
+          "changes": [
+            {
+              "function": "mapSearchParamsToDbFeatures",
+              "added": [
+                "feature=private_cinema"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "hotelStarsParser.ts": {
+          "functions": {
+            "parseHotelStars": 1
+          },
+          "changes": [
+            {
+              "function": "parseHotelStars",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "preferenceParser.ts": {
+          "functions": {
+            "parsePreferences": 1
+          },
+          "changes": [
+            {
+              "function": "parsePreferences",
+              "added": [],
+              "removed": []
+            }
+          ]
+        }
+      },
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "private_cinema"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A",
+        "C"
+      ]
+    },
+    {
+      "id": "P09",
+      "query": "Hotel in Berlin mit Solarstrom",
+      "primaryFile": "sustainabilityParser.ts",
+      "expectedNames": [
+        "A",
+        "C"
+      ],
+      "passed": true,
+      "trace": {
+        "natureParser.ts": {
+          "functions": {
+            "parseNatureSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseNatureSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "cityParser.ts": {
+          "functions": {
+            "parseCitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseCitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "romanceParser.ts": {
+          "functions": {
+            "parseRomanceSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseRomanceSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "luxuryParser.ts": {
+          "functions": {
+            "parseLuxurySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseLuxurySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "parserUtils.ts": {
+          "functions": {
+            "containsAnyWholeTerm": 2
+          },
+          "changes": []
+        },
+        "sustainabilityParser.ts": {
+          "functions": {
+            "parseSustainabilitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSustainabilitySearch",
+              "added": [
+                "sustainability_feature=solar_power"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "securityParser.ts": {
+          "functions": {
+            "parseSecuritySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSecuritySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "extendedSearchParser.ts": {
+          "functions": {
+            "parseExtendedSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseExtendedSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "searchParamCleanup.ts": {
+          "functions": {
+            "cleanupSearchParams": 2
+          },
+          "changes": [
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": []
+            },
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "dbFeatureMapper.ts": {
+          "functions": {
+            "mapSearchParamsToDbFeatures": 1
+          },
+          "changes": [
+            {
+              "function": "mapSearchParamsToDbFeatures",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "hotelStarsParser.ts": {
+          "functions": {
+            "parseHotelStars": 1
+          },
+          "changes": [
+            {
+              "function": "parseHotelStars",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "preferenceParser.ts": {
+          "functions": {
+            "parsePreferences": 1
+          },
+          "changes": [
+            {
+              "function": "parsePreferences",
+              "added": [],
+              "removed": []
+            }
+          ]
+        }
+      },
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "solar_power"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A",
+        "C"
+      ]
+    },
+    {
+      "id": "P10",
+      "query": "Hotel in Berlin mit E-Ladestation",
+      "primaryFile": "sustainabilityParser.ts",
+      "expectedNames": [
+        "A",
+        "B"
+      ],
+      "passed": true,
+      "trace": {
+        "natureParser.ts": {
+          "functions": {
+            "parseNatureSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseNatureSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "cityParser.ts": {
+          "functions": {
+            "parseCitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseCitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "romanceParser.ts": {
+          "functions": {
+            "parseRomanceSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseRomanceSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "luxuryParser.ts": {
+          "functions": {
+            "parseLuxurySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseLuxurySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "parserUtils.ts": {
+          "functions": {
+            "containsAnyWholeTerm": 2
+          },
+          "changes": []
+        },
+        "sustainabilityParser.ts": {
+          "functions": {
+            "parseSustainabilitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSustainabilitySearch",
+              "added": [
+                "sustainability_feature=ev_charging"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "securityParser.ts": {
+          "functions": {
+            "parseSecuritySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSecuritySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "extendedSearchParser.ts": {
+          "functions": {
+            "parseExtendedSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseExtendedSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "searchParamCleanup.ts": {
+          "functions": {
+            "cleanupSearchParams": 2
+          },
+          "changes": [
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": []
+            },
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "dbFeatureMapper.ts": {
+          "functions": {
+            "mapSearchParamsToDbFeatures": 1
+          },
+          "changes": [
+            {
+              "function": "mapSearchParamsToDbFeatures",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "hotelStarsParser.ts": {
+          "functions": {
+            "parseHotelStars": 1
+          },
+          "changes": [
+            {
+              "function": "parseHotelStars",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "preferenceParser.ts": {
+          "functions": {
+            "parsePreferences": 1
+          },
+          "changes": [
+            {
+              "function": "parsePreferences",
+              "added": [],
+              "removed": []
+            }
+          ]
+        }
+      },
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "ev_charging"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "id": "P11",
+      "query": "Hotel in Berlin mit 24h Rezeption",
+      "primaryFile": "securityParser.ts",
+      "expectedNames": [
+        "A",
+        "B"
+      ],
+      "passed": true,
+      "trace": {
+        "natureParser.ts": {
+          "functions": {
+            "parseNatureSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseNatureSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "cityParser.ts": {
+          "functions": {
+            "parseCitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseCitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "romanceParser.ts": {
+          "functions": {
+            "parseRomanceSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseRomanceSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "luxuryParser.ts": {
+          "functions": {
+            "parseLuxurySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseLuxurySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "parserUtils.ts": {
+          "functions": {
+            "containsAnyWholeTerm": 2
+          },
+          "changes": []
+        },
+        "sustainabilityParser.ts": {
+          "functions": {
+            "parseSustainabilitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSustainabilitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "securityParser.ts": {
+          "functions": {
+            "parseSecuritySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSecuritySearch",
+              "added": [
+                "security_service=reception_24h"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "extendedSearchParser.ts": {
+          "functions": {
+            "parseExtendedSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseExtendedSearch",
+              "added": [
+                "hotel_service=reception_24h"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "searchParamCleanup.ts": {
+          "functions": {
+            "cleanupSearchParams": 2
+          },
+          "changes": [
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": []
+            },
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "dbFeatureMapper.ts": {
+          "functions": {
+            "mapSearchParamsToDbFeatures": 1
+          },
+          "changes": [
+            {
+              "function": "mapSearchParamsToDbFeatures",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "hotelStarsParser.ts": {
+          "functions": {
+            "parseHotelStars": 1
+          },
+          "changes": [
+            {
+              "function": "parseHotelStars",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "preferenceParser.ts": {
+          "functions": {
+            "parsePreferences": 1
+          },
+          "changes": [
+            {
+              "function": "parsePreferences",
+              "added": [],
+              "removed": []
+            }
+          ]
+        }
+      },
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "reception_24h"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "id": "P12",
+      "query": "Hotel in Berlin mit Zimmersafe",
+      "primaryFile": "securityParser.ts",
+      "expectedNames": [
+        "A",
+        "C"
+      ],
+      "passed": true,
+      "trace": {
+        "natureParser.ts": {
+          "functions": {
+            "parseNatureSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseNatureSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "cityParser.ts": {
+          "functions": {
+            "parseCitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseCitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "romanceParser.ts": {
+          "functions": {
+            "parseRomanceSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseRomanceSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "luxuryParser.ts": {
+          "functions": {
+            "parseLuxurySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseLuxurySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "parserUtils.ts": {
+          "functions": {
+            "containsAnyWholeTerm": 2
+          },
+          "changes": []
+        },
+        "sustainabilityParser.ts": {
+          "functions": {
+            "parseSustainabilitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSustainabilitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "securityParser.ts": {
+          "functions": {
+            "parseSecuritySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSecuritySearch",
+              "added": [
+                "security_feature=room_safe"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "extendedSearchParser.ts": {
+          "functions": {
+            "parseExtendedSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseExtendedSearch",
+              "added": [
+                "amenity=safe"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "searchParamCleanup.ts": {
+          "functions": {
+            "cleanupSearchParams": 2
+          },
+          "changes": [
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": [
+                "amenity=safe"
+              ]
+            },
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "dbFeatureMapper.ts": {
+          "functions": {
+            "mapSearchParamsToDbFeatures": 1
+          },
+          "changes": [
+            {
+              "function": "mapSearchParamsToDbFeatures",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "hotelStarsParser.ts": {
+          "functions": {
+            "parseHotelStars": 1
+          },
+          "changes": [
+            {
+              "function": "parseHotelStars",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "preferenceParser.ts": {
+          "functions": {
+            "parsePreferences": 1
+          },
+          "changes": [
+            {
+              "function": "parsePreferences",
+              "added": [],
+              "removed": []
+            }
+          ]
+        }
+      },
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "room_safe"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A",
+        "C"
+      ]
+    },
+    {
+      "id": "P13",
+      "query": "Hotel in Berlin mit Videoüberwachung außen",
+      "primaryFile": "securityParser.ts",
+      "expectedNames": [
+        "A"
+      ],
+      "passed": true,
+      "trace": {
+        "natureParser.ts": {
+          "functions": {
+            "parseNatureSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseNatureSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "cityParser.ts": {
+          "functions": {
+            "parseCitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseCitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "romanceParser.ts": {
+          "functions": {
+            "parseRomanceSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseRomanceSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "luxuryParser.ts": {
+          "functions": {
+            "parseLuxurySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseLuxurySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "parserUtils.ts": {
+          "functions": {
+            "containsAnyWholeTerm": 2
+          },
+          "changes": []
+        },
+        "sustainabilityParser.ts": {
+          "functions": {
+            "parseSustainabilitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSustainabilitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "securityParser.ts": {
+          "functions": {
+            "parseSecuritySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSecuritySearch",
+              "added": [
+                "security_feature=cctv",
+                "security_feature=cctv_outside"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "extendedSearchParser.ts": {
+          "functions": {
+            "parseExtendedSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseExtendedSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "searchParamCleanup.ts": {
+          "functions": {
+            "cleanupSearchParams": 2
+          },
+          "changes": [
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": []
+            },
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "dbFeatureMapper.ts": {
+          "functions": {
+            "mapSearchParamsToDbFeatures": 1
+          },
+          "changes": [
+            {
+              "function": "mapSearchParamsToDbFeatures",
+              "added": [
+                "feature=cctv",
+                "feature=cctv_outside"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "hotelStarsParser.ts": {
+          "functions": {
+            "parseHotelStars": 1
+          },
+          "changes": [
+            {
+              "function": "parseHotelStars",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "preferenceParser.ts": {
+          "functions": {
+            "parsePreferences": 1
+          },
+          "changes": [
+            {
+              "function": "parsePreferences",
+              "added": [],
+              "removed": []
+            }
+          ]
+        }
+      },
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "cctv",
+          "cctv_outside"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A"
+      ]
+    },
+    {
+      "id": "P14",
+      "query": "Hotel in Berlin mit Late Check-out",
+      "primaryFile": "extendedSearchParser.ts",
+      "expectedNames": [
+        "A"
+      ],
+      "passed": true,
+      "trace": {
+        "natureParser.ts": {
+          "functions": {
+            "parseNatureSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseNatureSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "cityParser.ts": {
+          "functions": {
+            "parseCitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseCitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "romanceParser.ts": {
+          "functions": {
+            "parseRomanceSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseRomanceSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "luxuryParser.ts": {
+          "functions": {
+            "parseLuxurySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseLuxurySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "parserUtils.ts": {
+          "functions": {
+            "containsAnyWholeTerm": 2
+          },
+          "changes": []
+        },
+        "sustainabilityParser.ts": {
+          "functions": {
+            "parseSustainabilitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSustainabilitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "securityParser.ts": {
+          "functions": {
+            "parseSecuritySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSecuritySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "extendedSearchParser.ts": {
+          "functions": {
+            "parseExtendedSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseExtendedSearch",
+              "added": [
+                "hotel_service=late_check_out"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "searchParamCleanup.ts": {
+          "functions": {
+            "cleanupSearchParams": 2
+          },
+          "changes": [
+            {
+              "function": "cleanupSearchParams",
+              "added": [
+                "feature=late_check_out"
+              ],
+              "removed": [
+                "hotel_service=late_check_out"
+              ]
+            },
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "dbFeatureMapper.ts": {
+          "functions": {
+            "mapSearchParamsToDbFeatures": 1
+          },
+          "changes": [
+            {
+              "function": "mapSearchParamsToDbFeatures",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "hotelStarsParser.ts": {
+          "functions": {
+            "parseHotelStars": 1
+          },
+          "changes": [
+            {
+              "function": "parseHotelStars",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "preferenceParser.ts": {
+          "functions": {
+            "parsePreferences": 1
+          },
+          "changes": [
+            {
+              "function": "parsePreferences",
+              "added": [],
+              "removed": []
+            }
+          ]
+        }
+      },
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "late_check_out"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A"
+      ]
+    },
+    {
+      "id": "P15",
+      "query": "Hotel in Berlin mit Schlafsofa",
+      "primaryFile": "extendedSearchParser.ts",
+      "expectedNames": [
+        "A",
+        "B"
+      ],
+      "passed": true,
+      "trace": {
+        "natureParser.ts": {
+          "functions": {
+            "parseNatureSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseNatureSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "cityParser.ts": {
+          "functions": {
+            "parseCitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseCitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "romanceParser.ts": {
+          "functions": {
+            "parseRomanceSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseRomanceSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "luxuryParser.ts": {
+          "functions": {
+            "parseLuxurySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseLuxurySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "parserUtils.ts": {
+          "functions": {
+            "containsAnyWholeTerm": 2
+          },
+          "changes": []
+        },
+        "sustainabilityParser.ts": {
+          "functions": {
+            "parseSustainabilitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSustainabilitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "securityParser.ts": {
+          "functions": {
+            "parseSecuritySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSecuritySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "extendedSearchParser.ts": {
+          "functions": {
+            "parseExtendedSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseExtendedSearch",
+              "added": [
+                "amenity=sofa",
+                "amenity=sofa_bed"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "searchParamCleanup.ts": {
+          "functions": {
+            "cleanupSearchParams": 2
+          },
+          "changes": [
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": []
+            },
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "dbFeatureMapper.ts": {
+          "functions": {
+            "mapSearchParamsToDbFeatures": 1
+          },
+          "changes": [
+            {
+              "function": "mapSearchParamsToDbFeatures",
+              "added": [
+                "feature=sofa",
+                "feature=sofa_bed"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "hotelStarsParser.ts": {
+          "functions": {
+            "parseHotelStars": 1
+          },
+          "changes": [
+            {
+              "function": "parseHotelStars",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "preferenceParser.ts": {
+          "functions": {
+            "parsePreferences": 1
+          },
+          "changes": [
+            {
+              "function": "parsePreferences",
+              "added": [],
+              "removed": []
+            }
+          ]
+        }
+      },
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "sofa",
+          "sofa_bed"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "id": "P16",
+      "query": "Hotel in Berlin mit Concierge",
+      "primaryFile": "extendedSearchParser.ts",
+      "expectedNames": [
+        "A",
+        "C"
+      ],
+      "passed": true,
+      "trace": {
+        "natureParser.ts": {
+          "functions": {
+            "parseNatureSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseNatureSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "cityParser.ts": {
+          "functions": {
+            "parseCitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseCitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "romanceParser.ts": {
+          "functions": {
+            "parseRomanceSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseRomanceSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "luxuryParser.ts": {
+          "functions": {
+            "parseLuxurySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseLuxurySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "parserUtils.ts": {
+          "functions": {
+            "containsAnyWholeTerm": 2
+          },
+          "changes": []
+        },
+        "sustainabilityParser.ts": {
+          "functions": {
+            "parseSustainabilitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSustainabilitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "securityParser.ts": {
+          "functions": {
+            "parseSecuritySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSecuritySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "extendedSearchParser.ts": {
+          "functions": {
+            "parseExtendedSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseExtendedSearch",
+              "added": [
+                "hotel_service=concierge"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "searchParamCleanup.ts": {
+          "functions": {
+            "cleanupSearchParams": 2
+          },
+          "changes": [
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": []
+            },
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "dbFeatureMapper.ts": {
+          "functions": {
+            "mapSearchParamsToDbFeatures": 1
+          },
+          "changes": [
+            {
+              "function": "mapSearchParamsToDbFeatures",
+              "added": [
+                "feature=concierge"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "hotelStarsParser.ts": {
+          "functions": {
+            "parseHotelStars": 1
+          },
+          "changes": [
+            {
+              "function": "parseHotelStars",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "preferenceParser.ts": {
+          "functions": {
+            "parsePreferences": 1
+          },
+          "changes": [
+            {
+              "function": "parsePreferences",
+              "added": [],
+              "removed": []
+            }
+          ]
+        }
+      },
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "concierge"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A",
+        "C"
+      ]
+    },
+    {
+      "id": "P17",
+      "query": "Hotel in Berlin mindestens 4 Sterne",
+      "primaryFile": "hotelStarsParser.ts",
+      "expectedNames": [
+        "A",
+        "C"
+      ],
+      "passed": true,
+      "trace": {
+        "natureParser.ts": {
+          "functions": {
+            "parseNatureSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseNatureSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "cityParser.ts": {
+          "functions": {
+            "parseCitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseCitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "romanceParser.ts": {
+          "functions": {
+            "parseRomanceSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseRomanceSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "luxuryParser.ts": {
+          "functions": {
+            "parseLuxurySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseLuxurySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "parserUtils.ts": {
+          "functions": {
+            "containsAnyWholeTerm": 2
+          },
+          "changes": []
+        },
+        "sustainabilityParser.ts": {
+          "functions": {
+            "parseSustainabilitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSustainabilitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "securityParser.ts": {
+          "functions": {
+            "parseSecuritySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSecuritySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "extendedSearchParser.ts": {
+          "functions": {
+            "parseExtendedSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseExtendedSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "searchParamCleanup.ts": {
+          "functions": {
+            "cleanupSearchParams": 2
+          },
+          "changes": [
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": []
+            },
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "dbFeatureMapper.ts": {
+          "functions": {
+            "mapSearchParamsToDbFeatures": 1
+          },
+          "changes": [
+            {
+              "function": "mapSearchParamsToDbFeatures",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "hotelStarsParser.ts": {
+          "functions": {
+            "parseHotelStars": 1
+          },
+          "changes": [
+            {
+              "function": "parseHotelStars",
+              "added": [
+                "min_hotel_stars=4"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "preferenceParser.ts": {
+          "functions": {
+            "parsePreferences": 1
+          },
+          "changes": [
+            {
+              "function": "parsePreferences",
+              "added": [],
+              "removed": []
+            }
+          ]
+        }
+      },
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "min_hotel_stars": [
+          "4"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A",
+        "C"
+      ]
+    },
+    {
+      "id": "P18",
+      "query": "Hotel in Berlin zwischen 3 und 4 Sternen",
+      "primaryFile": "hotelStarsParser.ts",
+      "expectedNames": [
+        "A",
+        "B"
+      ],
+      "passed": true,
+      "trace": {
+        "natureParser.ts": {
+          "functions": {
+            "parseNatureSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseNatureSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "cityParser.ts": {
+          "functions": {
+            "parseCitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseCitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "romanceParser.ts": {
+          "functions": {
+            "parseRomanceSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseRomanceSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "luxuryParser.ts": {
+          "functions": {
+            "parseLuxurySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseLuxurySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "parserUtils.ts": {
+          "functions": {
+            "containsAnyWholeTerm": 2
+          },
+          "changes": []
+        },
+        "sustainabilityParser.ts": {
+          "functions": {
+            "parseSustainabilitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSustainabilitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "securityParser.ts": {
+          "functions": {
+            "parseSecuritySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSecuritySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "extendedSearchParser.ts": {
+          "functions": {
+            "parseExtendedSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseExtendedSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "searchParamCleanup.ts": {
+          "functions": {
+            "cleanupSearchParams": 2
+          },
+          "changes": [
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": []
+            },
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "dbFeatureMapper.ts": {
+          "functions": {
+            "mapSearchParamsToDbFeatures": 1
+          },
+          "changes": [
+            {
+              "function": "mapSearchParamsToDbFeatures",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "hotelStarsParser.ts": {
+          "functions": {
+            "parseHotelStars": 1
+          },
+          "changes": [
+            {
+              "function": "parseHotelStars",
+              "added": [
+                "min_hotel_stars=3",
+                "max_hotel_stars=4"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "preferenceParser.ts": {
+          "functions": {
+            "parsePreferences": 1
+          },
+          "changes": [
+            {
+              "function": "parsePreferences",
+              "added": [],
+              "removed": []
+            }
+          ]
+        }
+      },
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "min_hotel_stars": [
+          "3"
+        ],
+        "max_hotel_stars": [
+          "4"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "id": "P19",
+      "query": "Hotel in Berlin WLAN muss sein, Pool wäre schön",
+      "primaryFile": "preferenceParser.ts",
+      "expectedNames": [
+        "A",
+        "B"
+      ],
+      "passed": true,
+      "trace": {
+        "natureParser.ts": {
+          "functions": {
+            "parseNatureSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseNatureSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "cityParser.ts": {
+          "functions": {
+            "parseCitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseCitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "romanceParser.ts": {
+          "functions": {
+            "parseRomanceSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseRomanceSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "luxuryParser.ts": {
+          "functions": {
+            "parseLuxurySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseLuxurySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "parserUtils.ts": {
+          "functions": {
+            "containsAnyWholeTerm": 2
+          },
+          "changes": []
+        },
+        "sustainabilityParser.ts": {
+          "functions": {
+            "parseSustainabilitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSustainabilitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "securityParser.ts": {
+          "functions": {
+            "parseSecuritySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSecuritySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "extendedSearchParser.ts": {
+          "functions": {
+            "parseExtendedSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseExtendedSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "searchParamCleanup.ts": {
+          "functions": {
+            "cleanupSearchParams": 2
+          },
+          "changes": [
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": [
+                "leisure_feature=pool",
+                "digital_feature=wifi"
+              ]
+            },
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "dbFeatureMapper.ts": {
+          "functions": {
+            "mapSearchParamsToDbFeatures": 1
+          },
+          "changes": [
+            {
+              "function": "mapSearchParamsToDbFeatures",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "hotelStarsParser.ts": {
+          "functions": {
+            "parseHotelStars": 1
+          },
+          "changes": [
+            {
+              "function": "parseHotelStars",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "preferenceParser.ts": {
+          "functions": {
+            "parsePreferences": 1
+          },
+          "changes": [
+            {
+              "function": "parsePreferences",
+              "added": [
+                "must_feature=wifi",
+                "preferred_feature=pool"
+              ],
+              "removed": []
+            }
+          ]
+        }
+      },
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "pool",
+          "wifi"
+        ],
+        "must_feature": [
+          "wifi"
+        ],
+        "preferred_feature": [
+          "pool"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "id": "P20",
+      "query": "Hotel in Berlin ohne Safe",
+      "primaryFile": "searchParamCleanup.ts",
+      "expectedNames": [
+        "D"
+      ],
+      "passed": true,
+      "trace": {
+        "natureParser.ts": {
+          "functions": {
+            "parseNatureSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseNatureSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "cityParser.ts": {
+          "functions": {
+            "parseCitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseCitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "romanceParser.ts": {
+          "functions": {
+            "parseRomanceSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseRomanceSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "luxuryParser.ts": {
+          "functions": {
+            "parseLuxurySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseLuxurySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "parserUtils.ts": {
+          "functions": {
+            "containsAnyWholeTerm": 2
+          },
+          "changes": []
+        },
+        "sustainabilityParser.ts": {
+          "functions": {
+            "parseSustainabilitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSustainabilitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "securityParser.ts": {
+          "functions": {
+            "parseSecuritySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSecuritySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "extendedSearchParser.ts": {
+          "functions": {
+            "parseExtendedSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseExtendedSearch",
+              "added": [
+                "amenity=safe"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "searchParamCleanup.ts": {
+          "functions": {
+            "cleanupSearchParams": 2
+          },
+          "changes": [
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": [
+                "amenity=safe"
+              ]
+            },
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "dbFeatureMapper.ts": {
+          "functions": {
+            "mapSearchParamsToDbFeatures": 1
+          },
+          "changes": [
+            {
+              "function": "mapSearchParamsToDbFeatures",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "hotelStarsParser.ts": {
+          "functions": {
+            "parseHotelStars": 1
+          },
+          "changes": [
+            {
+              "function": "parseHotelStars",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "preferenceParser.ts": {
+          "functions": {
+            "parsePreferences": 1
+          },
+          "changes": [
+            {
+              "function": "parsePreferences",
+              "added": [],
+              "removed": []
+            }
+          ]
+        }
+      },
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "exclude_feature": [
+          "safe"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "D"
+      ]
+    },
+    {
+      "id": "P21",
+      "query": "Hotel in Berlin mit Safe und 24h Rezeption",
+      "primaryFile": "dbFeatureMapper.ts",
+      "expectedNames": [
+        "A",
+        "B"
+      ],
+      "passed": true,
+      "trace": {
+        "natureParser.ts": {
+          "functions": {
+            "parseNatureSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseNatureSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "cityParser.ts": {
+          "functions": {
+            "parseCitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseCitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "romanceParser.ts": {
+          "functions": {
+            "parseRomanceSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseRomanceSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "luxuryParser.ts": {
+          "functions": {
+            "parseLuxurySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseLuxurySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "parserUtils.ts": {
+          "functions": {
+            "containsAnyWholeTerm": 2
+          },
+          "changes": []
+        },
+        "sustainabilityParser.ts": {
+          "functions": {
+            "parseSustainabilitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSustainabilitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "securityParser.ts": {
+          "functions": {
+            "parseSecuritySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSecuritySearch",
+              "added": [
+                "security_service=reception_24h"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "extendedSearchParser.ts": {
+          "functions": {
+            "parseExtendedSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseExtendedSearch",
+              "added": [
+                "amenity=safe",
+                "hotel_service=reception_24h"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "searchParamCleanup.ts": {
+          "functions": {
+            "cleanupSearchParams": 2
+          },
+          "changes": [
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": []
+            },
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "dbFeatureMapper.ts": {
+          "functions": {
+            "mapSearchParamsToDbFeatures": 1
+          },
+          "changes": [
+            {
+              "function": "mapSearchParamsToDbFeatures",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "hotelStarsParser.ts": {
+          "functions": {
+            "parseHotelStars": 1
+          },
+          "changes": [
+            {
+              "function": "parseHotelStars",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "preferenceParser.ts": {
+          "functions": {
+            "parsePreferences": 1
+          },
+          "changes": [
+            {
+              "function": "parsePreferences",
+              "added": [],
+              "removed": []
+            }
+          ]
+        }
+      },
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "safe",
+          "reception_24h"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "id": "P22",
+      "query": "Hotel in Berlin mit privater Wallbox",
+      "primaryFile": "sustainabilityParser.ts",
+      "expectedNames": [
+        "A"
+      ],
+      "passed": true,
+      "trace": {
+        "natureParser.ts": {
+          "functions": {
+            "parseNatureSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseNatureSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "cityParser.ts": {
+          "functions": {
+            "parseCitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseCitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "romanceParser.ts": {
+          "functions": {
+            "parseRomanceSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseRomanceSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "luxuryParser.ts": {
+          "functions": {
+            "parseLuxurySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseLuxurySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "parserUtils.ts": {
+          "functions": {
+            "containsAnyWholeTerm": 2
+          },
+          "changes": []
+        },
+        "sustainabilityParser.ts": {
+          "functions": {
+            "parseSustainabilitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSustainabilitySearch",
+              "added": [
+                "sustainability_feature=ev_charging"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "securityParser.ts": {
+          "functions": {
+            "parseSecuritySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSecuritySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "extendedSearchParser.ts": {
+          "functions": {
+            "parseExtendedSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseExtendedSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "searchParamCleanup.ts": {
+          "functions": {
+            "cleanupSearchParams": 2
+          },
+          "changes": [
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": []
+            },
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "dbFeatureMapper.ts": {
+          "functions": {
+            "mapSearchParamsToDbFeatures": 1
+          },
+          "changes": [
+            {
+              "function": "mapSearchParamsToDbFeatures",
+              "added": [
+                "feature=ev_charging"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "hotelStarsParser.ts": {
+          "functions": {
+            "parseHotelStars": 1
+          },
+          "changes": [
+            {
+              "function": "parseHotelStars",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "preferenceParser.ts": {
+          "functions": {
+            "parsePreferences": 1
+          },
+          "changes": [
+            {
+              "function": "parsePreferences",
+              "added": [],
+              "removed": []
+            }
+          ]
+        }
+      },
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "private_ev_charger"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A"
+      ]
+    },
+    {
+      "id": "P23",
+      "query": "Hotel in Berlin mit Pool, E-Ladestation wäre schön",
+      "primaryFile": "preferenceParser.ts",
+      "expectedNames": [
+        "A",
+        "C"
+      ],
+      "passed": true,
+      "trace": {
+        "natureParser.ts": {
+          "functions": {
+            "parseNatureSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseNatureSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "cityParser.ts": {
+          "functions": {
+            "parseCitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseCitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "romanceParser.ts": {
+          "functions": {
+            "parseRomanceSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseRomanceSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "luxuryParser.ts": {
+          "functions": {
+            "parseLuxurySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseLuxurySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "parserUtils.ts": {
+          "functions": {
+            "containsAnyWholeTerm": 2
+          },
+          "changes": []
+        },
+        "sustainabilityParser.ts": {
+          "functions": {
+            "parseSustainabilitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSustainabilitySearch",
+              "added": [
+                "sustainability_feature=ev_charging"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "securityParser.ts": {
+          "functions": {
+            "parseSecuritySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSecuritySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "extendedSearchParser.ts": {
+          "functions": {
+            "parseExtendedSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseExtendedSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "searchParamCleanup.ts": {
+          "functions": {
+            "cleanupSearchParams": 2
+          },
+          "changes": [
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": [
+                "leisure_feature=pool"
+              ]
+            },
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "dbFeatureMapper.ts": {
+          "functions": {
+            "mapSearchParamsToDbFeatures": 1
+          },
+          "changes": [
+            {
+              "function": "mapSearchParamsToDbFeatures",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "hotelStarsParser.ts": {
+          "functions": {
+            "parseHotelStars": 1
+          },
+          "changes": [
+            {
+              "function": "parseHotelStars",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "preferenceParser.ts": {
+          "functions": {
+            "parsePreferences": 1
+          },
+          "changes": [
+            {
+              "function": "parsePreferences",
+              "added": [
+                "preferred_feature=pool"
+              ],
+              "removed": []
+            }
+          ]
+        }
+      },
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "pool",
+          "ev_charging"
+        ],
+        "preferred_feature": [
+          "ev_charging"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A",
+        "C"
+      ]
+    },
+    {
+      "id": "P24",
+      "query": "Hotel in Berlin mit Bademantel",
+      "primaryFile": "extendedSearchParser.ts",
+      "expectedNames": [],
+      "passed": true,
+      "trace": {
+        "natureParser.ts": {
+          "functions": {
+            "parseNatureSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseNatureSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "cityParser.ts": {
+          "functions": {
+            "parseCitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseCitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "romanceParser.ts": {
+          "functions": {
+            "parseRomanceSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseRomanceSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "luxuryParser.ts": {
+          "functions": {
+            "parseLuxurySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseLuxurySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "parserUtils.ts": {
+          "functions": {
+            "containsAnyWholeTerm": 2
+          },
+          "changes": []
+        },
+        "sustainabilityParser.ts": {
+          "functions": {
+            "parseSustainabilitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSustainabilitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "securityParser.ts": {
+          "functions": {
+            "parseSecuritySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSecuritySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "extendedSearchParser.ts": {
+          "functions": {
+            "parseExtendedSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseExtendedSearch",
+              "added": [
+                "amenity=bathrobe"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "searchParamCleanup.ts": {
+          "functions": {
+            "cleanupSearchParams": 2
+          },
+          "changes": [
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": []
+            },
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "dbFeatureMapper.ts": {
+          "functions": {
+            "mapSearchParamsToDbFeatures": 1
+          },
+          "changes": [
+            {
+              "function": "mapSearchParamsToDbFeatures",
+              "added": [
+                "feature=bathrobe"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "hotelStarsParser.ts": {
+          "functions": {
+            "parseHotelStars": 1
+          },
+          "changes": [
+            {
+              "function": "parseHotelStars",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "preferenceParser.ts": {
+          "functions": {
+            "parsePreferences": 1
+          },
+          "changes": [
+            {
+              "function": "parsePreferences",
+              "added": [],
+              "removed": []
+            }
+          ]
+        }
+      },
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "bathrobe"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": []
+    },
+    {
+      "id": "P25",
+      "query": "Hotel in Berlin ohne E-Ladestation",
+      "primaryFile": "sustainabilityParser.ts",
+      "expectedNames": [
+        "C",
+        "D"
+      ],
+      "passed": true,
+      "trace": {
+        "natureParser.ts": {
+          "functions": {
+            "parseNatureSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseNatureSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "cityParser.ts": {
+          "functions": {
+            "parseCitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseCitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "romanceParser.ts": {
+          "functions": {
+            "parseRomanceSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseRomanceSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "luxuryParser.ts": {
+          "functions": {
+            "parseLuxurySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseLuxurySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "parserUtils.ts": {
+          "functions": {
+            "containsAnyWholeTerm": 2
+          },
+          "changes": []
+        },
+        "sustainabilityParser.ts": {
+          "functions": {
+            "parseSustainabilitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSustainabilitySearch",
+              "added": [
+                "sustainability_feature=ev_charging"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "securityParser.ts": {
+          "functions": {
+            "parseSecuritySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSecuritySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "extendedSearchParser.ts": {
+          "functions": {
+            "parseExtendedSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseExtendedSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "searchParamCleanup.ts": {
+          "functions": {
+            "cleanupSearchParams": 2
+          },
+          "changes": [
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": [
+                "sustainability_feature=ev_charging"
+              ]
+            },
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "dbFeatureMapper.ts": {
+          "functions": {
+            "mapSearchParamsToDbFeatures": 1
+          },
+          "changes": [
+            {
+              "function": "mapSearchParamsToDbFeatures",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "hotelStarsParser.ts": {
+          "functions": {
+            "parseHotelStars": 1
+          },
+          "changes": [
+            {
+              "function": "parseHotelStars",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "preferenceParser.ts": {
+          "functions": {
+            "parsePreferences": 1
+          },
+          "changes": [
+            {
+              "function": "parsePreferences",
+              "added": [],
+              "removed": []
+            }
+          ]
+        }
+      },
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "exclude_feature": [
+          "ev_charging"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C",
+        "D"
+      ]
+    },
+    {
+      "id": "P26",
+      "query": "Hotel in Berlin mit Wallbox und 24h Rezeption",
+      "primaryFile": "sustainabilityParser.ts",
+      "expectedNames": [
+        "A",
+        "B"
+      ],
+      "passed": true,
+      "trace": {
+        "natureParser.ts": {
+          "functions": {
+            "parseNatureSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseNatureSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "cityParser.ts": {
+          "functions": {
+            "parseCitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseCitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "romanceParser.ts": {
+          "functions": {
+            "parseRomanceSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseRomanceSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "luxuryParser.ts": {
+          "functions": {
+            "parseLuxurySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseLuxurySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "parserUtils.ts": {
+          "functions": {
+            "containsAnyWholeTerm": 2
+          },
+          "changes": []
+        },
+        "sustainabilityParser.ts": {
+          "functions": {
+            "parseSustainabilitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSustainabilitySearch",
+              "added": [
+                "sustainability_feature=ev_charging"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "securityParser.ts": {
+          "functions": {
+            "parseSecuritySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSecuritySearch",
+              "added": [
+                "security_service=reception_24h"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "extendedSearchParser.ts": {
+          "functions": {
+            "parseExtendedSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseExtendedSearch",
+              "added": [
+                "hotel_service=reception_24h"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "searchParamCleanup.ts": {
+          "functions": {
+            "cleanupSearchParams": 2
+          },
+          "changes": [
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": []
+            },
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "dbFeatureMapper.ts": {
+          "functions": {
+            "mapSearchParamsToDbFeatures": 1
+          },
+          "changes": [
+            {
+              "function": "mapSearchParamsToDbFeatures",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "hotelStarsParser.ts": {
+          "functions": {
+            "parseHotelStars": 1
+          },
+          "changes": [
+            {
+              "function": "parseHotelStars",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "preferenceParser.ts": {
+          "functions": {
+            "parsePreferences": 1
+          },
+          "changes": [
+            {
+              "function": "parsePreferences",
+              "added": [],
+              "removed": []
+            }
+          ]
+        }
+      },
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "ev_charging",
+          "reception_24h"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "id": "P27",
+      "query": "Hotel in Berlin mit privater Terrasse und 24h Rezeption und E-Ladestation",
+      "primaryFile": "romanceParser.ts",
+      "expectedNames": [
+        "A"
+      ],
+      "passed": true,
+      "trace": {
+        "natureParser.ts": {
+          "functions": {
+            "parseNatureSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseNatureSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "cityParser.ts": {
+          "functions": {
+            "parseCitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseCitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "romanceParser.ts": {
+          "functions": {
+            "parseRomanceSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseRomanceSearch",
+              "added": [
+                "romance_feature=private_terrace"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "luxuryParser.ts": {
+          "functions": {
+            "parseLuxurySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseLuxurySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "parserUtils.ts": {
+          "functions": {
+            "containsAnyWholeTerm": 2
+          },
+          "changes": []
+        },
+        "sustainabilityParser.ts": {
+          "functions": {
+            "parseSustainabilitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSustainabilitySearch",
+              "added": [
+                "sustainability_feature=ev_charging"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "securityParser.ts": {
+          "functions": {
+            "parseSecuritySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSecuritySearch",
+              "added": [
+                "security_service=reception_24h"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "extendedSearchParser.ts": {
+          "functions": {
+            "parseExtendedSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseExtendedSearch",
+              "added": [
+                "amenity=terrace",
+                "hotel_service=reception_24h"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "searchParamCleanup.ts": {
+          "functions": {
+            "cleanupSearchParams": 2
+          },
+          "changes": [
+            {
+              "function": "cleanupSearchParams",
+              "added": [
+                "feature=private_terrace"
+              ],
+              "removed": [
+                "romance_feature=private_terrace",
+                "amenity=terrace"
+              ]
+            },
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "dbFeatureMapper.ts": {
+          "functions": {
+            "mapSearchParamsToDbFeatures": 1
+          },
+          "changes": [
+            {
+              "function": "mapSearchParamsToDbFeatures",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "hotelStarsParser.ts": {
+          "functions": {
+            "parseHotelStars": 1
+          },
+          "changes": [
+            {
+              "function": "parseHotelStars",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "preferenceParser.ts": {
+          "functions": {
+            "parsePreferences": 1
+          },
+          "changes": [
+            {
+              "function": "parsePreferences",
+              "added": [],
+              "removed": []
+            }
+          ]
+        }
+      },
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "private_terrace",
+          "terrace",
+          "reception_24h",
+          "ev_charging"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A"
+      ]
+    },
+    {
+      "id": "P28",
+      "query": "Hotel in Berlin ohne 24h Rezeption",
+      "primaryFile": "securityParser.ts",
+      "expectedNames": [
+        "C"
+      ],
+      "passed": true,
+      "trace": {
+        "natureParser.ts": {
+          "functions": {
+            "parseNatureSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseNatureSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "cityParser.ts": {
+          "functions": {
+            "parseCitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseCitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "romanceParser.ts": {
+          "functions": {
+            "parseRomanceSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseRomanceSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "luxuryParser.ts": {
+          "functions": {
+            "parseLuxurySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseLuxurySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "parserUtils.ts": {
+          "functions": {
+            "containsAnyWholeTerm": 2
+          },
+          "changes": []
+        },
+        "sustainabilityParser.ts": {
+          "functions": {
+            "parseSustainabilitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSustainabilitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "securityParser.ts": {
+          "functions": {
+            "parseSecuritySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSecuritySearch",
+              "added": [
+                "security_service=reception_24h"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "extendedSearchParser.ts": {
+          "functions": {
+            "parseExtendedSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseExtendedSearch",
+              "added": [
+                "hotel_service=reception_24h"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "searchParamCleanup.ts": {
+          "functions": {
+            "cleanupSearchParams": 2
+          },
+          "changes": [
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": []
+            },
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": [
+                "feature=reception_24h"
+              ]
+            }
+          ]
+        },
+        "dbFeatureMapper.ts": {
+          "functions": {
+            "mapSearchParamsToDbFeatures": 1
+          },
+          "changes": [
+            {
+              "function": "mapSearchParamsToDbFeatures",
+              "added": [
+                "feature=reception_24h"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "hotelStarsParser.ts": {
+          "functions": {
+            "parseHotelStars": 1
+          },
+          "changes": [
+            {
+              "function": "parseHotelStars",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "preferenceParser.ts": {
+          "functions": {
+            "parsePreferences": 1
+          },
+          "changes": [
+            {
+              "function": "parsePreferences",
+              "added": [],
+              "removed": []
+            }
+          ]
+        }
+      },
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "exclude_feature": [
+          "reception_24h"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "C"
+      ]
+    },
+    {
+      "id": "P29",
+      "query": "Hotel in Berlin mit Pool, 24h Rezeption wäre schön",
+      "primaryFile": "securityParser.ts",
+      "expectedNames": [
+        "A",
+        "C"
+      ],
+      "passed": true,
+      "trace": {
+        "natureParser.ts": {
+          "functions": {
+            "parseNatureSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseNatureSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "cityParser.ts": {
+          "functions": {
+            "parseCitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseCitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "romanceParser.ts": {
+          "functions": {
+            "parseRomanceSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseRomanceSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "luxuryParser.ts": {
+          "functions": {
+            "parseLuxurySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseLuxurySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "parserUtils.ts": {
+          "functions": {
+            "containsAnyWholeTerm": 2
+          },
+          "changes": []
+        },
+        "sustainabilityParser.ts": {
+          "functions": {
+            "parseSustainabilitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSustainabilitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "securityParser.ts": {
+          "functions": {
+            "parseSecuritySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSecuritySearch",
+              "added": [
+                "security_service=reception_24h"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "extendedSearchParser.ts": {
+          "functions": {
+            "parseExtendedSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseExtendedSearch",
+              "added": [
+                "hotel_service=reception_24h"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "searchParamCleanup.ts": {
+          "functions": {
+            "cleanupSearchParams": 2
+          },
+          "changes": [
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": [
+                "leisure_feature=pool"
+              ]
+            },
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "dbFeatureMapper.ts": {
+          "functions": {
+            "mapSearchParamsToDbFeatures": 1
+          },
+          "changes": [
+            {
+              "function": "mapSearchParamsToDbFeatures",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "hotelStarsParser.ts": {
+          "functions": {
+            "parseHotelStars": 1
+          },
+          "changes": [
+            {
+              "function": "parseHotelStars",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "preferenceParser.ts": {
+          "functions": {
+            "parsePreferences": 1
+          },
+          "changes": [
+            {
+              "function": "parsePreferences",
+              "added": [
+                "preferred_feature=pool"
+              ],
+              "removed": []
+            }
+          ]
+        }
+      },
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "pool",
+          "reception_24h"
+        ],
+        "preferred_feature": [
+          "reception_24h"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A",
+        "C"
+      ]
+    },
+    {
+      "id": "P30",
+      "query": "Hotel in Berlin Solarstrom wäre schön, WLAN muss sein",
+      "primaryFile": "sustainabilityParser.ts",
+      "expectedNames": [
+        "A",
+        "B"
+      ],
+      "passed": true,
+      "trace": {
+        "natureParser.ts": {
+          "functions": {
+            "parseNatureSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseNatureSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "cityParser.ts": {
+          "functions": {
+            "parseCitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseCitySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "romanceParser.ts": {
+          "functions": {
+            "parseRomanceSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseRomanceSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "luxuryParser.ts": {
+          "functions": {
+            "parseLuxurySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseLuxurySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "parserUtils.ts": {
+          "functions": {
+            "containsAnyWholeTerm": 2
+          },
+          "changes": []
+        },
+        "sustainabilityParser.ts": {
+          "functions": {
+            "parseSustainabilitySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSustainabilitySearch",
+              "added": [
+                "sustainability_feature=solar_power"
+              ],
+              "removed": []
+            }
+          ]
+        },
+        "securityParser.ts": {
+          "functions": {
+            "parseSecuritySearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseSecuritySearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "extendedSearchParser.ts": {
+          "functions": {
+            "parseExtendedSearch": 1
+          },
+          "changes": [
+            {
+              "function": "parseExtendedSearch",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "searchParamCleanup.ts": {
+          "functions": {
+            "cleanupSearchParams": 2
+          },
+          "changes": [
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": [
+                "digital_feature=wifi"
+              ]
+            },
+            {
+              "function": "cleanupSearchParams",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "dbFeatureMapper.ts": {
+          "functions": {
+            "mapSearchParamsToDbFeatures": 1
+          },
+          "changes": [
+            {
+              "function": "mapSearchParamsToDbFeatures",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "hotelStarsParser.ts": {
+          "functions": {
+            "parseHotelStars": 1
+          },
+          "changes": [
+            {
+              "function": "parseHotelStars",
+              "added": [],
+              "removed": []
+            }
+          ]
+        },
+        "preferenceParser.ts": {
+          "functions": {
+            "parsePreferences": 1
+          },
+          "changes": [
+            {
+              "function": "parsePreferences",
+              "added": [
+                "must_feature=wifi"
+              ],
+              "removed": []
+            }
+          ]
+        }
+      },
+      "params": {
+        "city": [
+          "Berlin"
+        ],
+        "country": [
+          "Deutschland"
+        ],
+        "type": [
+          "hotel"
+        ],
+        "guests": [
+          "2"
+        ],
+        "check_in": [
+          "2027-07-01"
+        ],
+        "check_out": [
+          "2027-07-08"
+        ],
+        "nights": [
+          "7"
+        ],
+        "feature": [
+          "wifi",
+          "solar_power"
+        ],
+        "must_feature": [
+          "wifi"
+        ],
+        "preferred_feature": [
+          "solar_power"
+        ],
+        "sort": [
+          "best"
+        ],
+        "page": [
+          "1"
+        ],
+        "page_size": [
+          "60"
+        ]
+      },
+      "actualNames": [
+        "A",
+        "B"
+      ]
+    }
+  ]
+}

@@ -162,6 +162,7 @@ export function parseNatureSearch(
     normalizedText.includes("waldnähe") ||
     normalizedText.includes("waldnaehe") ||
     normalizedText.includes("nah am wald") ||
+    normalizedText.includes("nahe am wald") ||
     normalizedText.includes("wald in der nähe") ||
     normalizedText.includes("wald in der naehe") ||
     normalizedText.includes("am waldrand")

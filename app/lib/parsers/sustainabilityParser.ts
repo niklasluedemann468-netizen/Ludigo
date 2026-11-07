@@ -248,6 +248,9 @@ export function parseSustainabilitySearch(
   // =========================================================
 
   sustainabilityAppendIfAny("sustainability_feature", "ev_charging", [
+    "e-ladestation",
+    "e ladestation",
+    "elektroladestation",
     "e auto ladestation",
     "e-auto ladestation",
     "eauto ladestation",

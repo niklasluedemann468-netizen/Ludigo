@@ -556,6 +556,7 @@ export function parseLuxurySearch(
 
   luxuryAppendIfAny("luxury_feature", "private_cinema", [
     "privates kino",
+    "privatem kino",
     "private cinema",
     "heimkino",
     "cinema room",

@@ -11,6 +11,8 @@ export const featureColumns: Record<string, readonly string[]> = {
     free_parking: ['free_parking'], city_center: ['city_center'], near_airport: ['near_airport'],
 };
 const aliases: Record<string, string> = { wlan: 'wifi', pets: 'pets_allowed', pet_friendly: 'pets_allowed', dogs: 'dogs_allowed', dog_friendly: 'dogs_allowed', cats: 'cats_allowed', wellness: 'spa', fitness: 'gym', fitness_room: 'gym', fitness_center: 'gym', mountain_location: 'near_mountains' };
+aliases.mountains='near_mountains';
+aliases['24h_reception']='reception_24h';
 const children: Record<string, string[]> = {
     pool: ['private_pool', 'indoor_pool', 'outdoor_pool', 'heated_pool', 'infinity_pool', 'rooftop_pool'],
     parking: ['free_parking', 'private_parking', 'garage'],
@@ -24,6 +26,10 @@ Object.assign(children, { near_water: ['near_sea', 'near_lake', 'near_river', 'n
 for (const key of [...Object.keys(accessibilityTerms), 'near_water', 'near_river', 'near_beach', 'beachfront', 'seafront', 'lakefront'])
     if (!(key in featureColumns)) featureColumns[key] = [key, `has_${key}`];
 children.parking.push('guarded_parking', 'gated_parking', 'secure_underground_parking');
+children.ev_charging=['private_ev_charger'];
+children.safe=['room_safe','laptop_safe','reception_safe'];
+children.cctv=['cctv_outside','cctv_common_areas'];
+children.sofa=['sofa_bed'];
 export const featureVocabulary = [...new Set([...Object.keys(featureColumns), ...Object.keys(children), ...Object.values(children).flat()])];
 export function canonicalFeature(value: string): string { return aliases[value] ?? value; }
 export function featureAliases(value: string): string[] {
