@@ -12,7 +12,7 @@ class AuditDate extends NativeDate {
   constructor(...args){super(...(args.length?args:['2026-10-30T12:00:00Z']));}
   static now(){return new NativeDate('2026-10-30T12:00:00Z').getTime();}
 }
-function loader(mocks,globals={}) {
+function loader(mocks,globals={},observeModule) {
   const modules=new Map();
   function load(filename) {
     if(modules.has(filename))return modules.get(filename).exports;
@@ -31,24 +31,35 @@ function loader(mocks,globals={}) {
     };
     const sandbox={URLSearchParams,URL,Request,Response,Error,Map,Set,AbortSignal,Date:AuditDate,console:{log(){},warn(){},error(){}},setTimeout(){},...globals};
     vm.runInNewContext(`(function(require,module,exports){${compiled.get(filename)}\n})`,sandbox,{filename})(localRequire,module,module.exports);
+    observeModule?.(filename,module.exports);
     return module.exports;
   }
   return load;
 }
 
 export async function parseSearch(query,options={}) {
-  let index=0;const updates=[],calls=[],logs=[];
+  let index=0;const updates=[],calls=[],logs=[],parserTrace={};
   const initial={0:options.type??null,1:options.adults??2,2:options.children??0,3:options.babies??0,4:query,9:options.checkIn??'2027-07-01',10:options.checkOut??'2027-07-08',11:options.guestsChanged??(['adults','children','babies'].some(key=>Object.hasOwn(options,key)))};
   const react={...nativeRequire('react'),useRef(value){return {current:value};},useState(value){const i=index++;return [Object.hasOwn(initial,i)?initial[i]:(typeof value==='function'?value():value),(v)=>updates.push({index:i,value:v})];}};
   const load=loader({'react':react,'./components/AccommodationPage':{__esModule:true,default:()=>null}},{
     console:{log(...args){logs.push(args)},warn(...args){logs.push(args)},error(...args){logs.push(args)}},
     fetch:async(url,init)=>{calls.push(String(url));return String(url)==='/api/search'?Response.json({criteria:options.criteria??{}},{status:options.aiStatus??200}):Response.json({accommodations:[]});}
-  });
+  },options.traceParsers?(filename,exports)=>{
+    if(!filename.includes('/app/lib/parsers/'))return;
+    const file=path.basename(filename),trace=parserTrace[file]??={functions:{},changes:[]};
+    for(const [name,fn] of Object.entries(exports))if(typeof fn==='function')exports[name]=(...args)=>{
+      trace.functions[name]=(trace.functions[name]??0)+1;
+      const params=args.find(arg=>arg instanceof URLSearchParams),before=params?[...params].map(pair=>pair.join('=')):[];
+      const value=fn(...args);
+      if(params){const after=[...params].map(pair=>pair.join('='));trace.changes.push({function:name,added:after.filter(item=>!before.includes(item)),removed:before.filter(item=>!after.includes(item))});}
+      return value;
+    };
+  }:undefined);
   const SearchBox=load(path.join(root,'app/SearchBox.tsx')).default;
   const element=SearchBox();await element.props.onSubmit({preventDefault(){}});
   const url=calls.find(x=>x.startsWith('/api/accommodations?'));
   const params=url?new URL(url,'https://audit.invalid').searchParams:new URLSearchParams();
-  return {query,params:Object.fromEntries([...new Set(params.keys())].map(k=>[k,params.getAll(k)])),url,aiCalls:calls.filter(x=>x==='/api/search').length,normalized:logs.find(x=>x[0]==='NORMALISIERTER TEXT:')?.[1],beforeCleanup:logs.find(x=>x[0]==='VOR CLEANUP:')?.[1],dropped:logs.filter(x=>x[0]==='SEMANTISCHER PARAMETER NICHT AN API GESENDET:').map(x=>x[1]),messages:updates.filter(x=>x.index===6).map(x=>x.value)};
+  return {query,params:Object.fromEntries([...new Set(params.keys())].map(k=>[k,params.getAll(k)])),url,aiCalls:calls.filter(x=>x==='/api/search').length,normalized:logs.find(x=>x[0]==='NORMALISIERTER TEXT:')?.[1],beforeCleanup:logs.find(x=>x[0]==='VOR CLEANUP:')?.[1],dropped:logs.filter(x=>x[0]==='SEMANTISCHER PARAMETER NICHT AN API GESENDET:').map(x=>x[1]),messages:updates.filter(x=>x.index===6).map(x=>x.value),...(options.traceParsers?{parserTrace}:{})};
 }
 
 export function makeDatabase(tables,options={}) {

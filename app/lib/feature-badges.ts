@@ -22,7 +22,11 @@ const groups: [string, Record<string, string>][] = [
   ['pool', { pool: 'Pool', private_pool: 'Privater Pool', indoor_pool: 'Innenpool', outdoor_pool: 'Außenpool', heated_pool: 'Beheizter Pool', infinity_pool: 'Infinity-Pool', rooftop_pool: 'Dachpool', accessible_pool: 'Pool mit barrierefreiem Zugang' }],
   ['wifi', { wifi: 'WLAN', fast_wifi: 'Schnelles WLAN', high_speed_internet: 'Schnelles Internet', work_friendly: 'Für Arbeiten geeignet' }],
   ['parking', { parking: 'Parkplatz', private_parking: 'Privater Parkplatz', free_parking: 'Kostenloser Parkplatz', garage: 'Garage', private_garage: 'Private Garage', accessible_parking: 'Behindertenparkplatz', parking_near_entrance: 'Parkplatz am Eingang' }],
-  ['shield', { guarded_parking: 'Bewachter Parkplatz', gated_parking: 'Abgeschlossener Parkplatz', secure_underground_parking: 'Gesicherte Tiefgarage', gated_property: 'Abgeschlossenes Gelände' }],
+  ['shield', { guarded_parking: 'Bewachter Parkplatz', gated_parking: 'Abgeschlossener Parkplatz', secure_underground_parking: 'Gesicherte Tiefgarage', gated_property: 'Abgeschlossenes Gelände', safe:'Safe',room_safe:'Zimmersafe',laptop_safe:'Laptop-Safe',reception_safe:'Safe an der Rezeption',cctv:'Videoüberwachung',cctv_outside:'Videoüberwachung außen',cctv_common_areas:'Videoüberwachung in Gemeinschaftsbereichen',security_staff:'Sicherheitspersonal',security_24h:'24-Stunden-Sicherheitsdienst' }],
+  ['leaf', {ev_charging:'E-Ladestation',private_ev_charger:'Private E-Ladestation',solar_power:'Solarstrom',renewable_energy:'Erneuerbare Energien',near_forest:'Waldnähe'}],
+  ['home', {private_cinema:'Privates Kino'}],
+  ['bed', {sofa:'Sofa',sofa_bed:'Schlafsofa'}],
+  ['spa', {bathrobe:'Bademantel'}],
   ['kitchen', { kitchen: 'Küche', full_kitchen: 'Voll ausgestattete Küche', kitchenette: 'Küchenzeile', self_catering: 'Selbstverpflegung', fridge: 'Kühlschrank', microwave: 'Mikrowelle', dishwasher: 'Geschirrspüler', bbq: 'Grill' }],
   ['laundry', { washing_machine: 'Waschmaschine', laundry_service: 'Wäscheservice' }],
   ['coffee', { breakfast: 'Frühstück', breakfast_included: 'Frühstück inklusive' }],
@@ -35,7 +39,7 @@ const groups: [string, Record<string, string>][] = [
   ['bed', { double_bed: 'Doppelbett', adjustable_bed: 'Verstellbares Bett', separate_bedrooms: 'Getrennte Schlafzimmer', soundproof: 'Schallisolierung' }],
   ['home', { private_entrance: 'Eigener Eingang', self_check_in: 'Selbstständiger Check-in', tv: 'Fernseher', smart_tv: 'Smart-TV', fireplace: 'Kamin', long_stay: 'Längerer Aufenthalt', smoking_area: 'Raucherbereich' }],
   ['transport', { near_airport: 'Flughafennähe', near_train_station: 'Bahnhofsnähe', airport_shuttle: 'Flughafentransfer', car_rental: 'Mietwagen' }],
-  ['compass', { reception_24h: '24-Stunden-Rezeption', luggage_storage: 'Gepäckaufbewahrung', mobility_device_charging: 'Laden von Mobilitätshilfen' }],
+  ['compass', { reception_24h: '24-Stunden-Rezeption', luggage_storage: 'Gepäckaufbewahrung', mobility_device_charging: 'Laden von Mobilitätshilfen',late_check_out:'Später Check-out',early_check_in:'Früher Check-in',room_service:'Zimmerservice',concierge:'Concierge' }],
 ];
 export const featurePresentation: Record<string, { icon: string; label: string }> = Object.fromEntries(groups.flatMap(([icon, labels]) => Object.entries(labels).map(([key, label]) => [key, { icon, label }])));
 

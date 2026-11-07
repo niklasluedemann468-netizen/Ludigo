@@ -13,7 +13,13 @@ const waterTerms: Record<string, readonly string[]> = {
   near_water: ['am wasser', 'wassernähe', 'wassernaehe', 'in wassernähe', 'in wassernaehe'],
   near_river: ['am fluss', 'flussnähe', 'flussnaehe', 'in flussnähe'],
 };
-const terms = { ...accessibilityTerms, ...waterTerms, private_bathroom: ['eigenes bad','eigenem bad','eigenen bad','eigenes badezimmer','eigenem badezimmer','privates bad','privatem bad','privates badezimmer','privatem badezimmer'] };
+const terms = { ...accessibilityTerms, ...waterTerms,
+  ev_charging:['e-ladestation','e ladestation','elektroladestation','e auto ladestation','e-auto ladestation','eauto ladestation','elektroauto ladestation','elektroauto laden','ev charging','ev charger','wallbox'],
+  private_ev_charger:['private wallbox','privater wallbox','eigene wallbox','private ladestation','privater ladestation','eigene e auto ladestation','eigene e-auto ladestation'],
+  reception_24h:['24h rezeption','24 stunden rezeption','24/7 rezeption','rezeption rund um die uhr','24 hour reception','24-hour reception'],
+  safe:['safe','tresor'],room_safe:['zimmersafe','safe im zimmer','room safe','in-room safe'],laptop_safe:['laptop safe','laptopsafe','safe für laptop','safe fuer laptop'],reception_safe:['safe an der rezeption','safe bei der rezeption','reception safe'],
+  solar_power:['solarstrom','solarenergie','solaranlage','photovoltaik'],renewable_energy:['erneuerbare energien','erneuerbarer energie','renewable energy'],
+  private_bathroom: ['eigenes bad','eigenem bad','eigenen bad','eigenes badezimmer','eigenem badezimmer','privates bad','privatem bad','privates badezimmer','privatem badezimmer'] };
 const keys = new Set(Object.keys(terms));
 
 // Replace broad substring matches with scoped, longest-phrase matches.

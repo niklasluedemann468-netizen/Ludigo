@@ -1,4 +1,5 @@
 import {canonicalFeature} from '../search/features';
+import {knownFeatures} from '../search/catalog';
 type SearchParams = URLSearchParams;
 
 
@@ -477,6 +478,15 @@ function mapSemanticFeatures(
       );
       if(canonicalFeature(sourceValue)!==canonicalFeature(mappedFeature))appendUniqueFeature(params,canonicalFeature(sourceValue));
     }
+  }
+  // Concrete parser facts must survive even when the old mapping table has no entry.
+  // Unknown facts remain strict filters; missing provider evidence produces zero matches.
+  for(const [key,value] of [...params]){
+    if(/^(?:exclude|ignore|require|must|preferred)_/.test(key))continue;
+    const feature=canonicalFeature(value);
+    const factGroup=key==='amenity'||/_(?:feature|service|view|location|food|certification)$/.test(key);
+    const knownPreference=key.endsWith('_preference')&&knownFeatures.has(feature);
+    if((factGroup||knownPreference)&&/^[a-z][a-z0-9_]{0,63}$/.test(feature))appendUniqueFeature(params,feature);
   }
 }
 
