@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import SurpriseBookingSearch from './SurpriseBookingSearch';
 import {
   matchSurprises,
   type SurprisePreference,
@@ -483,11 +482,6 @@ export default function SurpriseSearchBox() {
           Überraschungsreise entdecken
         </button>
       </form>
-      <SurpriseBookingSearch
-        key={request ? JSON.stringify([request.startDate, request.endDate, request.travelers, request.budget, request.preferences, selectedIdeaId]) : 'no-profile'}
-        request={request}
-        idea={selectedIdea}
-      />
       {request && matches && (
         <section
           style={{
