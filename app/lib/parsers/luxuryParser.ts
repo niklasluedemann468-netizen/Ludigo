@@ -7,7 +7,7 @@ export function parseLuxurySearch(
   // =========================================================
 
   const luxuryIncludesAny = (terms: string[]) =>
-    terms.some((term) => normalizedText.includes(term));
+    terms.some((term) => term === "burg" ? /(?:^|[^a-zäöüß])burg(?=$|[^a-zäöüß])/iu.test(normalizedText) : normalizedText.includes(term));
 
   const luxuryAppendIfAny = (
     key: string,
