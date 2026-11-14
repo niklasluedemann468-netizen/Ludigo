@@ -293,7 +293,10 @@ export function finishLocalCriteria(input: URLSearchParams, query: string, form:
     let unsupported = false;
     for (const key of [...new Set(params.keys())])
         if (!apiKeys.has(key)) {
-            if (!contextual.has(key) && params.getAll(key).some(value => !retainedFeatures.has(canonicalFeature(value))))
+            // The legacy luxury parser also emits five_star for a parsed star range.
+            // That duplicate rating is already checked by the numeric star filters.
+            const unresolved = params.getAll(key).filter(value => !(key === 'luxury_preference' && value === 'five_star' && ['hotel_stars', 'min_hotel_stars', 'max_hotel_stars'].some(stars => params.has(stars))));
+            if (!contextual.has(key) && unresolved.some(value => !retainedFeatures.has(canonicalFeature(value))))
                 unsupported = true;
             params.delete(key);
         }

@@ -24,6 +24,10 @@ for(const query of ['Hotel in Berlin mit Spa','Hotel in Berlin mit Spabereich','
 test('A genuine castle request remains recognised',async()=>{
   const parsed=await parseSearch('Übernachten in einer Burg in Berlin',{aiStatus:503});assert.ok(parsed.beforeCleanup?.includes('historic_castle'));
 });
+for(const query of ['Hotel in Berlin mit 5 Sternen','Hotel in Berlin zwischen 4 und 5 Sternen','Hotel in Berlin mit Pool und WLAN zwischen 4 und 5 Sternen'])test(`Resolved stars do not trigger an unsupported-wish warning: ${query}`,async()=>{
+  const parsed=await parseSearch(query,{aiStatus:503});assert.ok(parsed.url);assert.ok(!parsed.messages.some(message=>message.includes('besondere Wünsche')));
+  assert.ok(['hotel_stars','min_hotel_stars','max_hotel_stars'].some(key=>parsed.params[key]));
+});
 test('Booking keeps CJ attribution and forwards only the resolved destination and dates',()=>{
   const result=bookingSearch(base,party),cj=new URL(result.href),booking=target(result);
   assert.equal(cj.hostname,'www.jdoqocy.com');assert.equal(cj.pathname,'/click-101892570-17319656');assert.equal(cj.searchParams.get('sid'),'ludigo_search');
