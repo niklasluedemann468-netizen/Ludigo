@@ -1,8 +1,10 @@
 
-import { NextRequest, NextResponse } from "next/server";
+import { after, NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
+import { sendSurpriseNotification } from '@/app/lib/surprise-notification';
 
 export const runtime = "nodejs";
+export const maxDuration = 60;
 
 const allowedPreferences = [
   "Strand & Meer",
@@ -241,11 +243,11 @@ export async function POST(request: NextRequest) {
       .select("id")
       .single();
 
-    if (error) {
+    if (error || !data?.id) {
       // Keine personenbezogenen Daten protokollieren.
       console.error(
         "Surprise API: Speichern fehlgeschlagen.",
-        error.code
+        error?.code ?? 'NO_REQUEST_ID'
       );
 
       return NextResponse.json(
@@ -253,6 +255,19 @@ export async function POST(request: NextRequest) {
         { status: 500 }
       );
     }
+
+    // Only a validated, successfully persisted customer request schedules an internal mail.
+    // Sending is completed through Next's supported after-response lifecycle on Vercel.
+    after(async () => {
+      await sendSurpriseNotification(String(data.id), {
+        firstName: (firstName as string).trim(), lastName: (lastName as string).trim(),
+        email: (email as string).trim(), phone: typeof phone === 'string' ? phone.trim() || null : null,
+        departure: (departure as string).trim(), startDate, endDate,
+        travelers: travelers as number, budget: budget as number | null,
+        preferences: preferences as string[], selectedIdea: selectedIdea as string,
+        additionalWishes: typeof additionalWishes === 'string' ? additionalWishes.trim() || null : null,
+      });
+    });
 
     return NextResponse.json(
       {
