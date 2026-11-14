@@ -59,6 +59,25 @@ export function searchCriteriaBadges(value: string): FeatureBadge[] {
   if (!value) return [];
   try {
     const c = readSearchCriteria(new URLSearchParams(value)), badges: FeatureBadge[] = [];
+    const add=(key:string,icon:string,label:string)=>badges.push({key,icon,label,kind:'required'});
+    const destination=[c.params.get('city'),c.params.get('region'),c.params.get('country')].filter((part,index,all)=>part&&all.indexOf(part)===index).join(', ');
+    if(destination)add('destination','pin',destination);
+    const types:Record<string,string>={hotel:'Hotel',campsite:'Camping',holiday_apartment:'Ferienwohnung',holiday_home:'Ferienhaus',villa:'Villa',hostel:'Hostel',guesthouse:'Pension',bed_and_breakfast:'Bed & Breakfast',resort:'Resort',chalet:'Chalet',cabin:'Hütte',bungalow:'Bungalow'};
+    if(c.type)add('type','bed',types[c.type]??c.type);
+    if(c.params.has('check_in')&&c.params.has('check_out')){
+      const format=(date:string)=>date.split('-').reverse().join('.');
+      add('dates','compass',`${format(c.params.get('check_in')!)} – ${format(c.params.get('check_out')!)}`);
+    }
+    const guests=c.number('max_guests');
+    if(guests!==null)add('max_guests','family',`Platz für ${guests} ${guests===1?'Person':'Personen'}`);
+    else if(c.params.has('guests'))add('guests','family',`${c.params.get('guests')} Reisende`);
+    const exactStars=c.number('hotel_stars'),minStars=c.number('min_hotel_stars'),maxStars=c.number('max_hotel_stars');
+    if(exactStars!==null)add('stars','star',`${exactStars} Sterne`);
+    else if(minStars!==null&&maxStars!==null)add('stars','star',`${minStars}–${maxStars} Sterne`);
+    else if(minStars!==null)add('stars','star',`Mindestens ${minStars} Sterne`);
+    else if(maxStars!==null)add('stars','star',`Höchstens ${maxStars} Sterne`);
+    for(const [key,prefix] of [['bedrooms','Schlafzimmer:'],['min_bedrooms','Schlafzimmer ab'],['max_bedrooms','Schlafzimmer bis']] as const){const amount=c.number(key);if(amount!==null)add(key,'bed',`${prefix} ${amount}`);}
+    for(const [key,prefix] of [['review_score','Bewertung:'],['min_review_score','Bewertung ab'],['max_review_score','Bewertung bis']] as const){const amount=c.number(key);if(amount!==null)add(key,'star',`${prefix} ${amount} / ${c.number('review_scale')??(c.type==='campsite'?5:10)}`);}
     for (const [kind, values] of [['required', c.hard], ['preferred', c.preferred], ['excluded', c.excluded]] as const) {
       const distinct = [...new Set(values)];
       for (const key of distinct.filter(key => !distinct.some(other => other !== key && featureAncestors(other).includes(key)))) {
@@ -69,6 +88,9 @@ export function searchCriteriaBadges(value: string): FeatureBadge[] {
     const money=(number:number)=>{try{return new Intl.NumberFormat('de-DE',{style:'currency',currency:c.params.get('currency')??'EUR',minimumFractionDigits:0,maximumFractionDigits:2}).format(number);}catch{return `${number} ${c.params.get('currency')??'EUR'}`;}};
     for(const [key,prefix,suffix] of [['min_price_per_night','Ab',' / Nacht'],['max_price_per_night','Bis',' / Nacht'],['min_total_price','Gesamt ab',''],['max_total_price','Gesamt bis','']] as const){
       const amount=c.number(key);if(amount!==null)badges.push({key,icon:'payment',kind:'required',label:`${prefix} ${money(amount)}${suffix}`});
+    }
+    for(const [key,canonical,prefix,suffix] of [['min_price','min_price_per_night','Ab',' / Nacht'],['max_price','max_price_per_night','Bis',' / Nacht'],['total_budget','max_total_price','Gesamt bis','']] as const){
+      const amount=c.number(key);if(amount!==null&&!c.params.has(canonical))badges.push({key,icon:'payment',kind:'required',label:`${prefix} ${money(amount)}${suffix}`});
     }
     return badges;
   } catch { return []; }

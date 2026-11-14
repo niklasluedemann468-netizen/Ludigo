@@ -4381,7 +4381,7 @@ if (
 }
 
 if (
-  normalizedText.includes("spa") ||
+  containsWholeTerm(normalizedText, "spa") ||
   normalizedText.includes("spa bereich") ||
   normalizedText.includes("spabereich")
 ) {
